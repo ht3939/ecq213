@@ -465,8 +465,7 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
         $product_id = $objFormParam->getValue('product_id');
         $objProduct = new SC_Product_Ex();
         $existsProductsClass = $objProduct->getProductsClassFullByProductId($product_id);
-var_dump($existsProductsClass);
-
+        
         // 規格のデフォルト値(全ての組み合わせ)を取得し, フォームに反映
         $class_id1 = $existsProductsClass[0]['class_id1'];
         $class_id2 = $existsProductsClass[0]['class_id2'];
