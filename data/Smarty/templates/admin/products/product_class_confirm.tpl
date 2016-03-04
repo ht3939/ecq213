@@ -63,6 +63,8 @@
                     <th>在庫数</th>
                     <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
                     <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)</th>
+                    <th>後払い金額(円)</th>
+                    <th>データ容量</th>
                     <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                     <th>消費税率(%)</th>
                     <!--{/if}-->
@@ -94,6 +96,11 @@
                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
                             <!--{assign var=key value="price02"}-->
                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
+                            <!--{assign var=key value="next_price"}-->
+                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
+                            <!--{assign var=key value="plan_datasize"}-->
+                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
+
                             <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                             <!--{assign var=key value="tax_rate"}-->
                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>

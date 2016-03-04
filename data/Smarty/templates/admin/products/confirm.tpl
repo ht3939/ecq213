@@ -105,6 +105,19 @@
                 </td>
             </tr>
             <!--{/if}-->
+
+            <tr>
+                <th>追加項目１</th>
+                <td>
+                    <!--{$arrForm.add_col1|h}-->
+                </td>
+            </tr>
+            <tr>
+                <th>追加項目２</th>
+                <td>
+                    <!--{$arrForm.add_col2|h}-->
+                </td>
+            </tr>
             <tr>
                 <th>商品コード</th>
                 <td>
@@ -121,6 +134,18 @@
                 <th><!--{$smarty.const.SALE_PRICE_TITLE}--></th>
                 <td>
                     <!--{if strlen($arrForm.price02) >= 1}--><!--{$arrForm.price02|h}--> 円<!--{/if}-->
+                </td>
+            </tr>
+            <tr>
+                <th>後払い金額</th>
+                <td>
+                    <!--{if strlen($arrForm.next_price) >= 1}--><!--{$arrForm.next_price|h}--> 円<!--{/if}-->
+                </td>
+            </tr>
+            <tr>
+                <th>データ容量</th>
+                <td>
+                    <!--{if strlen($arrForm.plan_datasize) >= 1}--><!--{$arrForm.plan_datasize|h}--> GB/月（-1は無制限）<!--{/if}-->
                 </td>
             </tr>
             <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->

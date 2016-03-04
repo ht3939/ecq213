@@ -314,6 +314,8 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
         $objFormParam->addParam('商品カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('公開・非公開', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('追加項目１', 'add_col1', LLTEXT_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('追加項目２', 'add_col2', LLTEXT_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
 
         if (!$arrPost['has_product_class']) {
             // 新規登録, 規格なし商品の編集の場合
@@ -325,6 +327,8 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
             $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
             $objFormParam->addParam(NORMAL_PRICE_TITLE, 'price01', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
             $objFormParam->addParam(SALE_PRICE_TITLE, 'price02', PRICE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+            $objFormParam->addParam('後払い金額', 'next_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+            $objFormParam->addParam('データ容量', 'plan_datasize', PRICE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
             if (OPTION_PRODUCT_TAX_RULE) {
                 $objFormParam->addParam('消費税率', 'tax_rate', PERCENTAGE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
             }
@@ -863,6 +867,8 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
                     product_type_id,
                     down_filename,
                     down_realfilename
+                    ,next_price
+                    ,plan_datasize
                 FROM dtb_products_class
             ) AS T2
                 ON T1.product_id = T2.product_id_sub
@@ -1005,7 +1011,9 @@ __EOF__;
                             'main_list_comment', 'main_comment',
                             'deliv_fee', 'comment1', 'comment2', 'comment3',
                             'comment4', 'comment5', 'comment6',
-                            'sale_limit', 'deliv_date_id', 'maker_id', 'note');
+                            'sale_limit', 'deliv_date_id', 'maker_id', 'note',
+                            'add_col1', 'add_col2'
+                            );
         $arrList = SC_Utils_Ex::arrayDefineIndexes($arrList, $checkArray);
 
         // INSERTする値を作成する。
@@ -1022,8 +1030,12 @@ __EOF__;
         $sqlval['deliv_date_id'] = $arrList['deliv_date_id'];
         $sqlval['maker_id'] = $arrList['maker_id'];
         $sqlval['note'] = $arrList['note'];
+        $sqlval['add_col1'] = $arrList['add_col1'];
+        $sqlval['add_col2'] = $arrList['add_col2'];
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
         $sqlval['creator_id'] = $_SESSION['member_id'];
+
+
         $arrRet = $objUpFile->getDBFileList();
         $sqlval = array_merge($sqlval, $arrRet);
 
@@ -1156,7 +1168,13 @@ __EOF__;
         $objDb = new SC_Helper_DB_Ex();
 
         // 配列の添字を定義
-        $checkArray = array('product_class_id', 'product_id', 'product_code', 'stock', 'stock_unlimited', 'price01', 'price02', 'sale_limit', 'deliv_fee', 'point_rate', 'product_type_id', 'down_filename', 'down_realfilename');
+        $checkArray = array(
+            'product_class_id', 'product_id', 'product_code', 'stock'
+            , 'stock_unlimited', 'price01', 'price02'
+            , 'sale_limit', 'deliv_fee', 'point_rate'
+            , 'product_type_id', 'down_filename', 'down_realfilename'
+            , 'next_price', 'plan_datasize'
+            );
         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $checkArray);
         $sqlval = SC_Utils_Ex::arrayDefineIndexes($sqlval, $checkArray);
 

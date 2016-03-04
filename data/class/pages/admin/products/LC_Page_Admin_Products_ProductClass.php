@@ -197,6 +197,8 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
         $objFormParam->addParam('在庫数', 'stock_unlimited', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
         $objFormParam->addParam(NORMAL_PRICE_TITLE, 'price01', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam(SALE_PRICE_TITLE, 'price02', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('後払い金額', 'next_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('データ容量', 'plan_datasize', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         if (OPTION_PRODUCT_TAX_RULE) {
             $objFormParam->addParam('消費税率', 'tax_rate', PERCENTAGE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         }
@@ -235,11 +237,14 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
         for ($i = 0; $i < $total; $i++) {
             $del_flg = SC_Utils_Ex::isBlank($arrList['check'][$i]) ? 1 : 0;
             $price02 = SC_Utils_Ex::isBlank($arrList['price02'][$i]) ? 0 : $arrList['price02'][$i];
+            $next_price = SC_Utils_Ex::isBlank($arrList['next_price'][$i]) ? 0 : $arrList['next_price'][$i];
+            $plan_datasize = SC_Utils_Ex::isBlank($arrList['plan_datasize'][$i]) ? 0 : $arrList['plan_datasize'][$i];
             // dtb_products_class 登録/更新用
             $registerKeys = array(
                 'classcategory_id1', 'classcategory_id2',
                 'product_code', 'stock', 'price01', 'product_type_id',
                 'down_filename', 'down_realfilename',
+                'next_price','plan_datasize',
             );
 
             $arrPC = array();
@@ -257,6 +262,10 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
                 $arrPC['stock_unlimited'] = 0;
             }
             $arrPC['price02'] = $price02;
+
+            $arrPC['next_price'] = $next_price;
+            $arrPC['plan_datasize'] = $plan_datasize;
+
 
             // 該当関数が無いため, セッションの値を直接代入
             $arrPC['creator_id'] = $_SESSION['member_id'];
@@ -456,6 +465,7 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
         $product_id = $objFormParam->getValue('product_id');
         $objProduct = new SC_Product_Ex();
         $existsProductsClass = $objProduct->getProductsClassFullByProductId($product_id);
+var_dump($existsProductsClass);
 
         // 規格のデフォルト値(全ての組み合わせ)を取得し, フォームに反映
         $class_id1 = $existsProductsClass[0]['class_id1'];
@@ -474,6 +484,7 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
             'classcategory_name1', 'classcategory_name2', 'stock',
             'stock_unlimited', 'price01', 'price02',
             'product_type_id', 'down_filename', 'down_realfilename', 'upload_index', 'tax_rate'
+            ,'next_price', 'plan_datasize'
         );
         $arrFormValues = $objFormParam->getSwapArray($arrKeys);
         // フォームの規格1, 規格2をキーにした配列を生成
@@ -756,7 +767,7 @@ __EOF__;
     public function getProductsClass($product_id)
     {
         $objQuery =& SC_Query_Ex::getSingletonInstance();
-        $col = 'product_code, price01, price02, stock, stock_unlimited, sale_limit, deliv_fee, point_rate';
+        $col = 'product_code, price01, price02, stock, stock_unlimited, sale_limit, deliv_fee, point_rate,next_price,plan_datasize';
         $where = 'product_id = ? AND classcategory_id1 = 0 AND classcategory_id2 = 0';
 
         return $objQuery->getRow($col, 'dtb_products_class', $where, array($product_id));
