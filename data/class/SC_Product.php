@@ -303,6 +303,8 @@ __EOS__;
                     ? number_format(SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProductsClass['price02'], $productId, $arrProductsClass['product_class_id']))
                     : '';
 
+                $arrClassCats2['next_price'] = $arrProductsClass['next_price'];
+                $arrClassCats2['plan_datasize'] = $arrProductsClass['plan_datasize'];
                 // ポイント
                 $arrClassCats2['point']
                     = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price02'], $arrProductsClass['point_rate']));
@@ -356,6 +358,8 @@ __EOS__;
             T1.product_type_id,
             T1.down_filename,
             T1.down_realfilename,
+                T1.next_price,
+                T1.plan_datasize,
             T3.name AS classcategory_name1,
             T3.rank AS rank1,
             T4.name AS class_name1,
@@ -659,6 +663,8 @@ __EOS__;
                 dtb_products_class.point_rate,
                 dtb_products_class.down_filename,
                 dtb_products_class.down_realfilename,
+                dtb_products_class.next_price,
+                dtb_products_class.plan_datasize,
                 dtb_products_class.classcategory_id1 AS classcategory_id, /* 削除 */
                 dtb_products_class.classcategory_id1,
                 dtb_products_class.classcategory_id2 AS parent_classcategory_id, /* 削除 */

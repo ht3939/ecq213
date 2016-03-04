@@ -132,7 +132,7 @@
                 <table class="layout">
                     <tr>
                         <td>
-                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 120px; min-width: 200px;" onchange="" size="10" multiple="multiple">
+                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 500px; min-width: 200px;" onchange="" size="10" multiple="multiple">
                             </select>
                         </td>
                         <td style="padding: 15px;">
@@ -140,7 +140,7 @@
                             <a class="btn-normal" href="javascript:;" name="un_select" onclick="fnMoveSelect('category_id','category_id_unselect'); return false;">&nbsp;&nbsp;削除&nbsp;-&gt;&nbsp;&nbsp;</a>
                         </td>
                         <td>
-                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 120px; min-width: 200px;" multiple="multiple">
+                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 500px; min-width: 450px;" multiple="multiple">
                                 <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id}-->
                             </select>
                         </td>
@@ -190,6 +190,22 @@
             </td>
         </tr>
         <tr>
+            <th>追加項目１<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.add_col1}--></span>
+                <input type="text" name="add_col1" value="<!--{$arrForm.add_col1|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col1 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>追加項目２<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.add_col2}--></span>
+                <input type="text" name="add_col2" value="<!--{$arrForm.add_col2|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col2 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+            </td>
+        </tr>        
+        <tr>
             <th>商品コード<span class="attention"> *</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.product_code}--></span>
@@ -213,6 +229,23 @@
                 <span class="attention"> (半角数字で入力)</span>
             </td>
         </tr>
+        <tr>
+            <th>後払い金額<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.next_price}--></span>
+                <input type="text" name="next_price" value="<!--{$arrForm.next_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.next_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>データ容量<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.plan_datasize}--></span>
+                <input type="text" name="plan_datasize" value="<!--{$arrForm.plan_datasize|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.plan_datasize != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>GB/月
+                <span class="attention"> (半角数字で入力、無制限は-1)</span>
+            </td>
+        </tr>
+
         <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->
         <tr>
             <th>消費税率<span class="attention"> *</span></th>

@@ -85,6 +85,12 @@
             var price02 = $('#price02_0').val();
             $('input[id^=price02_]').val(price02);
 
+            var next_price = $('#next_price_0').val();
+            $('input[id^=next_price_]').val(next_price);
+
+            var plan_datasize = $('#plan_datasize_0').val();
+            $('input[id^=plan_datasize_]').val(plan_datasize);
+
             var tax_rate = $('#tax_rate_0').val();
             $('input[id^=tax_rate_]').val(tax_rate);
 
@@ -203,6 +209,8 @@
                 <th>在庫数<span class="attention">*</span></th>
                 <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
                 <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)<span class="attention">*</span></th>
+                <th>後払い金額(円)</th>
+                <th>データ容量<span class="attention">*</span></th>
                 <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                 <th>消費税率(%)<span class="attention">*</span></th>
                 <!--{/if}-->
@@ -276,6 +284,21 @@
                         <!--{/if}-->
                         <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
                     </td>
+                    <td class="center">
+                        <!--{assign var=key value="next_price"}-->
+                        <!--{if $arrErr[$key][$index]}-->
+                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
+                        <!--{/if}-->
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                    </td>
+                    <td class="center">
+                        <!--{assign var=key value="plan_datasize"}-->
+                        <!--{if $arrErr[$key][$index]}-->
+                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
+                        <!--{/if}-->
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                    </td>
+
                     <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                     <td class="center">
                         <!--{assign var=key value="tax_rate"}-->
