@@ -159,7 +159,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
                             // 検索結果の取得
                             $this->arrProducts = $this->findProducts($where, $arrWhereVal, $page_max, $objNavi->start_row,
                                                                      $order, $objProduct);
-
+var_dump($this->arrProducts);
                             // 各商品ごとのカテゴリIDを取得
                             if (count($this->arrProducts) > 0) {
                                 foreach ($this->arrProducts as $key => $val) {
@@ -386,7 +386,7 @@ class LC_Page_Admin_Products extends LC_Page_Admin_Ex
         $objQuery =& SC_Query_Ex::getSingletonInstance();
 
         // 読み込む列とテーブルの指定
-        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date';
+        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date,maker_id,maker_name';
         $from = $objProduct->alldtlSQL();
 
         $objQuery->setLimitOffset($limit, $offset);

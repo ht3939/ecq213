@@ -209,7 +209,8 @@ function lfnDispChange(){
                     <col width="9%" />
                     <col width="9%" />
                     <col width="8%" />
-                    <col width="25%" />
+                    <col width="7%" />
+                    <col width="18%" />
                     <col width="8%" />
                     <col width="8%" />
                     <col width="5%" />
@@ -222,6 +223,7 @@ function lfnDispChange(){
                         <th rowspan="2">商品画像</th>
                         <th rowspan="2">商品コード</th>
                         <th rowspan="2">価格(円)</th>
+                        <th rowspan="2">提供サービス</th>
                         <th>商品名</th>
                         <th rowspan="2">在庫</th>
                         <th rowspan="2">種別</th>
@@ -256,6 +258,7 @@ function lfnDispChange(){
                                 <!--{if $arrProducts[cnt].price02_min != $arrProducts[cnt].price02_max}-->
                                     <br />～ <!--{$arrProducts[cnt].price02_max|n2s}-->
                                 <!--{/if}-->            </td>
+                            <td rowspan="2"><!--{$arrProducts[cnt].maker_name|h}--></td>
                             <td><!--{$arrProducts[cnt].name|h}--></td>
                             <!--{* 在庫 *}-->
                             <!--{* XXX 複数規格でかつ、全ての在庫数量が等しい場合は先頭に「各」と入れたれたら良いと思う。 *}-->
