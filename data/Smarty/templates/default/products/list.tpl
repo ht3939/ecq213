@@ -186,6 +186,8 @@
 
                     <!--★コメント★-->
                     <div class="listcomment"><!--{$arrProduct.main_list_comment|h|nl2br}--></div>
+                    <!--★コメント★-->
+                    <div class="listcomment"><!--{$arrProduct.maker_name|h|nl2br}--></div>
 
                     <!--★商品詳細を見る★-->
                     <div class="detail_btn">

@@ -143,6 +143,8 @@ class SC_Product
             ,status
             ,del_flg
             ,update_date
+            ,maker_id
+            ,maker_name
 __EOS__;
         $res = $objQuery->select($col, $this->alldtlSQL());
 
@@ -673,6 +675,7 @@ __EOS__;
                 Tcc1.name as classcategory_name,
                 Tcc2.class_id as parent_class_id,
                 Tcc2.name as parent_classcategory_name
+                T5.name as maker_name
             FROM dtb_products
                 LEFT JOIN dtb_products_class
                     ON dtb_products.product_id = dtb_products_class.product_id
@@ -680,6 +683,8 @@ __EOS__;
                     ON dtb_products_class.classcategory_id1 = Tcc1.classcategory_id
                 LEFT JOIN dtb_classcategory as Tcc2
                     ON dtb_products_class.classcategory_id2 = Tcc2.classcategory_id
+                LEFT JOIN dtb_maker as T5
+                    ON T5.maker_id = dtb_products.maker_id
             $where_clause
         ) as prdcls
 __EOS__;
