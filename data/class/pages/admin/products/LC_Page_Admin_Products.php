@@ -386,7 +386,7 @@ var_dump($this->arrProducts);
         $objQuery =& SC_Query_Ex::getSingletonInstance();
 
         // 読み込む列とテーブルの指定
-        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date,maker_id,maker_name';
+        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date,maker_id,maker_name,next_price_min,next_price_max,plan_datasize_min,plan_datasize_max';
         $from = $objProduct->alldtlSQL();
 
         $objQuery->setLimitOffset($limit, $offset);
