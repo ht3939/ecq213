@@ -186,8 +186,12 @@
 
                     <!--★コメント★-->
                     <div class="listcomment"><!--{$arrProduct.main_list_comment|h|nl2br}--></div>
-                    <!--★コメント★-->
+                    <!--★メーカー名★-->
                     <div class="listcomment"><!--{$arrProduct.maker_name|h|nl2br}--></div>
+                    <!--★後払い金額★-->
+                    <div class="listcomment"><!--{$arrProduct.next_price_min|h|nl2br}--></div>
+                    <!--★データ量★-->
+                    <div class="listcomment"><!--{$arrProduct.plan_datasize_min|h|nl2br}--></div>
 
                     <!--★商品詳細を見る★-->
                     <div class="detail_btn">
