@@ -268,6 +268,10 @@ class SC_DB_DBFactory
                     ,T4.point_rate
                     ,T4.deliv_fee
                     ,dtb_maker.name AS maker_name
+                    ,T4.next_price_min
+                    ,T4.next_price_max
+                    ,T4.plan_datasize_min
+                    ,T4.plan_datasize_max
                 FROM dtb_products
                     INNER JOIN (
                         SELECT product_id
@@ -283,6 +287,10 @@ class SC_DB_DBFactory
                             ,MAX(stock_unlimited) AS stock_unlimited_max
                             ,MAX(point_rate) AS point_rate
                             ,MAX(deliv_fee) AS deliv_fee
+                            ,MIN(next_price) AS next_price_min
+                            ,MAX(next_price) AS next_price_max
+                            ,MIN(plan_datasize) AS plan_datasize_min
+                            ,MAX(plan_datasize) AS plan_datasize_max
                         FROM dtb_products_class
                         WHERE del_flg = 0 $where_products_class
                         GROUP BY product_id

@@ -145,6 +145,10 @@ class SC_Product
             ,update_date
             ,maker_id
             ,maker_name
+            ,next_price_min
+            ,next_price_max
+            ,plan_datasize_min
+            ,plan_datasize_max
 __EOS__;
         $res = $objQuery->select($col, $this->alldtlSQL());
 
@@ -674,8 +678,10 @@ __EOS__;
                 Tcc1.class_id as class_id,
                 Tcc1.name as classcategory_name,
                 Tcc2.class_id as parent_class_id,
-                Tcc2.name as parent_classcategory_name
-                T5.name as maker_name
+                Tcc2.name as parent_classcategory_name,
+                T5.name as maker_name,
+                dtb_products_class.next_price,
+                dtb_products_class.plan_datasize
             FROM dtb_products
                 LEFT JOIN dtb_products_class
                     ON dtb_products.product_id = dtb_products_class.product_id
