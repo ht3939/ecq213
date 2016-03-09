@@ -21,3 +21,4 @@ composer.phar
 /reports/*
 .idea
 vagrant
+/nbproject/private/
