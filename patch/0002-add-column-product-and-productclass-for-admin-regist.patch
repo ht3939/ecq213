@@ -1,0 +1,26 @@
+From 3292eb257e9ac78ae8187763cb4e3d767b25b14f Mon Sep 17 00:00:00 2001
+From: otake <acpj.ac.otake@gmail.com>
+Date: Fri, 4 Mar 2016 08:26:44 +0000
+Subject: [PATCH 2/3] add column product and productclass for admin regist
+
+---
+ .../pages/admin/products/LC_Page_Admin_Products_ProductClass.php    |    3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php b/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php
+index f29c40d..011a84d 100644
+--- a/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php
++++ b/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php
+@@ -465,8 +465,7 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
+         $product_id = $objFormParam->getValue('product_id');
+         $objProduct = new SC_Product_Ex();
+         $existsProductsClass = $objProduct->getProductsClassFullByProductId($product_id);
+-var_dump($existsProductsClass);
+-
++        
+         // 規格のデフォルト値(全ての組み合わせ)を取得し, フォームに反映
+         $class_id1 = $existsProductsClass[0]['class_id1'];
+         $class_id2 = $existsProductsClass[0]['class_id2'];
+-- 
+1.7.10.msysgit.1
+

@@ -1,0 +1,86 @@
+From f822ede3625d6013c2c0a02714e990f47501fc6b Mon Sep 17 00:00:00 2001
+From: otake <acpj.ac.otake@gmail.com>
+Date: Mon, 7 Mar 2016 11:29:29 +0000
+Subject: [PATCH] add custom column productclass and show list
+
+---
+ data/Smarty/templates/default/products/list.tpl |    6 +++++-
+ data/class/SC_Product.php                       |   10 ++++++++--
+ data/class/db/SC_DB_DBFactory.php               |    8 ++++++++
+ 3 files changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/data/Smarty/templates/default/products/list.tpl b/data/Smarty/templates/default/products/list.tpl
+index 6b84272..6c54162 100644
+--- a/data/Smarty/templates/default/products/list.tpl
++++ b/data/Smarty/templates/default/products/list.tpl
+@@ -186,8 +186,12 @@
+ 
+                     <!--★コメント★-->
+                     <div class="listcomment"><!--{$arrProduct.main_list_comment|h|nl2br}--></div>
+-                    <!--★コメント★-->
++                    <!--★メーカー名★-->
+                     <div class="listcomment"><!--{$arrProduct.maker_name|h|nl2br}--></div>
++                    <!--★後払い金額★-->
++                    <div class="listcomment"><!--{$arrProduct.next_price_min|h|nl2br}--></div>
++                    <!--★データ量★-->
++                    <div class="listcomment"><!--{$arrProduct.plan_datasize_min|h|nl2br}--></div>
+ 
+                     <!--★商品詳細を見る★-->
+                     <div class="detail_btn">
+diff --git a/data/class/SC_Product.php b/data/class/SC_Product.php
+index f5b845a..2e2ca5e 100644
+--- a/data/class/SC_Product.php
++++ b/data/class/SC_Product.php
+@@ -145,6 +145,10 @@ class SC_Product
+             ,update_date
+             ,maker_id
+             ,maker_name
++            ,next_price_min
++            ,next_price_max
++            ,plan_datasize_min
++            ,plan_datasize_max
+ __EOS__;
+         $res = $objQuery->select($col, $this->alldtlSQL());
+ 
+@@ -674,8 +678,10 @@ __EOS__;
+                 Tcc1.class_id as class_id,
+                 Tcc1.name as classcategory_name,
+                 Tcc2.class_id as parent_class_id,
+-                Tcc2.name as parent_classcategory_name
+-                T5.name as maker_name
++                Tcc2.name as parent_classcategory_name,
++                T5.name as maker_name,
++                dtb_products_class.next_price,
++                dtb_products_class.plan_datasize
+             FROM dtb_products
+                 LEFT JOIN dtb_products_class
+                     ON dtb_products.product_id = dtb_products_class.product_id
+diff --git a/data/class/db/SC_DB_DBFactory.php b/data/class/db/SC_DB_DBFactory.php
+index a144512..288a85b 100644
+--- a/data/class/db/SC_DB_DBFactory.php
++++ b/data/class/db/SC_DB_DBFactory.php
+@@ -268,6 +268,10 @@ class SC_DB_DBFactory
+                     ,T4.point_rate
+                     ,T4.deliv_fee
+                     ,dtb_maker.name AS maker_name
++                    ,T4.next_price_min
++                    ,T4.next_price_max
++                    ,T4.plan_datasize_min
++                    ,T4.plan_datasize_max
+                 FROM dtb_products
+                     INNER JOIN (
+                         SELECT product_id
+@@ -283,6 +287,10 @@ class SC_DB_DBFactory
+                             ,MAX(stock_unlimited) AS stock_unlimited_max
+                             ,MAX(point_rate) AS point_rate
+                             ,MAX(deliv_fee) AS deliv_fee
++                            ,MIN(next_price) AS next_price_min
++                            ,MAX(next_price) AS next_price_max
++                            ,MIN(plan_datasize) AS plan_datasize_min
++                            ,MAX(plan_datasize) AS plan_datasize_max
+                         FROM dtb_products_class
+                         WHERE del_flg = 0 $where_products_class
+                         GROUP BY product_id
+-- 
+1.7.10.msysgit.1
+

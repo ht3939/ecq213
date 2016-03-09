@@ -1,0 +1,368 @@
+From 02e6a351f2eb066f9df05c9cf0ffd83370f60227 Mon Sep 17 00:00:00 2001
+From: otake <acpj.ac.otake@gmail.com>
+Date: Fri, 4 Mar 2016 08:10:57 +0000
+Subject: [PATCH 1/3] add column product and productclass for admin regist
+
+---
+ data/Smarty/templates/admin/products/confirm.tpl   |   25 +++++++++++++
+ data/Smarty/templates/admin/products/product.tpl   |   37 ++++++++++++++++++--
+ .../templates/admin/products/product_class.tpl     |   23 ++++++++++++
+ .../admin/products/product_class_confirm.tpl       |    7 ++++
+ data/class/SC_Product.php                          |    6 ++++
+ .../products/LC_Page_Admin_Products_Product.php    |   22 ++++++++++--
+ .../LC_Page_Admin_Products_ProductClass.php        |   13 ++++++-
+ 7 files changed, 128 insertions(+), 5 deletions(-)
+
+diff --git a/data/Smarty/templates/admin/products/confirm.tpl b/data/Smarty/templates/admin/products/confirm.tpl
+index 3d2d29c..d788f61 100644
+--- a/data/Smarty/templates/admin/products/confirm.tpl
++++ b/data/Smarty/templates/admin/products/confirm.tpl
+@@ -105,6 +105,19 @@
+                 </td>
+             </tr>
+             <!--{/if}-->
++
++            <tr>
++                <th>追加項目１</th>
++                <td>
++                    <!--{$arrForm.add_col1|h}-->
++                </td>
++            </tr>
++            <tr>
++                <th>追加項目２</th>
++                <td>
++                    <!--{$arrForm.add_col2|h}-->
++                </td>
++            </tr>
+             <tr>
+                 <th>商品コード</th>
+                 <td>
+@@ -123,6 +136,18 @@
+                     <!--{if strlen($arrForm.price02) >= 1}--><!--{$arrForm.price02|h}--> 円<!--{/if}-->
+                 </td>
+             </tr>
++            <tr>
++                <th>後払い金額</th>
++                <td>
++                    <!--{if strlen($arrForm.next_price) >= 1}--><!--{$arrForm.next_price|h}--> 円<!--{/if}-->
++                </td>
++            </tr>
++            <tr>
++                <th>データ容量</th>
++                <td>
++                    <!--{if strlen($arrForm.plan_datasize) >= 1}--><!--{$arrForm.plan_datasize|h}--> GB/月（-1は無制限）<!--{/if}-->
++                </td>
++            </tr>
+             <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->
+             <tr>
+                 <th>消費税率</th>
+diff --git a/data/Smarty/templates/admin/products/product.tpl b/data/Smarty/templates/admin/products/product.tpl
+index f6c83fb..9182e14 100644
+--- a/data/Smarty/templates/admin/products/product.tpl
++++ b/data/Smarty/templates/admin/products/product.tpl
+@@ -132,7 +132,7 @@
+                 <table class="layout">
+                     <tr>
+                         <td>
+-                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 120px; min-width: 200px;" onchange="" size="10" multiple="multiple">
++                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 500px; min-width: 200px;" onchange="" size="10" multiple="multiple">
+                             </select>
+                         </td>
+                         <td style="padding: 15px;">
+@@ -140,7 +140,7 @@
+                             <a class="btn-normal" href="javascript:;" name="un_select" onclick="fnMoveSelect('category_id','category_id_unselect'); return false;">&nbsp;&nbsp;削除&nbsp;-&gt;&nbsp;&nbsp;</a>
+                         </td>
+                         <td>
+-                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 120px; min-width: 200px;" multiple="multiple">
++                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 500px; min-width: 450px;" multiple="multiple">
+                                 <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id}-->
+                             </select>
+                         </td>
+@@ -190,6 +190,22 @@
+             </td>
+         </tr>
+         <tr>
++            <th>追加項目１<span class="attention"> *</span></th>
++            <td>
++                <span class="attention"><!--{$arrErr.add_col1}--></span>
++                <input type="text" name="add_col1" value="<!--{$arrForm.add_col1|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col1 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
++                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
++            </td>
++        </tr>
++        <tr>
++            <th>追加項目２<span class="attention"> *</span></th>
++            <td>
++                <span class="attention"><!--{$arrErr.add_col2}--></span>
++                <input type="text" name="add_col2" value="<!--{$arrForm.add_col2|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col2 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
++                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
++            </td>
++        </tr>        
++        <tr>
+             <th>商品コード<span class="attention"> *</span></th>
+             <td>
+                 <span class="attention"><!--{$arrErr.product_code}--></span>
+@@ -213,6 +229,23 @@
+                 <span class="attention"> (半角数字で入力)</span>
+             </td>
+         </tr>
++        <tr>
++            <th>後払い金額<span class="attention"> *</span></th>
++            <td>
++                <span class="attention"><!--{$arrErr.next_price}--></span>
++                <input type="text" name="next_price" value="<!--{$arrForm.next_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.next_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
++                <span class="attention"> (半角数字で入力)</span>
++            </td>
++        </tr>
++        <tr>
++            <th>データ容量<span class="attention"> *</span></th>
++            <td>
++                <span class="attention"><!--{$arrErr.plan_datasize}--></span>
++                <input type="text" name="plan_datasize" value="<!--{$arrForm.plan_datasize|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.plan_datasize != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>GB/月
++                <span class="attention"> (半角数字で入力、無制限は-1)</span>
++            </td>
++        </tr>
++
+         <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE ==1}-->
+         <tr>
+             <th>消費税率<span class="attention"> *</span></th>
+diff --git a/data/Smarty/templates/admin/products/product_class.tpl b/data/Smarty/templates/admin/products/product_class.tpl
+index caf1ba6..3bb9452 100644
+--- a/data/Smarty/templates/admin/products/product_class.tpl
++++ b/data/Smarty/templates/admin/products/product_class.tpl
+@@ -85,6 +85,12 @@
+             var price02 = $('#price02_0').val();
+             $('input[id^=price02_]').val(price02);
+ 
++            var next_price = $('#next_price_0').val();
++            $('input[id^=next_price_]').val(next_price);
++
++            var plan_datasize = $('#plan_datasize_0').val();
++            $('input[id^=plan_datasize_]').val(plan_datasize);
++
+             var tax_rate = $('#tax_rate_0').val();
+             $('input[id^=tax_rate_]').val(tax_rate);
+ 
+@@ -203,6 +209,8 @@
+                 <th>在庫数<span class="attention">*</span></th>
+                 <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
+                 <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)<span class="attention">*</span></th>
++                <th>後払い金額(円)</th>
++                <th>データ容量<span class="attention">*</span></th>
+                 <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
+                 <th>消費税率(%)<span class="attention">*</span></th>
+                 <!--{/if}-->
+@@ -276,6 +284,21 @@
+                         <!--{/if}-->
+                         <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                     </td>
++                    <td class="center">
++                        <!--{assign var=key value="next_price"}-->
++                        <!--{if $arrErr[$key][$index]}-->
++                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
++                        <!--{/if}-->
++                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
++                    </td>
++                    <td class="center">
++                        <!--{assign var=key value="plan_datasize"}-->
++                        <!--{if $arrErr[$key][$index]}-->
++                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
++                        <!--{/if}-->
++                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
++                    </td>
++
+                     <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
+                     <td class="center">
+                         <!--{assign var=key value="tax_rate"}-->
+diff --git a/data/Smarty/templates/admin/products/product_class_confirm.tpl b/data/Smarty/templates/admin/products/product_class_confirm.tpl
+index 4be884b..b71686a 100644
+--- a/data/Smarty/templates/admin/products/product_class_confirm.tpl
++++ b/data/Smarty/templates/admin/products/product_class_confirm.tpl
+@@ -63,6 +63,8 @@
+                     <th>在庫数</th>
+                     <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
+                     <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)</th>
++                    <th>後払い金額(円)</th>
++                    <th>データ容量</th>
+                     <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
+                     <th>消費税率(%)</th>
+                     <!--{/if}-->
+@@ -94,6 +96,11 @@
+                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
+                             <!--{assign var=key value="price02"}-->
+                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
++                            <!--{assign var=key value="next_price"}-->
++                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
++                            <!--{assign var=key value="plan_datasize"}-->
++                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
++
+                             <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
+                             <!--{assign var=key value="tax_rate"}-->
+                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
+diff --git a/data/class/SC_Product.php b/data/class/SC_Product.php
+index c5ea95f..caf926d 100644
+--- a/data/class/SC_Product.php
++++ b/data/class/SC_Product.php
+@@ -303,6 +303,8 @@ __EOS__;
+                     ? number_format(SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProductsClass['price02'], $productId, $arrProductsClass['product_class_id']))
+                     : '';
+ 
++                $arrClassCats2['next_price'] = $arrProductsClass['next_price'];
++                $arrClassCats2['plan_datasize'] = $arrProductsClass['plan_datasize'];
+                 // ポイント
+                 $arrClassCats2['point']
+                     = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price02'], $arrProductsClass['point_rate']));
+@@ -356,6 +358,8 @@ __EOS__;
+             T1.product_type_id,
+             T1.down_filename,
+             T1.down_realfilename,
++                T1.next_price,
++                T1.plan_datasize,
+             T3.name AS classcategory_name1,
+             T3.rank AS rank1,
+             T4.name AS class_name1,
+@@ -659,6 +663,8 @@ __EOS__;
+                 dtb_products_class.point_rate,
+                 dtb_products_class.down_filename,
+                 dtb_products_class.down_realfilename,
++                dtb_products_class.next_price,
++                dtb_products_class.plan_datasize,
+                 dtb_products_class.classcategory_id1 AS classcategory_id, /* 削除 */
+                 dtb_products_class.classcategory_id1,
+                 dtb_products_class.classcategory_id2 AS parent_classcategory_id, /* 削除 */
+diff --git a/data/class/pages/admin/products/LC_Page_Admin_Products_Product.php b/data/class/pages/admin/products/LC_Page_Admin_Products_Product.php
+index d84aa47..b6f20b1 100644
+--- a/data/class/pages/admin/products/LC_Page_Admin_Products_Product.php
++++ b/data/class/pages/admin/products/LC_Page_Admin_Products_Product.php
+@@ -314,6 +314,8 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
+         $objFormParam->addParam('商品カテゴリ', 'category_id', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+         $objFormParam->addParam('公開・非公開', 'status', INT_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+         $objFormParam->addParam('商品ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
++        $objFormParam->addParam('追加項目１', 'add_col1', LLTEXT_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
++        $objFormParam->addParam('追加項目２', 'add_col2', LLTEXT_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+ 
+         if (!$arrPost['has_product_class']) {
+             // 新規登録, 規格なし商品の編集の場合
+@@ -325,6 +327,8 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
+             $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+             $objFormParam->addParam(NORMAL_PRICE_TITLE, 'price01', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+             $objFormParam->addParam(SALE_PRICE_TITLE, 'price02', PRICE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
++            $objFormParam->addParam('後払い金額', 'next_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
++            $objFormParam->addParam('データ容量', 'plan_datasize', PRICE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+             if (OPTION_PRODUCT_TAX_RULE) {
+                 $objFormParam->addParam('消費税率', 'tax_rate', PERCENTAGE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
+             }
+@@ -863,6 +867,8 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
+                     product_type_id,
+                     down_filename,
+                     down_realfilename
++                    ,next_price
++                    ,plan_datasize
+                 FROM dtb_products_class
+             ) AS T2
+                 ON T1.product_id = T2.product_id_sub
+@@ -1005,7 +1011,9 @@ __EOF__;
+                             'main_list_comment', 'main_comment',
+                             'deliv_fee', 'comment1', 'comment2', 'comment3',
+                             'comment4', 'comment5', 'comment6',
+-                            'sale_limit', 'deliv_date_id', 'maker_id', 'note');
++                            'sale_limit', 'deliv_date_id', 'maker_id', 'note',
++                            'add_col1', 'add_col2'
++                            );
+         $arrList = SC_Utils_Ex::arrayDefineIndexes($arrList, $checkArray);
+ 
+         // INSERTする値を作成する。
+@@ -1022,8 +1030,12 @@ __EOF__;
+         $sqlval['deliv_date_id'] = $arrList['deliv_date_id'];
+         $sqlval['maker_id'] = $arrList['maker_id'];
+         $sqlval['note'] = $arrList['note'];
++        $sqlval['add_col1'] = $arrList['add_col1'];
++        $sqlval['add_col2'] = $arrList['add_col2'];
+         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
+         $sqlval['creator_id'] = $_SESSION['member_id'];
++
++
+         $arrRet = $objUpFile->getDBFileList();
+         $sqlval = array_merge($sqlval, $arrRet);
+ 
+@@ -1156,7 +1168,13 @@ __EOF__;
+         $objDb = new SC_Helper_DB_Ex();
+ 
+         // 配列の添字を定義
+-        $checkArray = array('product_class_id', 'product_id', 'product_code', 'stock', 'stock_unlimited', 'price01', 'price02', 'sale_limit', 'deliv_fee', 'point_rate', 'product_type_id', 'down_filename', 'down_realfilename');
++        $checkArray = array(
++            'product_class_id', 'product_id', 'product_code', 'stock'
++            , 'stock_unlimited', 'price01', 'price02'
++            , 'sale_limit', 'deliv_fee', 'point_rate'
++            , 'product_type_id', 'down_filename', 'down_realfilename'
++            , 'next_price', 'plan_datasize'
++            );
+         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $checkArray);
+         $sqlval = SC_Utils_Ex::arrayDefineIndexes($sqlval, $checkArray);
+ 
+diff --git a/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php b/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php
+index abc9d7b..f29c40d 100644
+--- a/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php
++++ b/data/class/pages/admin/products/LC_Page_Admin_Products_ProductClass.php
+@@ -197,6 +197,8 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
+         $objFormParam->addParam('在庫数', 'stock_unlimited', INT_LEN, 'n', array('MAX_LENGTH_CHECK', 'NUM_CHECK'));
+         $objFormParam->addParam(NORMAL_PRICE_TITLE, 'price01', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+         $objFormParam->addParam(SALE_PRICE_TITLE, 'price02', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
++        $objFormParam->addParam('後払い金額', 'next_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
++        $objFormParam->addParam('データ容量', 'plan_datasize', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+         if (OPTION_PRODUCT_TAX_RULE) {
+             $objFormParam->addParam('消費税率', 'tax_rate', PERCENTAGE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+         }
+@@ -235,11 +237,14 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
+         for ($i = 0; $i < $total; $i++) {
+             $del_flg = SC_Utils_Ex::isBlank($arrList['check'][$i]) ? 1 : 0;
+             $price02 = SC_Utils_Ex::isBlank($arrList['price02'][$i]) ? 0 : $arrList['price02'][$i];
++            $next_price = SC_Utils_Ex::isBlank($arrList['next_price'][$i]) ? 0 : $arrList['next_price'][$i];
++            $plan_datasize = SC_Utils_Ex::isBlank($arrList['plan_datasize'][$i]) ? 0 : $arrList['plan_datasize'][$i];
+             // dtb_products_class 登録/更新用
+             $registerKeys = array(
+                 'classcategory_id1', 'classcategory_id2',
+                 'product_code', 'stock', 'price01', 'product_type_id',
+                 'down_filename', 'down_realfilename',
++                'next_price','plan_datasize',
+             );
+ 
+             $arrPC = array();
+@@ -258,6 +263,10 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
+             }
+             $arrPC['price02'] = $price02;
+ 
++            $arrPC['next_price'] = $next_price;
++            $arrPC['plan_datasize'] = $plan_datasize;
++
++
+             // 該当関数が無いため, セッションの値を直接代入
+             $arrPC['creator_id'] = $_SESSION['member_id'];
+             $arrPC['update_date'] = 'CURRENT_TIMESTAMP';
+@@ -456,6 +465,7 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
+         $product_id = $objFormParam->getValue('product_id');
+         $objProduct = new SC_Product_Ex();
+         $existsProductsClass = $objProduct->getProductsClassFullByProductId($product_id);
++var_dump($existsProductsClass);
+ 
+         // 規格のデフォルト値(全ての組み合わせ)を取得し, フォームに反映
+         $class_id1 = $existsProductsClass[0]['class_id1'];
+@@ -474,6 +484,7 @@ class LC_Page_Admin_Products_ProductClass extends LC_Page_Admin_Ex
+             'classcategory_name1', 'classcategory_name2', 'stock',
+             'stock_unlimited', 'price01', 'price02',
+             'product_type_id', 'down_filename', 'down_realfilename', 'upload_index', 'tax_rate'
++            ,'next_price', 'plan_datasize'
+         );
+         $arrFormValues = $objFormParam->getSwapArray($arrKeys);
+         // フォームの規格1, 規格2をキーにした配列を生成
+@@ -756,7 +767,7 @@ __EOF__;
+     public function getProductsClass($product_id)
+     {
+         $objQuery =& SC_Query_Ex::getSingletonInstance();
+-        $col = 'product_code, price01, price02, stock, stock_unlimited, sale_limit, deliv_fee, point_rate';
++        $col = 'product_code, price01, price02, stock, stock_unlimited, sale_limit, deliv_fee, point_rate,next_price,plan_datasize';
+         $where = 'product_id = ? AND classcategory_id1 = 0 AND classcategory_id2 = 0';
+ 
+         return $objQuery->getRow($col, 'dtb_products_class', $where, array($product_id));
+-- 
+1.7.10.msysgit.1
+
