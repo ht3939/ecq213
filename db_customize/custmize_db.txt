@@ -1,0 +1,9 @@
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `add_col1` TEXT NULL ;
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `add_col2` TEXT NULL   AFTER `add_col1` ;
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `data_speed` DECIMAL(10,0) NULL  AFTER `add_col2` ;
+
+ALTER TABLE `ecq213cust`.`dtb_productclass` ADD COLUMN `next_price` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_productclass` ADD COLUMN `plan_datasize` DECIMAL(10,0) NULL default 0;
+
