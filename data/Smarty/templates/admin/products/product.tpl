@@ -206,6 +206,14 @@
             </td>
         </tr>        
         <tr>
+            <th>転送速度</th>
+            <td>
+                <span class="attention"><!--{$arrErr.data_speed}--></span>
+                <input type="text" name="data_speed" value="<!--{$arrForm.data_speed|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.data_speed != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>M
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>
+        <tr>
             <th>商品コード<span class="attention"> *</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.product_code}--></span>

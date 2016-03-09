@@ -316,6 +316,7 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
         $objFormParam->addParam('商品ステータス', 'product_status', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('追加項目１', 'add_col1', LLTEXT_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('追加項目２', 'add_col2', LLTEXT_LEN, 'n', array('EXIST_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('転送速度', 'data_speed', AMOUNT_LEN, 'n', array('SPTAB_CHECK', 'ZERO_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
 
         if (!$arrPost['has_product_class']) {
             // 新規登録, 規格なし商品の編集の場合
@@ -1012,7 +1013,7 @@ __EOF__;
                             'deliv_fee', 'comment1', 'comment2', 'comment3',
                             'comment4', 'comment5', 'comment6',
                             'sale_limit', 'deliv_date_id', 'maker_id', 'note',
-                            'add_col1', 'add_col2'
+                            'add_col1', 'add_col2','data_speed'
                             );
         $arrList = SC_Utils_Ex::arrayDefineIndexes($arrList, $checkArray);
 
@@ -1032,6 +1033,7 @@ __EOF__;
         $sqlval['note'] = $arrList['note'];
         $sqlval['add_col1'] = $arrList['add_col1'];
         $sqlval['add_col2'] = $arrList['add_col2'];
+        $sqlval['data_speed'] = $arrList['data_speed'];
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
         $sqlval['creator_id'] = $_SESSION['member_id'];
 

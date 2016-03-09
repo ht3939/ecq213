@@ -119,6 +119,12 @@
                 </td>
             </tr>
             <tr>
+                <th>転送速度</th>
+                <td>
+                    <!--{if strlen($arrForm.data_speed) >= 1}--><!--{$arrForm.data_speed|h}--> M<!--{/if}-->
+                </td>
+            </tr>
+            <tr>
                 <th>商品コード</th>
                 <td>
                     <!--{$arrForm.product_code|h}-->
