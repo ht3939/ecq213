@@ -35,4 +35,26 @@ require_once CLASS_REALDIR . 'helper/SC_Helper_Maker.php';
 class SC_Helper_Maker_Ex extends SC_Helper_Maker
 {
     //put your code here
+
+    /**
+     * メーカー一覧の取得.
+     *
+     * @param  boolean $has_deleted 削除されたメーカーも含む場合 true; 初期値 false
+     * @return array
+     */
+    public function getList($has_deleted = false)
+    {
+        $objQuery =& SC_Query_Ex::getSingletonInstance();
+        $col = 'maker_id, name,mk_img_url1,mk_img_url2,mk_site_url,mk_image';
+        $where = '';
+        if (!$has_deleted) {
+            $where .= 'del_flg = 0';
+        }
+        $table = 'dtb_maker';
+        $objQuery->setOrder('rank DESC');
+        $arrRet = $objQuery->select($col, $table, $where);
+
+        return $arrRet;
+    }
+
 }

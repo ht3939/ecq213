@@ -21,7 +21,16 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 *}-->
+<script type="text/javascript">
 
+
+    // target の子要素を選択状態にする
+    function selectAll(target) {
+        $('#' + target).children().prop('selected', 'selected');
+    }
+
+
+</script>
 <form name="form1" id="form1" method="post" action="?">
     <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
     <input type="hidden" name="mode" value="edit" />
@@ -38,6 +47,40 @@
                     <span class="attention"> (上限<!--{$smarty.const.SMTEXT_LEN}-->文字)</span>
                 </td>
             </tr>
+            <tr>
+                <th>画像参照URL1</th>
+                <td>
+                    <input type="text" name="mk_img_url1" value="<!--{$arrForm.mk_img_url1.value|h}-->" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" size="60" class="box60"<!--{if $arrErr.maker_id || $arrErr.mk_img_url1}--> <!--{sfSetErrorStyle}--><!--{/if}--> />
+                    <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+                </td>
+            </tr>
+            <tr>
+                <th>画像参照URL2</th>
+                <td>
+                    <input type="text" name="mk_img_url2" value="<!--{$arrForm.mk_img_url2.value|h}-->" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" size="60" class="box60"<!--{if $arrErr.maker_id || $arrErr.mk_img_url2}--> <!--{sfSetErrorStyle}--><!--{/if}--> />
+                    <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+            <tr>
+                <th>サイトURL</th>
+                <td>
+                    <input type="text" name="mk_site_url" value="<!--{$arrForm.mk_site_url.value|h}-->" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" size="60" class="box60"<!--{if $arrErr.maker_id || $arrErr.mk_site_url}--> <!--{sfSetErrorStyle}--><!--{/if}--> />
+                    <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+                </td>
+            </tr>
+            <tr>
+                <!--{assign var=key value="mk_image"}-->
+                <th>メーカー画像<br />[<!--{$smarty.const.SMALL_IMAGE_WIDTH}-->×<!--{$smarty.const.SMALL_IMAGE_HEIGHT}-->]</th>
+                <td>
+                    <a name="<!--{$key}-->"></a>
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                    <!--{if $arrForm.arrFile[$key].filepath != ""}-->
+                    <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" />　<a href="" onclick="selectAll('category_id'); eccube.setModeAndSubmit('delete_image', 'image_key', '<!--{$key}-->'); return false;">[画像の取り消し]</a><br />
+                    <!--{/if}-->
+                    <input type="file" name="mk_image" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
+                    <a class="btn-normal" href="javascript:;" name="btn" onclick="selectAll('category_id'); eccube.setModeAndSubmit('upload_image', 'image_key', '<!--{$key}-->'); return false;">アップロード</a>
+                </td>
+            </tr>
         </table>
 
         <div class="btn-area">
@@ -47,14 +90,22 @@
         </div>
         <!--{if count($arrMaker) > 0}-->
         <table class="list">
-            <col width="10%" />
-            <col width="50%" />
-            <col width="10%" />
-            <col width="10%" />
+            <col width="5%" />
             <col width="20%" />
+            <col width="30%" />
+            <col width="30%" />
+            <col width="30%" />
+            <col width="30%" />
+            <col width="8%" />
+            <col width="8%" />
+            <col width="8%" />
             <tr>
                 <th>ID</th>
                 <th>メーカー</th>
+                <th>画像参照URL1</th>
+                <th>画像参照URL2</th>
+                <th>サイトURL</th>
+                <th>掲載画像</th>
                 <th class="edit">編集</th>
                 <th class="delete">削除</th>
                 <th>移動</th>
@@ -64,6 +115,10 @@
                 <!--{assign var=maker_id value=$arrMaker[cnt].maker_id}-->
                 <td><!--{$maker_id|h}--></td>
                 <td><!--{$arrMaker[cnt].name|h}--></td>
+                <td><!--{$arrMaker[cnt].mk_img_url1|h}--></td>
+                <td><!--{$arrMaker[cnt].mk_img_url2|h}--></td>
+                <td><!--{$arrMaker[cnt].mk_site_url|h}--></td>
+                <td><!--{$arrMaker[cnt].mk_image|h}--></td>
                 <td class="center">
                     <!--{if $tpl_maker_id != $arrMaker[cnt].maker_id}-->
                     <a href="?" onclick="eccube.setModeAndSubmit('pre_edit', 'maker_id', <!--{$arrMaker[cnt].maker_id}-->); return false;">編集</a>
