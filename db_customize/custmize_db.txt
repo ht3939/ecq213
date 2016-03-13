@@ -7,3 +7,10 @@ ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `data_speed` DECIMAL(10,0) NU
 ALTER TABLE `ecq213cust`.`dtb_productclass` ADD COLUMN `next_price` DECIMAL(10,0) NULL default 0;
 ALTER TABLE `ecq213cust`.`dtb_productclass` ADD COLUMN `plan_datasize` DECIMAL(10,0) NULL default 0;
 
+
+
+
+ALTER TABLE `ecq213cust`.`dtb_maker` ADD COLUMN `mk_img_url1` TEXT NULL;
+ALTER TABLE `ecq213cust`.`dtb_maker` ADD COLUMN `mk_img_url2` TEXT NULL;
+ALTER TABLE `ecq213cust`.`dtb_maker` ADD COLUMN `mk_site_url` TEXT NULL;
+ALTER TABLE `ecq213cust`.`dtb_maker` ADD COLUMN `mk_image` TEXT NULL;
