@@ -39,11 +39,10 @@
                     </dl>
                     <dl class="formlist">
                         <!--{if $arrMakerList}-->
-                        <dt>メーカーから選ぶ</dt>
-                        <dd><select name="maker_id" class="box145">
-                            <option label="全てのメーカー" value="">全てのメーカー</option>
-                            <!--{html_options options=$arrMakerList selected=$maker_id}-->
-                        </select>
+
+                        <dt>メーカーから選ぶAAAAAAA</dt>
+                        <dd>
+                            <!--{html_checkboxes name=maker_id options=$arrMakerList selected=$arrMaker_id separator='<br />'}-->
                         </dd>
                     </dl>
                     <dl class="formlist">

@@ -53,4 +53,39 @@ class LC_Page_FrontParts_Bloc_SearchProducts_Ex extends LC_Page_FrontParts_Bloc_
     {
         parent::process();
     }
+    /**
+     * メーカーIDを取得する.
+     *
+     * @return string $maker_id メーカーID
+     */
+    public function lfGetMakerId()
+    {
+        $maker_id = '';
+        if(isset($_GET['maker_id']) && is_array($_GET['maker_id']) ){
+            $tmp = array();
+            //$i=0;
+            foreach($_GET['maker_id'] as $v){
+                $tmp[] = intval($v);
+                //$i++;
+
+
+            }
+            $maker_id = $tmp;
+
+        }
+        elseif (isset($_GET['maker_id']) && $_GET['maker_id'] != '' && is_numeric($_GET['maker_id'])) {
+            $maker_id = $_GET['maker_id'];
+        }
+        return $maker_id;
+    }
+
+    public $arrMaker_id;
+    public function action(){
+        $this->arrMaker_id = $this->lfGetMakerId();
+        parent::action();
+        var_dump($this->arrMakerList);
+        var_dump($this->arrMaker_id);
+
+    }
+
 }

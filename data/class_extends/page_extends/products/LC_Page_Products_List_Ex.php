@@ -84,7 +84,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         //表示条件の取得
         $this->arrSearchData = array(
             'category_id' => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
-            'maker_id' => intval($this->arrForm['maker_id']),
+            'maker_id' => $this->arrForm['maker_id'],
             'name' => $this->arrForm['name'],
             'keyword' => $this->arrForm['keyword'],
             'product_status_id' => intval($this->arrForm['product_status_id']),
@@ -153,6 +153,51 @@ var_dump($arrSearchCondition);
         $objFormParam->addParam('データ量(上限)', 'plan_datasize_upper', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
     }
+    /**
+     * 表示用検索条件の設定
+     *
+     * @return array
+     */
+    public function lfGetSearchConditionDisp($arrSearchData)
+    {
+        $objQuery   =& SC_Query_Ex::getSingletonInstance();
+        $arrSearch  = array('category' => '指定なし', 'maker' => '指定なし', 'name' => '指定なし');
+        // カテゴリ検索条件
+        if ($arrSearchData['category_id'] > 0) {
+            $arrSearch['category']  = $objQuery->get('category_name', 'dtb_category', 'category_id = ?', array($arrSearchData['category_id']));
+        }
+
+        // メーカー検索条件
+        if (is_array($arrSearchData['maker_id'])) {
+            $objMaker = new SC_Helper_Maker_Ex();
+            $tmp='';
+            foreach ($arrSearchData['maker_id'] as $key) {
+                $maker = $objMaker->getMaker($key);
+                $tmp .= $maker['name'].',';
+                
+            }
+            if(strlen($tmp)>0){
+                $arrSearch['maker'] = $tmp;
+
+            }
+            unset($key);
+
+        }else{
+            if (strlen($arrSearchData['maker_id']) > 0) {
+                $objMaker = new SC_Helper_Maker_Ex();
+                $maker = $objMaker->getMaker($arrSearchData['maker_id']);
+                $arrSearch['maker']     = $maker['name'];
+            }
+        }
+
+        // 商品名検索条件
+        if (strlen($arrSearchData['name']) > 0) {
+            $arrSearch['name']      = $arrSearchData['name'];
+        }
+
+        return $arrSearch;
+    }
+
     /**
      * 検索条件のwhere文とかを取得
      *
