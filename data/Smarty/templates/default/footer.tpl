@@ -31,5 +31,34 @@
             </div>
         </div>
     </div>
+
+
+<footer>
+	<div id="footer">
+		<div id="page_top">
+			<div class="base-container">
+				<p class="page_top_btn"><a href="#header" class="js-scroll">ページの先頭へ</a></p>
+			</div>
+		</div>
+		<div id="copy">
+			<nav>
+				<ul class="footer-nav">
+					<li><a href="http://docs.yahoo.co.jp/docs/info/terms/chapter1.html#cf2nd">プライバシーポリシー</a></li>
+					<li><a href="http://docs.yahoo.co.jp/docs/info/terms/">利用規約</a></li>
+					<li><a href="http://docs.yahoo.co.jp/docs/pr/disclaimer.html">免責事項</a></li>
+					<li><a href="http://www.yahoo-help.jp/app/home/p/595/">ヘルプ・お問い合わせ</a></li>
+				</ul>
+			</nav>
+			<p>Copyright (C) 2016 Yahoo Japan Corporation. All Rights Reserved.</p>
+		</div>
+	</div>
+</footer><script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>window.jQuery || document.write('<script src="<!--{$TPL_URLPATH}-->js/jquery-1.11.3.min.js"><\/script>');</script>
+<script src="<!--{$TPL_URLPATH}-->js/front/common.js"></script>
+
+<!--[if lt IE 9]>
+<script src="<!--{$TPL_URLPATH}-->js/front/html5shiv.js"></script>
+<![endif]-->
+<script src="<!--{$TPL_URLPATH}-->js/front/index.js"></script>
 <!--{/strip}-->
 <!--▲FOOTER-->

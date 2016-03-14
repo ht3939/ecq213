@@ -190,30 +190,6 @@
             </td>
         </tr>
         <tr>
-            <th>追加項目１<span class="attention"> *</span></th>
-            <td>
-                <span class="attention"><!--{$arrErr.add_col1}--></span>
-                <input type="text" name="add_col1" value="<!--{$arrForm.add_col1|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col1 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
-                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
-            </td>
-        </tr>
-        <tr>
-            <th>追加項目２<span class="attention"> *</span></th>
-            <td>
-                <span class="attention"><!--{$arrErr.add_col2}--></span>
-                <input type="text" name="add_col2" value="<!--{$arrForm.add_col2|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col2 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
-                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
-            </td>
-        </tr>        
-        <tr>
-            <th>転送速度</th>
-            <td>
-                <span class="attention"><!--{$arrErr.data_speed}--></span>
-                <input type="text" name="data_speed" value="<!--{$arrForm.data_speed|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.data_speed != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>M
-                <span class="attention"> (半角数字で入力)</span>
-            </td>
-        </tr>
-        <tr>
             <th>商品コード<span class="attention"> *</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.product_code}--></span>
@@ -273,6 +249,30 @@
             </td>
         </tr>
         <!--{/if}-->
+        <tr>
+            <th>追加項目１<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.add_col1}--></span>
+                <input type="text" name="add_col1" value="<!--{$arrForm.add_col1|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col1 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>追加項目２<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.add_col2}--></span>
+                <input type="text" name="add_col2" value="<!--{$arrForm.add_col2|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.add_col2 != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
+                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>転送速度</th>
+            <td>
+                <span class="attention"><!--{$arrErr.data_speed}--></span>
+                <input type="text" name="data_speed" value="<!--{$arrForm.data_speed|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.data_speed != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>M
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>
 
         <tr>
             <th>商品送料</th>

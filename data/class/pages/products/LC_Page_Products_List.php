@@ -401,8 +401,26 @@ class LC_Page_Products_List extends LC_Page_Ex
 
         // メーカーらのWHERE文字列取得
         if ($arrSearchData['maker_id']) {
-            $searchCondition['where']   .= ' AND alldtl.maker_id = ? ';
-            $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+            
+            if(is_array($arrSearchData['maker_id'])){
+                $tmp = '';
+                foreach($arrSearchData['maker_id'] as $kv){
+                    $tmp .= 'alldtl.maker_id = ? or ';
+                    $searchCondition['arrval'][] = intval($kv);
+
+                }
+                $tmp .= 'alldtl.maker_id = 0';
+                unset($kv);
+                $searchCondition['where']   .= ' AND ('. $tmp .')';
+                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+
+            }else
+            {
+                $searchCondition['where']   .= ' AND alldtl.maker_id = ? ';
+                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+
+            }
+
         }
 
         // 在庫無し商品の非表示

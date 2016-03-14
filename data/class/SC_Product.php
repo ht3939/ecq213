@@ -149,6 +149,8 @@ class SC_Product
             ,next_price_max
             ,plan_datasize_min
             ,plan_datasize_max
+            ,add_col1
+            ,add_col2
 __EOS__;
         $res = $objQuery->select($col, $this->alldtlSQL());
 

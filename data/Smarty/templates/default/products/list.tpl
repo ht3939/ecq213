@@ -78,6 +78,132 @@
         <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
     </form>
 
+    <div id="ranking">
+        <div id="tabsbox" class="tabsbox">
+            <!-- ソートタブ -->
+            <div class="sort">
+                <ul class="sort-tabs tabs-top">
+                  <li><a href="#tab0" class="selected">月額料金が安い順</a></li>
+                  <li><a href="#tab1">2年間のお支払い総額が安い順</a></li>
+                  <li class="note-click">← タブをクリックで並び替え</li>
+                </ul>
+            </div>
+
+            <div class="tabscont sort-contents">
+                <div id="tab0">
+                    <!-- フィルタータブ -->
+                    <div class="filter">
+                        <p><span>月間データ量の選択</span></p>
+                        <ul class="filter-tabs">
+                          <li><a href="#data0" class="selected filter-btn">5GB以上すべて</a></li>
+                          <li><a href="#data1" class="filter-btn">5GB以上～8GB未満</a></li>
+                          <li><a href="#data2" class="filter-btn">8GB以上～上限ナシ<span>※1</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="filter-contents">
+                        <div id="data0" class="filter-tabs-contents">
+                            <p class="search_num"><span><!--{$tpl_linemax}--></span>件中<span>1〜5</span>件を表示&nbsp;(各ランキングにつき上位10商品のみ掲載)<span class="tax-caution">表記の金額はすべて税抜価格となります。</span></p>
+                            <table class="ranking_table-caption">
+                                <tbody>
+                                    <tr class="caption">
+                                        <th class="rank-name">製品名</th>
+                                        <th class="rank-price current">月額利用料</th>
+                                        <th class="rank-data">月額データ量/<br />
+                              下り最大速度</th>
+                                        <th class="rank-conditions">条件・特記事項</th>
+                                        <th class="rank-company">提供サービス元</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="ranking_table">
+                                <tbody>
+                                                                
+
+                                <!--{foreach from=$arrProducts item=arrProduct name=arrProducts}-->
+
+                                    <!--{if $smarty.foreach.arrProducts.first}-->
+                                        <!--▼件数-->
+
+                                        <!--▲件数-->
+
+                                        <!--▼ページナビ(上部)-->
+                                        <form name="page_navi_top" id="page_navi_top" action="?">
+                                            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+                                            <!--{if $tpl_linemax > 0}--><!--{$smarty.capture.page_navi_body|smarty:nodefaults}--><!--{/if}-->
+                                        </form>
+                                        <!--▲ページナビ(上部)-->
+                                    <!--{/if}-->
+
+                                    <!--{assign var=id value=$arrProduct.product_id}-->
+                                    <!--{assign var=arrErr value=$arrProduct.arrErr}-->
+                                    <!--▼商品-->
+                                    <form name="product_form<!--{$id|h}-->" action="?">
+                                        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+                                        <input type="hidden" name="product_id" value="<!--{$id|h}-->" />
+                                        <input type="hidden" name="product_class_id" id="product_class_id<!--{$id|h}-->" value="<!--{$tpl_product_class_id[$id]}-->" />
+
+                                        <!-- 1位 -->
+                                        <tr class="js-ranking-item">
+                                            <td class="rank-name">
+                                                <div class="td-inner">
+                                                    <span class="rank"><!--{$smarty.foreach.arrProducts.index+1|h}--><span>位</span></span>
+                                                    <div class="img">
+                                                        <img src="/img/item/303hw.png" alt="Pocket Wi-Fi 303HW">
+                                                    </div>
+                                                    <div class="status">
+                                                        <p class="name"><span>Huawei</span><!--{$arrProduct.name|h}--></p>
+                                                        <p class="release">発売：<!--{$arrProduct.add_col2|h}--></p>
+                                                        <p class="color">カラー：<span><i style="background-color: #333"></i><i style="background-color: #f03"></i></span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="rank-price"><div class="td-inner w110"><span><!--{$arrProduct.price02_min_inctax|n2s}--></span>円</div></td>
+                                            <td class="rank-data"><div class="td-inner w110"><span><span class="num"><!--{$arrProduct.plan_datasize_min|h|nl2br}--></span><span class="gb">GB</span></span>/月    <span class="speed">110Mbps</span></div></td>
+                                            <td class="rank-conditions"><div class="td-inner w110"><!--{$arrProduct.main_list_comment|h|nl2br}--></div></td>
+                                            <td class="rank-company">
+                                            <div class="td-inner w110">
+                                                <a href="http://wifi.yahoo.co.jp/" target="_blank"><!--{$arrProduct.maker_name|h|nl2br}--></a>
+                                                <p class="site_btn"><a href="http://wifi.yahoo.co.jp/campaign/plan" target="_blank">商品を見る</a></p>
+                                                <p class="note">(Yahoo! Wi-Fi)</p>
+                                            </div>
+                                            <!--★商品詳細を見る★-->
+                                            <div class="detail_btn">
+                                                <!--{assign var=name value="detail`$id`"}-->
+                                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->">
+                                                    <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_detail.jpg" alt="商品詳細を見る" name="<!--{$name}-->" id="<!--{$name}-->" />
+                                                </a>
+                                            </div>                
+                                            </td>
+                                        </tr>
+
+                                    </form>
+                                    <!--▲商品-->
+
+
+
+
+
+                                <!--{foreachelse}-->
+                                    <!--{include file="frontparts/search_zero.tpl"}-->
+                                <!--{/foreach}-->
+
+
+
+
+
+                                </tbody>
+                            </table>
+                            <p class="ranking-more js-ranking-more"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!--★タイトル★-->
     <h2 class="title"><!--{$tpl_subtitle|h}--></h2>
 
@@ -210,9 +336,9 @@
                                             <!--▼規格1-->
                                             <dt><!--{$tpl_class_name1[$id]|h}-->：</dt>
                                             <dd>
-                                                <select name="classcategory_id1" style="<!--{$arrErr.classcategory_id1|sfGetErrorColor}-->">
-                                                    <!--{html_options options=$arrClassCat1[$id] selected=$arrProduct.classcategory_id1}-->
-                                                </select>
+                                                <li name="classcategory_id1" style="<!--{$arrErr.classcategory_id1|sfGetErrorColor}-->">
+                                                    <!--{html_radios name=classcategory_id1 options=$arrClassCat1[$id] selected=$arrProduct.classcategory_id1}-->
+                                                </li>
                                                 <!--{if $arrErr.classcategory_id1 != ""}-->
                                                     <p class="attention">※ <!--{$tpl_class_name1[$id]}-->を入力して下さい。</p>
                                                 <!--{/if}-->
@@ -273,4 +399,14 @@
         <!--{include file="frontparts/search_zero.tpl"}-->
     <!--{/foreach}-->
 
+
 </div>
+
+
+
+<div class="row-container is-reverse">
+    <div class="main-column">
+        <main>        </main>
+    </div>
+</div>
+                              

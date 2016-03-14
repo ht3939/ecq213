@@ -31,7 +31,7 @@ img.picture {
 /* コンテンツ */
 #container {
     margin: 0 auto;
-    padding: 0 0 30px;
+    padding: 0 0 0px;
     width: 980px;
     background: #fff;
     text-align: left;
@@ -45,13 +45,13 @@ img.picture {
 /* メイン部
 ----------------------------------------------- */
 #main_column {
-    padding: 10px 0 0;
+    padding: 0px 0 0;
 }
 
 /* 1カラム時 */
 #main_column.colnum1 {
     margin: 0 auto;
-    width: 80%;
+    width: 95%;
 }
 
 /* 2カラム時 (共通) */
@@ -107,7 +107,7 @@ img.picture {
 /* 下層コンテンツ */
 #undercolumn {
     width: 100%;
-    margin: 0 0 30px 0;
+    margin: 0 0 0px 0;
 }
 
 

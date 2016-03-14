@@ -1,4 +1,6 @@
 @charset "utf-8";
 
 @import url("../packages/default/css/import.css");
+@import url("../packages/default/css/general/common.css");
+@import url("../packages/default/css/general/index.css");
 

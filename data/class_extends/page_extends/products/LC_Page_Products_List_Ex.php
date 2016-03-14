@@ -73,6 +73,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $objFormParam = new SC_FormParam_Ex();
         // パラメーター情報の初期化
         $this->lfInitParam($objFormParam);
+
         // 値の設定
         $objFormParam->setParam($_REQUEST);
         // 入力値の変換
@@ -84,7 +85,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         //表示条件の取得
         $this->arrSearchData = array(
             'category_id' => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
-            'maker_id' => intval($this->arrForm['maker_id']),
+            'maker_id' => ($this->arrForm['maker_id']),
             'name' => $this->arrForm['name'],
             'keyword' => $this->arrForm['keyword'],
             'product_status_id' => intval($this->arrForm['product_status_id']),
@@ -94,12 +95,13 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
             ,'product_code' => ($this->arrForm['product_code'])
             ,'next_price_lower' => intval($this->arrForm['next_price_lower'])
-            ,'next_price_lower' => intval($this->arrForm['next_price_upper'])
+            ,'next_price_upper' => intval($this->arrForm['next_price_upper'])
             ,'plan_datasize_lower' => intval($this->arrForm['plan_datasize_lower'])
             ,'plan_datasize_upper' => intval($this->arrForm['plan_datasize_upper'])
         );
 
-
+var_dump($this->arrForm);
+//die();
         $this->orderby = $this->arrForm['orderby'];
         //ページング設定
         $this->tpl_pageno = $this->arrForm['pageno'];
@@ -269,7 +271,7 @@ var_dump($arrSearchCondition);
         // 商品コード帯
         $tmpWhere = '';
 
-        // 下限
+        // 
         if (strlen($arrSearchData['product_code']) > 0) {
             $tmpWhere .= " AND product_code = ? ";
             $searchCondition['arrval'][] = $arrSearchData['product_code'];
