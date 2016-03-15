@@ -53,4 +53,39 @@ class LC_Page_Admin_Products_Ex extends LC_Page_Admin_Products
     {
         parent::process();
     }
+
+    /**
+     * 商品を検索する.
+     *
+     * @param  string     $where      検索条件の WHERE 句
+     * @param  array      $arrValues  検索条件のパラメーター
+     * @param  integer    $limit      表示件数
+     * @param  integer    $offset     開始件数
+     * @param  string     $order      検索結果の並び順
+     * @param  SC_Product $objProduct SC_Product インスタンス
+     * @return array      商品の検索結果
+     */
+    public function findProducts($where, $arrValues, $limit, $offset, $order, &$objProduct)
+    {
+        $objQuery =& SC_Query_Ex::getSingletonInstance();
+
+        // 読み込む列とテーブルの指定
+        $col = 'product_id, name, main_list_image, status, product_code_min, product_code_max, price02_min, price02_max, stock_min, stock_max, stock_unlimited_min, stock_unlimited_max, update_date,maker_name
+        ,data_speed_down
+        ,data_speed_up
+        ,init_price
+        ,y1_price
+        ,y2_price
+        ,cp_price
+        ,adj_price
+        ,total_price
+        ,datasize
+        ';
+        $from = $objProduct->alldtlSQL();
+
+        $objQuery->setLimitOffset($limit, $offset);
+        $objQuery->setOrder($order);
+
+        return $objQuery->select($col, $from, $where, $arrValues);
+    }    
 }

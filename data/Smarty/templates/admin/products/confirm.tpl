@@ -50,12 +50,87 @@
 <div id="products" class="contents-main">
 
     <table>
+
         <tr>
-            <th>商品名</th>
+            <th>提供サービス</th>
+            <td>
+                <!--{$arrMaker[$arrForm.maker_id]|h}-->
+            </td>
+        </tr>
+        <tr>
+            <th>特記事項</th>
+            <td style="word-break: break-all;">
+                <!--{$arrForm.comment1|h}-->
+            </td>
+        </tr>        
+        <tr>
+            <th>プラン名</th>
             <td>
                 <!--{$arrForm.name|h}-->
             </td>
         </tr>
+
+        <tr>
+            <th>転送速度（下り）</th>
+            <td>
+                <!--{if strlen($arrForm.data_speed_down) >= 1}--><!--{$arrForm.data_speed_down|h}--> M<!--{/if}-->
+            </td>
+        </tr>
+        <tr>
+            <th>転送速度（上り）</th>
+            <td>
+                <!--{if strlen($arrForm.data_speed_up) >= 1}--><!--{$arrForm.data_speed_up|h}--> M<!--{/if}-->
+            </td>
+        </tr>
+        <tr>
+            <th>データ容量</th>
+            <td>
+                <!--{if strlen($arrForm.datasize) >= 1}--><!--{$arrForm.datasize|h}--> GB<!--{/if}-->
+            </td>
+        </tr>
+
+        <tr>
+            <th>初期費用</th>
+            <td>
+                <!--{if strlen($arrForm.init_price) >= 1}--><!--{$arrForm.init_price|h}--> 円<!--{/if}-->
+            </td>
+        </tr>
+        <tr>
+            <th>月額1年目</th>
+            <td>
+                <!--{if strlen($arrForm.y1_price) >= 1}--><!--{$arrForm.y1_price|h}--> 円<!--{/if}-->
+            </td>
+        </tr>
+        <tr>
+            <th>月額2年目</th>
+            <td>
+                <!--{if strlen($arrForm.y2_price) >= 1}--><!--{$arrForm.y2_price|h}--> 円<!--{/if}-->
+            </td>
+        </tr>
+        <tr>
+            <th>キャンペーン金額</th>
+            <td>
+                <!--{if strlen($arrForm.cp_price) >= 1}--><!--{$arrForm.cp_price|h}--> 円<!--{/if}-->
+            </td>
+        </tr>
+
+        <tr>
+            <th>調整金額</th>
+            <td>
+                <!--{if strlen($arrForm.adj_price) >= 1}--><!--{$arrForm.adj_price|h}--> 円<!--{/if}-->
+            </td>
+        </tr>
+
+        <tr>
+            <th>２年総額</th>
+            <td>
+                <!--{if strlen($arrForm.total_price) >= 1}--><!--{$arrForm.total_price|h}--> 円<!--{/if}-->
+            </td>
+        </tr>
+
+
+
+
         <tr>
             <th>商品カテゴリ</th>
             <td>
@@ -165,18 +240,6 @@
             <th>販売制限数</th>
             <td>
                 <!--{$arrForm.sale_limit|default:'無制限'|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>メーカー</th>
-            <td>
-                <!--{$arrMaker[$arrForm.maker_id]|h}-->
-            </td>
-        </tr>
-        <tr>
-            <th>メーカーURL</th>
-            <td style="word-break: break-all;">
-                <!--{$arrForm.comment1|h}-->
             </td>
         </tr>
         <tr>

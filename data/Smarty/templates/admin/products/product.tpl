@@ -118,7 +118,25 @@
             <td><!--{$arrForm.product_id|h}--></td>
         </tr>
         <tr>
-            <th>商品名<span class="attention"> *</span></th>
+            <th>提供サービス</th>
+            <td>
+                <span class="attention"><!--{$arrErr.maker_id}--></span>
+                <select name="maker_id" style="<!--{$arrErr.maker_id|sfGetErrorColor}-->">
+                    <option value="">選択してください</option>
+                    <!--{html_options options=$arrMaker selected=$arrForm.maker_id}-->
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>特記事項（comment1）</th>
+            <td>
+                <span class="attention"><!--{$arrErr.comment1}--></span>
+                <input type="text" name="comment1" value="<!--{$arrForm.comment1|h}-->" maxlength="<!--{$smarty.const.URL_LEN}-->" size="60" class="box60" style="<!--{$arrErr.comment1|sfGetErrorColor}-->" />
+                <span class="attention"> (上限<!--{$smarty.const.URL_LEN}-->文字)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>プラン名<span class="attention"> *</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.name}--></span>
                 <input type="text" name="name" value="<!--{$arrForm.name|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.name != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
@@ -126,13 +144,89 @@
             </td>
         </tr>
         <tr>
+            <th>転送速度（下り）/M<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.data_speed_down}--></span>
+                <input type="text" name="data_speed_down" value="<!--{$arrForm.data_speed_down|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.data_speed_down != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>M
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>転送速度（上り）/M<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.data_speed_up}--></span>
+                <input type="text" name="data_speed_up" value="<!--{$arrForm.data_speed_up|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.data_speed_up != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>M
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>データ容量（GB）/月間<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.datasize}--></span>
+                <input type="text" name="datasize" value="<!--{$arrForm.datasize|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.datasize != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>GB
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+
+
+        <tr>
+            <th>初期費用（税抜）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.init_price}--></span>
+                <input type="text" name="init_price" value="<!--{$arrForm.init_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.init_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+
+        <tr>
+            <th>月額１年目（税抜）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.y1_price}--></span>
+                <input type="text" name="y1_price" value="<!--{$arrForm.y1_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.y1_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>月額２年目（税抜）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.y2_price}--></span>
+                <input type="text" name="y2_price" value="<!--{$arrForm.y2_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.y2_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>キャンペーン金額（税抜）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.cp_price}--></span>
+                <input type="text" name="cp_price" value="<!--{$arrForm.cp_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.cp_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>調整金額（税抜）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.adj_price}--></span>
+                <input type="text" name="adj_price" value="<!--{$arrForm.adj_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.adj_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+        <tr>
+            <th>２年総額（税抜）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.total_price}--></span>
+                <input type="text" name="total_price" value="<!--{$arrForm.total_price|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.total_price != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>円
+                <span class="attention"> (半角数字で入力)</span>
+            </td>
+        </tr>        
+
+        <tr>
             <th>商品カテゴリ<span class="attention"> *</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.category_id}--></span>
                 <table class="layout">
                     <tr>
                         <td>
-                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 120px; min-width: 200px;" onchange="" size="10" multiple="multiple">
+                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 550px; min-width: 320px;" onchange="" size="10" multiple="multiple">
                             </select>
                         </td>
                         <td style="padding: 15px;">
@@ -140,7 +234,7 @@
                             <a class="btn-normal" href="javascript:;" name="un_select" onclick="fnMoveSelect('category_id','category_id_unselect'); return false;">&nbsp;&nbsp;削除&nbsp;-&gt;&nbsp;&nbsp;</a>
                         </td>
                         <td>
-                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 120px; min-width: 200px;" multiple="multiple">
+                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 550px; min-width: 320px;" multiple="multiple">
                                 <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id}-->
                             </select>
                         </td>
@@ -266,24 +360,6 @@
                 <span class="attention"><!--{$arrErr.sale_limit}--></span>
                 <input type="text" name="sale_limit" value="<!--{$arrForm.sale_limit|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.AMOUNT_LEN}-->" style="<!--{if $arrErr.sale_limit != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>
                 <span class="attention"> (半角数字で入力)</span>
-            </td>
-        </tr>
-        <tr>
-            <th>メーカー</th>
-            <td>
-                <span class="attention"><!--{$arrErr.maker_id}--></span>
-                <select name="maker_id" style="<!--{$arrErr.maker_id|sfGetErrorColor}-->">
-                    <option value="">選択してください</option>
-                    <!--{html_options options=$arrMaker selected=$arrForm.maker_id}-->
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th>メーカーURL</th>
-            <td>
-                <span class="attention"><!--{$arrErr.comment1}--></span>
-                <input type="text" name="comment1" value="<!--{$arrForm.comment1|h}-->" maxlength="<!--{$smarty.const.URL_LEN}-->" size="60" class="box60" style="<!--{$arrErr.comment1|sfGetErrorColor}-->" />
-                <span class="attention"> (上限<!--{$smarty.const.URL_LEN}-->文字)</span>
             </td>
         </tr>
         <tr>

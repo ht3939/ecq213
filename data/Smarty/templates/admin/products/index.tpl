@@ -209,8 +209,8 @@ function lfnDispChange(){
                     <col width="9%" />
                     <col width="9%" />
                     <col width="8%" />
-                    <col width="25%" />
-                    <col width="8%" />
+                    <col width="10%" />
+                    <col width="15%" />
                     <col width="8%" />
                     <col width="5%" />
                     <col width="5%" />
@@ -218,64 +218,86 @@ function lfnDispChange(){
                     <col width="5%" />
                     <col width="5%" />
                     <tr>
-                        <th rowspan="2">商品ID</th>
-                        <th rowspan="2">商品画像</th>
-                        <th rowspan="2">商品コード</th>
-                        <th rowspan="2">価格(円)</th>
+                        <th rowspan="4">商品ID</th>
+                        <th rowspan="4">提供サービス</th>
+                        <th rowspan="4">商品画像</th>
+                        <th rowspan="4">商品コード</th>
+                        <th>
+                            月額1年目(税抜)（円）<br>
+                        </th>
                         <th>商品名</th>
-                        <th rowspan="2">在庫</th>
-                        <th rowspan="2">種別</th>
-                        <th rowspan="2">編集</th>
-                        <th rowspan="2">確認</th>
+                        <th>データ容量/月</th>
+                        <th rowspan="4">種別</th>
+                        <th rowspan="4">編集</th>
+                        <th rowspan="4">確認</th>
                         <!--{if $smarty.const.OPTION_CLASS_REGIST == 1}-->
-                        <th rowspan="2">規格</th>
+                        <th rowspan="4">規格</th>
                         <!--{/if}-->
-                        <th rowspan="2">削除</th>
-                        <th rowspan="2">複製</th>
+                        <th rowspan="4">削除</th>
+                        <th rowspan="4">複製</th>
                     </tr>
                     <tr>
-                        <th nowrap="nowrap"><a href="#" onclick="lfnDispChange(); return false;">カテゴリ ⇔ URL</a></th>
+                        <th>
+                            月額2年目(税抜)<br>
+                        </th>
+                        <th>カテゴリ</th>
+                        <th>転送速度（上り）/M</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            総額(税抜)<br>
+                        </th>
+                        <th>-</th>
+                        <th>転送速度（下り）/M</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            キャンペーン(税抜)<br>
+                            調整金<br>
+                        </th>
+                        <th>-</th>
+                        <th>-</th>
                     </tr>
 
                     <!--{section name=cnt loop=$arrProducts}-->
                         <!--▼商品<!--{$smarty.section.cnt.iteration}-->-->
                         <!--{assign var=status value="`$arrProducts[cnt].status`"}-->
                         <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
-                            <td class="id" rowspan="2"><!--{$arrProducts[cnt].product_id}--></td>
-                            <td class="thumbnail" rowspan="2">
+                            <td class="id" rowspan="4"><!--{$arrProducts[cnt].product_id}--></td>
+                            <td class="id" rowspan="4"><!--{$arrProducts[cnt].maker_name}--></td>
+                            <td class="thumbnail" rowspan="4">
                             <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrProducts[cnt].main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
                             </td>
-                            <td rowspan="2"><!--{$arrProducts[cnt].product_code_min|h}-->
+                            <td rowspan="4"><!--{$arrProducts[cnt].product_code_min|h}-->
                                 <!--{if $arrProducts[cnt].product_code_min != $arrProducts[cnt].product_code_max}-->
                                     <br />～ <!--{$arrProducts[cnt].product_code_max|h}-->
                                 <!--{/if}-->
                             </td>
                             <!--{* 価格 *}-->
-                            <td rowspan="2" class="right">
-                                <!--{$arrProducts[cnt].price02_min|n2s}-->
-                                <!--{if $arrProducts[cnt].price02_min != $arrProducts[cnt].price02_max}-->
-                                    <br />～ <!--{$arrProducts[cnt].price02_max|n2s}-->
-                                <!--{/if}-->            </td>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].y1_price|n2s}-->
+                            </td>
                             <td><!--{$arrProducts[cnt].name|h}--></td>
-                            <!--{* 在庫 *}-->
-                            <!--{* XXX 複数規格でかつ、全ての在庫数量が等しい場合は先頭に「各」と入れたれたら良いと思う。 *}-->
-                            <td class="menu" rowspan="2">
-                                <!--{if $arrProducts[cnt].stock_unlimited_min}-->無制限<!--{else}--><!--{$arrProducts[cnt].stock_min|n2s}--><!--{/if}-->
-                                <!--{if $arrProducts[cnt].stock_unlimited_min != $arrProducts[cnt].stock_unlimited_max || $arrProducts[cnt].stock_min != $arrProducts[cnt].stock_max}-->
-                                    <br />～ <!--{if $arrProducts[cnt].stock_unlimited_max}-->無制限<!--{else}--><!--{$arrProducts[cnt].stock_max|n2s}--><!--{/if}-->
-                                <!--{/if}-->            </td>
+
+                            <td class="right">
+                                <!--{$arrProducts[cnt].datasize|n2s}-->
+                            </td>
                             <!--{* 表示 *}-->
                             <!--{assign var=key value=$arrProducts[cnt].status}-->
-                            <td class="menu" rowspan="2"><!--{$arrDISP[$key]}--></td>
-                            <td class="menu" rowspan="2"><span class="icon_edit"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >編集</a></span></td>
-                            <td class="menu" rowspan="2"><span class="icon_confirm"><a href="<!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->&amp;admin=on" target="_blank">確認</a></span></td>
+                            <td class="menu" rowspan="4"><!--{$arrDISP[$key]}--></td>
+                            <td class="menu" rowspan="4"><span class="icon_edit"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >編集</a></span></td>
+                            <td class="menu" rowspan="4"><span class="icon_confirm"><a href="<!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->&amp;admin=on" target="_blank">確認</a></span></td>
                             <!--{if $smarty.const.OPTION_CLASS_REGIST == 1}-->
-                            <td class="menu" rowspan="2"><span class="icon_class"><a href="javascript:;" onclick="eccube.changeAction('./product_class.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >規格</a></span></td>
+                            <td class="menu" rowspan="4"><span class="icon_class"><a href="javascript:;" onclick="eccube.changeAction('./product_class.php'); eccube.setModeAndSubmit('pre_edit', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >規格</a></span></td>
                             <!--{/if}-->
-                            <td class="menu" rowspan="2"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
-                            <td class="menu" rowspan="2"><span class="icon_copy"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('copy', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >複製</a></span></td>
+                            <td class="menu" rowspan="4"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
+                            <td class="menu" rowspan="4"><span class="icon_copy"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('copy', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >複製</a></span></td>
                         </tr>
-                        <tr style="background:<!--{$arrPRODUCTSTATUS_COLOR[$status]}-->;">
+                        <tr>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].y2_price|n2s}-->
+                            </td>
+
                             <td>
                                 <!--{* カテゴリ名 *}-->
                                 <div id="disp_cat<!--{$smarty.section.cnt.iteration}-->" style="display:<!--{$cat_flg}-->">
@@ -290,7 +312,30 @@ function lfnDispChange(){
                                     <!--{$smarty.const.HTTP_URL}-->products/detail.php?product_id=<!--{$arrProducts[cnt].product_id}-->
                                 </div>
                             </td>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].data_speed_up|n2s}-->
+                            </td>
+
                         </tr>
+
+                        <tr>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].total_price|n2s}-->
+                            </td>
+                            <td>-</td>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].data_speed_down|n2s}-->
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].cp_price|n2s}--><br>
+                                <!--{$arrProducts[cnt].adj_price|n2s}-->
+                            </td>
+                            <td>-</td>
+                        </tr>
+
                         <!--▲商品<!--{$smarty.section.cnt.iteration}-->-->
                     <!--{/section}-->
                 </table>
