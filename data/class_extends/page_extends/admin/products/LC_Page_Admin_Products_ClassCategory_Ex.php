@@ -145,6 +145,20 @@ class LC_Page_Admin_Products_ClassCategory_Ex extends LC_Page_Admin_Products_Cla
     {
         parent::lfInitParam($objFormParam);
         $objFormParam->addParam('発売日', 'cc_release_date', STEXT_LEN, 'KVa', array('SPTAB_CHECK' ,'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL1', 'cc_img_url1', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL2', 'cc_img_url2', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL3', 'cc_img_url3', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL4', 'cc_img_url4', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL5', 'cc_img_url5', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL6', 'cc_img_url6', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL7', 'cc_img_url7', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像参照URL8', 'cc_img_url8', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('サイトURL', 'cc_site_url', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('画像', 'cc_image', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('発売日', 'cc_release_date', STEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('端末タイプ', 'cc_type', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('ブランド', 'cc_brand', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('カラー', 'cc_color', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
     }
     /**
      * 有効な規格分類情報の取得
@@ -194,7 +208,18 @@ class LC_Page_Admin_Products_ClassCategory_Ex extends LC_Page_Admin_Products_Cla
         if (!SC_Utils_Ex::isBlank($class_id)) {
             // INSERTする値を作成する。
             $sqlval['name'] = $arrForm['name'];
+
+            for ($i=1; $i < 9; $i++) { 
+                # code...
+                $sqlval['cc_img_url'.$i] = $arrForm['cc_img_url'.$i];
+            }
+            $sqlval['cc_image'] = $arrForm['cc_image'];
+            $sqlval['cc_site_url'] = $arrForm['cc_site_url'];
             $sqlval['cc_release_date'] = $arrForm['cc_release_date'];
+            $sqlval['cc_type'] = $arrForm['cc_type'];
+            $sqlval['cc_brand'] = $arrForm['cc_brand'];
+            $sqlval['cc_color'] = $arrForm['cc_color'];
+
             $sqlval['class_id'] = $arrForm['class_id'];
             $sqlval['creator_id'] = $_SESSION['member_id'];
             $sqlval['rank'] = $objQuery->max('rank', 'dtb_classcategory', $where, array($arrForm['class_id'])) + 1;
@@ -220,7 +245,18 @@ class LC_Page_Admin_Products_ClassCategory_Ex extends LC_Page_Admin_Products_Cla
         $objQuery =& SC_Query_Ex::getSingletonInstance();
         // UPDATEする値を作成する。
         $sqlval['name'] = $arrForm['name'];
+
+        for ($i=1; $i < 9; $i++) { 
+            # code...
+            $sqlval['cc_img_url'.$i] = $arrForm['cc_img_url'.$i];
+        }
+        $sqlval['cc_image'] = $arrForm['cc_image'];
+        $sqlval['cc_site_url'] = $arrForm['cc_site_url'];
         $sqlval['cc_release_date'] = $arrForm['cc_release_date'];
+        $sqlval['cc_type'] = $arrForm['cc_type'];
+        $sqlval['cc_brand'] = $arrForm['cc_brand'];
+        $sqlval['cc_color'] = $arrForm['cc_color'];
+
 
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
         $where = 'classcategory_id = ?';

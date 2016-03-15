@@ -46,6 +46,33 @@
                     <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
                 </td>
             </tr>
+
+            <!--{section name=cnt start=1 loop=9}-->
+            <!--{assign var=key value="cc_img_url`$smarty.section.cnt.iteration`"}-->
+
+            <tr>
+                <th>画像参照URL<!--{$smarty.section.cnt.iteration}--></th>
+                <td>
+                    <input type="text" name="cc_img_url<!--{$smarty.section.cnt.iteration}-->" value="<!--{$arrForm[$key].value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>         
+            <!--{/section}-->
+
+            <tr>
+                <th>サイトURL</th>
+                <td>
+                    <input type="text" name="cc_site_url" value="<!--{$arrForm.cc_site_url.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_site_url|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+            <tr>
+                <th>画像</th>
+                <td>
+                    <input type="text" name="cc_image" value="<!--{$arrForm.cc_image.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_image|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
             <tr>
                 <th>発売日</th>
                 <td>
@@ -55,7 +82,32 @@
                     <input type="text" name="cc_release_date" value="<!--{$arrForm.cc_release_date.value|date_format:"%Y/%m/%d"}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_release_date|sfGetErrorColor}-->" size="30" class="box30" />
                     <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
                 </td>
-            </tr>        </table>
+            </tr>
+         
+            <tr>
+                <th>ルータタイプ</th>
+                <td>
+                    <input type="text" name="cc_type" value="<!--{$arrForm.cc_type.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_type|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+            <tr>
+                <th>ブランド</th>
+                <td>
+                    <input type="text" name="cc_brand" value="<!--{$arrForm.cc_brand.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_brand|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+            <tr>
+                <th>カラー</th>
+                <td>
+                    <input type="text" name="cc_color" value="<!--{$arrForm.cc_color.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_color|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+
+
+        </table>
         <div class="btn-area">
             <ul>
                 <li><a class="btn-action" href="javascript:;" onclick="eccube.fnFormModeSubmit('form1', 'edit', '', ''); return false;"><span class="btn-next">この内容で登録する</span></a></li>
@@ -63,14 +115,40 @@
         </div>
 
         <table class="list">
-            <col width="30%" />
             <col width="10%" />
             <col width="10%" />
             <col width="10%" />
-            <col width="15%" />
+            <col width="10%" />
+            <col width="2%" />
+            <col width="2%" />
+            <col width="2%" />
+            <col width="2%" />
+            <col width="2%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="8%" />
+            <col width="8%" />
+            <col width="8%" />
             <tr>
                 <th>分類名</th>
+
+                <!--{section name=cnt start=1 loop=9}-->
+                <!--{assign var=key value="cc_img_url`$smarty.section.cnt.iteration`"}-->
+
+                <th>画像参照URL<!--{$smarty.section.cnt.iteration}--></th>
+                <!--{/section}-->
+
+                <th>サイトURL</th>
+                <th>画像</th>
                 <th>発売日</th>
+                <th>ルータタイプ</th>
+                <th>ブランド</th>
+                <th>カラー</th>
+
                 <th class="edit">編集</th>
                 <th class="delete">削除</th>
                 <th>移動</th>
@@ -78,7 +156,24 @@
             <!--{section name=cnt loop=$arrClassCat}-->
                 <tr style="background:<!--{if $tpl_classcategory_id != $arrClassCat[cnt].classcategory_id}-->#ffffff<!--{else}--><!--{$smarty.const.SELECT_RGB}--><!--{/if}-->;">
                     <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].name|h}--></td>
+
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url1|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url2|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url3|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url4|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url5|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url6|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url7|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_img_url8|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_site_url|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_image|h}--></td>
+
                     <td><!--{* 発売日 *}--><!--{$arrClassCat[cnt].cc_release_date|date_format:"%Y/%m/%d"}--></td>
+
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_type|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_brand|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_color|h}--></td>
+
                     <td align="center" >
                         <!--{if $tpl_classcategory_id != $arrClassCat[cnt].classcategory_id}-->
                             <a href="?" onclick="eccube.setModeAndSubmit('pre_edit','classcategory_id', <!--{$arrClassCat[cnt].classcategory_id}-->); return false;">編集</a>

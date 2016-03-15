@@ -68,17 +68,12 @@
                     <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
                 </td>
             </tr>
+
             <tr>
-                <!--{assign var=key value="mk_image"}-->
-                <th>メーカー画像<br />[<!--{$smarty.const.SMALL_IMAGE_WIDTH}-->×<!--{$smarty.const.SMALL_IMAGE_HEIGHT}-->]</th>
+                <th>掲載画像</th>
                 <td>
-                    <a name="<!--{$key}-->"></a>
-                    <span class="attention"><!--{$arrErr[$key]}--></span>
-                    <!--{if $arrForm.arrFile[$key].filepath != ""}-->
-                    <img src="<!--{$arrForm.arrFile[$key].filepath}-->" alt="<!--{$arrForm.name|h}-->" />　<a href="" onclick="selectAll('category_id'); eccube.setModeAndSubmit('delete_image', 'image_key', '<!--{$key}-->'); return false;">[画像の取り消し]</a><br />
-                    <!--{/if}-->
-                    <input type="file" name="mk_image" size="40" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" />
-                    <a class="btn-normal" href="javascript:;" name="btn" onclick="selectAll('category_id'); eccube.setModeAndSubmit('upload_image', 'image_key', '<!--{$key}-->'); return false;">アップロード</a>
+                    <input type="text" name="mk_image" value="<!--{$arrForm.mk_image.value|h}-->" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" size="60" class="box60"<!--{if $arrErr.maker_id || $arrErr.mk_image}--> <!--{sfSetErrorStyle}--><!--{/if}--> />
+                    <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
                 </td>
             </tr>
         </table>
