@@ -34,6 +34,10 @@ require_once CLASS_REALDIR . 'pages/products/LC_Page_Products_List.php';
  */
 class LC_Page_Products_List_Ex extends LC_Page_Products_List
 {
+
+    /** フィルタ条件(表示用) */
+    public $arrSearchFilter = array();
+
     /**
      * Page を初期化する.
      *
@@ -53,4 +57,439 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     {
         parent::process();
     }
+
+    /**
+     * Page のAction.
+     *
+     * @return void
+     */
+    public function action()
+    {
+        //決済処理中ステータスのロールバック
+        $objPurchase = new SC_Helper_Purchase_Ex();
+        $objPurchase->cancelPendingOrder(PENDING_ORDER_CANCEL_FLAG);
+        $objProduct = new SC_Product_Ex();
+        // パラメーター管理クラス
+        $objFormParam = new SC_FormParam_Ex();
+        // パラメーター情報の初期化
+        $this->lfInitParam($objFormParam);
+
+        // 値の設定
+        $objFormParam->setParam($_REQUEST);
+        // 入力値の変換
+        $objFormParam->convParam();
+        // 値の取得
+        $this->arrForm = $objFormParam->getHashArray();
+        //modeの取得
+        $this->mode = $this->getMode();
+        //表示条件の取得
+        $this->arrSearchData = array(
+            'category_id' => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
+            'maker_id' => ($this->arrForm['maker_id']),
+            'name' => $this->arrForm['name'],
+            'keyword' => $this->arrForm['keyword'],
+            'product_status_id' => intval($this->arrForm['product_status_id']),
+            'y1_price_min' => intval($this->arrForm['y1_price_min']),
+            'y1_price_max' => intval($this->arrForm['y1_price_max'])
+            ,'total_price_min' => intval($this->arrForm['total_price_min'])
+            ,'total_price_max' => intval($this->arrForm['total_price_max'])
+            ,'cp_price_min' => intval($this->arrForm['cp_price_min'])
+            ,'cp_price_max' => intval($this->arrForm['cp_price_max'])
+            ,'datasize_min' => intval($this->arrForm['datasize_min'])
+            ,'datasize_max' => intval($this->arrForm['datasize_max'])
+            ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
+            ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
+            ,'product_code' => ($this->arrForm['product_code'])
+        );
+
+
+        $this->orderby = $this->arrForm['orderby'];
+        //ページング設定
+        $this->tpl_pageno = $this->arrForm['pageno'];
+        $this->disp_number = $this->lfGetDisplayNum($this->arrForm['disp_number']);
+        // 画面に表示するサブタイトルの設定
+        $this->tpl_subtitle = $this->lfGetPageTitle($this->mode, $this->arrSearchData);
+        // 画面に表示する検索条件を設定
+        $this->arrSearch = $this->lfGetSearchConditionDisp($this->arrSearchData);
+        // 商品一覧データの取得
+        $arrSearchCondition = $this->lfGetSearchCondition($this->arrSearchData);
+        $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
+        $urlParam = "category_id={$this->arrSearchData['category_id']}&pageno=#page#";
+
+var_dump($this->arrSearchData);
+
+var_dump($arrSearchCondition);
+
+        // モバイルの場合に検索条件をURLの引数に追加
+        if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
+            $searchNameUrl = urlencode(mb_convert_encoding($this->arrSearchData['name'], 'SJIS-win', 'UTF-8'));
+            $urlParam .= "&mode={$this->mode}&name={$searchNameUrl}&orderby={$this->orderby}";
+        }
+        $this->objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $this->tpl_linemax, $this->disp_number, 'eccube.movePage', NAVI_PMAX, $urlParam, SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE);
+        $this->arrProducts = $this->lfGetProductsList($arrSearchCondition, $this->disp_number, $this->objNavi->start_row, $objProduct);
+        switch ($this->getMode()) {
+            case 'json':
+                $this->doJson($objProduct);
+                break;
+            default:
+                $this->doDefault($objProduct, $objFormParam);
+                break;
+        }
+        $this->tpl_rnd = SC_Utils_Ex::sfGetRandomString(3);
+    }
+    /**
+     * パラメーター情報の初期化
+     *
+     * @param  SC_FormParam_Ex $objFormParam フォームパラメータークラス
+     * @return void
+     */
+    public function lfInitParam(&$objFormParam)
+    {
+        parent::lfInitParam($objFormParam);
+        $objFormParam->addParam('商品ステータスID', 'product_status_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('キーワード', 'keyword', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('月額(下限)', 'y1_price_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('月額(上限)', 'y1_price_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('総額(下限)', 'total_price_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('総額(上限)', 'total_price_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('CP額(下限)', 'cp_price_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('CP額(上限)', 'cp_price_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('データ量(下限)', 'datasize_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('データ量(上限)', 'datasize_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
+    }
+
+    /**
+     * 検索条件のwhere文とかを取得
+     *
+     * @return array
+     */
+    public function lfGetSearchConditionOrg($arrSearchData)
+    {
+        $searchCondition = array(
+            'where'             => '',
+            'arrval'            => array(),
+            'where_category'    => '',
+            'arrvalCategory'    => array()
+        );
+
+        // カテゴリからのWHERE文字列取得
+        if ($arrSearchData['category_id'] != 0) {
+            list($searchCondition['where_category'], $searchCondition['arrvalCategory']) = SC_Helper_DB_Ex::sfGetCatWhere($arrSearchData['category_id']);
+        }
+        // ▼対象商品IDの抽出
+        // 商品検索条件の作成（未削除、表示）
+        $searchCondition['where'] = SC_Product_Ex::getProductDispConditions('alldtl');
+
+        if (strlen($searchCondition['where_category']) >= 1) {
+            $searchCondition['where'] .= ' AND EXISTS (SELECT * FROM dtb_product_categories WHERE ' . $searchCondition['where_category'] . ' AND product_id = alldtl.product_id)';
+            $searchCondition['arrval'] = array_merge($searchCondition['arrval'], $searchCondition['arrvalCategory']);
+        }
+
+        // 商品名をwhere文に
+        $name = $arrSearchData['name'];
+        $name = str_replace(',', '', $name);
+        // 全角スペースを半角スペースに変換
+        $name = str_replace('　', ' ', $name);
+        // スペースでキーワードを分割
+        $names = preg_split('/ +/', $name);
+        // 分割したキーワードを一つずつwhere文に追加
+        foreach ($names as $val) {
+            if (strlen($val) > 0) {
+                $searchCondition['where']    .= ' AND ( alldtl.name ILIKE ? OR alldtl.comment3 ILIKE ?) ';
+                $searchCondition['arrval'][]  = "%$val%";
+                $searchCondition['arrval'][]  = "%$val%";
+            }
+        }
+
+        // メーカーらのWHERE文字列取得
+        if ($arrSearchData['maker_id']) {
+            
+            if(is_array($arrSearchData['maker_id'])){
+                $tmp = '';
+                foreach($arrSearchData['maker_id'] as $kv){
+                    $tmp .= 'alldtl.maker_id = ? or ';
+                    $searchCondition['arrval'][] = intval($kv);
+
+                }
+                $tmp .= 'alldtl.maker_id = 0';
+                unset($kv);
+                $searchCondition['where']   .= ' AND ('. $tmp .')';
+                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+
+            }else
+            {
+                $searchCondition['where']   .= ' AND alldtl.maker_id = ? ';
+                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+
+            }
+
+        }
+        // 在庫無し商品の非表示
+        if (NOSTOCK_HIDDEN) {
+            $searchCondition['where'] .= ' AND EXISTS(SELECT * FROM dtb_products_class WHERE product_id = alldtl.product_id AND del_flg = 0 AND (stock >= 1 OR stock_unlimited = 1))';
+        }
+
+        // XXX 一時期内容が異なっていたことがあるので別要素にも格納している。
+        $searchCondition['where_for_count'] = $searchCondition['where'];
+
+        return $searchCondition;
+    }
+
+    /**
+     * 検索条件のwhere文とかを取得
+     *
+     * @return array
+     */
+    public function lfGetSearchCondition($arrSearchData)
+    {
+        $searchCondition = $this->lfGetSearchConditionOrg($arrSearchData);
+
+
+
+        // 商品ステータス
+        if ($arrSearchData['product_status_id'] > 0) {
+            $searchCondition['where'] .= ' AND alldtl.product_id IN ('
+                    . 'SELECT product_id FROM dtb_product_status '
+                    . 'WHERE product_status_id = ? AND del_flg = 0'
+                    . ')';
+            $searchCondition['arrval'][] = $arrSearchData['product_status_id'];
+        }
+        // キーワード
+        $keyword = $arrSearchData['keyword'];
+        $keyword = str_replace(',', '', $keyword);
+        // 全角スペースを半角スペースに変換
+        $keyword = str_replace('　', ' ', $keyword);
+        // スペースでキーワードを分割
+        $keywords = preg_split('/ +/', $keyword);
+        // 分割したキーワードを一つずつwhere文に追加
+        foreach ($keywords as $val) {
+            if (strlen($val) > 0) {
+                $searchCondition['where'] .= ' AND ( alldtl.note ILIKE ? OR alldtl.main_comment ILIKE ?) ';
+                $searchCondition['arrval'][] = "%$val%";
+                $searchCondition['arrval'][] = "%$val%";
+            }
+        }
+
+        $tmpWhere = '';
+        // 規格1
+        if ($arrSearchData['classcategory_id1'] > 0) {
+            $tmpWhere .= " AND (classcategory_id1 = ? OR classcategory_id2 = ?) ";
+            $searchCondition['arrval'][] = $arrSearchData['classcategory_id1'];
+            $searchCondition['arrval'][] = $arrSearchData['classcategory_id1'];
+        }
+        // 規格2
+        if ($arrSearchData['classcategory_id2'] > 0) {
+            $tmpWhere .= " AND (classcategory_id1 = ? OR classcategory_id2 = ?) ";
+            $searchCondition['arrval'][] = $arrSearchData['classcategory_id2'];
+            $searchCondition['arrval'][] = $arrSearchData['classcategory_id2'];
+        }
+        if ($tmpWhere) {
+            $searchCondition['where'] .= ' AND alldtl.product_id IN ('
+                    . 'SELECT product_id FROM dtb_products_class '
+                    . 'WHERE del_flg = 0'
+                    . $tmpWhere
+                    . 'GROUP BY product_id'
+                    . ')';
+        }
+
+        // 商品コード帯
+        $tmpWhere = '';
+
+        // 
+        if (strlen($arrSearchData['product_code']) > 0) {
+            $tmpWhere .= " AND product_code = ? ";
+            $searchCondition['arrval'][] = $arrSearchData['product_code'];
+        }
+        if (strlen($tmpWhere) > 0) {
+            $searchCondition['where'] .= ' AND alldtl.product_id IN ('
+                    . 'SELECT product_id FROM dtb_products_class '
+                    . 'WHERE product_id = alldtl.product_id AND del_flg = 0'
+                    . $tmpWhere
+                    . 'GROUP BY product_id'
+                    . ')';
+        }
+
+        // 月額１年目
+        $tmpWhere = '';
+        // 下限
+        if ($arrSearchData['y1_price_min'] > 0) {
+            $tmpWhere .= " AND alldtl.y1_price >= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['y1_price_min'];
+        }
+        // 上限
+        if ($arrSearchData['y1_price_max'] > 0) {
+            $tmpWhere .= " AND alldtl.y1_price <= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['y1_price_max'];
+        }
+        if (strlen($tmpWhere) > 0) {
+            $searchCondition['where'] .= $tmpWhere;
+        }
+
+        // CP金宅
+        $tmpWhere = '';
+        // 下限
+        if ($arrSearchData['cp_price_min'] > 0) {
+            $tmpWhere .= " AND alldtl.cp_price >= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['cp_price_min'];
+        }
+        // 上限
+        if ($arrSearchData['cp_price_max'] > 0) {
+            $tmpWhere .= " AND alldtl.cp_price <= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['cp_price_max'];
+        }
+        if (strlen($tmpWhere) > 0) {
+            $searchCondition['where'] .= $tmpWhere;
+        }
+
+        // 総額
+        $tmpWhere = '';
+        // 下限
+        if ($arrSearchData['total_price_min'] > 0) {
+            $tmpWhere .= " AND alldtl.total_price >= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['total_price_min'];
+        }
+        // 上限
+        if ($arrSearchData['total_price_max'] > 0) {
+            $tmpWhere .= " AND alldtl.total_price <= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['total_price_max'];
+        }
+        if (strlen($tmpWhere) > 0) {
+            $searchCondition['where'] .= $tmpWhere;
+        }
+
+        // データ量
+        $tmpWhere = '';
+        // 下限
+        if ($arrSearchData['datasize_min'] > 0) {
+            $tmpWhere .= " AND alldtl.datasize >= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['datasize_min'];
+        }
+        // 上限
+        if ($arrSearchData['datasize_max'] > 0) {
+            $tmpWhere .= " AND alldtl.datasize <= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['datasize_max'];
+        }
+        if (strlen($tmpWhere) > 0) {
+            $searchCondition['where'] .= $tmpWhere;
+        }
+
+        // 転送速度下り
+        $tmpWhere = '';
+        // 下限
+        if ($arrSearchData['data_speed_down_min'] > 0) {
+            $tmpWhere .= " AND alldtl.data_speed_down >= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['data_speed_down_min'];
+        }
+        // 上限
+        if ($arrSearchData['data_speed_down_max'] > 0) {
+            $tmpWhere .= " AND alldtl.data_speed_down <= ? ";
+            $searchCondition['arrval'][] = $arrSearchData['data_speed_down_max'];
+        }        
+        if (strlen($tmpWhere) > 0) {
+            $searchCondition['where'] .= $tmpWhere;
+        }
+
+        // XXX 一時期内容が異なっていたことがあるので別要素にも格納している。
+        $searchCondition['where_for_count'] = $searchCondition['where'];
+        return $searchCondition;
+    }
+    /**
+     * ページタイトルの設定
+     *
+     * @param string|null $mode
+     * @return str
+     */
+    public function lfGetPageTitle($mode, $arrSearchData)
+    {
+        if ($mode == 'search') {
+            return '検索結果';
+        } elseif ($arrSearchData['product_status_id'] > 0) {
+            return $this->arrSTATUS[$arrSearchData['product_status_id']];
+        } elseif ($arrSearchData['category_id'] == 0) {
+            return '全商品';
+        } else {
+            $objCategory = new SC_Helper_Category_Ex();
+            $arrCat = $objCategory->get($arrSearchData['category_id']);
+            return $arrCat['category_name'];
+        }
+    }
+    /* 商品一覧の表示 */
+    /**
+     * @param SC_Product_Ex $objProduct
+     */
+    public function lfGetProductsList($searchCondition, $disp_number, $startno, &$objProduct)
+    {
+        $objQuery = & SC_Query_Ex::getSingletonInstance();
+        $arrOrderVal = array();
+        // 表示順序
+        switch ($this->orderby) {
+            // 月額が安い順
+            case 'y1price':
+                $objProduct->setProductsOrder('y1_price', 'dtb_products', 'ASC');
+                break;
+            // 総額安い順
+            case 'totalprice':
+                $objProduct->setProductsOrder('total_price', 'dtb_products', 'ASC');
+                break;
+            // 転送下り順
+            case 'dataspeeddown':
+                $objProduct->setProductsOrder('data_speed_down', 'dtb_products', 'DESC');
+                break;
+            // 転送上り順
+            case 'dataspeedup':
+                $objProduct->setProductsOrder('data_speed_up', 'dtb_products', 'DESC');
+                break;
+            // データ量順
+            case 'datasize':
+                $objProduct->setProductsOrder('datasize', 'dtb_products', 'DESC');
+                break;
+            // CPが高い順
+            case 'cpprice':
+                $objProduct->setProductsOrder('cp_price', 'dtb_products', 'ASC');
+                break;
+            // 新着順
+            case 'date':
+                $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
+                break;
+            // 更新順
+            case 'update':
+                $objProduct->setProductsOrder('update_date', 'dtb_products', 'DESC');
+                break;
+            // 商品ステータスの更新順
+            case 'product_status_update':
+                $objProduct->setProductsOrder('update_date', 'dtb_product_status', 'DESC');
+                break;
+            // ポイント付与率が高い順
+            case 'point_rate':
+                $objProduct->setProductsOrder('point_rate', 'dtb_products_class', 'DESC');
+                break;
+            default:
+                if (strlen($searchCondition['where_category']) >= 1) {
+                    $dtb_product_categories = '(SELECT * FROM dtb_product_categories WHERE ' . $searchCondition['where_category'] . ')';
+                    $arrOrderVal = $searchCondition['arrvalCategory'];
+                } else {
+                    $dtb_product_categories = 'dtb_product_categories';
+                }
+                $col = 'MAX(T3.rank * 2147483648 + T2.rank)';
+                $from = "$dtb_product_categories T2 JOIN dtb_category T3 ON T2.category_id = T3.category_id";
+                $where = 'T2.product_id = alldtl.product_id';
+                $sub_sql = $objQuery->getSql($col, $from, $where);
+                $objQuery->setOrder("($sub_sql) DESC ,product_id DESC");
+                break;
+        }
+        // 取得範囲の指定(開始行番号、行数のセット)
+        $objQuery->setLimitOffset($disp_number, $startno);
+        $objQuery->setWhere($searchCondition['where']);
+        // 表示すべきIDとそのIDの並び順を一気に取得
+        $arrProductId = $objProduct->findProductIdsOrder($objQuery, array_merge($searchCondition['arrval'], $arrOrderVal));
+        $objQuery = & SC_Query_Ex::getSingletonInstance();
+        $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId);
+        // 規格を設定
+        $objProduct->setProductsClassByProductIds($arrProductId);
+        $arrProducts['productStatus'] = $objProduct->getProductStatus($arrProductId);
+        return $arrProducts;
+    }
+
+
 }
