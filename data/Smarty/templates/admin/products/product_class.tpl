@@ -88,6 +88,7 @@
             var tax_rate = $('#tax_rate_0').val();
             $('input[id^=tax_rate_]').val(tax_rate);
 
+
             var product_type_id_value = '';
             $('input[id^=product_type_id_0_]').each(function() {
                 if ($(this).attr('checked')) {
@@ -187,28 +188,27 @@
         <table class="list">
             <col width="5%" />
             <col width="15%" />
+            <col width="5%" />
             <col width="15%" />
-            <col width="9%" />
-            <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
-            <col width="8%" />
-            <col width="8%" />
+            <col width="15%" />
+            <col width="15%" />
+            <col width="1%" />
+            <col width="1%" />
+            <col width="1%" />
+            <col width="5%" />
             <tr>
                 <th><input type="checkbox" onclick="eccube.checkAllBox(this, 'input[name^=check]')" id="allCheck" /> <label for="allCheck"><br />登録</label></th>
                 <th>規格1<br />(<!--{$arrClass[$class_id1]|default:"未選択"|h}-->)</th>
                 <th>規格2<br />(<!--{$arrClass[$class_id2]|default:"未選択"|h}-->)</th>
                 <th>商品コード</th>
-                <th>在庫数<span class="attention">*</span></th>
-                <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
-                <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)<span class="attention">*</span></th>
+                <th>商品URL</th>
+                <th>取扱カラー</th>
+                <th>在<span class="attention">*</span></th>
+                <th>a(円)</th>
+                <th>b(円)<span class="attention">*</span></th>
                 <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                 <th>消費税率(%)<span class="attention">*</span></th>
                 <!--{/if}-->
-                <th>商品種別<span class="attention">*</span></th>
-                <th>ダウンロード<br />ファイル名<span class="red"><br />上限<!--{$smarty.const.STEXT_LEN}-->文字</span></th>
-                <th>ダウンロード商品用<br />ファイル</th>
             </tr>
             <!--{section name=cnt loop=$arrForm.total.value}-->
                 <!--{assign var=index value=$smarty.section.cnt.index}-->
@@ -248,8 +248,24 @@
                         <!--{if $arrErr[$key][$index]}-->
                             <span class="attention"><!--{$arrErr[$key][$index]}--></span>
                         <!--{/if}-->
-                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="14" class="box14" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
                     </td>
+
+                    <td class="center">
+                        <!--{assign var=key value="pc_url"}-->
+                        <!--{if $arrErr[$key][$index]}-->
+                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
+                        <!--{/if}-->
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="20" class="box20" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                    </td>
+                    <td class="center">
+                        <!--{assign var=key value="pc_color"}-->
+                        <!--{if $arrErr[$key][$index]}-->
+                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
+                        <!--{/if}-->
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="20" class="box20" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                    </td>
+
                     <td class="center">
                         <!--{assign var=key value="stock"}-->
                         <!--{if $arrErr[$key][$index]}-->
@@ -267,14 +283,14 @@
                         <!--{if $arrErr[$key][$index]}-->
                             <span class="attention"><!--{$arrErr[$key][$index]}--></span>
                         <!--{/if}-->
-                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="3" class="box3" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
                     </td>
                     <td class="center">
                         <!--{assign var=key value="price02"}-->
                         <!--{if $arrErr[$key][$index]}-->
                             <span class="attention"><!--{$arrErr[$key][$index]}--></span>
                         <!--{/if}-->
-                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="3" class="box3" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
                     </td>
                     <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                     <td class="center">
@@ -294,27 +310,7 @@
                             <input type="radio" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$productTypeKey}-->" <!--{if $arrForm[$key].value[$index] == $productTypeKey}-->checked="checked"<!--{/if}--> <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->_<!--{$smarty.foreach.productType.index}-->"><label for="<!--{$key}-->_<!--{$index}-->_<!--{$smarty.foreach.productType.index}-->"<!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> ><!--{$productType}--></label><!--{if !$smarty.foreach.productType.last}--><br /><!--{/if}-->
                         <!--{/foreach}-->
                     </td>
-                    <td class="center">
-                        <!--{assign var=key value="down_filename}-->
-                        <!--{if $arrErr[$key][$index]}-->
-                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
-                        <!--{/if}-->
-                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{if $arrErr[$key][$index] != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}--><!--{/if}-->" size="10" id="<!--{$key}-->_<!--{$index}-->" />
-                    </td>
-                    <td>
-                        <!--{assign var=key value="down_realfilename"}-->
-                        <!--{if $arrErr[$key][$index]}-->
-                            <span class="attention"><!--{$arrErr[$key][$index]}--></span>
-                        <!--{/if}-->
-                        <!--{if $arrForm[$key].value[$index] != ""}-->
-                            <!--{$arrForm[$key].value[$index]|h}--><br />
-                            <input type="hidden" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" />
-                            <a href="?" onclick="eccube.fnFormModeSubmit('form1', 'file_delete', 'upload_index', '<!--{$index}-->'); return false;">[ファイルの取り消し]</a>
-                        <!--{else}-->
-                        <input type="file" name="<!--{$key}-->[<!--{$index}-->]" size="10" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" /><br />
-                        <a class="btn-normal" href="javascript:;" name="btn" onclick="eccube.fnFormModeSubmit('form1', 'file_upload', 'upload_index', '<!--{$index}-->'); return false;">アップロード</a>
-                        <!--{/if}-->
-                    </td>
+
                 </tr>
             <!--{/section}-->
         </table>

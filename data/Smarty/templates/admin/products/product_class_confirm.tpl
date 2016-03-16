@@ -60,15 +60,8 @@
                     <th>規格1(<!--{$arrClass[$class_id1]|default:"未選択"|h}-->)</th>
                     <th>規格2(<!--{$arrClass[$class_id2]|default:"未選択"|h}-->)</th>
                     <th>商品コード</th>
-                    <th>在庫数</th>
-                    <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
-                    <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)</th>
-                    <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
-                    <th>消費税率(%)</th>
-                    <!--{/if}-->
-                    <th>商品種別</th>
-                    <th>ダウンロードファイル名</th>
-                    <th>ダウンロード商品用ファイルアップロード</th>
+                    <th>商品URL</th>
+                    <th>取扱カラー</th>
                 </tr>
                 <!--{section name=cnt loop=$arrForm.total.value}-->
                     <!--{assign var=index value=$smarty.section.cnt.index}-->
@@ -81,33 +74,10 @@
                             <td><!--{$arrForm[$key].value[$index]|h}--></td>
                             <!--{assign var=key value="product_code"}-->
                             <td><!--{$arrForm[$key].value[$index]|h}--></td>
-                            <!--{assign var=key1 value="stock"}-->
-                            <!--{assign var=key2 value="stock_unlimited"}-->
-                            <td class="right">
-                                <!--{if $arrForm[$key2].value[$index] == 1}-->
-                                    無制限
-                                <!--{else}-->
-                                    <!--{$arrForm[$key1].value[$index]|h}-->
-                                <!--{/if}-->
-                            </td>
-                            <!--{assign var=key value="price01"}-->
-                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
-                            <!--{assign var=key value="price02"}-->
-                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
-                            <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
-                            <!--{assign var=key value="tax_rate"}-->
-                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
-                            <!--{/if}-->
-                            <!--{assign var=key value="product_type_id"}-->
-                            <td class="right">
-                                <!--{foreach from=$arrForm[$key].value[$index] item=product_type_id}-->
-                                    <!--{$arrProductType[$product_type_id]|h}-->
-                                <!--{/foreach}-->
-                            </td>
-                            <!--{assign var=key value="down_filename"}-->
-                            <td class="right"><!--{$arrForm[$key].value[$index]}--></td>
-                            <!--{assign var=key value="down_realfilename"}-->
-                            <td class="right"><!--{$arrForm[$key].value[$index]}--></td>
+                            <!--{assign var=key value="pc_url"}-->
+                            <td><!--{$arrForm[$key].value[$index]|h}--></td>
+                            <!--{assign var=key value="pc_color"}-->
+                            <td><!--{$arrForm[$key].value[$index]|h}--></td>
                         </tr>
                     <!--{/if}-->
                 <!--{/section}-->
