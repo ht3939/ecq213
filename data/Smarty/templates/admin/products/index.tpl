@@ -227,6 +227,11 @@ function lfnDispChange(){
                         </th>
                         <th>商品名</th>
                         <th>データ容量/月</th>
+                        <th rowspan="4">順位月額</th>
+                        <th rowspan="4">順位総額</th>
+                        <th rowspan="4">順位容量</th>
+                        <th rowspan="4">順位速度下</th>
+                        <th rowspan="4">順位速度上</th>
                         <th rowspan="4">種別</th>
                         <th rowspan="4">編集</th>
                         <th rowspan="4">確認</th>
@@ -282,6 +287,14 @@ function lfnDispChange(){
                             <td class="right">
                                 <!--{$arrProducts[cnt].datasize|n2s}-->
                             </td>
+
+                            <!--{* 順位 *}-->
+                            <td class="right" rowspan="4"><!--{$arrProducts[cnt].rank1_order}--></td>
+                            <td class="right" rowspan="4"><!--{$arrProducts[cnt].rank2_order}--></td>
+                            <td class="right" rowspan="4"><!--{$arrProducts[cnt].rank3_order}--></td>
+                            <td class="right" rowspan="4"><!--{$arrProducts[cnt].rank4_order}--></td>
+                            <td class="right" rowspan="4"><!--{$arrProducts[cnt].rank5_order}--></td>
+
                             <!--{* 表示 *}-->
                             <!--{assign var=key value=$arrProducts[cnt].status}-->
                             <td class="menu" rowspan="4"><!--{$arrDISP[$key]}--></td>
@@ -292,6 +305,8 @@ function lfnDispChange(){
                             <!--{/if}-->
                             <td class="menu" rowspan="4"><span class="icon_delete"><a href="javascript:;" onclick="eccube.setValue('category_id', '<!--{$arrProducts[cnt].category_id}-->'); eccube.setModeAndSubmit('delete', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;">削除</a></span></td>
                             <td class="menu" rowspan="4"><span class="icon_copy"><a href="javascript:;" onclick="eccube.changeAction('./product.php'); eccube.setModeAndSubmit('copy', 'product_id', <!--{$arrProducts[cnt].product_id}-->); return false;" >複製</a></span></td>
+
+
                         </tr>
                         <tr>
                             <td class="right">

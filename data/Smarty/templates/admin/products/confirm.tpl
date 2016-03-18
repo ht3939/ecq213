@@ -58,6 +58,16 @@
             </td>
         </tr>
         <tr>
+            <th>順位</th>
+            <td>
+                月額 <!--{$arrForm.rank1_order|h}--> 位、
+                総額 <!--{$arrForm.rank2_order|h}--> 位、
+                容量 <!--{$arrForm.rank3_order|h}--> 位、
+                速度下 <!--{$arrForm.rank4_order|h}--> 位、
+                速度上 <!--{$arrForm.rank5_order|h}--> 位、
+            </td>
+        </tr>
+        <tr>
             <th>特記事項</th>
             <td style="word-break: break-all;">
                 <!--{$arrForm.comment1|h}-->

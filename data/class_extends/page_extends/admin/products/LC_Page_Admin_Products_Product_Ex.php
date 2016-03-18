@@ -75,6 +75,12 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
         $objFormParam->addParam('調整金額', 'adj_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('２年総額', 'total_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
 
+        $objFormParam->addParam('評価項目1(月額)', 'rank1_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('評価項目2()', 'rank2_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('評価項目3()', 'rank3_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('評価項目4()', 'rank4_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('評価項目5()', 'rank5_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+
         parent::lfInitFormParam($objFormParam,$arrPost);
 /*
         $objFormParam->addParam('商品ID', 'product_id', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
@@ -190,6 +196,12 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
         $sqlval['adj_price'] = $arrList['adj_price'];
         $sqlval['total_price'] = $arrList['total_price'];
         $sqlval['datasize'] = $arrList['datasize'];
+
+        $sqlval['rank1_order'] = $arrList['rank1_order'];
+        $sqlval['rank2_order'] = $arrList['rank2_order'];
+        $sqlval['rank3_order'] = $arrList['rank3_order'];
+        $sqlval['rank4_order'] = $arrList['rank4_order'];
+        $sqlval['rank5_order'] = $arrList['rank5_order'];
 
         $arrRet = $objUpFile->getDBFileList();
         $sqlval = array_merge($sqlval, $arrRet);

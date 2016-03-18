@@ -109,8 +109,19 @@
 <!--{foreach key=key item=item from=$arrForm.arrHidden}-->
 <input type="hidden" name="<!--{$key}-->" value="<!--{$item|h}-->" />
 <!--{/foreach}-->
+<div class="btn-area">
+    <!--{if count($arrSearchHidden) > 0}-->
+    <!--▼検索結果へ戻る-->
+    <ul>
+        <li><a class="btn-action" href="javascript:;" onclick="eccube.changeAction('<!--{$smarty.const.ADMIN_PRODUCTS_URLPATH}-->'); eccube.setModeAndSubmit('search','',''); return false;"><span class="btn-prev">検索画面に戻る</span></a></li>
+    <!--▲検索結果へ戻る-->
+    <!--{/if}-->
+        <li><a class="btn-action" href="javascript:;" onclick="selectAll('category_id'); document.form1.submit(); return false;"><span class="btn-next">確認ページへ</span></a></li>
+    </ul>
+</div>
 <div id="products" class="contents-main">
     <h2>基本情報</h2>
+
 
     <table class="form">
         <tr>
@@ -125,6 +136,22 @@
                     <option value="">選択してください</option>
                     <!--{html_options options=$arrMaker selected=$arrForm.maker_id}-->
                 </select>
+            </td>
+        </tr>
+        <tr>
+            <th>順位</th>
+            <td>
+                月額
+                <input type="text" name="rank1_order" value="<!--{$arrForm.rank1_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank1_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
+                総額
+                <input type="text" name="rank2_order" value="<!--{$arrForm.rank2_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank2_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
+                容量
+                <input type="text" name="rank3_order" value="<!--{$arrForm.rank3_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank3_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
+                速度下
+                <input type="text" name="rank4_order" value="<!--{$arrForm.rank4_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank4_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
+                速度上
+                <input type="text" name="rank5_order" value="<!--{$arrForm.rank5_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank5_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
+
             </td>
         </tr>
         <tr>
@@ -226,7 +253,7 @@
                 <table class="layout">
                     <tr>
                         <td>
-                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 550px; min-width: 320px;" onchange="" size="10" multiple="multiple">
+                            <select name="category_id[]" id="category_id" style="<!--{if $arrErr.category_id != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}--> height: 200px; min-width: 320px;" onchange="" size="10" multiple="multiple">
                             </select>
                         </td>
                         <td style="padding: 15px;">
@@ -234,7 +261,7 @@
                             <a class="btn-normal" href="javascript:;" name="un_select" onclick="fnMoveSelect('category_id','category_id_unselect'); return false;">&nbsp;&nbsp;削除&nbsp;-&gt;&nbsp;&nbsp;</a>
                         </td>
                         <td>
-                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 550px; min-width: 320px;" multiple="multiple">
+                            <select name="category_id_unselect[]" id="category_id_unselect" onchange="" size="10" style="height: 200px; min-width: 320px;" multiple="multiple">
                                 <!--{html_options values=$arrCatVal output=$arrCatOut selected=$arrForm.category_id}-->
                             </select>
                         </td>
@@ -447,7 +474,7 @@
     <!--{if $arrForm.sub_find == true}-->
     <div id="sub_detail" style="">
     <!--{else}-->
-    <div id="sub_detail" style="display:none">
+    <div id="sub_detail" style="display:true">
     <!--{/if}-->
     <h2>サブ情報</h2>
     <table class="form">
