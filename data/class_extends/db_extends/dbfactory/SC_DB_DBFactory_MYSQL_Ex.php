@@ -34,4 +34,68 @@ require_once CLASS_REALDIR . 'db/dbfactory/SC_DB_DBFactory_MYSQL.php';
  */
 class SC_DB_DBFactory_MYSQL_Ex extends SC_DB_DBFactory_MYSQL
 {
+
+    /**
+     * 商品詳細の SQL を取得する.
+     *
+     * @param  string $where_products_class 商品規格情報の WHERE 句
+     * @return string 商品詳細の SQL
+     */
+    public function alldtlSQL($where_products_class = '')
+    {
+        if (!SC_Utils_Ex::isBlank($where_products_class)) {
+            $where_products_class = 'AND (' . $where_products_class . ')';
+        }
+        /*
+         * point_rate, deliv_fee は商品規格(dtb_products_class)ごとに保持しているが,
+         * 商品(dtb_products)ごとの設定なので MAX のみを取得する.
+         */
+        $sql = <<< __EOS__
+            (
+                SELECT
+                     dtb_products.*
+                    ,T4.product_code_min
+                    ,T4.product_code_max
+                    ,T4.price01_min
+                    ,T4.price01_max
+                    ,T4.price02_min
+                    ,T4.price02_max
+                    ,T4.stock_min
+                    ,T4.stock_max
+                    ,T4.stock_unlimited_min
+                    ,T4.stock_unlimited_max
+                    ,T4.point_rate
+                    ,T4.deliv_fee
+                    ,dtb_maker.name AS maker_name
+                    ,dtb_maker.mk_image AS mk_image
+                    ,dtb_maker.mk_site_url AS mk_site_url
+                    ,dtb_maker.mk_img_url1 AS mk_img_url1
+                    ,dtb_maker.mk_img_url2 AS mk_img_url2
+                FROM dtb_products
+                    INNER JOIN (
+                        SELECT product_id
+                            ,MIN(product_code) AS product_code_min
+                            ,MAX(product_code) AS product_code_max
+                            ,MIN(price01) AS price01_min
+                            ,MAX(price01) AS price01_max
+                            ,MIN(price02) AS price02_min
+                            ,MAX(price02) AS price02_max
+                            ,MIN(stock) AS stock_min
+                            ,MAX(stock) AS stock_max
+                            ,MIN(stock_unlimited) AS stock_unlimited_min
+                            ,MAX(stock_unlimited) AS stock_unlimited_max
+                            ,MAX(point_rate) AS point_rate
+                            ,MAX(deliv_fee) AS deliv_fee
+                        FROM dtb_products_class
+                        WHERE del_flg = 0 $where_products_class
+                        GROUP BY product_id
+                    ) AS T4
+                        ON dtb_products.product_id = T4.product_id
+                    LEFT JOIN dtb_maker
+                        ON dtb_products.maker_id = dtb_maker.maker_id
+            ) AS alldtl
+__EOS__;
+
+        return $sql;
+    }	
 }

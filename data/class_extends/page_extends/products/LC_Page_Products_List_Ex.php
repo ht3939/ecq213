@@ -97,6 +97,8 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             ,'cp_price_max' => intval($this->arrForm['cp_price_max'])
             ,'datasize_min' => intval($this->arrForm['datasize_min'])
             ,'datasize_max' => intval($this->arrForm['datasize_max'])
+            ,'data_speed_down_min' => intval($this->arrForm['data_speed_down_min'])
+            ,'data_speed_down_max' => intval($this->arrForm['data_speed_down_max'])
             ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
             ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
             ,'product_code' => ($this->arrForm['product_code'])
@@ -135,6 +137,14 @@ var_dump($arrSearchCondition);
                 $this->doDefault($objProduct, $objFormParam);
                 break;
         }
+var_dump($this->arrProducts);
+var_dump('<br>');
+var_dump('<br>');
+var_dump('<br>');
+var_dump('<br>');
+
+var_dump($this->arrClassCat1);
+
         $this->tpl_rnd = SC_Utils_Ex::sfGetRandomString(3);
     }
     /**
@@ -156,6 +166,8 @@ var_dump($arrSearchCondition);
         $objFormParam->addParam('CP額(上限)', 'cp_price_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('データ量(下限)', 'datasize_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('データ量(上限)', 'datasize_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('転送速度下り(下限)', 'data_speed_down_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('転送速度下り(上限)', 'data_speed_down_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
     }
 

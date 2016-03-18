@@ -20,6 +20,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
+
+
 <script type="text/javascript">//<![CDATA[
     function fnSetClassCategories(form, classcat_id2_selected) {
         var $form = $(form);
@@ -187,66 +189,36 @@
                     <!--★コメント★-->
                     <div class="listcomment"><!--{$arrProduct.main_list_comment|h|nl2br}--></div>
 
+
+
+                    <!--★コメント★-->
+                    <div class="listcomment"><!--{$arrProduct.data_speed_down|h|nl2br}--></div>
+                    <!--★コメント★-->
+                    <div class="listcomment"><!--{$arrProduct.data_speed_up|h|nl2br}--></div>
+
+                    <div class="listcomment"><!--{$arrProduct.maker_name|h|nl2br}--></div>
+                    <div class="listcomment"><!--{$arrProduct.mk_site_url|h|nl2br}--></div>
+                    <div class="listcomment"><!--{$arrProduct.mk_image|h|nl2br}--></div>
+
+    <!--{foreach from=$arrClassCat1[$id] key=k item=arrCat name=arrClassCat1}-->
+                    <!--★コメント★-->
+                    <!--{$k}--><br>
+                    <!--{$arrCat.classcategory_name1}--><br>
+                    <!--{$arrCat.pc_color}--><br>
+                    <!--{$arrCat.cc_color}--><br>
+
+
+    <!--{/foreach}-->
+
+
+
+
                     <!--★商品詳細を見る★-->
                     <div class="detail_btn">
                         <!--{assign var=name value="detail`$id`"}-->
                         <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->">
                             <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_detail.jpg" alt="商品詳細を見る" name="<!--{$name}-->" id="<!--{$name}-->" />
                         </a>
-                    </div>
-
-                    <!--▼買い物カゴ-->
-                    <div class="cart_area clearfix">
-                        <!--{if $tpl_stock_find[$id]}-->
-                            <!--{if $tpl_classcat_find1[$id]}-->
-                                <div class="classlist">
-                                    <dl class="size01 clearfix">
-                                            <!--▼規格1-->
-                                            <dt><!--{$tpl_class_name1[$id]|h}-->：</dt>
-                                            <dd>
-                                                <select name="classcategory_id1" style="<!--{$arrErr.classcategory_id1|sfGetErrorColor}-->">
-                                                    <!--{html_options options=$arrClassCat1[$id] selected=$arrProduct.classcategory_id1}-->
-                                                </select>
-                                                <!--{if $arrErr.classcategory_id1 != ""}-->
-                                                    <p class="attention">※ <!--{$tpl_class_name1[$id]}-->を入力して下さい。</p>
-                                                <!--{/if}-->
-                                            </dd>
-                                            <!--▲規格1-->
-                                    </dl>
-                                    <!--{if $tpl_classcat_find2[$id]}-->
-                                        <dl class="size02 clearfix">
-                                            <!--▼規格2-->
-                                            <dt><!--{$tpl_class_name2[$id]|h}-->：</dt>
-                                            <dd>
-                                                <select name="classcategory_id2" style="<!--{$arrErr.classcategory_id2|sfGetErrorColor}-->">
-                                                </select>
-                                                <!--{if $arrErr.classcategory_id2 != ""}-->
-                                                    <p class="attention">※ <!--{$tpl_class_name2[$id]}-->を入力して下さい。</p>
-                                                <!--{/if}-->
-                                            </dd>
-                                            <!--▲規格2-->
-                                        </dl>
-                                    <!--{/if}-->
-                                </div>
-                            <!--{/if}-->
-                            <div class="cartin clearfix">
-                                <div class="quantity">
-                                    数量：<input type="text" name="quantity" class="box" value="<!--{$arrProduct.quantity|default:1|h}-->" maxlength="<!--{$smarty.const.INT_LEN}-->" style="<!--{$arrErr.quantity|sfGetErrorColor}-->" />
-                                    <!--{if $arrErr.quantity != ""}-->
-                                        <br /><span class="attention"><!--{$arrErr.quantity}--></span>
-                                    <!--{/if}-->
-                                </div>
-                                <div class="cartin_btn">
-                                    <!--★カゴに入れる★-->
-                                    <div id="cartbtn_default_<!--{$id}-->">
-                                        <input type="image" id="cart<!--{$id}-->" src="<!--{$TPL_URLPATH}-->img/button/btn_cartin.jpg" alt="カゴに入れる" onclick="fnInCart(this.form); return false;" class="hover_change_image" />
-                                    </div>
-                                    <div class="attention" id="cartbtn_dynamic_<!--{$id}-->"></div>
-                                </div>
-                            </div>
-                        <!--{else}-->
-                            <div class="cartbtn attention">申し訳ございませんが、只今品切れ中です。</div>
-                        <!--{/if}-->
                     </div>
                     <!--▲買い物カゴ-->
                 </div>
