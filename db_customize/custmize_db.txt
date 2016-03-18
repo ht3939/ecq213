@@ -1,0 +1,57 @@
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `add_col1` TEXT NULL ;
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `add_col2` TEXT NULL   AFTER `add_col1` ;
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `data_speed` DECIMAL(10,0) NULL;
+
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `plan_datasize` DECIMAL(10,0) NULL;
+
+
+ALTER TABLE `ecq213cust`.`dtb_productclass` ADD COLUMN `next_price` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_productclass` ADD COLUMN `plan_datasize` DECIMAL(10,0) NULL default 0;
+
+--
+
+ALTER TABLE `dtb_maker` ADD COLUMN `mk_img_url1` TEXT NULL;
+ALTER TABLE `dtb_maker` ADD COLUMN `mk_img_url2` TEXT NULL;
+ALTER TABLE `dtb_maker` ADD COLUMN `mk_site_url` TEXT NULL;
+ALTER TABLE `dtb_maker` ADD COLUMN `mk_image` TEXT NULL;
+
+
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url1` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url2` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url3` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url4` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url5` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url6` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url7` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_img_url8` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_image` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_site_url` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_release_date` date NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_type` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_brand` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_color` TEXT NULL;
+
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `data_speed_down` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `data_speed_up` DECIMAL(10,0) NULL;
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `init_price` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `y1_price` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `y2_price` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `cp_price` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `adj_price` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `total_price` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `datasize` DECIMAL(10,0) NULL default 0;
+
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank1_order` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank2_order` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank3_order` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank4_order` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank5_order` DECIMAL(10,0) NULL;
+
+
+ALTER TABLE `dtb_products_class` ADD COLUMN `pc_url` TEXT NULL;
+ALTER TABLE `dtb_products_class` ADD COLUMN `pc_color` TEXT NULL;
