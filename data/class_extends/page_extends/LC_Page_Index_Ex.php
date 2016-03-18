@@ -22,6 +22,7 @@
  */
 
 require_once CLASS_REALDIR . 'pages/LC_Page_Index.php';
+require_once CLASS_EX_REALDIR . 'page_extends/products/LC_Page_Products_List_Ex.php';
 
 /**
  * Index のページクラス(拡張).
@@ -32,25 +33,10 @@ require_once CLASS_REALDIR . 'pages/LC_Page_Index.php';
  * @author LOCKON CO.,LTD.
  * @version $Id$
  */
-class LC_Page_Index_Ex extends LC_Page_Index
+class LC_Page_Index_Ex extends LC_Page_Products_List_Ex
 {
-    /**
-     * Page を初期化する.
-     *
-     * @return void
-     */
-    function init()
-    {
-        parent::init();
-    }
 
-    /**
-     * Page のプロセス.
-     *
-     * @return void
-     */
-    function process()
-    {
-        parent::process();
-    }
+
+
+
 }

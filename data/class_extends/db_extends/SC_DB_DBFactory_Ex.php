@@ -53,4 +53,8 @@ class SC_DB_DBFactory_Ex extends SC_DB_DBFactory
                 return new SC_DB_DBFactory_Ex();
         }
     }
+
+    //alldtSQLは、DBの種類に応じて、DBFactory_MYSQL_Ex or PGSQL_Exで記述する
+
+
 }
