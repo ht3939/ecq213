@@ -63,13 +63,22 @@
     }
 //]]></script>
 
+<!--{include file=products/yhindex.tpl}-->
+
+
 <div id="undercolumn">
     <form name="form1" id="form1" method="get" action="?">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="mode" value="<!--{$mode|h}-->" />
         <!--{* ▼検索条件 *}-->
         <input type="hidden" name="category_id" value="<!--{$arrSearchData.category_id|h}-->" />
-        <input type="hidden" name="maker_id" value="<!--{$arrSearchData.maker_id|h}-->" />
+        <!--{if is_array($arrSearchData.maker_id)}-->
+            <!--{foreach from=$arrSearchData.maker_id item=mkid name=arrProducts_makerid}-->
+                <input type="hidden" name="maker_id[]" value="<!--{$mkid|h}-->" />
+            <!--{/foreach}-->
+        <!--{else}-->
+                <input type="hidden" name="maker_id" value="<!--{$arrSearchData.maker_id|h}-->" />
+        <!--{/if}-->
         <input type="hidden" name="name" value="<!--{$arrSearchData.name|h}-->" />
         <!--{* ▲検索条件 *}-->
         <!--{* ▼ページナビ関連 *}-->
