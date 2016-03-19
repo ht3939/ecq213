@@ -32,292 +32,298 @@
 //]]></script>
 
 <div class="row-container is-reverse">
-<p class="index-link"><a href="/">トップへ戻る</a></p>
+  <p class="index-link"><a href="/">トップへ戻る</a></p>
 
+  <form name="form1" id="form1" method="post" action="?">
+    <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
 
-  <div class="main-column">
-    <main>
-      <h1 class="plan-title"><span>Yahoo! Wi-Fi</span>Y! Fi 2年間ずーっと得するプラン（4G）</h1>
-      <section>
-        <div class="title-name">
-          <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/item/yahoowifi/logo.png" alt=""></p>
-          <div class="title">
-            <p class="name">Y! Fi 2年間ずーっと得するプラン（4G）</p>
-            <p class="condition">Yahoo! プレミアム会員限定のお得なプラン。<br>２年目からは、月々の料金が2,743円一定です。</p>
-          </div>
-        </div>
-        <div class="data-boxs">
-          <ul class="top-data">
-            <li class="rank1">
-            <img src="<!--{$TPL_URLPATH}-->/img/detail/tag1.png" alt="" class="tag">
-              <p class="head">月額料金</p>
-              <p class="data">9,999<span>円</span></p>
-            </li>
-            <li class="rank2">
-            <img src="<!--{$TPL_URLPATH}-->/img/detail/tag2.png" alt="" class="tag">
-              <p class="head">お支払い総額</p>
-              <p class="data">99,999<span>円</span></p>
-            </li>
-            <li class="rank2">
-            <img src="<!--{$TPL_URLPATH}-->/img/detail/tag3.png" alt="" class="tag">
-              <p class="head">月間データ量</p>
-              <p class="data">7<span>GB/月</span></p>
-            </li>
-            <li class="rank3">
-            <img src="<!--{$TPL_URLPATH}-->/img/detail/tag4.png" alt="" class="tag">
-              <p class="head">下り最大速度</p>
-              <p class="data">110<span>Mbps</span></p>
-            </li>
-          </ul>
-          <div class="rank-graph">
-            <img src="<!--{$TPL_URLPATH}-->/img/detail/tag5.png" alt="" class="tag">
-            <p class="head">項目別ランキング</p>
-            <div class="detail">
-              <ul class="rank-list">
-                <li class="rank1">月額料金</li>
-                <li class="rank2">月間データ量</li>
-                <li class="rank2">上り最大速度</li>
-                <li class="rank3">下り最大速度</li>
-                <li class="rank3">お支払総額</li>
-              </ul>
-              <div class="graph">
-                <p class="status1">月額料金<br><span>1位</span></p>
-                <p class="status2">お支払総額<br><span>1位</span></p>
-                <p class="status3">月間データ量<br><span>1位</span></p>
-                <p class="status4">下り最大速度<br><span>1位</span></p>
-                <p class="status5">上り最大速度<br><span>1位</span></p>
-                <canvas id="canvas" width="185" height="185"></canvas>
-              </div>
+    <div class="main-column">
+      <main>
+        <h1 class="plan-title"><span>Yahoo! Wi-Fi</span>Y! Fi 2年間ずーっと得するプラン（4G）</h1>
+        <section>
+          <div class="title-name">
+            <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/item/yahoowifi/logo.png" alt=""></p>
+            <div class="title">
+              <p class="name">Y! Fi 2年間ずーっと得するプラン（4G）</p>
+              <p class="condition">Yahoo! プレミアム会員限定のお得なプラン。<br>２年目からは、月々の料金が2,743円一定です。</p>
             </div>
           </div>
-        </div>
-        <div class="js-device-content">
-          <div class="device-data active">
-            <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-            <div class="image">
-              <p class="head">選べる対応端末</p>
-              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-            </div>
-            <div class="detail">
-              <p class="device-name"><span>Huawei1</span><br>Pocket WiFi 303HW</p>
-              <ul class="data-list">
-                <li>
-                  <dl class="data js-height">
-                    <dt>下り<br>通信速度</dt>
-                    <dd>最大25<span>Mbps</span></dd>
-                  </dl>
-                </li>
-                <li>
-                  <dl class="data js-height">
-                    <dt>上り<br>通信速度</dt>
-                    <dd>最大25<span>Mbps</span></dd>
-                  </dl>
-                </li>
-                <li>
-                  <dl class="data js-height">
-                    <dt>カラー</dt>
-                    <dd>ダークシルバー/レッド</dd>
-                  </dl>
-                </li>
-                <li>
-                  <dl class="data js-height">
-                    <dt>発売日</dt>
-                    <dd>2014年8月1日</dd>
-                  </dl>
-                </li>
-              </ul>
-              <p class="link-btn"><a href="">この商品ページへ</a></p>
-            </div>
-          </div>
-          <div class="device-data">
-              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-              <div class="image">
-                <p class="head">選べる対応端末</p>
-                <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              </div>
+          <div class="data-boxs">
+            <ul class="top-data">
+              <li class="rank1">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag1.png" alt="" class="tag">
+                <p class="head">月額料金</p>
+                <p class="data">9,999<span>円</span></p>
+              </li>
+              <li class="rank2">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag2.png" alt="" class="tag">
+                <p class="head">お支払い総額</p>
+                <p class="data">99,999<span>円</span></p>
+              </li>
+              <li class="rank2">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag3.png" alt="" class="tag">
+                <p class="head">月間データ量</p>
+                <p class="data">7<span>GB/月</span></p>
+              </li>
+              <li class="rank3">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag4.png" alt="" class="tag">
+                <p class="head">下り最大速度</p>
+                <p class="data">110<span>Mbps</span></p>
+              </li>
+            </ul>
+            <div class="rank-graph">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag5.png" alt="" class="tag">
+              <p class="head">項目別ランキング</p>
               <div class="detail">
-                <p class="device-name"><span>Huawei2</span><br>Pocket WiFi 303HW</p>
-                <ul class="data-list">
-                  <li>
-                    <dl class="data js-height">
-                      <dt>下り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>上り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>カラー</dt>
-                      <dd>ダークシルバー/レッド</dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>発売日</dt>
-                      <dd>2014年8月1日</dd>
-                    </dl>
-                  </li>
-                </ul>
-                <p class="link-btn"><a href="">この商品ページへ</a></p>
-              </div>
-          </div>
-          <div class="device-data">
-              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-              <div class="image">
-                <p class="head">選べる対応端末</p>
-                <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              </div>
-              <div class="detail">
-                <p class="device-name"><span>Huawei3</span><br>Pocket WiFi 303HW</p>
-                <ul class="data-list">
-                  <li>
-                    <dl class="data js-height">
-                      <dt>下り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>上り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>カラー</dt>
-                      <dd>ダークシルバー/レッド</dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>発売日</dt>
-                      <dd>2014年8月1日</dd>
-                    </dl>
-                  </li>
-                </ul>
-                <p class="link-btn"><a href="">この商品ページへ</a></p>
-              </div>
-          </div>
-          <div class="device-data">
-              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-              <div class="image">
-                <p class="head">選べる対応端末</p>
-                <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              </div>
-              <div class="detail">
-                <p class="device-name"><span>Huawei4</span><br>Pocket WiFi 303HW</p>
-                <ul class="data-list">
-                  <li>
-                    <dl class="data js-height">
-                      <dt>下り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>上り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>カラー</dt>
-                      <dd>ダークシルバー/レッド</dd>
-                    </dl>
-                  </li>
-                  <li>
-                    <dl class="data js-height">
-                      <dt>発売日</dt>
-                      <dd>2014年8月1日</dd>
-                    </dl>
-                  </li>
-                </ul>
-                <p class="link-btn"><a href="">この商品ページへ</a></p>
-              </div>
-          </div>
-        </div>
-        <ul class="device-list-tab js-device-tab">
-          <li class="active">
-            <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-            <div>Pocket WiFi <br>303HW</div>
-          </li>
-          <li>
-            <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-            <div>Pocket WiFi <br>303HW</div>
-          </li>
-          <li>
-            <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-            <div>Pocket WiFi <br>303HW</div>
-          </li>
-          <li>
-            <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-            <div>Pocket WiFi <br>303HW</div>
-          </li>
-        </ul>
-      </section>
-      <section>
-          <h2 class="title">料金プランについて</h2>
-          <div class="price">
-            <div class="price-content">
-              <div class="title">
-                <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/item/yahoowifi/logo.png" alt=""></p>
-                <p class="text">Y!Fi2年間ずーっと得するプラン（4G）</p>
-              </div>
-              <div class="price-data1">
-                <p class="price-data-head">2年間の月額料金について</p>
-                <ul class="data">
-                  <li>
-                    <p class="head">1年目の月額料金</p>
-                    <p class="price">9,999円</p>
-                  </li>
-                  <li>
-                    <p class="head">2年目の月額料金</p>
-                    <p class="price">9,999円</p>
-                  </li>
+                <ul class="rank-list">
+                  <li class="rank1">月額料金</li>
+                  <li class="rank2">月間データ量</li>
+                  <li class="rank2">上り最大速度</li>
+                  <li class="rank3">下り最大速度</li>
+                  <li class="rank3">お支払総額</li>
                 </ul>
                 <div class="graph">
-                  <p class="head">お支払イメージ</p>
-                  <p class="price-text price-1y">1年目の月額料金<br><span class="price">1,980<span class="yean">円</span></span></p>
-                  <p class="price-text price-2y">2年目の月額料金<br><span class="price">2,743<span class="yean">円</span></span></p>
-                  <p class="text">12ヶ月目</p>
-                  <p></p>
+                  <p class="status1">月額料金<br><span>1位</span></p>
+                  <p class="status2">お支払総額<br><span>1位</span></p>
+                  <p class="status3">月間データ量<br><span>1位</span></p>
+                  <p class="status4">下り最大速度<br><span>1位</span></p>
+                  <p class="status5">上り最大速度<br><span>1位</span></p>
+                  <canvas id="canvas" width="185" height="185"></canvas>
                 </div>
               </div>
-              <div class="price-data2">
-                <p class="price-data-head">別途費用</p>
-                <ul class="data">
+            </div>
+          </div>
+          <div class="js-device-content">
+            <div class="device-data active">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
+              <div class="image">
+                <p class="head">選べる対応端末</p>
+                <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+              </div>
+              <div class="detail">
+                <p class="device-name"><span>Huawei1</span><br>Pocket WiFi 303HW</p>
+                <ul class="data-list">
                   <li>
-                    <p class="head">初期費用</p>
-                    <p class="price">9,999円</p>
+                    <dl class="data js-height">
+                      <dt>下り<br>通信速度</dt>
+                      <dd>最大25<span>Mbps</span></dd>
+                    </dl>
                   </li>
                   <li>
-                    <p class="head">事務手数料</p>
-                    <p class="price">9,999円</p>
+                    <dl class="data js-height">
+                      <dt>上り<br>通信速度</dt>
+                      <dd>最大25<span>Mbps</span></dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="data js-height">
+                      <dt>カラー</dt>
+                      <dd>ダークシルバー/レッド</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="data js-height">
+                      <dt>発売日</dt>
+                      <dd>2014年8月1日</dd>
+                    </dl>
                   </li>
                 </ul>
+                <p class="link-btn"><a href="">この商品ページへ</a></p>
               </div>
             </div>
-            <dl class="plan">
-              <dt>Y! Fi 2年間ずーっと得するプラン（4G）について</dt>
-              <dd>Yahoo! プレミアム会員必須のプラン。２年目からは、月々の料金が2,743円一定です。</dd>
-            </dl>
-            <p class="link-btn"><a href="">Yahoo! Wi-Fiのサイトへ</a></p>
+            <div class="device-data">
+                <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
+                <div class="image">
+                  <p class="head">選べる対応端末</p>
+                  <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+                </div>
+                <div class="detail">
+                  <p class="device-name"><span>Huawei2</span><br>Pocket WiFi 303HW</p>
+                  <ul class="data-list">
+                    <li>
+                      <dl class="data js-height">
+                        <dt>下り<br>通信速度</dt>
+                        <dd>最大25<span>Mbps</span></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>上り<br>通信速度</dt>
+                        <dd>最大25<span>Mbps</span></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>カラー</dt>
+                        <dd>ダークシルバー/レッド</dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>発売日</dt>
+                        <dd>2014年8月1日</dd>
+                      </dl>
+                    </li>
+                  </ul>
+                  <p class="link-btn"><a href="">この商品ページへ</a></p>
+                </div>
+            </div>
+            <div class="device-data">
+                <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
+                <div class="image">
+                  <p class="head">選べる対応端末</p>
+                  <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+                </div>
+                <div class="detail">
+                  <p class="device-name"><span>Huawei3</span><br>Pocket WiFi 303HW</p>
+                  <ul class="data-list">
+                    <li>
+                      <dl class="data js-height">
+                        <dt>下り<br>通信速度</dt>
+                        <dd>最大25<span>Mbps</span></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>上り<br>通信速度</dt>
+                        <dd>最大25<span>Mbps</span></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>カラー</dt>
+                        <dd>ダークシルバー/レッド</dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>発売日</dt>
+                        <dd>2014年8月1日</dd>
+                      </dl>
+                    </li>
+                  </ul>
+                  <p class="link-btn"><a href="">この商品ページへ</a></p>
+                </div>
+            </div>
+            <div class="device-data">
+                <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
+                <div class="image">
+                  <p class="head">選べる対応端末</p>
+                  <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+                </div>
+                <div class="detail">
+                  <p class="device-name"><span>Huawei4</span><br>Pocket WiFi 303HW</p>
+                  <ul class="data-list">
+                    <li>
+                      <dl class="data js-height">
+                        <dt>下り<br>通信速度</dt>
+                        <dd>最大25<span>Mbps</span></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>上り<br>通信速度</dt>
+                        <dd>最大25<span>Mbps</span></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>カラー</dt>
+                        <dd>ダークシルバー/レッド</dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl class="data js-height">
+                        <dt>発売日</dt>
+                        <dd>2014年8月1日</dd>
+                      </dl>
+                    </li>
+                  </ul>
+                  <p class="link-btn"><a href="">この商品ページへ</a></p>
+                </div>
+            </div>
           </div>
-      </section>
-<!--{**}-->
-<!--{include file=frontparts/bloc/yh-detail-other-plan.tpl}-->
+          <ul class="device-list-tab js-device-tab">
+            <li class="active">
+              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+              <div>Pocket WiFi <br>303HW</div>
+            </li>
+            <li>
+              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+              <div>Pocket WiFi <br>303HW</div>
+            </li>
+            <li>
+              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+              <div>Pocket WiFi <br>303HW</div>
+            </li>
+            <li>
+              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+              <div>Pocket WiFi <br>303HW</div>
+            </li>
+          </ul>
+        </section>
+        <section>
+            <h2 class="title">料金プランについて</h2>
+            <div class="price">
+              <div class="price-content">
+                <div class="title">
+                  <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/item/yahoowifi/logo.png" alt=""></p>
+                  <p class="text">Y!Fi2年間ずーっと得するプラン（4G）</p>
+                </div>
+                <div class="price-data1">
+                  <p class="price-data-head">2年間の月額料金について</p>
+                  <ul class="data">
+                    <li>
+                      <p class="head">1年目の月額料金</p>
+                      <p class="price">9,999円</p>
+                    </li>
+                    <li>
+                      <p class="head">2年目の月額料金</p>
+                      <p class="price">9,999円</p>
+                    </li>
+                  </ul>
+                  <div class="graph">
+                    <p class="head">お支払イメージ</p>
+                    <p class="price-text price-1y">1年目の月額料金<br><span class="price">1,980<span class="yean">円</span></span></p>
+                    <p class="price-text price-2y">2年目の月額料金<br><span class="price">2,743<span class="yean">円</span></span></p>
+                    <p class="text">12ヶ月目</p>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="price-data2">
+                  <p class="price-data-head">別途費用</p>
+                  <ul class="data">
+                    <li>
+                      <p class="head">初期費用</p>
+                      <p class="price">9,999円</p>
+                    </li>
+                    <li>
+                      <p class="head">事務手数料</p>
+                      <p class="price">9,999円</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <dl class="plan">
+                <dt>Y! Fi 2年間ずーっと得するプラン（4G）について</dt>
+                <dd>Yahoo! プレミアム会員必須のプラン。２年目からは、月々の料金が2,743円一定です。</dd>
+              </dl>
+              <p class="link-btn"><a href="">Yahoo! Wi-Fiのサイトへ</a></p>
+            </div>
+        </section>
+        <!--{**}-->
+        <!--{include file=frontparts/bloc/yh-detail-other-plan.tpl}-->
 
-<!--{include file=frontparts/bloc/yh-detail-recommend.tpl}-->
-<!--{include file=frontparts/bloc/yh-detail-note.tpl}-->
-<!--{include file=frontparts/bloc/yh-footer-link.tpl}-->
+        <!--{include file=frontparts/bloc/yh-detail-recommend.tpl}-->
+        <!--{include file=frontparts/bloc/yh-detail-note.tpl}-->
+        <!--{include file=frontparts/bloc/yh-footer-link.tpl}-->
 
-    </main>
-  </div>
+      </main>
+    </div>
+
+
+  </form>
+
 </div>
 
 <script src="<!--{$TPL_URLPATH}-->/js/front/common.js"></script>
