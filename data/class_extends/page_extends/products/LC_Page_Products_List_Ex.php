@@ -59,6 +59,26 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     }
 
     /**
+     * デフォルトで設定するFormのパラメータ
+     *
+     * @return void
+     */
+    public function setDefaultFormParam()
+    {
+        //デフォルト設定
+        if(!isset($this->arrForm['orderby'])){
+            $this->arrForm['orderby']='y1price';
+        }elseif(strlen($this->arrForm['orderby'])==0){
+            $this->arrForm['orderby']='y1price';
+        }
+        //デフォルト設定
+        if(!isset($this->arrForm['disp_number'])){
+            $this->arrForm['disp_number']='10';
+        }elseif(strlen($this->arrForm['disp_number'])==0){
+            $this->arrForm['disp_number']='10';
+        }
+    }
+    /**
      * Page のAction.
      *
      * @return void
@@ -80,6 +100,13 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $objFormParam->convParam();
         // 値の取得
         $this->arrForm = $objFormParam->getHashArray();
+
+        //デフォルトのフォームパラメータの設定
+        $this->setDefaultFormParam();
+
+var_dump($this->arrForm);
+
+
         //modeの取得
         $this->mode = $this->getMode();
         //表示条件の取得
@@ -414,6 +441,7 @@ var_dump($this->arrClassCat1);
      */
     public function lfGetPageTitle($mode, $arrSearchData)
     {
+        return null;
         if ($mode == 'search') {
             return '検索結果';
         } elseif ($arrSearchData['product_status_id'] > 0) {
