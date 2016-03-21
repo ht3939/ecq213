@@ -38,6 +38,13 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     /** フィルタ条件(表示用) */
     public $arrSearchFilter = array();
 
+    /**ソートタブの選択用*/
+    public $tpl_orderby_totalprice = false;
+    public $tpl_orderby_y1price = false;
+
+    public $arrProductclass = array();
+    public $arrMaker = array();
+
     /**
      * Page を初期化する.
      *
@@ -46,6 +53,11 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     function init()
     {
         parent::init();
+
+        $this->lfGetMakerTree();
+        $this->lfGetProductclass();
+        $this->setSearchFilter();
+
     }
 
     /**
@@ -59,12 +71,35 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     }
 
     /**
+     * フィルタの選択対象の設定
+     *
+     * @return void
+     */
+    public function setSearchFilter()
+    {
+        $this->arrSearchFilter['filter_datasize'] = array('type'=>'options','value'=>array('すべて','５Ｇ未満','５Ｇ～８Ｇ未満','８Ｇ以上'));
+        $this->arrSearchFilter['filter_dataspeed'] = array('type'=>'options','value'=>array('すべて','50','100','200'));
+        $this->arrSearchFilter['filter_device'] = array('type'=>'checkbox','value'=>array('すべて','303HW','404HH','CL123'));
+        if(count($this->arrProductclass)>0){
+
+        }
+        $this->arrSearchFilter['filter_type'] = array('type'=>'options','value'=>array('すべて','3G','4G','LTE'));
+        $this->arrSearchFilter['filter_maker'] = array('type'=>'checkbox','value'=>array('すべて','YahooWifi','とくとくBB'));
+        $this->arrSearchFilter['filter_cpprice'] = array('type'=>'options','value'=>array('すべて','あり'));
+    }
+
+    /**
      * デフォルトで設定するFormのパラメータ
      *
      * @return void
      */
     public function setDefaultFormParam()
-    {
+    {        //デフォルト設定
+        if(!isset($this->arrForm['category_id'])){
+            $this->arrForm['category_id']='0';
+        }elseif(strlen($this->arrForm['category_id'])==0){
+            $this->arrForm['category_id']='0';
+        }
         //デフォルト設定
         if(!isset($this->arrForm['orderby'])){
             $this->arrForm['orderby']='y1price';
@@ -78,6 +113,39 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             $this->arrForm['disp_number']='10';
         }
     }
+
+    function lfGetMakerTree() {
+        $objView = new SC_SiteView();
+        $objQuery =& SC_Query_Ex::getSingletonInstance();
+        $objDb = new SC_Helper_DB_Ex();
+
+        $col = '*';
+        $from = 'dtb_maker left join dtb_maker_count ON dtb_maker.maker_id = dtb_maker_count.maker_id';
+        $where = "del_flg <> 1 AND product_count > 0";
+        $objQuery->setorder("rank DESC");
+        $this->arrMaker = $objQuery->select($col, $from, $where);
+
+    }
+
+    /**
+     * 端末一覧を表示するためのデータ取得
+     *
+     * @return void
+     */
+    function lfGetProductclass() {
+        $objView = new SC_SiteView();
+        $objQuery =& SC_Query_Ex::getSingletonInstance();
+        $objDb = new SC_Helper_DB_Ex();
+
+        $col = '*';
+        $from = 'dtb_classcategory ';
+        $where = "del_flg <> 1";
+        $objQuery->setorder("class_id,rank DESC");
+        $this->arrProductclass = $objQuery->select($col, $from, $where);
+
+
+    }
+
     /**
      * Page のAction.
      *
@@ -129,10 +197,14 @@ var_dump($this->arrForm);
             ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
             ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
             ,'product_code' => ($this->arrForm['product_code'])
+            ,'cc_type' => ($this->arrForm['cc_type'])
         );
 
 
         $this->orderby = $this->arrForm['orderby'];
+        $this->tpl_orderby_totalprice = ($this->orderby==='totalprice');
+        $this->tpl_orderby_y1price = ($this->orderby==='y1price');
+
         //ページング設定
         $this->tpl_pageno = $this->arrForm['pageno'];
         $this->disp_number = $this->lfGetDisplayNum($this->arrForm['disp_number']);
@@ -145,9 +217,6 @@ var_dump($this->arrForm);
         $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
         $urlParam = "category_id={$this->arrSearchData['category_id']}&pageno=#page#";
 
-var_dump($this->arrSearchData);
-
-var_dump($arrSearchCondition);
 
         // モバイルの場合に検索条件をURLの引数に追加
         if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
@@ -164,13 +233,6 @@ var_dump($arrSearchCondition);
                 $this->doDefault($objProduct, $objFormParam);
                 break;
         }
-var_dump($this->arrProducts);
-var_dump('<br>');
-var_dump('<br>');
-var_dump('<br>');
-var_dump('<br>');
-
-var_dump($this->arrClassCat1);
 
         $this->tpl_rnd = SC_Utils_Ex::sfGetRandomString(3);
     }
@@ -196,6 +258,7 @@ var_dump($this->arrClassCat1);
         $objFormParam->addParam('転送速度下り(下限)', 'data_speed_down_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('転送速度下り(上限)', 'data_speed_down_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('回線タイプ', 'cc_type', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
     }
 
     /**
@@ -347,6 +410,46 @@ var_dump($this->arrClassCat1);
                     . $tmpWhere
                     . 'GROUP BY product_id'
                     . ')';
+        }
+
+        // 回線タイプ
+        $tmpWhere = '';
+        $condkey ='cc_type';
+        // WHERE文字列取得
+        if ($arrSearchData[$condkey]) {
+            
+            if(is_array($arrSearchData[$condkey])){
+                $tmp = '';
+                foreach($arrSearchData[$condkey] as $kv){
+                    $tmp .= 'dtb_classcategory.$condkey = ? or ';
+                    $searchCondition['arrval'][] = intval($kv);
+
+                }
+                $tmp .= 'dtb_classcategory.$condkey=0';
+                unset($kv);
+                $searchCondition['where']   .= ' AND ('. $tmp .')';
+                $searchCondition['arrval'][] = $arrSearchData[$condkey];
+
+            }else
+            {
+                // 
+                if (strlen($arrSearchData[$condkey]) > 0) {
+                    $tmpWhere .= " AND dtb_classcategory.$condkey = ? ";
+                    $searchCondition['arrval'][] = $arrSearchData[$condkey];
+                }
+
+            }
+
+            if (strlen($tmpWhere) > 0) {
+                $searchCondition['where'] .= ' AND alldtl.product_id IN ('
+                        . 'SELECT product_id FROM dtb_products_class inner join dtb_classcategory'
+                        . ' on dtb_products_class.classcategory_id1 = dtb_classcategory.classcategory_id'
+                        . 'WHERE product_id = alldtl.product_id AND del_flg = 0'
+                        . $tmpWhere
+                        . 'GROUP BY product_id'
+                        . ')';
+            }
+
         }
 
         // 月額１年目

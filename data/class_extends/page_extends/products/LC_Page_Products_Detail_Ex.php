@@ -34,6 +34,12 @@ require_once CLASS_REALDIR . 'pages/products/LC_Page_Products_Detail.php';
  */
 class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 {
+
+    /** @var array 関連商品情報 */
+    public $arrOtherPlanProducts;
+    /** @var array 関連商品情報 */
+    public $arrRecommendProducts;
+
     /**
      * Page を初期化する.
      *
@@ -61,6 +67,7 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
      */
     public function action()
     {
+
         //決済処理中ステータスのロールバック
         $objPurchase = new SC_Helper_Purchase_Ex();
         $objPurchase->cancelPendingOrder(PENDING_ORDER_CANCEL_FLAG);
@@ -121,7 +128,6 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         // 商品IDをFORM内に保持する
         $this->tpl_product_id = $product_id;
-
         switch ($this->mode) {
             case 'cart':
                 $this->doCart();
@@ -198,6 +204,12 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
         //関連商品情報表示
         $this->arrRecommend = $this->lfPreGetRecommendProducts($product_id);
 
+        //関連商品情報表示
+        $this->arrOtherPlanProducts = $this->lfGetOtherPlanProducts();
+
+        //関連商品情報表示
+        $this->arrRecommendProducts = $this->lfGetRecommendProducts();
+
         // ログイン判定
         if ($objCustomer->isLoginSuccess() === true) {
             //お気に入りボタン表示
@@ -205,5 +217,154 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
             $this->is_favorite = SC_Helper_DB_Ex::sfDataExists('dtb_customer_favorite_products', 'customer_id = ? AND product_id = ?', array($objCustomer->getValue('customer_id'), $product_id));
         }
     }
-    
+
+
+    /* その他プラン商品一覧の表示 */
+    /**
+     * @param SC_Product_Ex $objProduct
+     */
+    public function lfGetOtherPlanProducts()
+    {
+        $objProduct = new SC_Product_Ex();
+
+        $arrSearch = array("maker_id"=>$this->arrProduct['maker_id']);
+        $arrCond = $this->lfGetSearchCondition($arrSearch);
+        return $this->lfGetProductsList($arrCond,10,1,$objProduct);
+
+    }
+
+    /* おすすめ商品一覧の表示 */
+    /**
+     * @param SC_Product_Ex $objProduct
+     */
+    public function lfGetRecommendProducts()
+    {
+        $objProduct = new SC_Product_Ex();
+
+        $arrSearch = array("category_id"=>"0");
+        $arrCond = $this->lfGetSearchCondition($arrSearch);
+        return $this->lfGetProductsList($arrCond,10,1,$objProduct);
+
+    }
+    /**
+     * 検索条件のwhere文とかを取得
+     *
+     * @return array
+     */
+    public function lfGetSearchCondition($arrSearchData)
+    {
+        $searchCondition = array(
+            'where'             => '1=1',
+            'arrval'            => array(),
+            'where_category'    => '',
+            'arrvalCategory'    => array()
+        );
+
+        // メーカーらのWHERE文字列取得
+        if ($arrSearchData['maker_id']) {
+            
+            if(is_array($arrSearchData['maker_id'])){
+                $tmp = '';
+                foreach($arrSearchData['maker_id'] as $kv){
+                    $tmp .= 'alldtl.maker_id = ? or ';
+                    $searchCondition['arrval'][] = intval($kv);
+
+                }
+                $tmp .= 'alldtl.maker_id = 0';
+                unset($kv);
+                $searchCondition['where']   .= ' AND ('. $tmp .')';
+                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+
+            }else
+            {
+                $searchCondition['where']   .= ' AND alldtl.maker_id = ? ';
+                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
+
+            }
+
+        }
+
+        // XXX 一時期内容が異なっていたことがあるので別要素にも格納している。
+        $searchCondition['where_for_count'] = $searchCondition['where'];
+
+        return $searchCondition;
+    }
+
+    /* 商品一覧の表示 */
+    /**
+     * @param SC_Product_Ex $objProduct
+     */
+    public function lfGetProductsList($searchCondition, $disp_number, $startno, &$objProduct)
+    {
+        $objQuery = & SC_Query_Ex::getSingletonInstance();
+        $arrOrderVal = array();
+        $orderby='y1price';
+        // 表示順序
+        switch ($orderby) {
+            // 月額が安い順
+            case 'y1price':
+                $objProduct->setProductsOrder('y1_price', 'dtb_products', 'ASC');
+                break;
+            // 総額安い順
+            case 'totalprice':
+                $objProduct->setProductsOrder('total_price', 'dtb_products', 'ASC');
+                break;
+            // 転送下り順
+            case 'dataspeeddown':
+                $objProduct->setProductsOrder('data_speed_down', 'dtb_products', 'DESC');
+                break;
+            // 転送上り順
+            case 'dataspeedup':
+                $objProduct->setProductsOrder('data_speed_up', 'dtb_products', 'DESC');
+                break;
+            // データ量順
+            case 'datasize':
+                $objProduct->setProductsOrder('datasize', 'dtb_products', 'DESC');
+                break;
+            // CPが高い順
+            case 'cpprice':
+                $objProduct->setProductsOrder('cp_price', 'dtb_products', 'ASC');
+                break;
+            // 新着順
+            case 'date':
+                $objProduct->setProductsOrder('create_date', 'dtb_products', 'DESC');
+                break;
+            // 更新順
+            case 'update':
+                $objProduct->setProductsOrder('update_date', 'dtb_products', 'DESC');
+                break;
+            // 商品ステータスの更新順
+            case 'product_status_update':
+                $objProduct->setProductsOrder('update_date', 'dtb_product_status', 'DESC');
+                break;
+            // ポイント付与率が高い順
+            case 'point_rate':
+                $objProduct->setProductsOrder('point_rate', 'dtb_products_class', 'DESC');
+                break;
+            default:
+                if (strlen($searchCondition['where_category']) >= 1) {
+                    $dtb_product_categories = '(SELECT * FROM dtb_product_categories WHERE ' . $searchCondition['where_category'] . ')';
+                    $arrOrderVal = $searchCondition['arrvalCategory'];
+                } else {
+                    $dtb_product_categories = 'dtb_product_categories';
+                }
+                $col = 'MAX(T3.rank * 2147483648 + T2.rank)';
+                $from = "$dtb_product_categories T2 JOIN dtb_category T3 ON T2.category_id = T3.category_id";
+                $where = 'T2.product_id = alldtl.product_id';
+                $sub_sql = $objQuery->getSql($col, $from, $where);
+                $objQuery->setOrder("($sub_sql) DESC ,product_id DESC");
+                break;
+        }
+        // 取得範囲の指定(開始行番号、行数のセット)
+        $objQuery->setLimitOffset($disp_number, $startno);
+        $objQuery->setWhere($searchCondition['where']);
+        // 表示すべきIDとそのIDの並び順を一気に取得
+        $arrProductId = $objProduct->findProductIdsOrder($objQuery, array_merge($searchCondition['arrval'], $arrOrderVal));
+        $objQuery = & SC_Query_Ex::getSingletonInstance();
+        $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId);
+        // 規格を設定
+        $objProduct->setProductsClassByProductIds($arrProductId);
+        $arrProducts['productStatus'] = $objProduct->getProductStatus($arrProductId);
+        return $arrProducts;
+    }        
 }
