@@ -1,14 +1,14 @@
       <section>
         <div id="weekly-top">
           <div class="weekly-top-head">
-            <img src="./img/index/ribbon.png" class="ribbon">
+            <img src="<!--{$TPL_URLPATH}-->/img/index/ribbon.png" class="ribbon">
             <h1>今週の総合TOP</h1>
           </div>
           <div class="weekly-top-in clearfix">
             <div class="title-name">
-              <p class="logo"><img src="./img/index/Yahoo-wifi-logo.png" alt="Yahoo!JAPAN Wi-Fi"></p>
+              <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/index/Yahoo-wifi-logo.png" alt="Yahoo!JAPAN Wi-Fi"></p>
               <div class="pic">
-                <img src="./img/item/w01.png" alt="">
+                <img src="<!--{$TPL_URLPATH}-->/img/item/w01.png" alt="">
               </div>
               <div class="title">
                 <p>Y!Fi2年間ずーっと<br>得するプラン(4G)</p>
@@ -18,7 +18,7 @@
                 <div class="detail">
 
                   <div class="rank-list">
-                    <img src="./img/index/crown.png" class="tag">
+                    <img src="<!--{$TPL_URLPATH}-->/img/index/crown.png" class="tag">
                     <p class="head">項目別ランキング</p>
                     <table>
                       <tbody>
