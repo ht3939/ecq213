@@ -65,14 +65,9 @@
                 容量 <!--{$arrForm.rank3_order|h}--> 位、
                 速度下 <!--{$arrForm.rank4_order|h}--> 位、
                 速度上 <!--{$arrForm.rank5_order|h}--> 位、
+                総合Ｐ <!--{$arrForm.rankpoint_order|h}--> PT、
             </td>
         </tr>
-        <tr>
-            <th>特記事項</th>
-            <td style="word-break: break-all;">
-                <!--{$arrForm.comment1|h}-->
-            </td>
-        </tr>        
         <tr>
             <th>プラン名</th>
             <td>
@@ -138,6 +133,18 @@
             </td>
         </tr>
 
+        <tr>
+            <th>特記事項(一覧-メインコメント)</th>
+            <td>
+                <!--{$arrForm.main_list_comment|h|nl2br}-->
+            </td>
+        </tr>
+        <tr>
+            <th>特記事項(詳細-メインコメント)</th>
+            <td>
+                <!--{$arrForm.main_comment|nl2br_html}-->
+            </td>
+        </tr>
 
 
 
@@ -262,18 +269,6 @@
             <th>備考欄(SHOP専用)</th>
             <td>
                 <!--{$arrForm.note|h|nl2br}-->
-            </td>
-        </tr>
-        <tr>
-            <th>一覧-メインコメント</th>
-            <td>
-                <!--{$arrForm.main_list_comment|h|nl2br}-->
-            </td>
-        </tr>
-        <tr>
-            <th>詳細-メインコメント</th>
-            <td>
-                <!--{$arrForm.main_comment|nl2br_html}-->
             </td>
         </tr>
         <tr>

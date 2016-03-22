@@ -80,6 +80,7 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
         $objFormParam->addParam('評価項目3()', 'rank3_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('評価項目4()', 'rank4_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('評価項目5()', 'rank5_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('評価項目(総合)', 'rankpoint_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
 
         parent::lfInitFormParam($objFormParam,$arrPost);
 /*
@@ -147,7 +148,28 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
 */
     }
 
+    public function lfCalculateRankPoint($arrList){
+        $tp = 0.0;
+        for ($i=1; $i < 6 ; $i++) {
+            $pt = 0;
+            $key = 'rank'.$i.'_order';
+            if(intval($arrList[$key])>0){
+                $pt = 6 - intval($arrList[$key]);
+                if($pt<0){
+                    $pt = 0;
+                }
+                $tp += $pt;
 
+            } 
+        }
+
+        if($tp>0){
+            $tp = round($tp / 5.0,2);
+
+        }
+        return $tp;
+
+    }
 
     /**
      * DBに商品データを登録する
@@ -202,6 +224,7 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
         $sqlval['rank3_order'] = $arrList['rank3_order'];
         $sqlval['rank4_order'] = $arrList['rank4_order'];
         $sqlval['rank5_order'] = $arrList['rank5_order'];
+        $sqlval['rankpoint_order'] = $this->lfCalculateRankPoint($arrList);
 
         $arrRet = $objUpFile->getDBFileList();
         $sqlval = array_merge($sqlval, $arrRet);

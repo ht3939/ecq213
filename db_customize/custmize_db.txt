@@ -51,6 +51,7 @@ ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank2_order` DECIMAL(10,0) N
 ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank3_order` DECIMAL(10,0) NULL;
 ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank4_order` DECIMAL(10,0) NULL;
 ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank5_order` DECIMAL(10,0) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rankpoint_order` DECIMAL(10,1) NULL;
 
 
 ALTER TABLE `dtb_products_class` ADD COLUMN `pc_url` TEXT NULL;

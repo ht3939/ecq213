@@ -151,15 +151,9 @@
                 <input type="text" name="rank4_order" value="<!--{$arrForm.rank4_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank4_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
                 速度上
                 <input type="text" name="rank5_order" value="<!--{$arrForm.rank5_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rank5_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>位
+                総合Ｐ
+                <input type="text" name="rankpoint_order" value="<!--{$arrForm.rankpoint_order|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PRICE_LEN}-->" style="<!--{if $arrErr.rankpoint_order != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>PT
 
-            </td>
-        </tr>
-        <tr>
-            <th>特記事項（comment1）</th>
-            <td>
-                <span class="attention"><!--{$arrErr.comment1}--></span>
-                <input type="text" name="comment1" value="<!--{$arrForm.comment1|h}-->" maxlength="<!--{$smarty.const.URL_LEN}-->" size="60" class="box60" style="<!--{$arrErr.comment1|sfGetErrorColor}-->" />
-                <span class="attention"> (上限<!--{$smarty.const.URL_LEN}-->文字)</span>
             </td>
         </tr>
         <tr>
@@ -406,7 +400,7 @@
             </td>
         </tr>
         <tr>
-            <th>一覧-メインコメント<span class="attention"> *</span></th>
+            <th>特記事項（一覧-メインコメント）<span class="attention"> *</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.main_list_comment}--></span>
                 <textarea name="main_list_comment" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" style="<!--{if $arrErr.main_list_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_list_comment|h}--></textarea><br />
@@ -414,7 +408,7 @@
             </td>
         </tr>
         <tr>
-            <th>詳細-メインコメント<span class="attention">(タグ許可)*</span></th>
+            <th>特記事項（詳細-メインコメント）<span class="attention">(タグ許可)*</span></th>
             <td>
                 <span class="attention"><!--{$arrErr.main_comment}--></span>
                 <textarea name="main_comment" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{if $arrErr.main_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_comment|h}--></textarea><br />
