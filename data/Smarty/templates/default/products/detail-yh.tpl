@@ -33,7 +33,7 @@
 <div class="row-container is-reverse">
   <p class="index-link"><a href="/">トップへ戻る</a></p>
 
-  <form name="form1" id="form1" method="post" action="?">
+  <form name="form1" id="form1" method="get" action="?">
 
     <div class="main-column">
       <main>
