@@ -11,12 +11,13 @@ import url("./bloc.css");
 *//*@import url("./bloc.css");
 *//*@import url("./bloc_alpha.css");
 *//*@import url("./popup.css");
-*/
-@import url("./print.css");
-
-@import url("./general/common.css");
 @import url("./general/detail.css");
 @import url("./general/index.css");
 @import url("./general/jquery.bxslider.css");
+@import url("./print.css");
 @import url("./general/list-layout.css");
+
+*/
+
+@import url("./general/common.css");
 
