@@ -40,33 +40,34 @@
         <h1 class="plan-title"><span><!--{$arrProduct.maker_name}--></span><!--{$arrProduct.name}--></h1>
         <section>
           <div class="title-name">
-            <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$arrProduct.mk_image}-->" alt=""></p>
+            <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$arrProduct.mk_image}-->" alt="<!--{$arrProduct.maker_name}-->"></p>
             <div class="title">
               <p class="name"><!--{$arrProduct.name}--></p>
-              <p class="condition">Yahoo! プレミアム会員限定のお得なプラン。<br>２年目からは、月々の料金が2,743円一定です。</p>
+              <!--{assign var=y2p value=$arrProduct.y2_price|number_format}-->
+              <p class="condition"><!--{$arrProduct.main_list_comment|replace:"{*}":$y2p}--></p>
             </div>
           </div>
           <div class="data-boxs">
             <ul class="top-data">
-              <li class="rank1">
+              <li class="rank<!--{$arrProduct.rank1_order}-->">
               <img src="<!--{$TPL_URLPATH}-->/img/detail/tag1.png" alt="" class="tag">
                 <p class="head">月額料金</p>
-                <p class="data">9,999<span>円</span></p>
+                <p class="data"><!--{$arrProduct.y1_price|number_format}--><span>円</span></p>
               </li>
-              <li class="rank2">
+              <li class="rank<!--{$arrProduct.rank2_order}-->">
               <img src="<!--{$TPL_URLPATH}-->/img/detail/tag2.png" alt="" class="tag">
                 <p class="head">お支払い総額</p>
-                <p class="data">99,999<span>円</span></p>
+                <p class="data"><!--{$arrProduct.total_price|number_format}--><span>円</span></p>
               </li>
-              <li class="rank2">
+              <li class="rank<!--{$arrProduct.rank3_order}-->">
               <img src="<!--{$TPL_URLPATH}-->/img/detail/tag3.png" alt="" class="tag">
                 <p class="head">月間データ量</p>
-                <p class="data">7<span>GB/月</span></p>
+                <p class="data"><!--{$arrProduct.datasize}--><span>GB/月</span></p>
               </li>
-              <li class="rank3">
+              <li class="rank<!--{$arrProduct.rank4_order}-->">
               <img src="<!--{$TPL_URLPATH}-->/img/detail/tag4.png" alt="" class="tag">
                 <p class="head">下り最大速度</p>
-                <p class="data">110<span>Mbps</span></p>
+                <p class="data"><!--{$arrProduct.data_speed_down}--><span>Mbps</span></p>
               </li>
             </ul>
             <div class="rank-graph">
@@ -74,18 +75,18 @@
               <p class="head">項目別ランキング</p>
               <div class="detail">
                 <ul class="rank-list">
-                  <li class="rank1">月額料金</li>
-                  <li class="rank2">月間データ量</li>
-                  <li class="rank2">上り最大速度</li>
-                  <li class="rank3">下り最大速度</li>
-                  <li class="rank3">お支払総額</li>
+                  <li class="rank<!--{$arrProduct.rank1_order}-->">月額料金</li>
+                  <li class="rank<!--{$arrProduct.rank3_order}-->">月間データ量</li>
+                  <li class="rank<!--{$arrProduct.rank5_order}-->">上り最大速度</li>
+                  <li class="rank<!--{$arrProduct.rank4_order}-->">下り最大速度</li>
+                  <li class="rank<!--{$arrProduct.rank2_order}-->">お支払総額</li>
                 </ul>
                 <div class="graph">
-                  <p class="status1">月額料金<br><span>1位</span></p>
-                  <p class="status2">お支払総額<br><span>1位</span></p>
-                  <p class="status3">月間データ量<br><span>1位</span></p>
-                  <p class="status4">下り最大速度<br><span>1位</span></p>
-                  <p class="status5">上り最大速度<br><span>1位</span></p>
+                  <p class="status1">月額料金<br><span><!--{$arrProduct.rank1_order}-->位</span></p>
+                  <p class="status2">お支払総額<br><span><!--{$arrProduct.rank2_order}-->位</span></p>
+                  <p class="status3">月間データ量<br><span><!--{$arrProduct.rank3_order}-->位</span></p>
+                  <p class="status4">下り最大速度<br><span><!--{$arrProduct.rank4_order}-->位</span></p>
+                  <p class="status5">上り最大速度<br><span><!--{$arrProduct.rank5_order}-->位</span></p>
                   <canvas id="canvas" width="185" height="185"></canvas>
                 </div>
               </div>
@@ -265,25 +266,25 @@
             <div class="price">
               <div class="price-content">
                 <div class="title">
-                  <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/item/yahoowifi/logo.png" alt=""></p>
-                  <p class="text">Y!Fi2年間ずーっと得するプラン（4G）</p>
+                  <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$arrProduct.mk_image}-->" alt=""></p>
+                  <p class="text"><!--{$arrProduct.name}--></p>
                 </div>
                 <div class="price-data1">
                   <p class="price-data-head">2年間の月額料金について</p>
                   <ul class="data">
                     <li>
                       <p class="head">1年目の月額料金</p>
-                      <p class="price">9,999円</p>
+                      <p class="price"><!--{$arrProduct.y1_price|number_format}-->円</p>
                     </li>
                     <li>
                       <p class="head">2年目の月額料金</p>
-                      <p class="price">9,999円</p>
+                      <p class="price"><!--{$arrProduct.y2_price|number_format}-->円</p>
                     </li>
                   </ul>
                   <div class="graph">
                     <p class="head">お支払イメージ</p>
-                    <p class="price-text price-1y">1年目の月額料金<br><span class="price">1,980<span class="yean">円</span></span></p>
-                    <p class="price-text price-2y">2年目の月額料金<br><span class="price">2,743<span class="yean">円</span></span></p>
+                    <p class="price-text price-1y">1年目の月額料金<br><span class="price"><!--{$arrProduct.y1_price|number_format}--><span class="yean">円</span></span></p>
+                    <p class="price-text price-2y">2年目の月額料金<br><span class="price"><!--{$arrProduct.y2_price|number_format}--><span class="yean">円</span></span></p>
                     <p class="text">12ヶ月目</p>
                     <p></p>
                   </div>
@@ -293,20 +294,20 @@
                   <ul class="data">
                     <li>
                       <p class="head">初期費用</p>
-                      <p class="price">9,999円</p>
+                      <p class="price"><!--{$arrProduct.init_price|number_format}-->円</p>
                     </li>
                     <li>
                       <p class="head">事務手数料</p>
-                      <p class="price">9,999円</p>
+                      <p class="price"><!--{$arrProduct.adj_price|number_format}-->円</p>
                     </li>
                   </ul>
                 </div>
               </div>
               <dl class="plan">
-                <dt>Y! Fi 2年間ずーっと得するプラン（4G）について</dt>
-                <dd>Yahoo! プレミアム会員必須のプラン。２年目からは、月々の料金が2,743円一定です。</dd>
+                <dt><!--{$arrProduct.name}-->について</dt>
+                <dd><!--{$arrProduct.main_comment|replace:"{*}":$y2p}--></dd>
               </dl>
-              <p class="link-btn"><a href="">Yahoo! Wi-Fiのサイトへ</a></p>
+              <p class="link-btn"><a href="<!--{$arrProduct.mk_site_url}-->"><!--{$arrProduct.maker_name}-->のサイトへ</a></p>
             </div>
         </section>
         <!--{**}-->
