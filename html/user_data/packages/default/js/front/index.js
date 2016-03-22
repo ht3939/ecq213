@@ -84,6 +84,16 @@ $(function () {
 			// window.location = $(this).parent("tr").children(".rank-company").find(".site_btn a").attr("href");
 			window.open($(this).parent("tr").children(".rank-company").find(".site_btn a").attr("href"));
 	});
+	$(".ranking_table tr td").hover(function(){
+					$(this).parent("tr").children('.rank-company').find(".site_btn a").css(
+						"background-color" , "#ff0033"
+					)
+				},
+					function(){
+					$(this).parent("tr").children('.rank-company').find(".site_btn a").css(
+						"background-color" , "#e25757"
+					)
+				});
 
 });
 
