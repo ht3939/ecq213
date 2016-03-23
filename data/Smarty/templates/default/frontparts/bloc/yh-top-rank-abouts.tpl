@@ -1,3 +1,4 @@
+<!--{strip}-->
       <section>
         <div id="ranking-about">
           <h1 class="title">ランキングに関して</h1>
@@ -74,3 +75,4 @@
         </div>
         <!-- /#ranking-about -->
       </section>
+<!--{/strip}-->

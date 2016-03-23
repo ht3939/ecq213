@@ -1,5 +1,3 @@
-
-
 <div id="mainv">
   <div class="base-container">
     <img src="<!--{$TPL_URLPATH}-->img/header/mainv.png" alt="一番安い！がすぐ分かる！">

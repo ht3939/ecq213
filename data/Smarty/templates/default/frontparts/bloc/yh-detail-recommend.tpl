@@ -1,4 +1,4 @@
-
+<!--{strip}-->
 
       <section>
           <h2 class="title">その他のおすすめ</h2>
@@ -77,3 +77,4 @@
             </li>
           </ul>
       </section>
+<!--{/strip}-->

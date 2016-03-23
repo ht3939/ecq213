@@ -1,3 +1,4 @@
+<!--{strip}-->
       <section>
         <div id="weekly-top">
           <div class="weekly-top-head">
@@ -64,3 +65,4 @@
           </ul>
         </div>
       </section>
+<!--{/strip}-->

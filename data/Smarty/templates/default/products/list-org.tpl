@@ -19,7 +19,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
-
+<!--{strip}-->
 <script type="text/javascript">//<![CDATA[
     function fnSetClassCategories(form, classcat_id2_selected) {
         var $form = $(form);
@@ -274,3 +274,4 @@
     <!--{/foreach}-->
 
 </div>
+<!--{/strip}-->

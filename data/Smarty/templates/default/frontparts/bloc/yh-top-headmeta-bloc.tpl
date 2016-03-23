@@ -1,3 +1,4 @@
+<!--{strip}-->
 <head>
 		<meta charset="UTF-8">
 	<meta name="viewport" content="width=1100">
@@ -15,3 +16,4 @@
 	<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/common.css">
 	<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/index.css">
 </head>
+<!--{/strip}-->

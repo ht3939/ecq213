@@ -1,4 +1,4 @@
-
+<!--{strip}-->
       <nav>
         <div class="official">
           <p>各モバイルルーター公式サイトの情報はこちら(外部サイトへ)</p>
@@ -12,3 +12,4 @@
         </div>
         <p class="about_icon_txt">※アイコンについて <img class="icon-link" src="<!--{$TPL_URLPATH}-->/img/index/icon-link.gif" alt="外部サイト">・・・外部リンク</p>
       </nav>
+<!--{/strip}-->
