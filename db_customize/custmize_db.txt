@@ -33,6 +33,8 @@ ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_release_date` date NULL;
 ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_type` TEXT NULL;
 ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_brand` TEXT NULL;
 ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_color` TEXT NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_data_speed_down` DECIMAL(10,1) NULL;
+ALTER TABLE `dtb_classcategory` ADD COLUMN `cc_data_speed_up` DECIMAL(10,1) NULL;
 
 
 ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `data_speed_down` DECIMAL(10,0) NULL;
@@ -46,12 +48,13 @@ ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `adj_price` DECIMAL(10,0) NUL
 ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `total_price` DECIMAL(10,0) NULL;
 ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `datasize` DECIMAL(10,0) NULL default 0;
 
-ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank1_order` DECIMAL(10,0) NULL;
-ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank2_order` DECIMAL(10,0) NULL;
-ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank3_order` DECIMAL(10,0) NULL;
-ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank4_order` DECIMAL(10,0) NULL;
-ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank5_order` DECIMAL(10,0) NULL;
-ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rankpoint_order` DECIMAL(10,1) NULL;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank1_order` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank2_order` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank3_order` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank4_order` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rank5_order` DECIMAL(10,0) NULL default 0;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `rankpoint_order` DECIMAL(10,1) NULL default 0.0;
+ALTER TABLE `ecq213cust`.`dtb_products` ADD COLUMN `lntype` TEXT NULL ;
 
 
 ALTER TABLE `dtb_products_class` ADD COLUMN `pc_url` TEXT NULL;
