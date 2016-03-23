@@ -189,7 +189,15 @@
             </td>
         </tr>        
 
-
+        <tr>
+            <th>回線タイプ<span class="attention">(タグ許可)</span></th>
+            <!--{assign var=key value="lntype"}-->
+            <td>
+                <span class="attention"><!--{$arrErr[$key]}--></span>
+                <input type="text" name="<!--{$key}-->" size="60" class="box60" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></input><br />
+                <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
         <tr>
             <th>初期費用（税抜）<span class="attention"> *</span></th>
             <td>
@@ -240,6 +248,50 @@
             </td>
         </tr>        
 
+        <tr>
+            <th>主な特典 詳細-サブコメント(2)<span class="attention">(タグ許可)</span></th>
+            <!--{assign var=key value="sub_comment2"}-->
+            <td>
+                <span class="attention"><!--{$arrErr[$key]}--></span>
+                <textarea name="<!--{$key}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
+                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>注意事項 詳細-サブコメント(3)<span class="attention">(タグ許可)</span></th>
+            <!--{assign var=key value="sub_comment3"}-->
+            <td>
+                <span class="attention"><!--{$arrErr[$key]}--></span>
+                <textarea name="<!--{$key}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
+                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
+
+        <tr>
+            <th>詳細文言（一覧-メインコメント）<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.main_list_comment}--></span>
+                <textarea name="main_list_comment" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" style="<!--{if $arrErr.main_list_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_list_comment|h}--></textarea><br />
+                <span class="attention"> (上限<!--{$smarty.const.MTEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>詳細文言（詳細-メインコメント）<span class="attention">(タグ許可)*</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.main_comment}--></span>
+                <textarea name="main_comment" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{if $arrErr.main_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_comment|h}--></textarea><br />
+                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
+        <tr>
+            <th>詳細注釈 詳細-サブコメント(1)<span class="attention">(タグ許可)</span></th>
+            <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
+            <td>
+                <span class="attention"><!--{$arrErr[$key]}--></span>
+                <textarea name="sub_comment<!--{$smarty.section.cnt.iteration}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
+                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
         <tr>
             <th>商品カテゴリ<span class="attention"> *</span></th>
             <td>
@@ -399,22 +451,8 @@
                 <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
             </td>
         </tr>
-        <tr>
-            <th>特記事項（一覧-メインコメント）<span class="attention"> *</span></th>
-            <td>
-                <span class="attention"><!--{$arrErr.main_list_comment}--></span>
-                <textarea name="main_list_comment" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" style="<!--{if $arrErr.main_list_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_list_comment|h}--></textarea><br />
-                <span class="attention"> (上限<!--{$smarty.const.MTEXT_LEN}-->文字)</span>
-            </td>
-        </tr>
-        <tr>
-            <th>特記事項（詳細-メインコメント）<span class="attention">(タグ許可)*</span></th>
-            <td>
-                <span class="attention"><!--{$arrErr.main_comment}--></span>
-                <textarea name="main_comment" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{if $arrErr.main_comment != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" cols="60" rows="8" class="area60"><!--{"\n"}--><!--{$arrForm.main_comment|h}--></textarea><br />
-                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
-            </td>
-        </tr>
+
+
         <tr>
             <!--{assign var=key value="main_list_image"}-->
             <th>一覧-メイン画像<br />[<!--{$smarty.const.SMALL_IMAGE_WIDTH}-->×<!--{$smarty.const.SMALL_IMAGE_HEIGHT}-->]</th>
@@ -481,15 +519,6 @@
                 <span class="attention"><!--{$arrErr[$key]}--></span>
                 <input type="text" name="sub_title<!--{$smarty.section.cnt.iteration}-->" value="<!--{$arrForm[$key]|h}-->" size="60" class="box60" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"/>
                 <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
-            </td>
-        </tr>
-        <tr>
-            <th>詳細-サブコメント(<!--{$smarty.section.cnt.iteration}-->)<span class="attention">(タグ許可)</span></th>
-            <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
-            <td>
-                <span class="attention"><!--{$arrErr[$key]}--></span>
-                <textarea name="sub_comment<!--{$smarty.section.cnt.iteration}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
-                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
             </td>
         </tr>
         <tr>

@@ -81,6 +81,7 @@ class SC_Product_Ex extends SC_Product
             ,cp_price
             ,adj_price
             ,datasize
+            ,lntype
             ,main_comment
             ,sub_comment1
             ,sub_image1
@@ -90,6 +91,7 @@ class SC_Product_Ex extends SC_Product
             ,rank3_order
             ,rank4_order
             ,rank5_order
+            ,rankpoint_order
             ,maker_name
             ,mk_image
             ,mk_site_url
@@ -257,6 +259,8 @@ __EOS__;
             T3.cc_type AS cc_type,
             T3.cc_brand AS cc_brand,
             T3.cc_color AS cc_color,
+            T3.cc_data_speed_down AS cc_data_speed_down,
+            T3.cc_data_speed_up AS cc_data_speed_up,
             dtb_classcategory2.name AS classcategory_name2,
             dtb_classcategory2.rank AS rank2,
             dtb_class2.name AS class_name2,

@@ -261,7 +261,7 @@ function lfnDispChange(){
                             調整金<br>
                         </th>
                         <th>-</th>
-                        <th>-</th>
+                        <th>回線タイプ</th>
                     </tr>
 
                     <!--{section name=cnt loop=$arrProducts}-->
@@ -349,6 +349,9 @@ function lfnDispChange(){
                                 <!--{$arrProducts[cnt].adj_price|n2s}-->
                             </td>
                             <td>-</td>
+                            <td class="right">
+                                <!--{$arrProducts[cnt].lntype|h}-->
+                            </td>
                         </tr>
 
                         <!--▲商品<!--{$smarty.section.cnt.iteration}-->-->

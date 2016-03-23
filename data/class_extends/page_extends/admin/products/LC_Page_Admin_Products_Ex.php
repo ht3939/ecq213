@@ -80,11 +80,13 @@ class LC_Page_Admin_Products_Ex extends LC_Page_Admin_Products
         ,adj_price
         ,total_price
         ,datasize
+        ,lntype
         ,rank1_order
         ,rank2_order
         ,rank3_order
         ,rank4_order
         ,rank5_order
+        ,rankpoint_order
         ';
         $from = $objProduct->alldtlSQL();
 

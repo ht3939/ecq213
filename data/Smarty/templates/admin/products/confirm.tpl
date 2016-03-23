@@ -93,6 +93,12 @@
                 <!--{if strlen($arrForm.datasize) >= 1}--><!--{$arrForm.datasize|h}--> GB<!--{/if}-->
             </td>
         </tr>
+        <tr>
+            <th>回線タイプ</th>
+            <td>
+                <!--{if strlen($arrForm.lntype) >= 1}--><!--{$arrForm.lntype|h}--><!--{/if}-->
+            </td>
+        </tr>
 
         <tr>
             <th>初期費用</th>
@@ -132,15 +138,29 @@
                 <!--{if strlen($arrForm.total_price) >= 1}--><!--{$arrForm.total_price|h}--> 円<!--{/if}-->
             </td>
         </tr>
+        <tr>
+            <th>主な特典 詳細-サブコメント(2)</th>
+            <td>
+                <!--{assign var=key value="sub_comment2"}-->
+                <!--{$arrForm[$key]|nl2br_html}-->
+            </td>
+        </tr>
+        <tr>
+            <th>注意事項 詳細-サブコメント(2)</th>
+            <td>
+                <!--{assign var=key value="sub_comment3"}-->
+                <!--{$arrForm[$key]|nl2br_html}-->
+            </td>
+        </tr>
 
         <tr>
-            <th>特記事項(一覧-メインコメント)</th>
+            <th>詳細文言(一覧-メインコメント)</th>
             <td>
                 <!--{$arrForm.main_list_comment|h|nl2br}-->
             </td>
         </tr>
         <tr>
-            <th>特記事項(詳細-メインコメント)</th>
+            <th>詳細文言(詳細-メインコメント)</th>
             <td>
                 <!--{$arrForm.main_comment|nl2br_html}-->
             </td>
@@ -311,13 +331,6 @@
                 <td>
                     <!--{assign var=key value="sub_title`$smarty.section.cnt.iteration`"}-->
                     <!--{$arrForm[$key]|h}-->
-                </td>
-            </tr>
-            <tr>
-                <th>詳細-サブコメント（<!--{$smarty.section.cnt.iteration}-->）</th>
-                <td>
-                    <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
-                    <!--{$arrForm[$key]|nl2br_html}-->
                 </td>
             </tr>
             <tr>
