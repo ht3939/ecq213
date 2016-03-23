@@ -105,6 +105,22 @@
                     <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
                 </td>
             </tr>            
+            <tr>
+                <th>転送速度下り</th>
+                <td>
+                    <input type="text" name="cc_data_speed_down" value="<!--{$arrForm.cc_data_speed_down.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_data_speed_down|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+
+            <tr>
+                <th>転送速度上り</th>
+                <td>
+                    <input type="text" name="cc_data_speed_up" value="<!--{$arrForm.cc_data_speed_up.value|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.cc_data_speed_up|sfGetErrorColor}-->" size="30" class="box30" />
+                    <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
+                </td>
+            </tr>            
+
 
 
         </table>
@@ -148,6 +164,8 @@
                 <th>ルータタイプ</th>
                 <th>ブランド</th>
                 <th>カラー</th>
+                <th>転送速度下り</th>
+                <th>転送速度上り</th>
 
                 <th class="edit">編集</th>
                 <th class="delete">削除</th>
@@ -173,6 +191,8 @@
                     <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_type|h}--></td>
                     <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_brand|h}--></td>
                     <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_color|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_data_speed_down|h}--></td>
+                    <td><!--{* 規格名 *}--><!--{$arrClassCat[cnt].cc_data_speed_up|h}--></td>
 
                     <td align="center" >
                         <!--{if $tpl_classcategory_id != $arrClassCat[cnt].classcategory_id}-->

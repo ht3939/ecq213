@@ -159,6 +159,8 @@ class LC_Page_Admin_Products_ClassCategory_Ex extends LC_Page_Admin_Products_Cla
         $objFormParam->addParam('端末タイプ', 'cc_type', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
         $objFormParam->addParam('ブランド', 'cc_brand', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
         $objFormParam->addParam('カラー', 'cc_color', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('転送速度下り', 'cc_data_speed_down', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('転送速度上り', 'cc_data_speed_up', LLTEXT_LEN, 'KVa', array('SPTAB_CHECK','MAX_LENGTH_CHECK'));
     }
     /**
      * 有効な規格分類情報の取得
@@ -219,6 +221,8 @@ class LC_Page_Admin_Products_ClassCategory_Ex extends LC_Page_Admin_Products_Cla
             $sqlval['cc_type'] = $arrForm['cc_type'];
             $sqlval['cc_brand'] = $arrForm['cc_brand'];
             $sqlval['cc_color'] = $arrForm['cc_color'];
+            $sqlval['cc_data_speed_down'] = $arrForm['cc_data_speed_down'];
+            $sqlval['cc_data_speed_up'] = $arrForm['cc_data_speed_up'];
 
             $sqlval['class_id'] = $arrForm['class_id'];
             $sqlval['creator_id'] = $_SESSION['member_id'];
@@ -256,6 +260,8 @@ class LC_Page_Admin_Products_ClassCategory_Ex extends LC_Page_Admin_Products_Cla
         $sqlval['cc_type'] = $arrForm['cc_type'];
         $sqlval['cc_brand'] = $arrForm['cc_brand'];
         $sqlval['cc_color'] = $arrForm['cc_color'];
+        $sqlval['cc_data_speed_down'] = $arrForm['cc_data_speed_down'];
+        $sqlval['cc_data_speed_up'] = $arrForm['cc_data_speed_up'];
 
 
         $sqlval['update_date'] = 'CURRENT_TIMESTAMP';
