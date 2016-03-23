@@ -229,7 +229,11 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         $arrSearch = array("maker_id"=>$this->arrProduct['maker_id']);
         $arrCond = $this->lfGetSearchCondition($arrSearch);
-        return $this->lfGetProductsList($arrCond,10,1,$objProduct);
+        //var_dump($arrCond);
+        $ret['dat'] = $this->lfGetProductsList($arrCond,10,0,$objProduct);
+        unset($ret['dat']['productStatus']);
+        $ret['arrCC'] = $objProduct->classCats1;
+        return $ret;
 
     }
 
@@ -243,7 +247,10 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         $arrSearch = array("category_id"=>"0");
         $arrCond = $this->lfGetSearchCondition($arrSearch);
-        return $this->lfGetProductsList($arrCond,10,1,$objProduct);
+        $ret['dat'] = $this->lfGetProductsList($arrCond,10,0,$objProduct);
+        unset($ret['dat']['productStatus']);
+        $ret['arrCC'] = $objProduct->classCats1;
+        return $ret;
 
     }
     /**
@@ -286,7 +293,6 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         // XXX 一時期内容が異なっていたことがあるので別要素にも格納している。
         $searchCondition['where_for_count'] = $searchCondition['where'];
-
         return $searchCondition;
     }
 
@@ -360,6 +366,8 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
         $objQuery->setWhere($searchCondition['where']);
         // 表示すべきIDとそのIDの並び順を一気に取得
         $arrProductId = $objProduct->findProductIdsOrder($objQuery, array_merge($searchCondition['arrval'], $arrOrderVal));
+        
+
         $objQuery = & SC_Query_Ex::getSingletonInstance();
         $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId);
         // 規格を設定

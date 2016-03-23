@@ -19,7 +19,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
-
 <script type="text/javascript">//<![CDATA[
     // 規格2に選択肢を割り当てる。
     function fnSetClassCategories(form, classcat_id2_selected) {
@@ -93,172 +92,57 @@
             </div>
           </div>
           <div class="js-device-content">
-            <div class="device-data active">
-              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
+
+            <!--{foreach from=$arrClassCat1 item=arrCC1 name=arrCC1}-->
+
+            <div class="device-data <!--{if $smarty.foreach.arrCC1.first}-->active<!--{/if}-->">
+              <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="<!--{$arrCC1.classcategory_name1}-->" class="tag">
               <div class="image">
                 <p class="head">選べる対応端末</p>
-                <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
+                <p class="pic"><img src="<!--{$TPL_URLPATH}--><!--{$arrCC1.cc_img_url1}-->" alt=""></p>
               </div>
               <div class="detail">
-                <p class="device-name"><span>Huawei1</span><br>Pocket WiFi 303HW</p>
+                <p class="device-name"><span><!--{$arrCC1.cc_brand}--></span><br><!--{$arrCC1.classcategory_name1}--></p>
                 <ul class="data-list">
                   <li>
                     <dl class="data js-height">
                       <dt>下り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
+                      <dd>最大<!--{$arrCC1.cc_data_speed_down}--><span>Mbps</span></dd>
                     </dl>
                   </li>
                   <li>
                     <dl class="data js-height">
                       <dt>上り<br>通信速度</dt>
-                      <dd>最大25<span>Mbps</span></dd>
+                      <dd>最大<!--{$arrCC1.cc_data_speed_up}--><span>Mbps</span></dd>
                     </dl>
                   </li>
                   <li>
                     <dl class="data js-height">
                       <dt>カラー</dt>
-                      <dd>ダークシルバー/レッド</dd>
+                      <dd><!--{$arrCC1.cc_color}--></dd>
                     </dl>
                   </li>
                   <li>
                     <dl class="data js-height">
                       <dt>発売日</dt>
-                      <dd>2014年8月1日</dd>
+                      <dd><!--{$arrCC1.cc_release_date|date_format:"%Y年%m月%d日"}--></dd>
                     </dl>
                   </li>
                 </ul>
-                <p class="link-btn"><a href="">この商品ページへ</a></p>
+                <p class="link-btn"><a href="<!--{$arrCC1.pc_url}-->">この商品ページへ</a></p>
               </div>
             </div>
-            <div class="device-data">
-                <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-                <div class="image">
-                  <p class="head">選べる対応端末</p>
-                  <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-                </div>
-                <div class="detail">
-                  <p class="device-name"><span>Huawei2</span><br>Pocket WiFi 303HW</p>
-                  <ul class="data-list">
-                    <li>
-                      <dl class="data js-height">
-                        <dt>下り<br>通信速度</dt>
-                        <dd>最大25<span>Mbps</span></dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>上り<br>通信速度</dt>
-                        <dd>最大25<span>Mbps</span></dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>カラー</dt>
-                        <dd>ダークシルバー/レッド</dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>発売日</dt>
-                        <dd>2014年8月1日</dd>
-                      </dl>
-                    </li>
-                  </ul>
-                  <p class="link-btn"><a href="">この商品ページへ</a></p>
-                </div>
-            </div>
-            <div class="device-data">
-                <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-                <div class="image">
-                  <p class="head">選べる対応端末</p>
-                  <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-                </div>
-                <div class="detail">
-                  <p class="device-name"><span>Huawei3</span><br>Pocket WiFi 303HW</p>
-                  <ul class="data-list">
-                    <li>
-                      <dl class="data js-height">
-                        <dt>下り<br>通信速度</dt>
-                        <dd>最大25<span>Mbps</span></dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>上り<br>通信速度</dt>
-                        <dd>最大25<span>Mbps</span></dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>カラー</dt>
-                        <dd>ダークシルバー/レッド</dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>発売日</dt>
-                        <dd>2014年8月1日</dd>
-                      </dl>
-                    </li>
-                  </ul>
-                  <p class="link-btn"><a href="">この商品ページへ</a></p>
-                </div>
-            </div>
-            <div class="device-data">
-                <img src="<!--{$TPL_URLPATH}-->/img/detail/tag6.png" alt="" class="tag">
-                <div class="image">
-                  <p class="head">選べる対応端末</p>
-                  <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-                </div>
-                <div class="detail">
-                  <p class="device-name"><span>Huawei4</span><br>Pocket WiFi 303HW</p>
-                  <ul class="data-list">
-                    <li>
-                      <dl class="data js-height">
-                        <dt>下り<br>通信速度</dt>
-                        <dd>最大25<span>Mbps</span></dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>上り<br>通信速度</dt>
-                        <dd>最大25<span>Mbps</span></dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>カラー</dt>
-                        <dd>ダークシルバー/レッド</dd>
-                      </dl>
-                    </li>
-                    <li>
-                      <dl class="data js-height">
-                        <dt>発売日</dt>
-                        <dd>2014年8月1日</dd>
-                      </dl>
-                    </li>
-                  </ul>
-                  <p class="link-btn"><a href="">この商品ページへ</a></p>
-                </div>
-            </div>
+            <!--{/foreach}-->
+
           </div>
           <ul class="device-list-tab js-device-tab">
-            <li class="active">
-              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              <div>Pocket WiFi <br>303HW</div>
+            <!--{foreach from=$arrClassCat1 item=arrCC1 name=arrCC1}-->
+            <li <!--{if $smarty.foreach.arrCC1.first}-->class="active"<!--{/if}-->>
+              <p class="pic"><img src="<!--{$TPL_URLPATH}--><!--{$arrCC1.cc_img_url1}-->" alt="<!--{$arrCC1.classcategory_name1}-->"></p>
+              <div><!--{$arrCC1.classcategory_name1}--></div>
             </li>
-            <li>
-              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              <div>Pocket WiFi <br>303HW</div>
-            </li>
-            <li>
-              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              <div>Pocket WiFi <br>303HW</div>
-            </li>
-            <li>
-              <p class="pic"><img src="<!--{$TPL_URLPATH}-->/img/detail/device.png" alt=""></p>
-              <div>Pocket WiFi <br>303HW</div>
-            </li>
+            <!--{/foreach}-->
+
           </ul>
         </section>
         <section>
