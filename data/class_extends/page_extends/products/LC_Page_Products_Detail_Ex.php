@@ -209,7 +209,6 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         //関連商品情報表示
         $this->arrRecommendProducts = $this->lfGetRecommendProducts();
-
         // ログイン判定
         if ($objCustomer->isLoginSuccess() === true) {
             //お気に入りボタン表示
@@ -261,7 +260,7 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
     public function lfGetSearchCondition($arrSearchData)
     {
         $searchCondition = array(
-            'where'             => '1=1',
+            'where'             => '1=1 and del_flg=0',
             'arrval'            => array(),
             'where_category'    => '',
             'arrvalCategory'    => array()

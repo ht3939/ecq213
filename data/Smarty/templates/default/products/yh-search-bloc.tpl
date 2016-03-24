@@ -21,12 +21,87 @@
  *}-->
 <!--{strip}-->
 
+    <!--{assign var=filterreset value="`$TPL_URLPATH`img/index/icon-filter-reset.png"}-->
+
+    <div class="sort-filter-btn">
+        <p class="btn">比較する条件を変更する</p>
+    </div>
+    <div class="sort-filter">
+        <p class="sort-head">比較する条件を変更する<span class="clear-all-sort">すべての条件を解除する</span></p>
+        <table class="sort-condition">
+            <tbody>
+                <tr>
+                    <th>月間データ量
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="" id="" class="js-select">
+                            <option value="" selected>すべて</option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+                        </select>
+                    </th>
+
+                    <th>下り最大速度
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="" id="" class="js-select">
+                            <option value="" selected>すべて</option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+                        </select>
+                    </th>
+
+                    <th>端末
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="" id="" multiple="multiple" class="js-select">
+                            <option value="" selected>すべて</option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+                            <option value="">C</option>
+                            <option value="">D</option>
+                            <option value="">E</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>回線タイプ
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="" id="" class="js-select">
+                            <option value="" selected>すべて</option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+
+                        </select>
+                    </th>
+
+                    <th>提供サービス元
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="" id="" multiple="multiple" class="js-select">
+                            <option value="" selected>すべて</option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+                            <option value="">C</option>
+                            <option value="">D</option>
+                            <option value="">E</option>
+                        </select>
+                    </th>
+
+                    <th>割引・キャッシュバック
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="" id="" class="js-select">
+                            <option value="" selected>すべて</option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+                        </select>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
+    </div>
     <div class="sort-filter">
         <p class="sort-head">比較する条件を変更する<span onclick="javascript:fnFilterReset('<!--{$orderby}-->'); return false;" class="clear-all-sort">すべての条件を解除する</span></p>
         <table class="sort-condition">
             <tbody>
                 <tr>
-                    <!--{assign var=filterreset value="`$TPL_URLPATH`img/index/icon-filter-reset.png"}-->
                     <th>月間データ量
                         <div class="clear-sort"><img onclick="javascript:fnFilterDelete(['datasize_min','datasize_max'],'<!--{$orderby}-->');" src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
                         <select name="filter_datassize" class="box145">

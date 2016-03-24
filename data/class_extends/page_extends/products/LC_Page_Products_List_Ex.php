@@ -172,7 +172,6 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         //デフォルトのフォームパラメータの設定
         $this->setDefaultFormParam();
 
-var_dump($this->arrForm);
 
 
         //modeの取得
@@ -225,6 +224,8 @@ var_dump($this->arrForm);
         }
         $this->objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $this->tpl_linemax, $this->disp_number, 'eccube.movePage', NAVI_PMAX, $urlParam, SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE);
         $this->arrProducts = $this->lfGetProductsList($arrSearchCondition, $this->disp_number, $this->objNavi->start_row, $objProduct);
+        $this->arrClassCat1 = $objProduct->classCats1;
+//var_dump($this->arrClassCat1);
         switch ($this->getMode()) {
             case 'json':
                 $this->doJson($objProduct);
@@ -631,6 +632,8 @@ var_dump($this->arrForm);
         // 規格を設定
         $objProduct->setProductsClassByProductIds($arrProductId);
         $arrProducts['productStatus'] = $objProduct->getProductStatus($arrProductId);
+        $this->arrClassCat1=$objProduct->classCats1;
+var_dump($objProduct->classCats1);
         return $arrProducts;
     }
 

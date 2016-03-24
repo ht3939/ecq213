@@ -34,4 +34,12 @@ require_once CLASS_REALDIR . 'util/SC_Utils.php';
  */
 class SC_Utils_Ex extends SC_Utils
 {
+    public static function sfGetRankClass($rank)
+    {
+        if ($rank ==1 or $rank ==2 or $rank ==3){
+        	return "rank".$rank;
+        }
+
+       	return "rank4-more";
+    }	
 }

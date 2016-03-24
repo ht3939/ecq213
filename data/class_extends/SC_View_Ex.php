@@ -25,4 +25,11 @@ require_once CLASS_REALDIR . 'SC_View.php';
 
 class SC_View_Ex extends SC_View
 {
+	public function init(){
+		parent::init();
+		//yh分
+		
+        $this->_smarty->register_modifier('sfGetRankClass', array('SC_Utils_Ex', 'sfGetRankClass'));
+
+	}
 }

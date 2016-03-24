@@ -3,6 +3,14 @@
     <img src="<!--{$TPL_URLPATH}-->img/header/mainv.png" alt="一番安い！がすぐ分かる！">
   </div>
 </div>
+<div class="top-data">
+  <div class="inner">
+    <div class="update-date"><p>ランキング最終更新日：2016年03月01日</p></div>
+    <div class="sns-list"></div>
+  </div>
+</div>
+
+<!--{include file=frontparts/bloc/yh-top-bestproduct-bloc.tpl}-->
 
 <!--▼ページナビ(本文)-->
 <!--{capture name=search_navi_body}-->
@@ -49,13 +57,11 @@
 	    </form>	
 		<main>
 
-	        <!--{include file=frontparts/bloc/yh-top-bestproduct-bloc.tpl}-->
 
 	        <!--{include file=products/yh-list-bloc.tpl}-->
 
 
 
-	        <!--{include file=frontparts/bloc/yh-top-rank-note.tpl}-->
 
 	        <!--{include file=frontparts/bloc/yh-top-rank-abouts.tpl}-->
 		</main>
@@ -72,22 +78,36 @@
 <!--[if lt IE 9]>
 <script src="/js/front/html5shiv.js"></script>
 <![endif]-->
+<script src="<!--{$TPL_URLPATH}-->/js/front/jquery.sumoselect.min.js"></script>
 <script src="<!--{$TPL_URLPATH}-->/js/front/index.js"></script>
+<!--{*  <?php echo $body_end; ?>*}-->
 <script src="<!--{$TPL_URLPATH}-->/js/front/Chart.min.js"></script>
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
 <script>
-//スライダー
+//対応端末スライダー
 (function BXSLIDER(){
   $('.bxslider').bxSlider({
     pager: false,
     prevText: '',
     nextText: '',
-    slideWidth:243,
+    slideWidth:233,
+    auto: true,
     onSliderLoad:function(currentIndex){
       $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
         e.stopPropagation();
       });
     }
+  });
+})();
+
+//今週の総合TOPスライダー
+(function TOPBXSLIDER(){
+  $('.topbxslider').bxSlider({
+    pager: false,
+    prevText: '',
+    nextText: '',
+    slideWidth:233,
+    auto: true
   });
 })();
 
@@ -149,6 +169,19 @@ $('.js-device-tab').children().click(function(){
 //aタグ 全体リンク
 $(".js-all-link").click(function(){
   location.href = $(this).find('.js-link-btn').attr("href");
+});
+//ソート表示
+$('.sort-filter-btn .btn').click(function(){
+  $('.sort-filter-btn').hide();
+  $('.sort-filter').fadeIn();
+});
+//セレクトボックス 複数選択「SumoSelect」プラグイン使用
+$('.js-select').SumoSelect({placeholder: '選択してください'});
+//ゴミ箱アイコンhover時
+$('.clear-sort img').hover(function(){
+  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset_on.png");
+},function(){
+  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset.png");
 });
 
 //IE8 グラフ非表示---------------------------------------

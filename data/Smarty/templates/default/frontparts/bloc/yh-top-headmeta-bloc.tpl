@@ -15,5 +15,7 @@
 		<link rel="shortcut icon" href="https://kainavi.yahoo-net.jp.acweb/favicon.ico">
 	<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/common.css">
 	<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/index.css">
+	<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/sumoselect.css">
+
 </head>
 <!--{/strip}-->

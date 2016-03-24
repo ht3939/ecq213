@@ -84,6 +84,8 @@ class SC_Product_Ex extends SC_Product
             ,lntype
             ,main_comment
             ,sub_comment1
+            ,sub_comment2
+            ,sub_comment3
             ,sub_image1
             ,sub_large_image1
             ,rank1_order
