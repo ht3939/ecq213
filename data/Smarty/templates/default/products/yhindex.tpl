@@ -179,9 +179,9 @@ $('.sort-filter-btn .btn').click(function(){
 $('.js-select').SumoSelect({placeholder: '選択してください'});
 //ゴミ箱アイコンhover時
 $('.clear-sort img').hover(function(){
-  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset_on.png");
+  $(this).attr("src","./img/index/icon-filter-reset_on.png");
 },function(){
-  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset.png");
+  $(this).attr("src","./img/index/icon-filter-reset.png");
 });
 
 //IE8 グラフ非表示---------------------------------------

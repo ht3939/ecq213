@@ -41,5 +41,29 @@ class SC_Utils_Ex extends SC_Utils
         }
 
        	return "rank4-more";
-    }	
+    }
+
+    public static function sfGetColorClassArray($color)
+    {
+    	$context = array(
+    		'red'=>'レッド'
+    		,'black'=>'ブラック'
+    		,'white'=>'ホワイト'
+    		,'blue'=>'ブルー'
+    		,'dark-cilver'=>'ダークシルバー'
+    		);
+
+    	$hoge=explode(",",$color);
+    	$result = array();
+    	foreach ($hoge as $key => $value) {
+    		if(isset($context[$value])){
+		    	$result[$value] = $context[$value];
+
+    		}else{
+		    	$result[$value] = "カラー不明";
+
+    		}
+    	}
+    	return $result;
+    }	    
 }

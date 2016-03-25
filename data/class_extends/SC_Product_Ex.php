@@ -95,6 +95,7 @@ class SC_Product_Ex extends SC_Product
             ,rank5_order
             ,rankpoint_order
             ,maker_name
+            ,maker_id
             ,mk_image
             ,mk_site_url
             ,mk_img_url1

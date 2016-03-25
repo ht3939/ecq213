@@ -633,7 +633,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $objProduct->setProductsClassByProductIds($arrProductId);
         $arrProducts['productStatus'] = $objProduct->getProductStatus($arrProductId);
         $this->arrClassCat1=$objProduct->classCats1;
-var_dump($objProduct->classCats1);
+
         return $arrProducts;
     }
 

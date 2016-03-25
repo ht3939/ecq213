@@ -3,9 +3,10 @@
 		<!--{assign var=rcnt value=1}-->
 
 		<!--{assign var=rCCC value=$arrClassCat1}-->
+
 		<!--{foreach from=$arrProducts item=rP key=gege name=arrProducts}-->
 
-			<!--{assign var=rCC value=$rCCC[intval($rP.product_id)]}-->
+			<!--{assign var=rCC value=$rCCC[$rP.product_id]}-->
 
 
 				<!--{if $rcnt<=3}-->
@@ -16,7 +17,7 @@
 						<td class="rank-num">
 							<span class="rank">
 							<!--{if $rcnt<=3}-->
-									<img src="<!--{$TPL_URLPATH}-->/img/common/rank<!--{$rcnt}-->-L.png" alt="<!--{$rcnt}-->位">;
+									<img src="<!--{$TPL_URLPATH}-->/img/common/rank<!--{$rcnt}-->-L.png" alt="<!--{$rcnt}-->位">
 							<!--{else}-->
 									<span class="rank-4more"><!--{$rcnt}-->位</span>
 							<!--{/if}-->
@@ -36,18 +37,18 @@
 							<div class="td-inner">
 								<div class="pic-outer">
 									<ul class="pic bxslider">
-									<!--{foreach from=$rCC item=rc name=rCC}-->
+										<!--{foreach from=$rCC item=rc key=k}-->
+
 										<li>
 										<img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_img_url1}-->" alt="">
 										<div class="status">
 											<p class="name"><span><!--{$rc.cc_brand}--></span><br><!--{$rc.classcategory_name1}--></p>
 										</div>
 										</li>
-									<!--{/foreach}-->
-
+										<!--{/foreach}-->
 									</ul>
 								</div>
-							</div>
+							</div>							
 						</td>
 
 						<td <!--{if $rcnt>3}-->class="rank-price"<!--{else}-->class="rank-price r<!--{$rcnt}-->"<!--{/if}-->>
@@ -59,18 +60,16 @@
 							<span><span class="num"><!--{$rP.datasize}--></span><span class="gb">GB</span></span>/月<span class="speed"><!--{$rP.data_speed_down}-->Mbps</span>
 							</div>
 						</td>
-
 						<td class="rank-conditions">
 							<div class="td-inner">
-							<!--{if $rP.sub_comment2|count_characters > 0}-->
-							<span class="head ptn1">主な特典</span><br>
-							<span class="text-ptn1"><!--{$rP.sub_comment2}--></span><br>
-							<!--{/if}-->
-							<!--{if $rP.sub_comment3|count_characters > 0}-->
-
+								<!--{if $rP.sub_comment2|count_characters>0}-->
+								<span class="head ptn1">主な特典</span><br>
+							<span class="text-ptn1">Yahoo! プレミアム会員（月額462円/税別）が必要<!--{$rP.sub_comment2}--></span><br>
+								<!--{/if}-->
+								<!--{if $rP.sub_comment3|count_characters>0}-->								
 							<span class="head ptn2">注意事項</span><br>
-							<span class="text-ptn2"><!--{$rP.sub_comment3}--></span>
-							<!--{/if}-->
+							<span class="text-ptn2">プレミアム会員必須<br>※３日で３GB制限あり<!--{$rP.sub_comment3}--></span>
+								<!--{/if}-->
 
 							</div>
 						</td>

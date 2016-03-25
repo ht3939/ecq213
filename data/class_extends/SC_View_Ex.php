@@ -29,6 +29,7 @@ class SC_View_Ex extends SC_View
 		parent::init();
 		//yh分
 		
+        $this->_smarty->register_modifier('sfGetColorClassArray', array('SC_Utils_Ex', 'sfGetColorClassArray'));
         $this->_smarty->register_modifier('sfGetRankClass', array('SC_Utils_Ex', 'sfGetRankClass'));
 
 	}

@@ -30,7 +30,6 @@
     }
 //]]></script>
 <div class="row-container is-reverse">
-  <p class="index-link"><a href="/">トップへ戻る</a></p>
 
   <form name="form1" id="form1" method="get" action="?">
 
@@ -47,6 +46,7 @@
         <!--{include file=frontparts/bloc/yh-detail-note.tpl}-->
         <!--{include file=frontparts/bloc/yh-footer-link.tpl}-->
 
+      <p class="index-link"><a href="/">トップへ戻る</a></p>
       </main>
     </div>
 

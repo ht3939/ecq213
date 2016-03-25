@@ -100,7 +100,7 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         // 規格1
         $this->arrClassCat1 = $objProduct->classCats1[$product_id];
-
+var_dump($this->arrClassCat1);
         // 規格1が設定されている
         $this->tpl_classcat_find1 = $objProduct->classCat1_find[$product_id];
         // 規格2が設定されている

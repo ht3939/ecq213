@@ -47,4 +47,82 @@
         </ul>
       </section>
 
+
+      <section>
+          <h2 class="title">その他のおすすめ</h2>
+          <ul class="list-layout">
+            <li class="box js-all-link">
+              <p class="logo"><img src="img/item/yahoowifi/logo.png" alt="yahoo!JAPAN Wi-Fi"></p>
+              <div class="pic-outer">
+                <ul class="pic bxslider">
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                </ul>
+              </div>
+              <p class="name"><span>Y! Fi データプラン2(4G/LTE）</span></p>
+              <dl class="price rank1">
+                <dt>月額料金</dt>
+                <dd>99,999<span>円</span></dd>
+              </dl>
+              <dl class="price rank1">
+                <dt>総額料金</dt>
+                <dd>9,999<span>円</span></dd>
+              </dl>
+              <div class="data">
+                <p>下り最大<br><span>165Mbps</span></p>
+                <p>月間データ量<br><span>上限なし</span></p>
+              </div>
+              <p class="detail-btn"><a href="" class="js-link-btn">詳細を見る</a></p>
+            </li>
+            <li class="box js-all-link">
+              <p class="logo"><img src="img/item/yahoowifi/logo.png" alt="yahoo!JAPAN Wi-Fi"></p>
+              <div class="pic-outer">
+                <ul class="pic bxslider">
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                </ul>
+              </div>
+              <p class="name"><span>Y! Fi データプラン2(4G/LTE）</span></p>
+              <dl class="price rank1">
+                <dt>月額料金</dt>
+                <dd>99,999<span>円</span></dd>
+              </dl>
+              <dl class="price rank1">
+                <dt>総額料金</dt>
+                <dd>9,999<span>円</span></dd>
+              </dl>
+              <div class="data">
+                <p>下り最大<br><span>165Mbps</span></p>
+                <p>月間データ量<br><span>上限なし</span></p>
+              </div>
+              <p class="detail-btn"><a href="" class="js-link-btn">詳細を見る</a></p>
+            </li>
+            <li class="box js-all-link">
+              <p class="logo"><img src="img/item/yahoowifi/logo.png" alt="yahoo!JAPAN Wi-Fi"></p>
+              <div class="pic-outer">
+                <ul class="pic bxslider">
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                  <li><img src="img/item/yahoowifi/502hw-photo.png" alt=""><br><span class="brand">Huawei</span><br><span class="device">Pocket WiFi 502HW</span></li>
+                </ul>
+              </div>
+              <p class="name"><span>Y! Fi データプラン2(4G/LTE）</span></p>
+              <dl class="price rank1">
+                <dt>月額料金</dt>
+                <dd>99,999<span>円</span></dd>
+              </dl>
+              <dl class="price rank1">
+                <dt>総額料金</dt>
+                <dd>9,999<span>円</span></dd>
+              </dl>
+              <div class="data">
+                <p>下り最大<br><span>165Mbps</span></p>
+                <p>月間データ量<br><span>上限なし</span></p>
+              </div>
+              <p class="detail-btn"><a href="" class="js-link-btn">詳細を見る</a></p>
+            </li>
+          </ul>
+      </section>
 <!--{/strip}-->
