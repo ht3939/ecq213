@@ -1,6 +1,13 @@
 <!--{strip}-->
 <div class="top-container">
   <section>
+  <!--{if $arrBestProducts.dat}-->
+  <!--{assign var=bt value=$arrBestProducts.dat}-->
+  <!--{assign var=cc value=$arrBestProducts.arrCC[$bt.product_id]}-->
+
+  <!--{/if}-->
+
+
     <div id="weekly-top">
       <div class="weekly-top-head">
         <img src="<!--{$TPL_URLPATH}-->/img/index/ribbon.png" class="ribbon">
@@ -8,24 +15,19 @@
       </div>
       <div class="weekly-top-in clearfix">
         <div class="title-name">
-          <p class="logo"><img src="<!--{$TPL_URLPATH}-->/img/index/Yahoo-wifi-logo.png" alt="Yahoo!JAPAN Wi-Fi"></p>
+          <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$bt.mk_img_url1}-->" alt="<!--{$bt.maker_name}-->"></p>
           <ul class="topbxslider">
+          <!--{foreach from=$cc item=r key=k name=cc}-->
             <li>
               <div class="pic">
-                <img src="<!--{$TPL_URLPATH}-->/img/item/w01.png" alt="">
+                <img src="<!--{$TPL_URLPATH}--><!--{$r.cc_img_url1}-->" alt="">
               </div>
               <div class="title">
-                <p>Y!Fi2年間ずーっと<br>得するプラン(4G)</p>
+                <p><!--{$r.classcategory_name1}--></p>
               </div>
             </li>
-            <li>
-              <div class="pic">
-                <img src="<!--{$TPL_URLPATH}-->/img/item/w01.png" alt="">
-              </div>
-              <div class="title">
-                <p>Y!Fi2年間ずーっと<br>得するプラン(4G)</p>
-              </div>
-            </li>
+
+          <!--{/foreach}-->
           </ul>
         </div>
         <div class="rank-graph clearfix">
@@ -38,43 +40,43 @@
                   <tbody>
                     <tr>
                       <th>月額料金</th>
-                      <td class="price-monthly rank1"><span class="f26">1,980</span>円</td>
+                      <td class="price-monthly <!--{$bt.rank1_order|sfGetRankClass}-->"><span class="f26"><!--{$bt.y1_price|number_format}--></span>円</td>
                     </tr>
                     <tr>
                       <th>お支払総額</th>
-                      <td class="price-sum rank3"><span class="f26">59,800</span>円</td>
+                      <td class="price-sum <!--{$bt.rank2_order|sfGetRankClass}-->"><span class="f26"><!--{$bt.total_price|number_format}--></span>円</td>
                     </tr>
                     <tr>
                       <th>月間データ量</th>
-                      <td class="traffic-monthly rank2"><span class="f20">7</span>GB</td>
+                      <td class="traffic-monthly <!--{$bt.rank3_order|sfGetRankClass}-->"><span class="f20"><!--{$bt.datasize}--></span>GB</td>
                     </tr>
                     <tr>
                       <th>下り最大速度</th>
-                      <td class="downspeed rank3"><span class="f20">110</span>Mbps</td>
+                      <td class="downspeed <!--{$bt.rank4_order|sfGetRankClass}-->"><span class="f20"><!--{$bt.data_speed_down}--></span>Mbps</td>
                     </tr>
                     <tr>
                       <th>上り最大速度</th>
-                      <td class="upspeed rank4"><span class="f20">10</span>Mbps<span class="rank-4more">4位</span></td>
+                      <td class="upspeed <!--{$bt.rank5_order|sfGetRankClass}-->"><span class="f20"><!--{$bt.data_speed_up}--></span>Mbps<span class="<!--{$bt.rank5_order|sfGetRankClass}-->"><!--{$bt.rank5_order}-->位</span></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
               <div class="graph">
-                <p class="status1">月額料金<br><span class="rank">1位</span><br><span class="data">（1,980円）</span></p>
-                <p class="status2">お支払総額<br><span class="rank">3位</span><br><span class="data">（59,800円）</span></p>
-                <p class="status3">月間データ量<br><span class="rank">2位</span><br><span class="data">（7GB）</span></p>
-                <p class="status4">下り最大速度<br><span class="rank">3位</span><br><span class="data">（110Mbps）</span></p>
-                <p class="status5">上り最大速度<br><span class="rank">2位</span><br><span class="data">（10Mbps）</span></p>
+                <p class="status1">月額料金<br><span class="rank"><!--{$bt.rank1_order}-->位</span><br><span class="data">（<!--{$bt.y1_price|number_format}-->円）</span></p>
+                <p class="status2">お支払総額<br><span class="rank"><!--{$bt.rank2_order}-->位</span><br><span class="data">（<!--{$bt.total_price|number_format}-->円）</span></p>
+                <p class="status3">月間データ量<br><span class="rank"><!--{$bt.rank3_order}-->位</span><br><span class="data">（<!--{$bt.datasize}-->GB）</span></p>
+                <p class="status4">下り最大速度<br><span class="rank"><!--{$bt.rank4_order}-->位</span><br><span class="data">（<!--{$bt.data_speed_down}-->Mbps）</span></p>
+                <p class="status5">上り最大速度<br><span class="rank"><!--{$bt.rank5_order}-->位</span><br><span class="data">（<!--{$bt.data_speed_up}-->Mbps）</span></p>
                 <canvas id="canvas" width="185" height="185"></canvas>
-                <p class="score"><span>3.6</span>点</p>
+                <p class="score"><span><!--{$bt.rankpoint_order}--></span>点</p>
               </div>
             </div>
         </div>
       </div>
       <ul class="btn">
-        <li class="btn-inner"><a href="" class="btn-detail">詳細を見る</a></li>
-        <li class="btn-inner"><a href="" class="btn-site">サイトを見る</a></li>
+        <li class="btn-inner"><a href="/products/detail.php?product_id=<!--{$bt.product_id}-->" class="btn-detail">詳細を見る</a></li>
+        <li class="btn-inner"><a href="<!--{$bt.mk_site_url}-->" class="btn-site">サイトを見る</a></li>
       </ul>
     </div>
     </section>
