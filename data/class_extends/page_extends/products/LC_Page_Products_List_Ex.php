@@ -37,6 +37,10 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
 
     /** フィルタ条件(表示用) */
     public $arrSearchFilter = array();
+    /** フィルタ条件(パラメータ用) */    
+    public $arrSearchFilterData = array();
+
+    public $tpl_filtermode = false;
 
     /**ソートタブの選択用*/
     public $tpl_orderby_totalprice = false;
@@ -77,15 +81,43 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
      */
     public function setSearchFilter()
     {
-        $this->arrSearchFilter['filter_datasize'] = array('type'=>'options','value'=>array('すべて','５Ｇ未満','５Ｇ～８Ｇ未満','８Ｇ以上'));
-        $this->arrSearchFilter['filter_dataspeed'] = array('type'=>'options','value'=>array('すべて','50','100','200'));
-        $this->arrSearchFilter['filter_device'] = array('type'=>'checkbox','value'=>array('すべて','303HW','404HH','CL123'));
+        $this->arrSearchFilter['filterVal_datasize'] = 
+                    array('type'=>'options'
+                            ,'value'=>array('すべて','５Ｇ未満','５Ｇ～８Ｇ未満','８Ｇ以上')
+                            ,'search'=>array(-1,array(0,4.9),array(5,7.9),array(8,999))
+                            );
+
+        $this->arrSearchFilter['filterVal_dataspeed'] = 
+                    array('type'=>'options'
+                            ,'value'=>array('すべて','50','100','200')
+                            ,'search'=>array(-1,array(0,49.9),array(50.0,99.9),array(100.0,199.9),array(200.0,999.9))
+                            );
+
+        $this->arrSearchFilter['filterVal_device'] = 
+                    array('type'=>'checkbox'
+                            ,'value'=>array('すべて','303HW','404HH','CL123')
+                            );
         if(count($this->arrProductclass)>0){
 
         }
-        $this->arrSearchFilter['filter_type'] = array('type'=>'options','value'=>array('すべて','3G','4G','LTE'));
-        $this->arrSearchFilter['filter_maker'] = array('type'=>'checkbox','value'=>array('すべて','YahooWifi','とくとくBB'));
-        $this->arrSearchFilter['filter_cpprice'] = array('type'=>'options','value'=>array('すべて','あり'));
+
+        $this->arrSearchFilter['filterVal_lntype'] = 
+                    array('type'=>'options'
+                            ,'value'=>array('すべて','WiMAX','LTE/4G')
+                            ,'search'=>array(-1,array('WiMAX'),array('LTE','4G'))
+                            );
+
+        $this->arrSearchFilter['filterVal_maker'] = 
+                    array('type'=>'checkbox'
+                            ,'value'=>array('すべて','YahooWifi','とくとくBB')
+                            ,'search'=>array(0,1,3)
+                            );
+
+        $this->arrSearchFilter['filterVal_cptype'] = 
+                    array('type'=>'options'
+                            ,'value'=>array('すべて','あり','なし')
+                            ,'serach'=>array(-1,array(1,99999),array(0,0))
+                            );
     }
 
     /**
@@ -196,9 +228,19 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
             ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
             ,'product_code' => ($this->arrForm['product_code'])
+            ,'lntype' => ($this->arrForm['lntype'])
             ,'cc_type' => ($this->arrForm['cc_type'])
         );
 
+
+        $this->arrSearchFilterData = array(
+            'filter_lntype' => intval($this->arrForm['filter_lntype'])
+            ,'filter_datasize' => intval($this->arrForm['filter_datasize'])
+            ,'filter_data_speed_down' => intval($this->arrForm['filter_data_speed_down'])
+            ,'filter_maker_id' => $this->arrForm['filter_maker_id']
+            ,'filter_cptype' => intval($this->arrForm['filter_cptype'])
+            ,'filter_device_id' => $this->arrForm['filter_device_id']
+        );
 
         $this->orderby = $this->arrForm['orderby'];
         $this->tpl_orderby_totalprice = ($this->orderby==='totalprice');
@@ -211,21 +253,38 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $this->tpl_subtitle = $this->lfGetPageTitle($this->mode, $this->arrSearchData);
         // 画面に表示する検索条件を設定
         $this->arrSearch = $this->lfGetSearchConditionDisp($this->arrSearchData);
+
+        if($this->mode=="filter"){
+            $this->tpl_filtermode = true;
         // 商品一覧データの取得
-        $arrSearchCondition = $this->lfGetSearchCondition($this->arrSearchData);
-        $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
-        $urlParam = "category_id={$this->arrSearchData['category_id']}&pageno=#page#";
+            $arrSearchCondition = $this->lfGetSearchFilterCondition($this->arrSearchData);
+            $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
+            $this->arrProducts = $this->lfGetProductsList($arrSearchCondition
+                                                            , $this->disp_number
+                                                            , 0, $objProduct);
 
 
-        // モバイルの場合に検索条件をURLの引数に追加
-        if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
-            $searchNameUrl = urlencode(mb_convert_encoding($this->arrSearchData['name'], 'SJIS-win', 'UTF-8'));
-            $urlParam .= "&mode={$this->mode}&name={$searchNameUrl}&orderby={$this->orderby}";
+
+        }else{
+            // 商品一覧データの取得
+            $arrSearchCondition = $this->lfGetSearchCondition($this->arrSearchData);
+            $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
+            $urlParam = "category_id={$this->arrSearchData['category_id']}&pageno=#page#";
+
+
+            // モバイルの場合に検索条件をURLの引数に追加
+            if (SC_Display_Ex::detectDevice() === DEVICE_TYPE_MOBILE) {
+                $searchNameUrl = urlencode(mb_convert_encoding($this->arrSearchData['name'], 'SJIS-win', 'UTF-8'));
+                $urlParam .= "&mode={$this->mode}&name={$searchNameUrl}&orderby={$this->orderby}";
+            }
+            $this->objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $this->tpl_linemax, $this->disp_number, 'eccube.movePage', NAVI_PMAX, $urlParam, SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE);
+            $this->arrProducts = $this->lfGetProductsList($arrSearchCondition, $this->disp_number, $this->objNavi->start_row, $objProduct);
+
         }
-        $this->objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $this->tpl_linemax, $this->disp_number, 'eccube.movePage', NAVI_PMAX, $urlParam, SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE);
-        $this->arrProducts = $this->lfGetProductsList($arrSearchCondition, $this->disp_number, $this->objNavi->start_row, $objProduct);
         $this->arrClassCat1 = $objProduct->classCats1;
-//var_dump($this->arrClassCat1);
+
+        $this->arrBestProducts = $this->lfGetRanking();
+
         switch ($this->getMode()) {
             case 'json':
                 $this->doJson($objProduct);
@@ -259,7 +318,15 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $objFormParam->addParam('転送速度下り(下限)', 'data_speed_down_min', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('転送速度下り(上限)', 'data_speed_down_max', INT_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK'));
         $objFormParam->addParam('商品コード', 'product_code', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
-        $objFormParam->addParam('回線タイプ', 'cc_type', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('回線タイプ', 'lntype', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
+
+        $objFormParam->addParam('絞込条件回線タイプ', 'filter_lntype', STEXT_LEN, 'n', array('NUM_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('絞込条件データ容量', 'filter_datasize', STEXT_LEN, 'n', array('NUM_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('絞込条件転送速度下り', 'filter_data_speed_down', STEXT_LEN, 'n', array('NUM_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('絞込条件対応端末', 'filter_device_id', STEXT_LEN, 'n', array('NUM_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('絞込条件提供サービス', 'filter_maker_id', STEXT_LEN, 'n', array('NUM_CHECK','MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('絞込条件ＣＢ・キャンペーン', 'filter_cptype', STEXT_LEN, 'n', array('NUM_CHECK','MAX_LENGTH_CHECK'));
+
     }
 
     /**
@@ -338,7 +405,21 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
 
         return $searchCondition;
     }
+    /**
+     * 検索条件のwhere文とかを取得
+     *
+     * @return array
+     */
+    public function lfGetSearchFilterCondition($arrSearchFilterData)
+    {
+        //フィルター設定を、通常条件パラメータの設定に変換。
 
+
+            //実装中。
+        //
+
+        $this->lfGetSearchCondition($arrSearchData);
+    }
     /**
      * 検索条件のwhere文とかを取得
      *
@@ -638,4 +719,49 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     }
 
 
+
+    /**
+     * おすすめ商品検索.
+     *
+     * @return array $arrBestProducts 検索結果配列
+     */
+    public function lfGetRanking()
+    {
+        $objRecommend = new SC_Helper_BestProducts_Ex();
+
+        // おすすめ商品取得
+        $arrRecommends = $objRecommend->getList(RECOMMEND_NUM);
+
+        $response = array();
+        if (count($arrRecommends) > 0) {
+            // 商品一覧を取得
+            $objQuery =& SC_Query_Ex::getSingletonInstance();
+            $objProduct = new SC_Product_Ex();
+            // where条件生成&セット
+            $arrProductId = array();
+            foreach ($arrRecommends as $key => $val) {
+                $arrProductId[] = $val['product_id'];
+            }
+            $arrProducts = $objProduct->getListByProductIds($objQuery, $arrProductId);
+            $objProduct->setProductsClassByProductIds($arrProductId);
+
+
+            // おすすめ商品情報にマージ
+            foreach ($arrRecommends as $key => $value) {
+                if (isset($arrProducts[$value['product_id']])) {
+                    $product = $arrProducts[$value['product_id']];
+                    if ($product['status'] == 1 && (!NOSTOCK_HIDDEN || ($product['stock_max'] >= 1 || $product['stock_unlimited_max'] == 1))) {
+                        $response[] = array_merge($value, $arrProducts[$value['product_id']]);
+                    }
+                } else {
+                    // 削除済み商品は除外
+                    unset($arrRecommends[$key]);
+                }
+            }
+        }
+        $ret['dat'] = $response[0];
+        $ret['arrCC'] = $objProduct->classCats1;
+
+        return $ret;
+    }
 }

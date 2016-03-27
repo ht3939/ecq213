@@ -33,21 +33,21 @@
 		            <input type="hidden" name="maker_id" value="<!--{$arrSearchData.maker_id|h}-->" />
 	        <!--{/if}-->
 
-	        <input type="hidden" name="product_status_id" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="y1_price_min" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="y1_price_max" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="total_price_min" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="total_price_max" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="cp_price_min" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="cp_price_max" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="datasize_min" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="datasize_max" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="data_speed_down_min" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="data_speed_down_max" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="classcategory_id1" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="classcategory_id2" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="product_code" value="<!--{$arrSearchData.name|h}-->" />
-	        <input type="hidden" name="cc_type" value="<!--{$arrSearchData.name|h}-->" />
+	        <input type="hidden" name="product_status_id" value="<!--{$arrSearchData.product_status_id|h}-->" />
+	        <input type="hidden" name="y1_price_min" value="<!--{$arrSearchData.y1_price_min|h}-->" />
+	        <input type="hidden" name="y1_price_max" value="<!--{$arrSearchData.y1_price_max|h}-->" />
+	        <input type="hidden" name="total_price_min" value="<!--{$arrSearchData.total_price_min|h}-->" />
+	        <input type="hidden" name="total_price_max" value="<!--{$arrSearchData.total_price_max|h}-->" />
+	        <input type="hidden" name="cp_price_min" value="<!--{$arrSearchData.cp_price_min|h}-->" />
+	        <input type="hidden" name="cp_price_max" value="<!--{$arrSearchData.cp_price_max|h}-->" />
+	        <input type="hidden" name="datasize_min" value="<!--{$arrSearchData.datasize_min|h}-->" />
+	        <input type="hidden" name="datasize_max" value="<!--{$arrSearchData.datasize_max|h}-->" />
+	        <input type="hidden" name="data_speed_down_min" value="<!--{$arrSearchData.data_speed_down_min|h}-->" />
+	        <input type="hidden" name="data_speed_down_max" value="<!--{$arrSearchData.data_speed_down_max|h}-->" />
+	        <input type="hidden" name="classcategory_id1" value="<!--{$arrSearchData.classcategory_id1|h}-->" />
+	        <input type="hidden" name="classcategory_id2" value="<!--{$arrSearchData.classcategory_id2|h}-->" />
+	        <input type="hidden" name="product_code" value="<!--{$arrSearchData.product_code|h}-->" />
+          <input type="hidden" name="lntype" value="<!--{$arrSearchData.lntype|h}-->" />
 	        <!--{* ▲検索条件 *}-->
 	        <!--{* ▼ページナビ関連 *}-->
 	        <input type="hidden" name="orderby" value="<!--{$orderby|h}-->" />
@@ -55,6 +55,38 @@
 	        <!--{* ▲ページナビ関連 *}-->
 	        <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
 	    </form>	
+
+      <form name="form2" id="form2" method="get" action="?">
+          <!--{* ▼検索条件 *}-->
+          <input type="hidden" name="category_id" value="<!--{$arrSearchFilterData.category_id|h}-->" />
+          <input type="hidden" name="mode" value="filter" />
+
+          <!--{if is_array($arrSearchFilterData.filter_maker_id)}-->
+              <!--{foreach from=$arrSearchFilterData.filter_maker_id item=mkid name=arrProducts_makerid}-->
+                <input type="hidden" name="filter_maker_id[]" value="<!--{$mkid|h}-->" />
+              <!--{/foreach}-->
+          <!--{/if}-->
+          <!--{if is_array($arrSearchFilterData.filter_device_id)}-->
+              <!--{foreach from=$arrSearchFilterData.filter_device_id item=dvid name=arrProducts_deviceid}-->
+                <input type="hidden" name="filter_device_id[]" value="<!--{$dvid|h}-->" />
+              <!--{/foreach}-->
+          <!--{/if}-->
+          <!--{if $arrSearchFilterData.filter_lntype > 0}-->
+              <input type="hidden" name="filter_lntype" value="<!--{$arrSearchFilterData.filter_lntype|h}-->" />
+          <!--{/if}-->
+          <!--{if $arrSearchFilterData.filter_cptype > 0}-->
+              <input type="hidden" name="filter_cptype" value="<!--{$arrSearchFilterData.filter_cptype|h}-->" />
+          <!--{/if}-->          
+          <!--{if $arrSearchFilterData.filter_datasize > 0}-->
+              <input type="hidden" name="filter_datasize" value="<!--{$arrSearchFilterData.filter_datasize|h}-->" />
+          <!--{/if}-->
+          <!--{if $arrSearchFilterData.filter_data_speed_down > 0}-->
+              <input type="hidden" name="filter_data_speed_down" value="<!--{$arrSearchFilterData.filter_data_speed_down|h}-->" />
+          <!--{/if}-->
+
+
+
+      </form> 
 		<main>
 
 
@@ -179,9 +211,9 @@ $('.sort-filter-btn .btn').click(function(){
 $('.js-select').SumoSelect({placeholder: '選択してください'});
 //ゴミ箱アイコンhover時
 $('.clear-sort img').hover(function(){
-  $(this).attr("src","./img/index/icon-filter-reset_on.png");
+  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset_on.png");
 },function(){
-  $(this).attr("src","./img/index/icon-filter-reset.png");
+  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset.png");
 });
 
 //IE8 グラフ非表示---------------------------------------
