@@ -126,11 +126,31 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
                             ,'search'=>array(-1,array('WiMAX'),array('LTE','4G'))
                             );
 var_dump($this->arrMaker);
-        $this->arrSearchFilter['filterVal_maker'] = 
-                    array('type'=>'checkbox'
-                            ,'value'=>array('すべて','YahooWifi','とくとくBB')
-                            ,'search'=>array(0,1,3)
-                            );
+        $value=array();
+        $search=array();
+        if(count($this->arrMaker)>0){
+            $value[]='すべて';
+            $search[]=-1;
+            foreach($this->arrMaker as $k=>$v){
+
+                $value[]=$v['name'];
+                $search[]=intval($v['maker_id']);
+            }
+            $this->arrSearchFilter['filterVal_maker'] = 
+            array('type'=>'checkbox'
+                    ,'value'=>$value
+                    ,'search'=>$search
+                    );
+
+        }else{
+            $this->arrSearchFilter['filterVal_maker'] = 
+            array('type'=>'checkbox'
+                    ,'value'=>array('すべて')
+                    ,'search'=>array(-1)
+                    );
+
+        }
+
 
         $this->arrSearchFilter['filterVal_cptype'] = 
                     array('type'=>'options'
