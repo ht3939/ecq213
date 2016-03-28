@@ -20,7 +20,7 @@
 
 <div class="row-container is-reverse">
 	<div class="main-column">
-	    <form name="form1" id="form1" method="get" action="?">
+	    <form name="form_search" id="form_search" method="get" action="?">
 	        <!--{* ▼検索条件 *}-->
 	        <input type="hidden" name="category_id" value="<!--{$arrSearchData.category_id|h}-->" />
 	        <input type="hidden" name="name" value="<!--{$arrSearchData.name|h}-->" />
@@ -56,7 +56,7 @@
 	        <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
 	    </form>	
 
-      <form name="form2" id="form2" method="get" action="?">
+      <form name="form_filter" id="form_filter" method="get" action="?">
           <!--{* ▼検索条件 *}-->
           <input type="hidden" name="category_id" value="<!--{$arrSearchFilterData.category_id|h}-->" />
           <input type="hidden" name="mode" value="filter" />
@@ -169,7 +169,7 @@ var radarChartData = {
    pointColor: "#5f87cb",   // チャートの点の色
    pointStrokeColor: "#5f87cb",    // 点を囲む線の色
    // 各項目の値
-   data: [5,3,4,3,4]
+   <!--{$tpl_bestproduct_graph}-->
    }
              ]
    };
@@ -215,6 +215,44 @@ $('.clear-sort img').hover(function(){
 },function(){
   $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset.png");
 });
+
+// 複数選択項目の「すべて」の状態処理
+$('.SumoSelect li').on('click',function(){
+  if($(this).parent().parent().parent().parent().text().indexOf("端末") === 0 || $(this).parent().parent().parent().parent().text().indexOf("提供サービス元") === 0){
+    if($(this).parent().children('li').index(this) == 0 && $(this).hasClass('selected')){
+      for (var i = 1; i < $(this).parent().children('li').length; i++) {
+        $(this).parent().children('li').eq(i).removeClass('selected');
+        $(this).parent().parent().parent().parent().find('select option').eq(i).attr('selected',false);
+      };
+    }else if((($(this).parent().children('li').length-1) == $(this).parent().children('li.selected').length) && $(this).parent().children('li').eq(0).hasClass('selected')==false && $(this).parent().children('li').index(this) != 0){
+      $(this).parent().children('li').eq(0).addClass('selected');
+      $(this).parent().parent().parent().parent().find('select').val(0);
+      for (var i = 1; i < $(this).parent().children('li').length; i++) {
+        $(this).parent().children('li').eq(i).removeClass('selected');
+        $(this).parent().parent().parent().parent().find('select option').eq(i).attr('selected',false);
+      };
+    }else{
+      $(this).parent().children('li').eq(0).removeClass('selected');
+      $(this).parent().parent().parent().parent().find('select option').eq(0).attr('selected',false);
+    }
+
+    var val_text = "";
+    for (var i = 0; i < $(this).parent().children('li').length; i++) {
+      if($(this).parent().parent().parent().parent().find('select option').eq(i).prop('selected')==true){
+        if(val_text != ''){
+          val_text += ', ';
+        }
+        val_text += $(this).parent().parent().parent().parent().find('select option').eq(i).text();
+      }
+      // console.log(i);
+      $(this).parent().parent().parent().parent().find('p.SelectBox span').text(val_text);
+    };
+
+
+  }
+
+});
+
 
 //IE8 グラフ非表示---------------------------------------
 if(window.navigator.userAgent.toLowerCase().indexOf("msie") > -1 && window.navigator.appVersion.toLowerCase().indexOf("msie 8")>-1){

@@ -6,19 +6,19 @@
           <!--{if $arrRecommendProducts}-->
               <!--{assign var=rCCC value=$arrRecommendProducts.arrCC}-->
               <!--{foreach from=$arrRecommendProducts.dat item=rP key=gege name=arrRecommendProducts}-->
-                <!--{assign var=rCC value=$rCCC[intval($rP.product_id)]}-->
+                <!--{assign var=rCC value=$rCCC[$rP.product_id]}-->
 
                 <li class="box js-all-link">
                   <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$rP.mk_image}-->" alt="<!--{$rP.maker_name}-->"></p>
                   <div class="pic-outer">
                     <ul class="pic bxslider">
                       <!--{foreach from=$rCC item=rc name=rCC}-->
+                      <li><img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_img_url1}-->" alt=""><br><span class="brand"><!--{$rc.cc_brand}--></span><br><span class="device"><!--{$rc.classcategory_name1}--></span></li>
 
-                      <li><img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_img_url1}-->" alt=""><br><span class="brand">Huawei</span><br><span class="device"><!--{$rc.classcategory_name1}--></span></li>
                       <!--{/foreach}-->
                     </ul>
                   </div>
-                  <p class="name"><!--{$rP.name}--><br><span><!--{$rc.classcategory_name1}--></span></p>                      
+                  <p class="name"><!--{$rP.name}--><span></p>                      
 
                   <dl class="price <!--{$rP.rank1_order|sfGetRankClass}-->">
                     <dt>月額料金</dt>

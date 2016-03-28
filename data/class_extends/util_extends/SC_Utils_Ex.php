@@ -40,7 +40,7 @@ class SC_Utils_Ex extends SC_Utils
         	return "rank".$rank;
         }
 
-       	return "rank4-more";
+       	return "rank-4more";
     }
 
     public static function sfGetColorClassArray($color)
@@ -65,5 +65,38 @@ class SC_Utils_Ex extends SC_Utils
     		}
     	}
     	return $result;
-    }	    
+    }
+
+    public static function sfCalculateRankPoint($arrList){
+        $tp = 0.0;
+        for ($i=1; $i < 6 ; $i++) {
+            $pt = 0;
+            $key = 'rank'.$i.'_order';
+            if(intval($arrList[$key])>0){
+                $pt = 6 - intval($arrList[$key]);
+                if($pt<0){
+                    $pt = 0;
+                }
+                $tp += $pt;
+
+            } 
+        }
+
+        if($tp>0){
+            $tp = round($tp / 5.0,2);
+
+        }
+        return $tp;
+
+    }
+    public static function sfConvertRank2Point($rank){
+        $tp = 0.0;
+        $pt = 6 - intval($rank);
+        if($pt<0){
+            $pt = 0;
+        }
+        return $pt;
+
+    }
+
 }

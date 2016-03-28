@@ -40,6 +40,8 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
     /** @var array 関連商品情報 */
     public $arrRecommendProducts;
 
+    public $tpl_bestproduct_graph = "data: [5,3,4,3,4]";
+
     /**
      * Page を初期化する.
      *
@@ -100,11 +102,11 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         // 規格1
         $this->arrClassCat1 = $objProduct->classCats1[$product_id];
-var_dump($this->arrClassCat1);
         // 規格1が設定されている
         $this->tpl_classcat_find1 = $objProduct->classCat1_find[$product_id];
         // 規格2が設定されている
         $this->tpl_classcat_find2 = $objProduct->classCat2_find[$product_id];
+
 
         $this->tpl_stock_find = $objProduct->stock_find[$product_id];
         $this->tpl_product_class_id = $objProduct->classCategories[$product_id]['__unselected']['__unselected']['product_class_id'];
@@ -192,6 +194,17 @@ var_dump($this->arrClassCat1);
 
         // 商品ステータスを取得
         $this->productStatus = $objProduct->getProductStatus($product_id);
+
+        //グラフの情報設定
+        $dt = array(
+            SC_Utils_Ex::sfConvertRank2Point($this->arrProduct['rank1_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($this->arrProduct['rank2_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($this->arrProduct['rank3_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($this->arrProduct['rank4_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($this->arrProduct['rank5_order'])
+            );
+        $this->tpl_bestproduct_graph = "data: [$dt[0],$dt[1],$dt[2],$dt[3],$dt[4]]";
+
 
         // 画像ファイル指定がない場合の置換処理
         $this->arrProduct['main_image']

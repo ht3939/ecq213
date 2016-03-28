@@ -27,12 +27,12 @@
         <p class="btn">比較する条件を変更する</p>
     </div>
     <div class="sort-filter">
-        <p class="sort-head">比較する条件を変更する<span class="clear-all-sort">すべての条件を解除する</span></p>
+        <p class="sort-head">比較する条件を変更する<span class="clear-all-sort" onclick="javascript:fnFilterReset('<!--{$orderby}-->'); return false;">すべての条件を解除する</span></p>
         <table class="sort-condition">
             <tbody>
                 <tr>
                     <th>月間データ量
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort" onclick="javascript:fnFilterDelete('test','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
                         <select name="filter_datasize" id="filter_datasize" class="js-select">
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_datasize>0}-->
@@ -52,7 +52,7 @@
 
                     <th>下り最大速度
                         <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="" id="" class="js-select">
+                        <select name="filter_data_speed_down" id="filter_data_speed_down" class="js-select">
                             <option value="" selected>すべて</option>
                             <option value="">A</option>
                             <option value="">B</option>
@@ -61,20 +61,36 @@
 
                     <th>端末
                         <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="" id="" multiple="multiple" class="js-select">
-                            <option value="" selected>すべて</option>
-                            <option value="">A</option>
-                            <option value="">B</option>
-                            <option value="">C</option>
-                            <option value="">D</option>
-                            <option value="">E</option>
+                        <select name="filter_device" id="filter_device" multiple="multiple" class="js-select">
+
+                            <!--{if $tpl_filtermode}-->
+                                <!--{if $arrSearchFilterData.filter_device|count>0}-->
+                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_device}-->
+                                <!--{else}-->
+                                    <!--{assign var=sel  value=array(0)}-->
+                                <!--{/if}-->
+                            <!--{else}-->
+                                <!--{assign var=sel  value=array(0)}-->
+                            <!--{/if}-->
+
+                            <!--{foreach from=$arrSearchFilter.filterVal_device.value item=v key=k}-->
+
+                                <option value="<!--{$arrSearchFilter.filterVal_device.search[$k]}-->"
+                                    <!--{if $arrSearchFilter.filterVal_device.search[$k]|in_array:$sel}-->selected<!--{/if}-->
+                                >
+                                    <!--{$v}-->
+                                </option>
+                            
+                            <!--{/foreach}-->
+
+
                         </select>
                     </th>
                 </tr>
                 <tr>
                     <th>回線タイプ
                         <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="" id="" class="js-select">
+                        <select name="filter_lntype" id="filter_lntype" class="js-select">
                             <option value="" selected>すべて</option>
                             <option value="">A</option>
                             <option value="">B</option>
@@ -96,7 +112,13 @@
                             <!--{/if}-->
 
                             <!--{foreach from=$arrSearchFilter.filterVal_maker.value item=v key=k}-->
-                                <option value="<!--{$arrSearchFilter.filterVal_maker.search[$k]}-->" <!--{if $arrSearchFilter.filterVal_maker.search[$k]|in_array:$sel}-->selected<!--{/if}-->><!--{$v}--></option>
+                            
+                                <option value="<!--{$arrSearchFilter.filterVal_maker.search[$k]}-->"
+                                    <!--{if $arrSearchFilter.filterVal_maker.search[$k]|in_array:$sel}-->selected<!--{/if}-->
+                                >
+                                    <!--{$v}-->
+                                </option>
+
                             <!--{/foreach}-->
 
                         </select>
@@ -105,7 +127,7 @@
 
                     <th>割引・キャッシュバック
                         <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="" id="" class="js-select">
+                        <select name="filter_cptype" id="filter_cptype" class="js-select">
                             <option value="" selected>すべて</option>
                             <option value="">A</option>
                             <option value="">B</option>
@@ -116,92 +138,6 @@
         </table>
         <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
     </div>
-    <div class="sort-filter">
-        <p class="sort-head">比較する条件を変更する<span onclick="javascript:fnFilterReset('<!--{$orderby}-->'); return false;" class="clear-all-sort">すべての条件を解除する</span></p>
-        <table class="sort-condition">
-            <tbody>
-                <tr>
-                    <th>月間データ量
-                        <div class="clear-sort"><img onclick="javascript:fnFilterDelete(['datasize_min','datasize_max'],'<!--{$orderby}-->');" src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_datassize" class="box145">
-                            <!--{foreach from=$arrSearchFilter.filterVal_datasize.value item=arrdatasize key=k name=arrfilterdatasize}-->
 
-                            <option label="<!--{$arrdatasize}-->" value="<!--{$k}-->"><!--{$arrdatasize}--></option>
-                            <!--{/foreach }-->
-                        </select>
-                    </th>
-
-                    <th>下り最大速度
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_dataspeed" class="box145">
-                            <!--{foreach from=$arrSearchFilter.filterVal_dataspeed.value item=arrdataspeed key=k name=arrfilterdataspeed}-->
-
-                            <option label="<!--{$arrdataspeed}-->" value="<!--{$k}-->"><!--{$arrdataspeed}--></option>
-                            <!--{/foreach }-->
-                        </select>
-                    </th>
-
-                    <th>端末
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_device" class="box145">
-                            <!--{foreach from=$arrSearchFilter.filterVal_device.value item=arrdevice key=k name=arrfilterdevice}-->
-
-                            <option label="<!--{$arrdevice}-->" value="<!--{$k}-->"><!--{$arrdevice}--></option>
-                            <!--{/foreach }-->
-                        </select>
-                        <select name="category_id_test" class="box145">
-                        <!--{html_options options=$arrSearchFilter.filterVal_device.value selected=0}-->
-                        </select>
-
-                        <select name="" id="">
-                            <option value="">すべて</option>
-                        </select>
-                    </th>
-                </tr>
-                <tr>
-                    <th>回線タイプ
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_type" class="box145">
-                            <!--{foreach from=$arrSearchFilter.filterVal_lntype.value item=arrtype key=k name=arrfiltertype}-->
-
-                            <option label="<!--{$arrtype}-->" value="<!--{$k}-->"><!--{$arrtype}--></option>
-                            <!--{/foreach }-->
-                        </select>
-                    </th>
-
-                    <th>提供サービス元
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_maker" id="filter_maker">
-                            <option value="0">すべて</option>
-
-                            <!--{section name=cnt loop=$arrMaker}-->
-                                <!--{assign var=maker_id value=$arrMaker[cnt].maker_id}-->
-                                <!--{if $arrMaker[cnt].maker_id}-->
-                                    <option label="<!--{$arrMaker[cnt].name}-->" value="<!--{$maker_id}-->">
-                                        <p>
-                                            <a href="<!--{$smarty.const.ROOT_URLPATH}-->products/list.php?maker_id=<!--{$arrMaker[cnt].maker_id}-->" title="<!--{$arrMaker[cnt].name|escape}-->">
-                                                <!--{$arrMaker[cnt].name|escape}-->(<!--{$arrMaker[cnt].product_count|default:0}-->)
-                                            </a>
-                                        </p>
-                                    </option>
-                                <!--{/if}-->
-                            <!--{/section}-->
-
-                        </select>
-                    </th>
-
-                    <th>割引・キャッシュバック
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_cpprice" class="box145">
-                            <!--{foreach from=$arrSearchFilter.filterVal_cptype.value item=arrcpprice key=k name=arrfiltercpprice}-->
-
-                            <option label="<!--{$arrcpprice}-->" value="<!--{$k}-->"><!--{$arrcpprice}--></option>
-                            <!--{/foreach }-->
-                        </select>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
 <!--{/strip}-->

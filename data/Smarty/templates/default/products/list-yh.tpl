@@ -90,21 +90,19 @@
     }
     // 絞り込をリセット
     function fnFilterDelete(deletefilters,orderby) {
-        var searchForm = $("#form1");
-        // 検索条件を引き継ぐ
+        var filterForm = $('#form_filter input');
+        var naviForm = $("#search_navi_top");
+        // filterFormから検索条件を引き継ぐ
         var hiddenValues = deletefilters;
-        $.each(hiddenValues, function(){
-            // 商品別のフォームに検索条件の値があれば上書き
-            if (searchForm.has('input[name='+this+']').length != 0) {
-                searchForm.find('input[name='+this+']').val('');
-            }
-            // なければ追加
-            else {
-                searchForm.append($('<input type="hidden" />').attr("name", this).val(''));
-            }
+
+        var inp = $filterForm('<input type="hidden"');
+
+        $.each($filterForm('<input type="hidden"'),function(){
+            alert(this);
+
+
         });
-        // 商品別のフォームを送信
-        searchForm.submit();        
+
     }
 //]]></script>
 <!--{include file=products/yhindex.tpl}-->

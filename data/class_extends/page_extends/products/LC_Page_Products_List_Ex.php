@@ -46,6 +46,8 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     public $tpl_orderby_totalprice = false;
     public $tpl_orderby_y1price = false;
 
+    public $tpl_bestproduct_graph = "data: [5,3,4,3,4]";
+
     public $arrProductclass = array();
     public $arrMaker = array();
 
@@ -93,11 +95,28 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
                             ,'search'=>array(-1,array(0,49.9),array(50.0,99.9),array(100.0,199.9),array(200.0,999.9))
                             );
 
-        $this->arrSearchFilter['filterVal_device'] = 
-                    array('type'=>'checkbox'
-                            ,'value'=>array('すべて','303HW','404HH','CL123')
-                            );
         if(count($this->arrProductclass)>0){
+            foreach($this->arrProductclass as $k=>$v){
+                if($v['classcategory_id']=="0"){
+                    $value[]='すべて';
+                    $search[]=-1;
+                }else{
+                    $value[]=$v['name'];
+                    $search[]=intval($v['classcategory_id']);
+                }
+            }
+            $this->arrSearchFilter['filterVal_device'] = 
+            array('type'=>'checkbox'
+                    ,'value'=>$value
+                    ,'search'=>$search
+                    );
+
+        }else{
+            $this->arrSearchFilter['filterVal_device'] = 
+            array('type'=>'checkbox'
+                    ,'value'=>array('すべて')
+                    ,'search'=>array(-1)
+                    );
 
         }
 
@@ -106,7 +125,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
                             ,'value'=>array('すべて','WiMAX','LTE/4G')
                             ,'search'=>array(-1,array('WiMAX'),array('LTE','4G'))
                             );
-
+var_dump($this->arrMaker);
         $this->arrSearchFilter['filterVal_maker'] = 
                     array('type'=>'checkbox'
                             ,'value'=>array('すべて','YahooWifi','とくとくBB')
@@ -284,6 +303,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $this->arrClassCat1 = $objProduct->classCats1;
 
         $this->arrBestProducts = $this->lfGetRanking();
+        $this->tpl_bestproduct_graph = $this->arrBestProducts['graphdata'];
 
         switch ($this->getMode()) {
             case 'json':
@@ -761,7 +781,15 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         }
         $ret['dat'] = $response[0];
         $ret['arrCC'] = $objProduct->classCats1;
-
+        $dt = array(
+            SC_Utils_Ex::sfConvertRank2Point($response[0]['rank1_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($response[0]['rank2_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($response[0]['rank3_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($response[0]['rank4_order'])
+            ,SC_Utils_Ex::sfConvertRank2Point($response[0]['rank5_order'])
+            );
+        $ret['graphdata'] = "data: [$dt[0],$dt[1],$dt[2],$dt[3],$dt[4]]";
         return $ret;
     }
 }
+

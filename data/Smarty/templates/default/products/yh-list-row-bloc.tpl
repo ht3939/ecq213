@@ -52,7 +52,14 @@
 						</td>
 
 						<td <!--{if $rcnt>3}-->class="rank-price"<!--{else}-->class="rank-price r<!--{$rcnt}-->"<!--{/if}-->>
-							<div class="td-inner w140"><span><!--{$rP.y1_price|number_format}--></span>円</div>
+							<div class="td-inner w140"><span>
+								<!--{if $tpl_orderby_totalprice}-->
+								<!--{$rP.total_price|number_format}-->
+								<!--{else}-->
+								<!--{$rP.y1_price|number_format}-->
+								<!--{/if}-->
+								
+							</span>円</div>
 						</td>
 
 						<td class="rank-data">

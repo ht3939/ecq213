@@ -60,7 +60,7 @@
 
 <script src="<!--{$TPL_URLPATH}-->/js/front/Chart.min.js"></script>
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
-<script>//<![CDATA[
+<script>
 //スライダー
 $(document).ready(function(){
   $('.bxslider').bxSlider({
@@ -100,7 +100,7 @@ var radarChartData = {
    pointColor: "#5f87cb",   // チャートの点の色
    pointStrokeColor: "#5f87cb",    // 点を囲む線の色
    // 各項目の値
-   data: [5,3,3,2,4]
+   <!--{$tpl_bestproduct_graph}-->
    }
              ]
    };
@@ -135,4 +135,4 @@ $(".js-all-link").click(function(){
 });
 
 
-//]]></script>
+</script>

@@ -40,23 +40,23 @@
                   <tbody>
                     <tr>
                       <th>月額料金</th>
-                      <td class="price-monthly <!--{$bt.rank1_order|sfGetRankClass}-->"><span class="f26"><!--{$bt.y1_price|number_format}--></span>円</td>
+                      <td class="price-monthly rank<!--{$bt.rank1_order}-->"><span class="f26"><!--{$bt.y1_price|number_format}--></span>円</td>
                     </tr>
                     <tr>
                       <th>お支払総額</th>
-                      <td class="price-sum <!--{$bt.rank2_order|sfGetRankClass}-->"><span class="f26"><!--{$bt.total_price|number_format}--></span>円</td>
+                      <td class="price-sum rank<!--{$bt.rank2_order}-->"><span class="f26"><!--{$bt.total_price|number_format}--></span>円</td>
                     </tr>
                     <tr>
                       <th>月間データ量</th>
-                      <td class="traffic-monthly <!--{$bt.rank3_order|sfGetRankClass}-->"><span class="f20"><!--{$bt.datasize}--></span>GB</td>
+                      <td class="traffic-monthly rank<!--{$bt.rank3_order}-->"><span class="f20"><!--{$bt.datasize}--></span>GB</td>
                     </tr>
                     <tr>
                       <th>下り最大速度</th>
-                      <td class="downspeed <!--{$bt.rank4_order|sfGetRankClass}-->"><span class="f20"><!--{$bt.data_speed_down}--></span>Mbps</td>
+                      <td class="downspeed rank<!--{$bt.rank4_order}-->"><span class="f20"><!--{$bt.data_speed_down}--></span>Mbps</td>
                     </tr>
                     <tr>
                       <th>上り最大速度</th>
-                      <td class="upspeed <!--{$bt.rank5_order|sfGetRankClass}-->"><span class="f20"><!--{$bt.data_speed_up}--></span>Mbps<span class="<!--{$bt.rank5_order|sfGetRankClass}-->"><!--{$bt.rank5_order}-->位</span></td>
+                      <td class="upspeed rank<!--{$bt.rank5_order}-->"><span class="f20"><!--{$bt.data_speed_up}--></span>Mbps<!--{if $bt.rank5_order>3}--><span class="<!--{$bt.rank5_order|sfGetRankClass}-->"><!--{$bt.rank5_order}-->位</span><!--{/if}--></td>
                     </tr>
                   </tbody>
                 </table>
