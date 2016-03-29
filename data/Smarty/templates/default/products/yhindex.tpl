@@ -110,7 +110,11 @@
 <!--[if lt IE 9]>
 <script src="/js/front/html5shiv.js"></script>
 <![endif]-->
-<script src="<!--{$TPL_URLPATH}-->/js/front/jquery.sumoselect.min.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="<!--{$TPL_URLPATH}-->/js/front/jquery.multiple-select.js"></script>
+
+
 <script src="<!--{$TPL_URLPATH}-->/js/front/index.js"></script>
 <!--{*  <?php echo $body_end; ?>*}-->
 <script src="<!--{$TPL_URLPATH}-->/js/front/Chart.min.js"></script>
@@ -208,7 +212,14 @@ $('.sort-filter-btn .btn').click(function(){
   $('.sort-filter').fadeIn();
 });
 //セレクトボックス 複数選択「SumoSelect」プラグイン使用
-$('.js-select').SumoSelect({placeholder: '選択してください'});
+//$('.js-select').SumoSelect({placeholder: '選択してください'});
+$('#filter_datasize2').multipleSelect({single:true});
+$('#filter_device2').multipleSelect(
+  {selectAllText:'すべて選択'
+  ,allSelected  :'すべて'
+  ,placeholder  :'選択してください'
+});
+
 //ゴミ箱アイコンhover時
 $('.clear-sort img').hover(function(){
   $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset_on.png");
@@ -216,42 +227,6 @@ $('.clear-sort img').hover(function(){
   $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset.png");
 });
 
-// 複数選択項目の「すべて」の状態処理
-$('.SumoSelect li').on('click',function(){
-  if($(this).parent().parent().parent().parent().text().indexOf("端末") === 0 || $(this).parent().parent().parent().parent().text().indexOf("提供サービス元") === 0){
-    if($(this).parent().children('li').index(this) == 0 && $(this).hasClass('selected')){
-      for (var i = 1; i < $(this).parent().children('li').length; i++) {
-        $(this).parent().children('li').eq(i).removeClass('selected');
-        $(this).parent().parent().parent().parent().find('select option').eq(i).attr('selected',false);
-      };
-    }else if((($(this).parent().children('li').length-1) == $(this).parent().children('li.selected').length) && $(this).parent().children('li').eq(0).hasClass('selected')==false && $(this).parent().children('li').index(this) != 0){
-      $(this).parent().children('li').eq(0).addClass('selected');
-      $(this).parent().parent().parent().parent().find('select').val(0);
-      for (var i = 1; i < $(this).parent().children('li').length; i++) {
-        $(this).parent().children('li').eq(i).removeClass('selected');
-        $(this).parent().parent().parent().parent().find('select option').eq(i).attr('selected',false);
-      };
-    }else{
-      $(this).parent().children('li').eq(0).removeClass('selected');
-      $(this).parent().parent().parent().parent().find('select option').eq(0).attr('selected',false);
-    }
-
-    var val_text = "";
-    for (var i = 0; i < $(this).parent().children('li').length; i++) {
-      if($(this).parent().parent().parent().parent().find('select option').eq(i).prop('selected')==true){
-        if(val_text != ''){
-          val_text += ', ';
-        }
-        val_text += $(this).parent().parent().parent().parent().find('select option').eq(i).text();
-      }
-      // console.log(i);
-      $(this).parent().parent().parent().parent().find('p.SelectBox span').text(val_text);
-    };
-
-
-  }
-
-});
 
 
 //IE8 グラフ非表示---------------------------------------
