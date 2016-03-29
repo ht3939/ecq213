@@ -56,8 +56,7 @@
             </div>
             <dl class="plan">
               <dt><!--{$arrProduct.name}-->について</dt>
-              <!--{assign var=y2p value=$arrProduct.y2_price|number_format}-->
-              <dd><!--{$arrProduct.main_list_comment|replace:"{*}":$y2p}--></dd>
+              <dd><!--{$arrProduct.main_list_comment|h}--></dd>
             </dl>
             <p class="link-btn"><a href="<!--{$arrProduct.mk_site_url}-->">このプランのページへ</a></p>
             <p class="link-blank-nav">(外部サイトへ)</p>

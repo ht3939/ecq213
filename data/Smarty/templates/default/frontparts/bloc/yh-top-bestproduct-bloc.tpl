@@ -15,12 +15,12 @@
       </div>
       <div class="weekly-top-in clearfix">
         <div class="title-name">
-          <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$bt.mk_img_url1}-->" alt="<!--{$bt.maker_name}-->"></p>
+          <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$bt.mk_image}-->" alt="<!--{$bt.maker_name}-->"></p>
           <ul class="topbxslider">
           <!--{foreach from=$cc item=r key=k name=cc}-->
             <li>
               <div class="pic">
-                <img src="<!--{$TPL_URLPATH}--><!--{$r.cc_img_url1}-->" alt="">
+                <img src="<!--{$TPL_URLPATH}--><!--{$r.cc_image}-->" alt="">
               </div>
               <div class="title">
                 <p><!--{$r.classcategory_name1}--></p>

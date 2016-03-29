@@ -21,7 +21,7 @@
           <ul class="top-data">
             <li class="rank1">
             <img src="img/detail/tag1.png" alt="" class="tag">
-              <p class="head">月額料金</p>
+              <p class="head">月額利用料金</p>
               <p class="data">9,999<span>円</span></p>
             </li>
             <li class="rank2">
@@ -34,9 +34,9 @@
               <p class="head">月間データ量</p>
               <p class="data">7<span>GB/月</span></p>
             </li>
-            <li class="rank3">
+            <li class="rank4more">
             <img src="img/detail/tag4.png" alt="" class="tag">
-              <p class="head">下り最大速度</p>
+              <p class="head">下り最大速度<span>※</span></p>
               <p class="data">110<span>Mbps</span></p>
             </li>
           </ul>
@@ -49,7 +49,7 @@
                 <li class="rank2">月間データ量</li>
                 <li class="rank2">上り最大速度</li>
                 <li class="rank3">下り最大速度</li>
-                <li class="rank3">お支払総額</li>
+                <li class="rank4more">お支払総額</li>
               </ul>
               <div class="graph">
                 <p class="status1">月額料金<br><span class="rank">1位</span><br><span class="data">（1,980円）</span></p>
@@ -214,6 +214,5 @@
           </tr>
         </table>
       </section>
-
 
  <!--{/strip}-->

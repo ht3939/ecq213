@@ -40,7 +40,7 @@
 										<!--{foreach from=$rCC item=rc key=k}-->
 
 										<li>
-										<img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_img_url1}-->" alt="">
+										<img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_image}-->" alt="">
 										<div class="status">
 											<p class="name"><span><!--{$rc.cc_brand}--></span><br><!--{$rc.classcategory_name1}--></p>
 										</div>
@@ -71,11 +71,11 @@
 							<div class="td-inner">
 								<!--{if $rP.sub_comment2|count_characters>0}-->
 								<span class="head ptn1">主な特典</span><br>
-							<span class="text-ptn1">Yahoo! プレミアム会員（月額462円/税別）が必要<!--{$rP.sub_comment2}--></span><br>
+							<span class="text-ptn1"><!--{$rP.sub_comment2}--></span><br>
 								<!--{/if}-->
 								<!--{if $rP.sub_comment3|count_characters>0}-->								
 							<span class="head ptn2">注意事項</span><br>
-							<span class="text-ptn2">プレミアム会員必須<br>※３日で３GB制限あり<!--{$rP.sub_comment3}--></span>
+							<span class="text-ptn2"><!--{$rP.sub_comment3}--></span>
 								<!--{/if}-->
 
 							</div>

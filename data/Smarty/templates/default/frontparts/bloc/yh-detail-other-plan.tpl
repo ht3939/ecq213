@@ -14,7 +14,7 @@
                   <div class="pic-outer">
                     <ul class="pic bxslider">
                       <!--{foreach from=$rCC item=rc name=rCC}-->
-                      <li><img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_img_url1}-->" alt=""><br><span class="brand"><!--{$rc.cc_brand}--></span><br><span class="device"><!--{$rc.classcategory_name1}--></span></li>
+                      <li><img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_image}-->" alt=""><br><span class="brand"><!--{$rc.cc_brand}--></span><br><span class="device"><!--{$rc.classcategory_name1}--></span></li>
 
                       <!--{/foreach}-->
                     </ul>

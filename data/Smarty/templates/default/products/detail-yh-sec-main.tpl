@@ -3,8 +3,7 @@
           <p class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$arrProduct.mk_image}-->" alt=""></p>
           <div class="title">
             <p class="name"><!--{$arrProduct.name}--></p>
-              <!--{assign var=y2p value=$arrProduct.y2_price|number_format}-->
-            <p class="condition"><!--{$arrProduct.main_list_comment|replace:"{*}":$y2p}--></p>
+            <p class="condition"><!--{$arrProduct.main_list_comment|h}--></p>
           </div>
         </div>
         <div class="detail-data">
@@ -32,11 +31,17 @@
             <li class="<!--{$arrProduct.rank3_order|sfGetRankClass}-->">
             <img src="<!--{$TPL_URLPATH}-->img/detail/tag3.png" alt="" class="tag">
               <p class="head">月間データ量</p>
-              <p class="data"><!--{$arrProduct.datasize}--><span>GB/月</span></p>
+              <p class="data">
+                <!--{if $arrProduct.datasize==999}-->
+                <span>上限なし</span>
+                <!--{else}-->
+                <!--{$arrProduct.datasize}--><span>GB/月</span>
+                <!--{/if}-->
+              </p>
             </li>
             <li class="<!--{$arrProduct.rank4_order|sfGetRankClass}-->">
             <img src="<!--{$TPL_URLPATH}-->img/detail/tag4.png" alt="" class="tag">
-              <p class="head">下り最大速度</p>
+              <p class="head">下り最大速度<span>※</span></p>
               <p class="data"><!--{$arrProduct.data_speed_down}--><span>Mbps</span></p>
             </li>
           </ul>
@@ -45,11 +50,11 @@
             <p class="head">項目別スコア</p>
             <div class="detail">
               <ul class="rank-list">
-                <li class="<!--{$arrProduct.rank1_order|sfGetRankClass}-->">月額料金</li>
-                <li class="<!--{$arrProduct.rank3_order|sfGetRankClass}-->">月間データ量</li>
-                <li class="<!--{$arrProduct.rank5_order|sfGetRankClass}-->">上り最大速度</li>
-                <li class="<!--{$arrProduct.rank4_order|sfGetRankClass}-->">下り最大速度</li>
-                <li class="<!--{$arrProduct.rank2_order|sfGetRankClass}-->">お支払総額</li>
+                <li class="<!--{$arrProduct.rank1_order|sfGetRankClass:true}-->">月額料金</li>
+                <li class="<!--{$arrProduct.rank3_order|sfGetRankClass:true}-->">月間データ量</li>
+                <li class="<!--{$arrProduct.rank5_order|sfGetRankClass:true}-->">上り最大速度</li>
+                <li class="<!--{$arrProduct.rank4_order|sfGetRankClass:true}-->">下り最大速度</li>
+                <li class="<!--{$arrProduct.rank2_order|sfGetRankClass:true}-->">お支払総額</li>
               </ul>
               <div class="graph">
                 <p class="status1">月額料金<br><span class="rank"><!--{$arrProduct.rank1_order}-->位</span><br><span class="data">（<!--{$arrProduct.y1_price|number_format}-->円）</span></p>
@@ -70,7 +75,7 @@
             <img src="<!--{$TPL_URLPATH}-->img/detail/tag6.png" alt="" class="tag">
             <div class="image">
               <p class="head">選べる対応端末</p>
-              <p class="pic"><img src="<!--{$TPL_URLPATH}--><!--{$arrCC1.cc_img_url1}-->" alt=""></p>
+              <p class="pic"><img src="<!--{$TPL_URLPATH}--><!--{$arrCC1.cc_image}-->" alt=""></p>
             </div>
             <div class="detail">
                 <p class="date">発売：<!--{$arrCC1.cc_release_date|date_format:"%Y年%m月%d日"}--></p>
@@ -107,7 +112,7 @@
             
             <td <!--{if $smarty.foreach.arrCC1.first}-->class="active"<!--{/if}-->>
               <div class="inner">
-                <p class="pic"><img src="<!--{$TPL_URLPATH}--><!--{$arrCC1.cc_img_url1}-->" alt=""></p>
+                <p class="pic"><img src="<!--{$TPL_URLPATH}--><!--{$arrCC1.cc_image}-->" alt=""></p>
                 <div class="name"><!--{$arrCC1.classcategory_name1}--></div>
               </div>
             </td>

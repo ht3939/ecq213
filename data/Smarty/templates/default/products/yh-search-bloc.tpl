@@ -167,6 +167,62 @@
         </table>
         <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
     </div>
+    <div>
+        <table >
+            <tbody>
+                <tr>
+                    <th>月間データ量
+                        <div class="clear-sort" onclick="javascript:fnFilterDelete('test','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="filter_datasize2" id="filter_datasize2" >
+                            <!--{if $tpl_filtermode}-->
+                                <!--{if $arrSearchFilterData.filter_datasize>0}-->
+                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_datasize}-->
+                                <!--{else}-->
+                                    <!--{assign var=sel  value=0}-->
+                                <!--{/if}-->
+                            <!--{else}-->
+                                <!--{assign var=sel  value=0}-->
+                            <!--{/if}-->
 
+                            <!--{foreach from=$arrSearchFilter.filterVal_datasize.value item=v key=k}-->
+                                <option value="<!--{$k}-->" <!--{if $k==$sel}-->selected<!--{/if}-->><!--{$v}--></option>
+                            <!--{/foreach}-->
+                        </select>
+                    </th>
+
+
+                    <th>端末
+                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="filter_device2" id="filter_device2" multiple="multiple">
+
+                            <!--{if $tpl_filtermode}-->
+                                <!--{if $arrSearchFilterData.filter_device|count>0}-->
+                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_device}-->
+                                <!--{else}-->
+                                    <!--{assign var=sel  value=array(0)}-->
+                                <!--{/if}-->
+                            <!--{else}-->
+                                <!--{assign var=sel  value=array(0)}-->
+                            <!--{/if}-->
+
+                            <!--{foreach from=$arrSearchFilter.filterVal_device.value item=v key=k}-->
+
+                                <option value="<!--{$arrSearchFilter.filterVal_device.search[$k]}-->"
+                                    <!--{if $arrSearchFilter.filterVal_device.search[$k]|in_array:$sel}-->selected<!--{/if}-->
+                                >
+                                    <!--{$v}-->
+                                </option>
+                            
+                            <!--{/foreach}-->
+
+
+                        </select>
+                    </th>
+                </tr>
+
+            </tbody>
+        </table>
+        <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
+    </div>
 
 <!--{/strip}-->

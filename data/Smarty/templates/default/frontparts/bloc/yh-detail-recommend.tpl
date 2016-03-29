@@ -13,7 +13,7 @@
                   <div class="pic-outer">
                     <ul class="pic bxslider">
                       <!--{foreach from=$rCC item=rc name=rCC}-->
-                      <li><img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_img_url1}-->" alt=""><br><span class="brand"><!--{$rc.cc_brand}--></span><br><span class="device"><!--{$rc.classcategory_name1}--></span></li>
+                      <li><img src="<!--{$TPL_URLPATH}--><!--{$rc.cc_image}-->" alt=""><br><span class="brand"><!--{$rc.cc_brand}--></span><br><span class="device"><!--{$rc.classcategory_name1}--></span></li>
 
                       <!--{/foreach}-->
                     </ul>
@@ -24,7 +24,7 @@
                     <dt>月額料金</dt>
                     <dd><!--{$rP.y1_price|number_format}--><span>円</span></dd>
                   </dl>
-                  <dl class="price rank1">
+                  <dl class="price <!--{$rP.rank2_order|sfGetRankClass}-->">
                     <dt>総額料金</dt>
                     <dd><!--{$rP.total_price|number_format}--><span>円</span></dd>
                   </dl>
