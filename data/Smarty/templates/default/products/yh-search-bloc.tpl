@@ -172,7 +172,7 @@
             <tbody>
                 <tr>
                     <th>月間データ量
-                        <div class="clear-sort" onclick="javascript:fnFilterDelete('test','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort" onclick="javascript:fnFilterClear('#filter_datasize2','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
                         <select name="filter_datasize2" id="filter_datasize2" >
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_datasize>0}-->
@@ -192,7 +192,7 @@
 
 
                     <th>端末
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort" onclick="javascript:fnFilterClear('#filter_device2','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
                         <select name="filter_device2" id="filter_device2" multiple="multiple">
 
                             <!--{if $tpl_filtermode}-->

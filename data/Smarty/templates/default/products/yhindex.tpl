@@ -213,11 +213,12 @@ $('.sort-filter-btn .btn').click(function(){
 });
 //セレクトボックス 複数選択「SumoSelect」プラグイン使用
 //$('.js-select').SumoSelect({placeholder: '選択してください'});
-$('#filter_datasize2').multipleSelect({single:true});
+$('#filter_datasize2').multipleSelect({single:true,theme:'bubble'});
 $('#filter_device2').multipleSelect(
-  {selectAllText:'すべて選択'
+  {selectAllText:'すべて'
   ,allSelected  :'すべて'
-  ,placeholder  :'選択してください'
+  ,placeholder  :'すべて'
+  ,theme:'bubble'
 });
 
 //ゴミ箱アイコンhover時

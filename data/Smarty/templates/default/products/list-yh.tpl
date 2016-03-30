@@ -88,6 +88,14 @@
         // 商品別のフォームを送信
         cartForm.submit();        
     }
+    // 絞り込設定をクリア(選択の解除のみ)
+    function fnFilterClear(deletefilters,orderby) {
+        var sel = $(deletefilters).multipleSelect();
+             alert("Selected values: " + sel.multipleSelect("getSelects"));
+             alert("Selected values: " + sel[0].options.length);
+
+
+    }
     // 絞り込をリセット
     function fnFilterDelete(deletefilters,orderby) {
         var filterForm = $('#form_filter input');
