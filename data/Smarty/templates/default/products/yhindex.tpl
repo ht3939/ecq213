@@ -58,8 +58,7 @@
 
       <form name="form_filter" id="form_filter" method="get" action="?">
           <!--{* ▼検索条件 *}-->
-          <input type="hidden" name="category_id" value="<!--{$arrSearchFilterData.category_id|h}-->" />
-          <input type="hidden" name="mode" value="filter" />
+          <input type="hidden" name="mode" value="<!--{$mode|h}-->" />
 
           <!--{if is_array($arrSearchFilterData.filter_maker_id)}-->
               <!--{foreach from=$arrSearchFilterData.filter_maker_id item=mkid name=arrProducts_makerid}-->
@@ -213,11 +212,20 @@ $('.sort-filter-btn .btn').click(function(){
 });
 //セレクトボックス 複数選択「SumoSelect」プラグイン使用
 //$('.js-select').SumoSelect({placeholder: '選択してください'});
-$('#filter_datasize2').multipleSelect({single:true,theme:'bubble'});
-$('#filter_device2').multipleSelect(
+$('#filter_datasize').multipleSelect({single:true,theme:'bubble'});
+$('#filter_cptype').multipleSelect({single:true,theme:'bubble'});
+$('#filter_lntype').multipleSelect({single:true,theme:'bubble'});
+$('#filter_data_speed_down').multipleSelect({single:true,theme:'bubble'});
+$('#filter_device_id').multipleSelect(
   {selectAllText:'すべて'
   ,allSelected  :'すべて'
-  ,placeholder  :'すべて'
+  ,placeholder  :'選択してください'
+  ,theme:'bubble'
+});
+$('#filter_maker_id').multipleSelect(
+  {selectAllText:'すべて'
+  ,allSelected  :'すべて'
+  ,placeholder  :'選択してください'
   ,theme:'bubble'
 });
 

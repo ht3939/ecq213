@@ -3,7 +3,8 @@
  */
 
 .ms-parent {
-    display: inline-block;
+    width: 150px !important;
+    float: right;
     position: relative;
     vertical-align: middle;
 }

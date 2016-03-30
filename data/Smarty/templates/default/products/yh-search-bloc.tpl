@@ -32,8 +32,8 @@
             <tbody>
                 <tr>
                     <th>月間データ量
-                        <div class="clear-sort" onclick="javascript:fnFilterDelete('test','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_datasize" id="filter_datasize" class="js-select">
+                        <div class="clear-sort" ><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <select name="filter_datasize" id="filter_datasize" >
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_datasize>0}-->
                                     <!--{assign var=sel  value=$arrSearchFilterData.filter_datasize}-->
@@ -71,11 +71,11 @@
 
                     <th>端末
                         <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_device" id="filter_device" multiple="multiple" class="js-select">
+                        <select name="filter_device_id" id="filter_device_id" multiple="multiple">
 
                             <!--{if $tpl_filtermode}-->
-                                <!--{if $arrSearchFilterData.filter_device|count>0}-->
-                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_device}-->
+                                <!--{if $arrSearchFilterData.filter_device_id|count>0}-->
+                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_device_id}-->
                                 <!--{else}-->
                                     <!--{assign var=sel  value=array(0)}-->
                                 <!--{/if}-->
@@ -85,12 +85,12 @@
 
                             <!--{foreach from=$arrSearchFilter.filterVal_device.value item=v key=k}-->
 
-                                <option value="<!--{$arrSearchFilter.filterVal_device.search[$k]}-->"
+                                <option value="<!--{$k}-->"
                                     <!--{if $arrSearchFilter.filterVal_device.search[$k]|in_array:$sel}-->selected<!--{/if}-->
                                 >
                                     <!--{$v}-->
                                 </option>
-                            
+
                             <!--{/foreach}-->
 
 
@@ -119,28 +119,40 @@
 
                     <th>提供サービス元
                         <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_maker_id" id="filter_maker_id" multiple="multiple" class="js-select">
+                        <select name="filter_maker_id" id="filter_maker_id" class="js-select">
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_maker_id|count>0}-->
                                     <!--{assign var=sel  value=$arrSearchFilterData.filter_maker_id}-->
                                 <!--{else}-->
-                                    <!--{assign var=sel  value=array(0)}-->
+                                    <!--{assign var=sel  value=array(-1)}-->
                                 <!--{/if}-->
                             <!--{else}-->
-                                <!--{assign var=sel  value=array(0)}-->
+                                <!--{assign var=sel  value=array(-1)}-->
                             <!--{/if}-->
 
                             <!--{foreach from=$arrSearchFilter.filterVal_maker.value item=v key=k}-->
-                            
-                                <option value="<!--{$arrSearchFilter.filterVal_maker.search[$k]}-->"
-                                    <!--{if $arrSearchFilter.filterVal_maker.search[$k]|in_array:$sel}-->selected<!--{/if}-->
-                                >
+                        
+                                <!--{if $sel}-->
+                                    <!--{if $k|in_array:$sel}-->
+                                        <!--{assign var=settag value="selected"}-->
+                                    <!--{/if}-->
+
+                                <!--{else}-->
+                                    <!--{assign var=settag value=""}-->
+                                <!--{/if}-->
+
+                                <option value="<!--{$k}-->" <!--{$seltag}-->>
                                     <!--{$v}-->
                                 </option>
 
                             <!--{/foreach}-->
 
                         </select>
+                            <!--{foreach from=$arrSearchFilter.filterVal_maker.value item=v key=k}-->
+                            <!--{$v}-->
+                            <!--{$k}-->
+
+                            <!--{/foreach}-->
 
                     </th>
 
@@ -167,62 +179,4 @@
         </table>
         <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
     </div>
-    <div>
-        <table >
-            <tbody>
-                <tr>
-                    <th>月間データ量
-                        <div class="clear-sort" onclick="javascript:fnFilterClear('#filter_datasize2','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_datasize2" id="filter_datasize2" >
-                            <!--{if $tpl_filtermode}-->
-                                <!--{if $arrSearchFilterData.filter_datasize>0}-->
-                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_datasize}-->
-                                <!--{else}-->
-                                    <!--{assign var=sel  value=0}-->
-                                <!--{/if}-->
-                            <!--{else}-->
-                                <!--{assign var=sel  value=0}-->
-                            <!--{/if}-->
-
-                            <!--{foreach from=$arrSearchFilter.filterVal_datasize.value item=v key=k}-->
-                                <option value="<!--{$k}-->" <!--{if $k==$sel}-->selected<!--{/if}-->><!--{$v}--></option>
-                            <!--{/foreach}-->
-                        </select>
-                    </th>
-
-
-                    <th>端末
-                        <div class="clear-sort" onclick="javascript:fnFilterClear('#filter_device2','<!--{$orderby}-->'); return false;"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
-                        <select name="filter_device2" id="filter_device2" multiple="multiple">
-
-                            <!--{if $tpl_filtermode}-->
-                                <!--{if $arrSearchFilterData.filter_device|count>0}-->
-                                    <!--{assign var=sel  value=$arrSearchFilterData.filter_device}-->
-                                <!--{else}-->
-                                    <!--{assign var=sel  value=array(0)}-->
-                                <!--{/if}-->
-                            <!--{else}-->
-                                <!--{assign var=sel  value=array(0)}-->
-                            <!--{/if}-->
-
-                            <!--{foreach from=$arrSearchFilter.filterVal_device.value item=v key=k}-->
-
-                                <option value="<!--{$arrSearchFilter.filterVal_device.search[$k]}-->"
-                                    <!--{if $arrSearchFilter.filterVal_device.search[$k]|in_array:$sel}-->selected<!--{/if}-->
-                                >
-                                    <!--{$v}-->
-                                </option>
-                            
-                            <!--{/foreach}-->
-
-
-                        </select>
-                    </th>
-                </tr>
-
-            </tbody>
-        </table>
-        <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
-    </div>
-
 <!--{/strip}-->

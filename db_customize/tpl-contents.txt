@@ -1,0 +1,44 @@
+index.php
+
+ ->frontparts/bloc/yh-top-headmeta-bloc.tpl  index.phpのメタ情報の記載部分
+ 
+
+ ->products/list-yh.tpl   index.php本体　※ヘッダ側のスクリプトのみ
+  ->products/yhindex.tpl   index.php本体　※デザイン側の分を移行した部分、メインのタグとonload分のスクリプトのみ
+  　構成
+  --->frontparts/bloc/yh-top-bestproduct-bloc.t.tpl   index.php本体　※トップ部分のベスト商品
+     本体
+     　絞込みパネル　products/yh-search-bloc.tpl　　　※条件設定、ソートタブ
+     　一覧部分　　　products/yh-list-bloc.tpl
+     　データ部分　　　products/yh-list-row-bloc.tpl  ※ソートタブの含む
+     　
+     　説明欄　　　　frontparts/bloc/yh-top-rank-abouts.tpl
+     　説明欄　　　　frontparts/bloc/yh-top-rank-note.tpl
+     　
+  ※formタグの部部は、システムの制御用に配置してます。
+  
+     frontparts/bloc/yh-footer-link.tpl　キャリアのリンク
+
+
+detail.php
+
+ ->frontparts/bloc/yh-detail-headmeta-bloc.tpl  detial.phpのメタ情報の記載部分
+ 
+ ->frontparts/yh-detail-mainheader-breadcrumb.tpl   detail.php本体　※パンくず
+
+ ->products/detail-yh.tpl   detail.php本体　※ヘッダ側のスクリプトのみ
+  ->products/detail-yh-sec-main.tpl   detail.php本体　※デザイン側の分を移行した部分、メインのタグとonload分のスクリプトのみ
+  ->products/detail-yh-sec-mainsub.tpl   detail.php本体　※デザイン側の分を移行した部分、メインのタグとonload分のスクリプトのみ
+  
+  ->frontparts/yh-detail-other-plan.tpl   detail.php本体　※そのたのプラン
+  ->frontparts/yh-detail-recommend.tpl   detail.php本体　※おすすめ商品
+  ->frontparts/yh-detail-note.tpl   detail.php本体　※注意書
+
+     frontparts/bloc/yh-footer-link.tpl　キャリアのリンク
+
+
+共通
+
+header.tpl　　ヘッダーロゴ画像とか
+footer.tpl    ページの先頭とか
+

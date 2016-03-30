@@ -22,11 +22,11 @@
                   <p class="name"><span><!--{$rP.name}--></span></p>
                   <dl class="price <!--{$rP.rank1_order|sfGetRankClass}-->">
                     <dt>月額料金</dt>
-                    <dd><!--{$rP.y1_price|number_format}--><span>円</span></dd>
+                    <dd><div class="inner"><!--{$rP.y1_price|number_format}--><span>円</span></div></dd>
                   </dl>
                   <dl class="price <!--{$rP.rank2_order|sfGetRankClass}-->">
                     <dt>総額料金</dt>
-                    <dd><!--{$rP.total_price|number_format}--><span>円</span></dd>
+                    <dd><div class="inner"><!--{$rP.total_price|number_format}--><span>円</span></div></dd>
                   </dl>
                   <div class="data">
                     <p>下り最大<br><span><!--{$rP.data_speed_down}-->Mbps</span></p>
@@ -52,5 +52,5 @@
         <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
         <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
         <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
-      </div>      
+      </div>
 <!--{/strip}-->

@@ -75,6 +75,74 @@
     }
 //]]></script>
 <script type="text/javascript">//<![CDATA[
+    var orderby;
+    var multiSelNameArr = ['filter_maker_id','filter_device_id'];    // 複数選択セレクトボックスのID
+    var notUpdateHiddenArr = ['mode','orderby'];    // submit時に更新しないhiddenのname
+
+    $(function(){
+        orderby = $('#search_navi_top input#orderby').val();
+
+        // 遷移時の条件で「比較する条件を変更する」箇所までスクロールし、条件選択を開く
+        if($('#form_filter input[name=mode]').val() == 'filter'){
+            $("html,body").animate({scrollTop:$('#tabsbox').offset().top});
+            if($('#form_filter input').length > 1){
+                $('.sort-filter').fadeIn();
+            }
+        }
+
+        // ゴミ箱ボタン押下処理
+        $('.clear-sort').on('click',function(){
+            fnFilterClear($(this).parent().find('select').attr('id'));
+        });
+        // submit
+        $('.arrow-down').on('click',function(){
+            formSubmit();
+        });
+        // ソートタブ切り替え
+        $('.sort-tabs li a').on('click',function(){
+            tabChange($(this).parent());
+        });
+    });
+
+    function tabChange(obj){
+        $("#search_navi_top").find('#orderby').val(obj.attr('id'));
+        formSubmit();
+    }
+
+    function formSubmit(){
+        var searchNavi = $("#search_navi_top");
+        searchNavi.find('input').each(function(){
+            if($.inArray($(this).attr('name'), notUpdateHiddenArr) == -1){
+                $(this).remove();
+            }
+        });
+        selectArr = $('.sort-filter').find('select');
+        selectArr.each(function(){
+            if($.inArray($(this).attr('name'), multiSelNameArr) == -1){
+                if($(this).val() != 0){
+                    searchNavi.append($('<input type="hidden" />').attr("name", $(this).attr('name')).val($(this).val()));
+                }
+            }else{
+                if($(this).val() && ($(this).val().length != $(this).find('option').length)){
+                    cName = $(this).attr('name');
+                    $.each($(this).val(),function(key,val){
+                        searchNavi.append($('<input type="hidden" />').attr("name", cName+'[]').val(val));
+                    });
+                }
+            }
+        });
+        searchNavi.submit();
+    }
+
+    // 絞り込設定をクリア(選択の解除のみ)
+    function fnFilterClear(deletefilters) {
+        $('#'+deletefilters).multipleSelect("uncheckAll");
+        if($.inArray(deletefilters, multiSelNameArr) == -1){
+            $('#'+deletefilters).multipleSelect('setSelects', [0]);
+        }
+    }
+
+
     // 絞り込をリセット
     function fnFilterReset(orderby) {
         var searchForm = $("#form1");
@@ -86,31 +154,8 @@
             cartForm.append($('<input type="hidden" />').attr("name", this).val(orderby));
         });
         // 商品別のフォームを送信
-        cartForm.submit();        
+        cartForm.submit();
     }
-    // 絞り込設定をクリア(選択の解除のみ)
-    function fnFilterClear(deletefilters,orderby) {
-        var sel = $(deletefilters).multipleSelect();
-             alert("Selected values: " + sel.multipleSelect("getSelects"));
-             alert("Selected values: " + sel[0].options.length);
 
-
-    }
-    // 絞り込をリセット
-    function fnFilterDelete(deletefilters,orderby) {
-        var filterForm = $('#form_filter input');
-        var naviForm = $("#search_navi_top");
-        // filterFormから検索条件を引き継ぐ
-        var hiddenValues = deletefilters;
-
-        var inp = $filterForm('<input type="hidden"');
-
-        $.each($filterForm('<input type="hidden"'),function(){
-            alert(this);
-
-
-        });
-
-    }
 //]]></script>
 <!--{include file=products/yhindex.tpl}-->

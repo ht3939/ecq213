@@ -39,6 +39,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     public $arrSearchFilter = array();
     /** フィルタ条件(パラメータ用) */    
     public $arrSearchFilterData = array();
+    public $arrSearchFilterMap = array();
 
     public $tpl_filtermode = false;
 
@@ -87,19 +88,19 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
                     array('type'=>'options'
                             ,'value'=>array('すべて','５Ｇ未満','５Ｇ～８Ｇ未満','８Ｇ以上')
                             ,'search'=>array(-1,array(0,4.9),array(5,7.9),array(8,999))
+                            ,'searchcol'=>array('datasize_min','datasize_max')
                             );
 
         $this->arrSearchFilter['filterVal_dataspeed'] = 
                     array('type'=>'options'
                             ,'value'=>array('すべて','50','100','200')
                             ,'search'=>array(-1,array(0,49.9),array(50.0,99.9),array(100.0,199.9),array(200.0,999.9))
+                            ,'searchcol'=>array('data_speed_down_min','data_speed_down_max')
                             );
 
         if(count($this->arrProductclass)>0){
             foreach($this->arrProductclass as $k=>$v){
                 if($v['classcategory_id']=="0"){
-                    $value[]='すべて';
-                    $search[]=-1;
                 }else{
                     $value[]=$v['name'];
                     $search[]=intval($v['classcategory_id']);
@@ -114,23 +115,24 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         }else{
             $this->arrSearchFilter['filterVal_device'] = 
             array('type'=>'checkbox'
-                    ,'value'=>array('すべて')
+                    ,'value'=>array('対象がありません')
                     ,'search'=>array(-1)
                     );
 
         }
+        $this->arrSearchFilter['filterVal_device']['searchcol']=array('classcategory_id1[]');
 
         $this->arrSearchFilter['filterVal_lntype'] = 
                     array('type'=>'options'
                             ,'value'=>array('すべて','WiMAX','LTE/4G')
                             ,'search'=>array(-1,array('WiMAX'),array('LTE','4G'))
+                            ,'searchcol'=>array('lntype[]')
                             );
-var_dump($this->arrMaker);
         $value=array();
         $search=array();
         if(count($this->arrMaker)>0){
-            $value[]='すべて';
-            $search[]=-1;
+            //$value[]='すべて';
+            //$search[]=-1;
             foreach($this->arrMaker as $k=>$v){
 
                 $value[]=$v['name'];
@@ -145,18 +147,30 @@ var_dump($this->arrMaker);
         }else{
             $this->arrSearchFilter['filterVal_maker'] = 
             array('type'=>'checkbox'
-                    ,'value'=>array('すべて')
+                    ,'value'=>array('対象がありません')
                     ,'search'=>array(-1)
                     );
 
         }
+        $this->arrSearchFilter['filterVal_maker']['searchcol']=array('maker_id[]');
 
 
         $this->arrSearchFilter['filterVal_cptype'] = 
                     array('type'=>'options'
                             ,'value'=>array('すべて','あり','なし')
                             ,'serach'=>array(-1,array(1,99999),array(0,0))
+                            ,'searchcol'=>array('cp_price_min','cp_price_max')
                             );
+
+        $this->arrSearchFilterMap = array(
+            'filter_datasize'=>'filterVal_datasize'
+            ,'filter_data_speed_down'=>'filterVal_dataspeed'
+            ,'filter_device_id'=>'filterVal_device'
+            ,'filter_lntype'=>'filterVal_lntype'
+            ,'filter_maker_id'=>'filterVal_maker'
+            ,'filter_cptype'=>'filterVal_cptype'
+            );
+
     }
 
     /**
@@ -296,11 +310,11 @@ var_dump($this->arrMaker);
         if($this->mode=="filter"){
             $this->tpl_filtermode = true;
         // 商品一覧データの取得
-            $arrSearchCondition = $this->lfGetSearchFilterCondition($this->arrSearchData);
+            $arrSearchCondition = $this->lfGetSearchFilterCondition($this->arrSearchFilterData);
             $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
             $this->arrProducts = $this->lfGetProductsList($arrSearchCondition
                                                             , $this->disp_number
-                                                            , 0, $objProduct);
+                                                            , 1, $objProduct);
 
 
 
@@ -455,10 +469,54 @@ var_dump($this->arrMaker);
         //フィルター設定を、通常条件パラメータの設定に変換。
 
 
+/*
+        foreach($this->arrSearchFilterData as $k=>$v){
+            $srchCond = $this->arrSearchFilter[$this->arrSearchFilterMap[$k]];
+
+
+        }
+*/
+        /*
+            'filter_lntype' => intval($this->arrForm['filter_lntype'])
+            ,'filter_datasize' => intval($this->arrForm['filter_datasize'])
+            ,'filter_data_speed_down' => intval($this->arrForm['filter_data_speed_down'])
+            ,'filter_maker_id' => $this->arrForm['filter_maker_id']
+            ,'filter_cptype' => intval($this->arrForm['filter_cptype'])
+            ,'filter_device_id' => $this->arrForm['filter_device_id']
+        */
+
+/*
+        //表示条件の取得
+        $arrSearchData = array(
+            'category_id' => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
+            'maker_id' => ($this->arrForm['maker_id']),
+            'name' => $this->arrForm['name'],
+            'keyword' => $this->arrForm['keyword'],
+            'product_status_id' => intval($this->arrForm['product_status_id']),
+            'y1_price_min' => intval($this->arrForm['y1_price_min']),
+            'y1_price_max' => intval($this->arrForm['y1_price_max'])
+            ,'total_price_min' => intval($this->arrForm['total_price_min'])
+            ,'total_price_max' => intval($this->arrForm['total_price_max'])
+            ,'cp_price_min' => intval($this->arrForm['cp_price_min'])
+            ,'cp_price_max' => intval($this->arrForm['cp_price_max'])
+            ,'datasize_min' => intval($this->arrForm['datasize_min'])
+            ,'datasize_max' => intval($this->arrForm['datasize_max'])
+            ,'data_speed_down_min' => intval($this->arrForm['data_speed_down_min'])
+            ,'data_speed_down_max' => intval($this->arrForm['data_speed_down_max'])
+            ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
+            ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
+            ,'product_code' => ($this->arrForm['product_code'])
+            ,'lntype' => ($this->arrForm['lntype'])
+            ,'cc_type' => ($this->arrForm['cc_type'])
+        );
+
+
+        $arrSearchCondition = $this->lfGetSearchCondition($arrSearchData);
+
             //実装中。
         //
-
-        $this->lfGetSearchCondition($arrSearchData);
+*/
+        return $arrSearchCondition;
     }
     /**
      * 検索条件のwhere文とかを取得

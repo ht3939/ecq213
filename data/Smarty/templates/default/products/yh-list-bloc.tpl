@@ -9,13 +9,13 @@
 					<div class="sort">
 						<form name="search_navi_top" id="search_navi_top" action="?">
 				          <input type="hidden" name="mode" value="filter" />
-						
+				          <input type="hidden" id="orderby" name="orderby" value="<!--{$orderby}-->" />
 						</form>
 
 						<!--{$smarty.capture.search_navi_body|smarty:nodefaults}-->
 						<ul class="sort-tabs tabs-top">
-							<li><a href="#tab0" <!--{if $tpl_orderby_y1price}-->class="selected"<!--{/if}-->>月額料金が安い順</a></li>
-							<li><a href="#tab1" <!--{if $tpl_orderby_totalprice}-->class="selected"<!--{/if}-->>2年総額が安い順</a></li>
+							<li id="y1price"><a href="#tab0" <!--{if $tpl_orderby_y1price}-->class="selected"<!--{/if}-->>月額料金が安い順</a></li>
+							<li id="totalprice"><a href="#tab1" <!--{if $tpl_orderby_totalprice}-->class="selected"<!--{/if}-->>2年総額が安い順</a></li>
 							<!--<li class="note-click">← タブをクリックで並び替え</li>-->
 						</ul>
 

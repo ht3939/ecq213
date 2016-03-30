@@ -185,7 +185,7 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         // 商品詳細を取得
         $this->arrProduct = $objProduct->getDetail($product_id);
-
+var_dump($this->arrProduct);
         // サブタイトルを取得
         $this->tpl_subtitle = $this->arrProduct['name'];
 

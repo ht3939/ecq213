@@ -18,15 +18,15 @@
                       <!--{/foreach}-->
                     </ul>
                   </div>
-                  <p class="name"><!--{$rP.name}--><span></p>                      
+                  <p class="name"><!--{$rP.name}--><span></p>
 
                   <dl class="price <!--{$rP.rank1_order|sfGetRankClass}-->">
                     <dt>月額料金</dt>
-                    <dd><!--{$rP.y1_price|number_format}--><span>円</span></dd>
+                    <dd><div class="inner"><!--{$rP.y1_price|number_format}--><span>円</span></div></dd>
                   </dl>
                   <dl class="price <!--{$rP.rank2_order|sfGetRankClass}-->">
                     <dt>総額料金</dt>
-                    <dd><!--{$rP.total_price|number_format}--><span>円</span></dd>
+                    <dd><div class="inner"><!--{$rP.total_price|number_format}--><span>円</span></div></dd>
                   </dl>
                   <div class="data">
                     <p>下り最大<br><span><!--{$rP.data_speed_down}-->Mbps</span></p>
