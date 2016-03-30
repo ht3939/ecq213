@@ -307,14 +307,21 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         // 画面に表示する検索条件を設定
         $this->arrSearch = $this->lfGetSearchConditionDisp($this->arrSearchData);
 
-        if($this->mode=="filter"){
-            $this->tpl_filtermode = true;
+
+        $this->tpl_filtermode = $this->mode=="filter";
+
+var_dump($this->mode);
+//var_dump($this->arrSearchData);
+var_dump($this->arrSearchFilterData);
+var_dump($this->arrSearchFilter);
+
+        if($this->tpl_filtermode){
         // 商品一覧データの取得
-            $arrSearchCondition = $this->lfGetSearchFilterCondition($this->arrSearchFilterData);
+            $arrSearchCondition = $this->lfGetSearchFilterCondition($this->arrSearchData);
             $this->tpl_linemax = $this->lfGetProductAllNum($arrSearchCondition);
             $this->arrProducts = $this->lfGetProductsList($arrSearchCondition
                                                             , $this->disp_number
-                                                            , 1, $objProduct);
+                                                            , 0, $objProduct);
 
 
 
@@ -334,6 +341,9 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             $this->arrProducts = $this->lfGetProductsList($arrSearchCondition, $this->disp_number, $this->objNavi->start_row, $objProduct);
 
         }
+        //unset($this->arrProducts['productStatus']);
+//var_dump($this->arrProducts);
+
         $this->arrClassCat1 = $objProduct->classCats1;
 
         $this->arrBestProducts = $this->lfGetRanking();
@@ -516,6 +526,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             //実装中。
         //
 */
+        $arrSearchCondition = $this->lfGetSearchCondition($arrSearchFilterData);
         return $arrSearchCondition;
     }
     /**
