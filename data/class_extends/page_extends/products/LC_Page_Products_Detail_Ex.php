@@ -272,6 +272,8 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
      */
     public function lfGetSearchCondition($arrSearchData)
     {
+        //おすすめ、別のプラン取得用。
+        //表示中のデータ除く。
         $searchCondition = array(
             'where'             => '1=1 and del_flg=0 and status=1 and product_id<>'.$this->arrProduct['product_id'],
             'arrval'            => array(),

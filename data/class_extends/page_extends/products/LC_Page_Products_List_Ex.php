@@ -460,7 +460,6 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
                 $tmp .= 'alldtl.maker_id = 0';
                 unset($kv);
                 $searchCondition['where']   .= ' AND ('. $tmp .')';
-                $searchCondition['arrval'][] = $arrSearchData['maker_id'];
 
             }else
             {
@@ -494,111 +493,45 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         foreach($this->arrSearchFilterData as $k=>$v){
             $srchCond = $this->arrSearchFilter[$this->arrSearchFilterMap[$k]];
 
-//var_dump("a<br>");
-//var_dump("a<br>");
-//var_dump("a<br>");
-//var_dump($k);
-//var_dump($v);
-//var_dump("a<br>");
-//var_dump("a<br>");
-//var_dump("a<br>");
+            //var_dump("a<br>");
+            //var_dump("a<br>");
+            //var_dump("a<br>");
+            //var_dump($k);
+            //var_dump($v);
+            //var_dump("a<br>");
+            //var_dump("a<br>");
+            //var_dump("a<br>");
 
-//echo $srchCond['search'][$v][0].'<br>';
-//echo $srchCond['searchcol'][0].'<br>';
-if($srchCond['searchtype']=='chk-array'){
-    foreach($v as $idx){
-        $sdd[$srchCond['searchcol'][0]][]=$srchCond['search'][$idx];
-    }
-}elseif($srchCond['searchtype']=='opt-range'){
-    foreach($srchCond['searchcol'] as $sck=>$scv){
-        $sdd[$scv]=$srchCond['search'][$v][$sck];
-    }
+            //echo $srchCond['search'][$v][0].'<br>';
+            //echo $srchCond['searchcol'][0].'<br>';
+            if($srchCond['searchtype']=='chk-array'){
+                foreach($v as $idx){
+                    $sdd[$srchCond['searchcol'][0]][]=$srchCond['search'][$idx];
+                }
+            }elseif($srchCond['searchtype']=='opt-range'){
+                foreach($srchCond['searchcol'] as $sck=>$scv){
+                    $sdd[$scv]=$srchCond['search'][$v][$sck];
+                }
 
-}else{
-    foreach($srchCond['searchcol'] as $sck=>$scv){
-        if(count($srchCond['search'][$v])>1){
-            $sdd[$scv]=$srchCond['search'][$v];
+            }else{
+                foreach($srchCond['searchcol'] as $sck=>$scv){
+                    if(count($srchCond['search'][$v])>1){
+                        $sdd[$scv]=$srchCond['search'][$v];
 
-        }else{
-            $sdd[$scv]=$srchCond['search'][$v][$sck];
+                    }else{
+                        $sdd[$scv]=$srchCond['search'][$v][$sck];
+
+                    }
+
+                }
+
+            }
+
 
         }
 
-    }
-
-}
-
-
-        }
-//var_dump($sdd);
-
-        /*
-
-
-        $arrSearchData = array(
-            'maker_id' => ($this->arrForm['maker_id']),
-            'name' => $this->arrForm['name'],
-            'keyword' => $this->arrForm['keyword'],
-            'product_status_id' => intval($this->arrForm['product_status_id']),
-            'y1_price_min' => intval($this->arrForm['y1_price_min']),
-            'y1_price_max' => intval($this->arrForm['y1_price_max'])
-            ,'total_price_min' => intval($this->arrForm['total_price_min'])
-            ,'total_price_max' => intval($this->arrForm['total_price_max'])
-            ,'cp_price_min' => intval($this->arrForm['cp_price_min'])
-            ,'cp_price_max' => intval($this->arrForm['cp_price_max'])
-            ,'datasize_min' => intval($this->arrForm['datasize_min'])
-            ,'datasize_max' => intval($this->arrForm['datasize_max'])
-            ,'data_speed_down_min' => intval($this->arrForm['data_speed_down_min'])
-            ,'data_speed_down_max' => intval($this->arrForm['data_speed_down_max'])
-            ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
-            ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
-            ,'product_code' => ($this->arrForm['product_code'])
-            ,'lntype' => ($this->arrForm['lntype'])
-            ,'cc_type' => ($this->arrForm['cc_type'])
-        );
-
-
-            'filter_lntype' => intval($this->arrForm['filter_lntype'])
-            ,'filter_datasize' => intval($this->arrForm['filter_datasize'])
-            ,'filter_data_speed_down' => intval($this->arrForm['filter_data_speed_down'])
-            ,'filter_maker_id' => $this->arrForm['filter_maker_id']
-            ,'filter_cptype' => intval($this->arrForm['filter_cptype'])
-            ,'filter_device_id' => $this->arrForm['filter_device_id']
-        */
-
-/*
-        //表示条件の取得
-        $arrSearchData = array(
-            'category_id' => $this->lfGetCategoryId(intval($this->arrForm['category_id'])),
-            'maker_id' => ($this->arrForm['maker_id']),
-            'name' => $this->arrForm['name'],
-            'keyword' => $this->arrForm['keyword'],
-            'product_status_id' => intval($this->arrForm['product_status_id']),
-            'y1_price_min' => intval($this->arrForm['y1_price_min']),
-            'y1_price_max' => intval($this->arrForm['y1_price_max'])
-            ,'total_price_min' => intval($this->arrForm['total_price_min'])
-            ,'total_price_max' => intval($this->arrForm['total_price_max'])
-            ,'cp_price_min' => intval($this->arrForm['cp_price_min'])
-            ,'cp_price_max' => intval($this->arrForm['cp_price_max'])
-            ,'datasize_min' => intval($this->arrForm['datasize_min'])
-            ,'datasize_max' => intval($this->arrForm['datasize_max'])
-            ,'data_speed_down_min' => intval($this->arrForm['data_speed_down_min'])
-            ,'data_speed_down_max' => intval($this->arrForm['data_speed_down_max'])
-            ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
-            ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
-            ,'product_code' => ($this->arrForm['product_code'])
-            ,'lntype' => ($this->arrForm['lntype'])
-            ,'cc_type' => ($this->arrForm['cc_type'])
-        );
-
-
-        $arrSearchCondition = $this->lfGetSearchCondition($arrSearchData);
-
-            //実装中。
-        //
-*/
         $arrSearchCondition = $this->lfGetSearchCondition($sdd);
-//var_dump($arrSearchCondition);
+var_dump(json_encode($arrSearchCondition));
         return $arrSearchCondition;
     }
     /**
@@ -674,7 +607,6 @@ if($srchCond['searchtype']=='chk-array'){
                 $tmp .= 'dtb_classcategory.classcategory_id=0';
                 unset($kv);
                 $tmpWhere   .= ' AND ('. $tmp .')';
-                $searchCondition['arrval'][] = $arrSearchData[$condkey];
 
             }else
             {
@@ -727,13 +659,12 @@ if($srchCond['searchtype']=='chk-array'){
                 $tmp = '';
                 foreach($arrSearchData[$condkey] as $kv){
                     $tmp .= 'alldtl.lntype ILIKE ? or ';
-                    $searchCondition['arrval'][] = '%$kv%';
+                    $searchCondition['arrval'][] = "%$kv%";
 
                 }
-                $tmp .= 'alldtl.lntype = 0';
+                $tmp .= "alldtl.lntype = 'dmy'";
                 unset($kv);
                 $searchCondition['where']   .= ' AND ('. $tmp .')';
-                $searchCondition['arrval'][] = $arrSearchData[$condkey];
 
             }else
             {
@@ -759,7 +690,6 @@ if($srchCond['searchtype']=='chk-array'){
                 $tmp .= 'dtb_classcategory.cc_type=0';
                 unset($kv);
                 $tmpWhere   .= ' AND ('. $tmp .')';
-                $searchCondition['arrval'][] = $arrSearchData[$condkey];
 
             }else
             {
