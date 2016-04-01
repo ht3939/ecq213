@@ -531,7 +531,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         }
 
         $arrSearchCondition = $this->lfGetSearchCondition($sdd);
-var_dump(json_encode($arrSearchCondition));
+//var_dump(json_encode($arrSearchCondition));
         return $arrSearchCondition;
     }
     /**
