@@ -529,9 +529,10 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
 
 
         }
+var_dump(json_encode($sdd));
 
         $arrSearchCondition = $this->lfGetSearchCondition($sdd);
-//var_dump(json_encode($arrSearchCondition));
+var_dump(json_encode($arrSearchCondition));
         return $arrSearchCondition;
     }
     /**
@@ -732,12 +733,12 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         // CP金宅
         $tmpWhere = '';
         // 下限
-        if ($arrSearchData['cp_price_min'] > 0) {
+        if (strlen($arrSearchData['cp_price_min']) > 0) {
             $tmpWhere .= " AND alldtl.cp_price >= ? ";
             $searchCondition['arrval'][] = $arrSearchData['cp_price_min'];
         }
         // 上限
-        if ($arrSearchData['cp_price_max'] > 0) {
+        if (strlen($arrSearchData['cp_price_max']) > 0) {
             $tmpWhere .= " AND alldtl.cp_price <= ? ";
             $searchCondition['arrval'][] = $arrSearchData['cp_price_max'];
         }
