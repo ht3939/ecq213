@@ -529,10 +529,10 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
 
 
         }
-var_dump(json_encode($sdd));
+//var_dump(json_encode($sdd));
 
         $arrSearchCondition = $this->lfGetSearchCondition($sdd);
-var_dump(json_encode($arrSearchCondition));
+//var_dump(json_encode($arrSearchCondition));
         return $arrSearchCondition;
     }
     /**
