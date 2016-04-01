@@ -32,7 +32,7 @@
             <tbody>
                 <tr>
                     <th>月間データ量
-                        <div class="clear-sort" ><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort" >解除</div>
                         <select name="filter_datasize" id="filter_datasize" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_datasize>0}-->
@@ -51,7 +51,7 @@
                     </th>
 
                     <th>下り最大速度
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort">解除</div>
                         <select name="filter_data_speed_down" id="filter_data_speed_down" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_data_speed_down>0}-->
@@ -76,7 +76,7 @@
                                 <!--{else}-->
                                     <!--{assign var=sel  value=array(-1)}-->
                                 <!--{/if}-->
- 
+<!--{*
                             <!--{foreach from=$sel item=sv key=sk}-->
 
                                     <!--{$sv}-->::<!--{$sk}--><br>
@@ -85,7 +85,8 @@
                             <!--{foreach from=$arrSearchFilter.filterVal_device.value item=v key=k}-->
                                     <!--{$v}-->::<!--{$k}--><br>
                             <!--{/foreach}-->
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+*}-->
+                        <div class="clear-sort">解除</div>
                         <select name="filter_device_id" id="filter_device_id" multiple="multiple">
 
                             <!--{if $tpl_filtermode}-->
@@ -114,7 +115,7 @@
                 </tr>
                 <tr>
                     <th>回線タイプ
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort">解除</div>
                         <select name="filter_lntype" id="filter_lntype" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_lntype>0}-->
@@ -138,7 +139,7 @@
                                 <!--{else}-->
                                     <!--{assign var=sel  value=array(-1)}-->
                                 <!--{/if}-->
- 
+<!--{*
                             <!--{foreach from=$sel item=sv key=sk}-->
 
                                     <!--{$sv}-->::<!--{$sk}--><br>
@@ -147,8 +148,9 @@
                             <!--{foreach from=$arrSearchFilter.filterVal_maker.value item=v key=k}-->
                                     <!--{$v}-->::<!--{$k}--><br>
                             <!--{/foreach}-->
+    *}-->
 
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort">解除</div>
                         <select name="filter_maker_id" id="filter_maker_id" multiple="multiple">
 
 
@@ -178,7 +180,7 @@
                     </th>
 
                     <th>割引・キャッシュバック
-                        <div class="clear-sort"><img src="<!--{$filterreset}-->" alt="この条件を解除する"></div>
+                        <div class="clear-sort">解除</div>
                         <select name="filter_cptype" id="filter_cptype" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
                                 <!--{if $arrSearchFilterData.filter_cptype>0}-->
@@ -198,6 +200,6 @@
                 </tr>
             </tbody>
         </table>
-        <p class="arrow-down"><img src="<!--{$TPL_URLPATH}-->/img/index/icon-arrow-down.png"></p>
+        <p class="arrow-down">この条件で並び替え</p>
     </div>
 <!--{/strip}-->

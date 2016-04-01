@@ -29,6 +29,49 @@
         eccube.setClassCategories($form, product_id, $sele1, $sele2, classcat_id2_selected);
     }
 //]]></script>
+<div class="top-data">
+  <div class="inner">
+    <div class="sns-list">
+      <ul class="">
+
+        <li>
+          <!-- Twitter -->
+          <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+          <script>
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </li>
+
+        <li>
+          <!-- Facebook -->
+          <div class="fb-like" data-href="" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+          <div id="fb-root"></div>
+          <script>
+          (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+          </script>
+        </li>
+
+        <li>
+          <!-- Google plus -->
+          <div class="g-plusone" data-size="medium"></div>
+          <script type="text/javascript">
+              window.___gcfg = {lang: 'ja'};
+              (function() {
+                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                  po.src = 'https://apis.google.com/js/plusone.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+          </script>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class="row-container is-reverse">
 
   <form name="form1" id="form1" method="get" action="?">
@@ -41,7 +84,6 @@
         <!--{include file=products/detail-yh-sec-mainsub.tpl}-->
         <!--{**}-->
         <!--{include file=frontparts/bloc/yh-detail-other-plan.tpl}-->
-        <!--{include file=frontparts/bloc/yh-detail-note.tpl}-->
         <!--{include file=frontparts/bloc/yh-detail-recommend.tpl}-->
         <!--{include file=frontparts/bloc/yh-detail-note.tpl}-->
         <!--{include file=frontparts/bloc/yh-footer-link.tpl}-->
@@ -123,12 +165,17 @@ var radarChartData = {
    });
 });
 //タブ
-$('.js-device-tab').children().click(function(){
-  $(this).parent().children().removeClass('active');
-  $(this).addClass('active');
-  $('.js-device-content').children().removeClass('active');
-  $('.js-device-content').children().eq($(this).index()).addClass('active');
-});
+if($('.js-device-tab').find('td').length > 1){
+  $('.js-device-tab').find('td').click(function(){
+    $(this).closest('.js-device-tab').find('td').removeClass('active');
+    $(this).addClass('active');
+    $('.js-device-content').children().removeClass('active');
+    $('.js-device-content').children().eq($(this).index()).addClass('active');
+  });
+}else{
+  $('.js-device-tab').hide();
+  $('.row-container .device-content').css({marginBottom:"40px"});
+}
 //aタグ 全体リンク
 $(".js-all-link").click(function(){
   location.href = $(this).find('.js-link-btn').attr("href");

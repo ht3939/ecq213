@@ -185,7 +185,7 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
 
         // 商品詳細を取得
         $this->arrProduct = $objProduct->getDetail($product_id);
-var_dump($this->arrProduct);
+//var_dump($this->arrProduct);
         // サブタイトルを取得
         $this->tpl_subtitle = $this->arrProduct['name'];
 
@@ -242,7 +242,7 @@ var_dump($this->arrProduct);
         $arrSearch = array("maker_id"=>$this->arrProduct['maker_id']);
         $arrCond = $this->lfGetSearchCondition($arrSearch);
         //var_dump($arrCond);
-        $ret['dat'] = $this->lfGetProductsList($arrCond,10,0,$objProduct);
+        $ret['dat'] = $this->lfGetProductsList($arrCond,3,0,$objProduct);
         unset($ret['dat']['productStatus']);
         $ret['arrCC'] = $objProduct->classCats1;
         return $ret;
@@ -259,7 +259,7 @@ var_dump($this->arrProduct);
 
         $arrSearch = array("category_id"=>"0");
         $arrCond = $this->lfGetSearchCondition($arrSearch);
-        $ret['dat'] = $this->lfGetProductsList($arrCond,10,0,$objProduct);
+        $ret['dat'] = $this->lfGetProductsList($arrCond,3,0,$objProduct);
         unset($ret['dat']['productStatus']);
         $ret['arrCC'] = $objProduct->classCats1;
         return $ret;
@@ -273,7 +273,7 @@ var_dump($this->arrProduct);
     public function lfGetSearchCondition($arrSearchData)
     {
         $searchCondition = array(
-            'where'             => '1=1 and del_flg=0',
+            'where'             => '1=1 and del_flg=0 and status=1 and product_id<>'.$this->arrProduct['product_id'],
             'arrval'            => array(),
             'where_category'    => '',
             'arrvalCategory'    => array()

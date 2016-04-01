@@ -6,7 +6,45 @@
 <div class="top-data">
   <div class="inner">
     <div class="update-date"><p>ランキング最終更新日：2016年03月01日</p></div>
-    <div class="sns-list"></div>
+    <div class="sns-list">
+      <ul class="">
+
+        <li>
+          <!-- Twitter -->
+          <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+          <script>
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </li>
+
+        <li>
+          <!-- Facebook -->
+          <div class="fb-like" data-href="" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+          <div id="fb-root"></div>
+          <script>
+          (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+          </script>
+        </li>
+
+        <li>
+          <!-- Google plus -->
+          <div class="g-plusone" data-size="medium"></div>
+          <script type="text/javascript">
+              window.___gcfg = {lang: 'ja'};
+              (function() {
+                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                  po.src = 'https://apis.google.com/js/plusone.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+          </script>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -54,7 +92,7 @@
 	        <input type="hidden" name="disp_number" value="<!--{$disp_number|h}-->" />
 	        <!--{* ▲ページナビ関連 *}-->
 	        <input type="hidden" name="rnd" value="<!--{$tpl_rnd|h}-->" />
-	    </form>	
+	    </form>
 
       <form name="form_filter" id="form_filter" method="get" action="?">
           <!--{* ▼検索条件 *}-->
@@ -75,7 +113,7 @@
           <!--{/if}-->
           <!--{if $arrSearchFilterData.filter_cptype > 0}-->
               <input type="hidden" name="filter_cptype" value="<!--{$arrSearchFilterData.filter_cptype|h}-->" />
-          <!--{/if}-->          
+          <!--{/if}-->
           <!--{if $arrSearchFilterData.filter_datasize > 0}-->
               <input type="hidden" name="filter_datasize" value="<!--{$arrSearchFilterData.filter_datasize|h}-->" />
           <!--{/if}-->
@@ -85,7 +123,7 @@
 
 
 
-      </form> 
+      </form>
 		<main>
 
 
@@ -120,20 +158,22 @@
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
 <script>
 //対応端末スライダー
-(function BXSLIDER(){
-  $('.bxslider').bxSlider({
-    pager: false,
-    prevText: '',
-    nextText: '',
-    slideWidth:233,
-    auto: true,
-    onSliderLoad:function(currentIndex){
-      $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
-        e.stopPropagation();
-      });
-    }
-  });
-})();
+if($('.bxslider').length > 1){
+  (function BXSLIDER(){
+    $('.bxslider').bxSlider({
+      pager: false,
+      prevText: '',
+      nextText: '',
+      slideWidth:233,
+      auto: true,
+      onSliderLoad:function(currentIndex){
+        $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
+          e.stopPropagation();
+        });
+      }
+    });
+  })();
+}
 
 //今週の総合TOPスライダー
 (function TOPBXSLIDER(){
@@ -228,14 +268,6 @@ $('#filter_maker_id').multipleSelect(
   ,placeholder  :'選択してください'
   ,theme:'bubble'
 });
-
-//ゴミ箱アイコンhover時
-$('.clear-sort img').hover(function(){
-  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset_on.png");
-},function(){
-  $(this).attr("src","<!--{$TPL_URLPATH}-->/img/index/icon-filter-reset.png");
-});
-
 
 
 //IE8 グラフ非表示---------------------------------------

@@ -165,6 +165,12 @@
                 <!--{$arrForm.main_comment|nl2br_html}-->
             </td>
         </tr>
+        <tr>
+            <th>詳細注釈 詳細-サブコメント(1)</th>
+            <td>
+                <!--{$arrForm.sub_comment1|nl2br_html}-->
+            </td>
+        </tr>
 
 
 

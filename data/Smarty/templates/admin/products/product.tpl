@@ -190,11 +190,10 @@
         </tr>        
 
         <tr>
-            <th>回線タイプ<span class="attention">(タグ許可)</span></th>
-            <!--{assign var=key value="lntype"}-->
+            <th>回線タイプ</th>
             <td>
-                <span class="attention"><!--{$arrErr[$key]}--></span>
-                <input type="text" name="<!--{$key}-->" size="60" class="box60" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></input><br />
+                <span class="attention"><!--{$arrErr.lntype}--></span>
+                <input type="text" name="lntype" value="<!--{$arrForm.lntype|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{if $arrErr.lntype != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->" size="60" class="box60" />
                 <span class="attention"> (上限<!--{$smarty.const.STEXT_LEN}-->文字)</span>
             </td>
         </tr>
@@ -285,10 +284,10 @@
         </tr>
         <tr>
             <th>詳細注釈 詳細-サブコメント(1)<span class="attention">(タグ許可)</span></th>
-            <!--{assign var=key value="sub_comment`$smarty.section.cnt.iteration`"}-->
+            <!--{assign var=key value="sub_comment1"}-->
             <td>
                 <span class="attention"><!--{$arrErr[$key]}--></span>
-                <textarea name="sub_comment<!--{$smarty.section.cnt.iteration}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
+                <textarea name="sub_comment1" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
                 <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
             </td>
         </tr>

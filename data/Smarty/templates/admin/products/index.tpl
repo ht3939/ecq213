@@ -328,7 +328,7 @@ function lfnDispChange(){
                                 </div>
                             </td>
                             <td class="right">
-                                <!--{$arrProducts[cnt].data_speed_up|n2s}-->
+                                <!--{$arrProducts[cnt].data_speed_up|h}-->
                             </td>
 
                         </tr>
@@ -339,7 +339,7 @@ function lfnDispChange(){
                             </td>
                             <td>-</td>
                             <td class="right">
-                                <!--{$arrProducts[cnt].data_speed_down|n2s}-->
+                                <!--{$arrProducts[cnt].data_speed_down|h}-->
                             </td>
 
                         </tr>

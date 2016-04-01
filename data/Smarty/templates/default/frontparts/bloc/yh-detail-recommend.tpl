@@ -22,11 +22,11 @@
 
                   <dl class="price <!--{$rP.rank1_order|sfGetRankClass}-->">
                     <dt>月額料金</dt>
-                    <dd><div class="inner"><!--{$rP.y1_price|number_format}--><span>円</span></div></dd>
+                    <dd><div class="inner"><!--{$rP.y1_price|number_format}--><span>円</span><!--{if $rP.rank1_order>3}--><span class="rank-tag"><!--{$rP.rank1_order}-->位</span><!--{/if}--></div></dd>
                   </dl>
                   <dl class="price <!--{$rP.rank2_order|sfGetRankClass}-->">
                     <dt>総額料金</dt>
-                    <dd><div class="inner"><!--{$rP.total_price|number_format}--><span>円</span></div></dd>
+                    <dd><div class="inner"><!--{$rP.total_price|number_format}--><span>円</span><!--{if $rP.rank2_order>3}--><span class="rank-tag"><!--{$rP.rank2_order}-->位</span><!--{/if}--></div></dd>
                   </dl>
                   <div class="data">
                     <p>下り最大<br><span><!--{$rP.data_speed_down}-->Mbps</span></p>

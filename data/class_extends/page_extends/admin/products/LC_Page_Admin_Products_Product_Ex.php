@@ -65,8 +65,8 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
     public function lfInitFormParam(&$objFormParam, $arrPost)
     {
 
-        $objFormParam->addParam('転送速度（下り）', 'data_speed_down', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
-        $objFormParam->addParam('転送速度（上り）', 'data_speed_up', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('転送速度（下り）', 'data_speed_down', PRICE_LEN, 'n', array('NUM_POINT_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
+        $objFormParam->addParam('転送速度（上り）', 'data_speed_up', PRICE_LEN, 'n', array('NUM_POINT_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('データ容量', 'datasize', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('初期費用', 'init_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('月額１年目', 'y1_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
@@ -74,7 +74,7 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
         $objFormParam->addParam('CP金額', 'cp_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('調整金額', 'adj_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('２年総額', 'total_price', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
-        $objFormParam->addParam('回線タイプ', 'lntype', STEXT_LEN, 'n', array( 'MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('回線タイプ', 'lntype', STEXT_LEN, 'KVa', array( 'MAX_LENGTH_CHECK'));
 
         $objFormParam->addParam('評価項目1(月額)', 'rank1_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('評価項目2()', 'rank2_order', PRICE_LEN, 'n', array('NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));

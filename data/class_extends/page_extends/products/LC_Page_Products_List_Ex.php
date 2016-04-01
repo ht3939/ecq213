@@ -87,13 +87,15 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $this->arrSearchFilter['filterVal_datasize'] = 
                     array('type'=>'options'
                             ,'value'=>array('すべて','５Ｇ未満','５Ｇ～８Ｇ未満','８Ｇ以上')
+                            ,'searchtype'=>'opt-range'
                             ,'search'=>array(-1,array(0,4.9),array(5,7.9),array(8,999))
                             ,'searchcol'=>array('datasize_min','datasize_max')
                             );
 
         $this->arrSearchFilter['filterVal_dataspeed'] = 
                     array('type'=>'options'
-                            ,'value'=>array('すべて','50','100','200')
+                            ,'value'=>array('すべて','50Mbps未満','50-100Mbps未満','100-200Mbps未満','200Mbps以上')
+                            ,'searchtype'=>'opt-range'
                             ,'search'=>array(-1,array(0,49.9),array(50.0,99.9),array(100.0,199.9),array(200.0,999.9))
                             ,'searchcol'=>array('data_speed_down_min','data_speed_down_max')
                             );
@@ -109,24 +111,27 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             $this->arrSearchFilter['filterVal_device'] = 
             array('type'=>'checkbox'
                     ,'value'=>$value
+                    ,'searchtype'=>'chk-array'
                     ,'search'=>$search
                     );
 
         }else{
             $this->arrSearchFilter['filterVal_device'] = 
             array('type'=>'checkbox'
+                    ,'searchtype'=>'chk-array'
                     ,'value'=>array('対象がありません')
                     ,'search'=>array(-1)
                     );
 
         }
-        $this->arrSearchFilter['filterVal_device']['searchcol']=array('classcategory_id1[]');
+        $this->arrSearchFilter['filterVal_device']['searchcol']=array('classcategory_id1');
 
         $this->arrSearchFilter['filterVal_lntype'] = 
                     array('type'=>'options'
                             ,'value'=>array('すべて','WiMAX','LTE/4G')
+                            ,'searchtype'=>'opt-target'
                             ,'search'=>array(-1,array('WiMAX'),array('LTE','4G'))
-                            ,'searchcol'=>array('lntype[]')
+                            ,'searchcol'=>array('lntype')
                             );
         $value=array();
         $search=array();
@@ -141,6 +146,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             $this->arrSearchFilter['filterVal_maker'] = 
             array('type'=>'checkbox'
                     ,'value'=>$value
+                    ,'searchtype'=>'chk-array'
                     ,'search'=>$search
                     );
 
@@ -148,17 +154,19 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
             $this->arrSearchFilter['filterVal_maker'] = 
             array('type'=>'checkbox'
                     ,'value'=>array('対象がありません')
+                    ,'searchtype'=>'chk-array'
                     ,'search'=>array(-1)
                     );
 
         }
-        $this->arrSearchFilter['filterVal_maker']['searchcol']=array('maker_id[]');
+        $this->arrSearchFilter['filterVal_maker']['searchcol']=array('maker_id');
 
 
         $this->arrSearchFilter['filterVal_cptype'] = 
                     array('type'=>'options'
                             ,'value'=>array('すべて','あり','なし')
-                            ,'serach'=>array(-1,array(1,99999),array(0,0))
+                            ,'searchtype'=>'opt-range'
+                            ,'search'=>array(-1,array(1,99999),array(0,0))
                             ,'searchcol'=>array('cp_price_min','cp_price_max')
                             );
 
@@ -310,10 +318,10 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
 
         $this->tpl_filtermode = $this->mode=="filter";
 
-var_dump($this->mode);
+//var_dump($this->mode);
 //var_dump($this->arrSearchData);
-var_dump($this->arrSearchFilterData);
-var_dump($this->arrSearchFilter);
+//var_dump($this->arrSearchFilterData);
+//var_dump($this->arrSearchFilter);
 
         if($this->tpl_filtermode){
         // 商品一覧データの取得
@@ -323,6 +331,7 @@ var_dump($this->arrSearchFilter);
                                                             , $this->disp_number
                                                             , 0, $objProduct);
 
+            $this->tpl_datanum = count($this->arrProducts)-1;
 
 
         }else{
@@ -339,6 +348,8 @@ var_dump($this->arrSearchFilter);
             }
             $this->objNavi = new SC_PageNavi_Ex($this->tpl_pageno, $this->tpl_linemax, $this->disp_number, 'eccube.movePage', NAVI_PMAX, $urlParam, SC_Display_Ex::detectDevice() !== DEVICE_TYPE_MOBILE);
             $this->arrProducts = $this->lfGetProductsList($arrSearchCondition, $this->disp_number, $this->objNavi->start_row, $objProduct);
+
+            $this->tpl_datanum = count($this->arrProducts)-1;
 
         }
         //unset($this->arrProducts['productStatus']);
@@ -479,14 +490,74 @@ var_dump($this->arrSearchFilter);
         //フィルター設定を、通常条件パラメータの設定に変換。
 
 
-/*
+
         foreach($this->arrSearchFilterData as $k=>$v){
             $srchCond = $this->arrSearchFilter[$this->arrSearchFilterMap[$k]];
 
+//var_dump("a<br>");
+//var_dump("a<br>");
+//var_dump("a<br>");
+//var_dump($k);
+//var_dump($v);
+//var_dump("a<br>");
+//var_dump("a<br>");
+//var_dump("a<br>");
+
+//echo $srchCond['search'][$v][0].'<br>';
+//echo $srchCond['searchcol'][0].'<br>';
+if($srchCond['searchtype']=='chk-array'){
+    foreach($v as $idx){
+        $sdd[$srchCond['searchcol'][0]][]=$srchCond['search'][$idx];
+    }
+}elseif($srchCond['searchtype']=='opt-range'){
+    foreach($srchCond['searchcol'] as $sck=>$scv){
+        $sdd[$scv]=$srchCond['search'][$v][$sck];
+    }
+
+}else{
+    foreach($srchCond['searchcol'] as $sck=>$scv){
+        if(count($srchCond['search'][$v])>1){
+            $sdd[$scv]=$srchCond['search'][$v];
+
+        }else{
+            $sdd[$scv]=$srchCond['search'][$v][$sck];
 
         }
-*/
+
+    }
+
+}
+
+
+        }
+//var_dump($sdd);
+
         /*
+
+
+        $arrSearchData = array(
+            'maker_id' => ($this->arrForm['maker_id']),
+            'name' => $this->arrForm['name'],
+            'keyword' => $this->arrForm['keyword'],
+            'product_status_id' => intval($this->arrForm['product_status_id']),
+            'y1_price_min' => intval($this->arrForm['y1_price_min']),
+            'y1_price_max' => intval($this->arrForm['y1_price_max'])
+            ,'total_price_min' => intval($this->arrForm['total_price_min'])
+            ,'total_price_max' => intval($this->arrForm['total_price_max'])
+            ,'cp_price_min' => intval($this->arrForm['cp_price_min'])
+            ,'cp_price_max' => intval($this->arrForm['cp_price_max'])
+            ,'datasize_min' => intval($this->arrForm['datasize_min'])
+            ,'datasize_max' => intval($this->arrForm['datasize_max'])
+            ,'data_speed_down_min' => intval($this->arrForm['data_speed_down_min'])
+            ,'data_speed_down_max' => intval($this->arrForm['data_speed_down_max'])
+            ,'classcategory_id1' => intval($this->arrForm['classcategory_id1'])
+            ,'classcategory_id2' => intval($this->arrForm['classcategory_id2'])
+            ,'product_code' => ($this->arrForm['product_code'])
+            ,'lntype' => ($this->arrForm['lntype'])
+            ,'cc_type' => ($this->arrForm['cc_type'])
+        );
+
+
             'filter_lntype' => intval($this->arrForm['filter_lntype'])
             ,'filter_datasize' => intval($this->arrForm['filter_datasize'])
             ,'filter_data_speed_down' => intval($this->arrForm['filter_data_speed_down'])
@@ -526,7 +597,8 @@ var_dump($this->arrSearchFilter);
             //実装中。
         //
 */
-        $arrSearchCondition = $this->lfGetSearchCondition($arrSearchFilterData);
+        $arrSearchCondition = $this->lfGetSearchCondition($sdd);
+//var_dump($arrSearchCondition);
         return $arrSearchCondition;
     }
     /**
@@ -563,7 +635,7 @@ var_dump($this->arrSearchFilter);
                 $searchCondition['arrval'][] = "%$val%";
             }
         }
-
+        /*
         $tmpWhere = '';
         // 規格1
         if ($arrSearchData['classcategory_id1'] > 0) {
@@ -585,6 +657,47 @@ var_dump($this->arrSearchFilter);
                     . 'GROUP BY product_id'
                     . ')';
         }
+        */
+        // 規格1
+        $tmpWhere = '';
+        $condkey ='classcategory_id1';
+        // WHERE文字列取得
+        if ($arrSearchData[$condkey]) {
+            
+            if(is_array($arrSearchData[$condkey])){
+                $tmp = '';
+                foreach($arrSearchData[$condkey] as $kv){
+                    $tmp .= 'dtb_classcategory.classcategory_id = ? or ';
+                    $searchCondition['arrval'][] = intval($kv);
+
+                }
+                $tmp .= 'dtb_classcategory.classcategory_id=0';
+                unset($kv);
+                $tmpWhere   .= ' AND ('. $tmp .')';
+                $searchCondition['arrval'][] = $arrSearchData[$condkey];
+
+            }else
+            {
+                // 
+                if (strlen($arrSearchData[$condkey]) > 0) {
+                    $tmpWhere .= " AND dtb_classcategory.classcategory_id = ? ";
+                    $searchCondition['arrval'][] = $arrSearchData[$condkey];
+                }
+
+            }
+
+            if (strlen($tmpWhere) > 0) {
+                $searchCondition['where'] .= ' AND alldtl.product_id IN ('
+                        . 'SELECT product_id FROM dtb_products_class inner join dtb_classcategory'
+                        . ' on dtb_products_class.classcategory_id1 = dtb_classcategory.classcategory_id '
+                        . 'WHERE dtb_products_class.product_id = alldtl.product_id AND dtb_products_class.del_flg = 0 '
+                        . $tmpWhere
+                        . 'GROUP BY product_id'
+                        . ')';
+            }
+
+        }
+
 
         // 商品コード帯
         $tmpWhere = '';
@@ -603,6 +716,33 @@ var_dump($this->arrSearchFilter);
                     . ')';
         }
 
+        // 回線タイプ/プラン
+        $tmpWhere = '';
+        $condkey ='lntype';
+
+        // メーカーらのWHERE文字列取得
+        if ($arrSearchData[$condkey]) {
+            
+            if(is_array($arrSearchData[$condkey])){
+                $tmp = '';
+                foreach($arrSearchData[$condkey] as $kv){
+                    $tmp .= 'alldtl.lntype ILIKE ? or ';
+                    $searchCondition['arrval'][] = '%$kv%';
+
+                }
+                $tmp .= 'alldtl.lntype = 0';
+                unset($kv);
+                $searchCondition['where']   .= ' AND ('. $tmp .')';
+                $searchCondition['arrval'][] = $arrSearchData[$condkey];
+
+            }else
+            {
+                $searchCondition['where']   .= ' AND alldtl.lntype ILIKE ? ';
+                $searchCondition['arrval'][] = '%'.$arrSearchData[$condkey].'%';
+
+            }
+
+        }
         // 回線タイプ
         $tmpWhere = '';
         $condkey ='cc_type';
@@ -612,20 +752,20 @@ var_dump($this->arrSearchFilter);
             if(is_array($arrSearchData[$condkey])){
                 $tmp = '';
                 foreach($arrSearchData[$condkey] as $kv){
-                    $tmp .= 'dtb_classcategory.$condkey = ? or ';
+                    $tmp .= 'dtb_classcategory.cc_type = ? or ';
                     $searchCondition['arrval'][] = intval($kv);
 
                 }
-                $tmp .= 'dtb_classcategory.$condkey=0';
+                $tmp .= 'dtb_classcategory.cc_type=0';
                 unset($kv);
-                $searchCondition['where']   .= ' AND ('. $tmp .')';
+                $tmpWhere   .= ' AND ('. $tmp .')';
                 $searchCondition['arrval'][] = $arrSearchData[$condkey];
 
             }else
             {
                 // 
                 if (strlen($arrSearchData[$condkey]) > 0) {
-                    $tmpWhere .= " AND dtb_classcategory.$condkey = ? ";
+                    $tmpWhere .= " AND dtb_classcategory.cc_type = ? ";
                     $searchCondition['arrval'][] = $arrSearchData[$condkey];
                 }
 
@@ -634,8 +774,8 @@ var_dump($this->arrSearchFilter);
             if (strlen($tmpWhere) > 0) {
                 $searchCondition['where'] .= ' AND alldtl.product_id IN ('
                         . 'SELECT product_id FROM dtb_products_class inner join dtb_classcategory'
-                        . ' on dtb_products_class.classcategory_id1 = dtb_classcategory.classcategory_id'
-                        . 'WHERE product_id = alldtl.product_id AND del_flg = 0'
+                        . ' on dtb_products_class.classcategory_id1 = dtb_classcategory.classcategory_id '
+                        . 'WHERE product_id = alldtl.product_id  '
                         . $tmpWhere
                         . 'GROUP BY product_id'
                         . ')';

@@ -76,6 +76,7 @@ $(function () {
 					target.text("さらに"+find_item.length+"件を表示する");
 				}
 			})
+		$(".filter-tabs-contents:visible .search_num span").eq(1).text('1〜'+$(".filter-tabs-contents:visible .js-ranking-item:visible").length);
 	});
 
 

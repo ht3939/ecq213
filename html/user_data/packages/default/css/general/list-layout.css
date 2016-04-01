@@ -164,12 +164,11 @@
 
 .list-layout .price.rank3 {
     position: relative;
-    margin-right: 41px;
-    width: 120px;
+    width: 250px;
 }
 
 .list-layout .price.rank3 .inner:after {
-    content: url("../../img/detail/rank1-crown.png");
+    content: url("../../img/detail/rank3-crown.png");
     margin: 3px 0 0 5px;
 }
 
@@ -178,133 +177,9 @@
 }
 
 .list-layout .price.rank-4more .inner:after {
-    content: "4位";
-    padding: 2px 0;
-    background-color: #ececec;
-    color: #333;
-    margin: 13px 3px 0 7px;
-    vertical-align: top;
-    line-height: 12px;
-    font-size: 10px;
-    display: inline-block;
-    width: 28px;
-    height: 12px;
-    text-align: center;
-    border-radius: 2px;
-    font-weight: 400;
+    content: none;
 }
-
-.list-layout .price.rank-5more {
-    position: relative;
-}
-
-.list-layout .price.rank-5more .inner:after {
-    content: "5位";
-    padding: 2px 0;
-    background-color: #ececec;
-    color: #333;
-    margin: 13px 3px 0 7px;
-    vertical-align: top;
-    line-height: 12px;
-    font-size: 10px;
-    display: inline-block;
-    width: 28px;
-    height: 12px;
-    text-align: center;
-    border-radius: 2px;
-    font-weight: 400;
-}
-
-.list-layout .price.rank-6more {
-    position: relative;
-}
-
-.list-layout .price.rank-6more .inner:after {
-    content: "6位";
-    padding: 2px 0;
-    background-color: #ececec;
-    color: #333;
-    margin: 13px 3px 0 7px;
-    vertical-align: top;
-    line-height: 12px;
-    font-size: 10px;
-    display: inline-block;
-    width: 28px;
-    height: 12px;
-    text-align: center;
-    border-radius: 2px;
-    font-weight: 400;
-}
-
-.list-layout .price.rank-7more {
-    position: relative;
-}
-
-.list-layout .price.rank-7more .inner:after {
-    content: "7位";
-    padding: 2px 0;
-    background-color: #ececec;
-    color: #333;
-    margin: 13px 3px 0 7px;
-    vertical-align: top;
-    line-height: 12px;
-    font-size: 10px;
-    display: inline-block;
-    width: 28px;
-    height: 12px;
-    text-align: center;
-    border-radius: 2px;
-    font-weight: 400;
-}
-
-.list-layout .price.rank-8more {
-    position: relative;
-}
-
-.list-layout .price.rank-8more .inner:after {
-    content: "8位";
-    padding: 2px 0;
-    background-color: #ececec;
-    color: #333;
-    margin: 13px 3px 0 7px;
-    vertical-align: top;
-    line-height: 12px;
-    font-size: 10px;
-    display: inline-block;
-    width: 28px;
-    height: 12px;
-    text-align: center;
-    border-radius: 2px;
-    font-weight: 400;
-}
-
-.list-layout .price.rank-9more {
-    position: relative;
-}
-
-.list-layout .price.rank-9more .inner:after {
-    content: "9位";
-    padding: 2px 0;
-    background-color: #ececec;
-    color: #333;
-    margin: 13px 3px 0 7px;
-    vertical-align: top;
-    line-height: 12px;
-    font-size: 10px;
-    display: inline-block;
-    width: 28px;
-    height: 12px;
-    text-align: center;
-    border-radius: 2px;
-    font-weight: 400;
-}
-
-.list-layout .price.rank-10more {
-    position: relative;
-}
-
-.list-layout .price.rank-10more .inner:after {
-    content: "10位";
+.list-layout .price.rank-4more .rank-tag {
     padding: 2px 0;
     background-color: #ececec;
     color: #333;

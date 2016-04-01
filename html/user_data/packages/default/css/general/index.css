@@ -3,9 +3,9 @@
 }
 
 .top-data .inner {
-    width: 950px;
+    width: 980px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 15px 0 10px;
     overflow: hidden;
     *zoom: 1;
 }
@@ -18,6 +18,15 @@
 
 .top-data .sns-list {
     float: right;
+}
+.top-data .sns-list ul{
+    overflow: hidden;
+    *zoom:1;
+    margin-right: -33px;
+}
+.top-data .sns-list li{
+    float: left;
+    margin-left: 10px;
 }
 
 #weekly-top {
@@ -107,7 +116,7 @@
     font-size: 30px;
     height: 40px;
     width: 30px;
-    background: url(../../img/detail/slide-left.png) 3px 120px no-repeat #ececec;
+    background: url(../../img/detail/slide-left.png) center no-repeat;
 }
 
 #weekly-top .weekly-top-in .title-name .bx-next {
@@ -119,7 +128,12 @@
     font-size: 30px;
     height: 40px;
     width: 30px;
-    background: url(../../img/detail/slide-right.png) 3px 120px no-repeat;
+    background: url(../../img/detail/slide-right.png) center no-repeat;
+}
+#weekly-top .weekly-top-in .title-name .plan-name{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 #weekly-top .weekly-top-in .rank-graph {
@@ -169,12 +183,12 @@
 
 #weekly-top .weekly-top-in .rank-graph .rank-list table tr .f20 {
     font-size: 20px;
-    font-family: Arial;
+    fo,Helveticant-family: Arial;
 }
 
 #weekly-top .weekly-top-in .rank-graph .rank-list table tr .f26 {
     font-size: 26px;
-    font-family: Arial;
+    font-family: Arial,Helvetica;
 }
 
 #weekly-top .weekly-top-in .rank-graph .rank-list table tr th {
@@ -193,8 +207,10 @@
     position: absolute;
     font-size: 10px;
     right: 0;
-    top: 8px;
+    top: 50%;
+    margin-top: -9px;
     background-color: #ececec;
+    color: #333;
     padding: 1px 6px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -283,7 +299,7 @@
 
 #weekly-top .weekly-top-in .rank-graph .graph .score span {
     font-size: 26px;
-    font-family: Arial;
+    font-family: Arial,Helvetica;
     color: #5f87cb;
 }
 
@@ -306,6 +322,7 @@
 
 #weekly-top .btn .btn-inner {
     display: inline-block;
+    vertical-align: top;
 }
 
 #weekly-top .btn .btn-inner a:hover {
@@ -325,6 +342,9 @@
     width: 234px;
     margin-right: 10px;
 }
+#weekly-top .btn .btn-detail:hover {
+    background-color: #ffee5a;
+}
 
 #weekly-top .btn .btn-site {
     display: inline-block;
@@ -335,8 +355,16 @@
     -webkit-border-radius: 4px;
     -ms-border-radius: 4px;
     background-color: #fff;
-    padding: 16px 19px;
+    padding: 11px 19px 11px 19px;
     width: 168px;
+}
+#weekly-top .btn .btn-site:hover{
+    background-color: #ffdee4;
+}
+#weekly-top .btn .btn-site span{
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 1;
 }
 
 #ranking {
@@ -377,13 +405,16 @@
     font-size: 24px;
     font-weight: 700;
     color: #fff;
-    background: url(../../img/index/icon-filter.png) no-repeat 55px 15px #ff7084;
+    background: url(../../img/index/icon-filter2.png) no-repeat 69px 18px #ff7084;
     box-shadow: 0 2px 6px #999;
-    width: 445px;
+    width: 425px;
     margin: 37px auto 0;
-    padding: 10px 0;
+    padding: 10px 0 10px 20px;
     border-radius: 35px;
     cursor: pointer;
+}
+#ranking .sort .sort-filter-btn .btn:hover{
+    background-color: #fe4d66;
 }
 
 #ranking .sort .sort-filter {
@@ -408,6 +439,9 @@
     padding: 5px 14px 5px 35px;
     float: right;
     cursor: pointer;
+}
+#ranking .sort .sort-filter .clear-all-sort:hover{
+    background-color: #fe4d66;
 }
 
 #ranking .sort .sort-filter .sort-condition {
@@ -443,13 +477,37 @@
 
 #ranking .sort .sort-filter .sort-condition .clear-sort {
     display: inline-block;
-    margin-left: 10px;
+    padding-left: 20px;
     float: right;
     cursor: pointer;
+    font-size: 11px;
+    font-weight: normal;
+    background: url(../../img/index/icon-filter-reset.png) 4px 1px no-repeat;
+}
+#ranking .sort .sort-filter .sort-condition .clear-sort:hover {
+    color: #007ae2;
+    background: url(../../img/index/icon-filter-reset_on.png) 4px 1px no-repeat;
+}
+#ranking .sort .sort-filter .sort-condition .clear-sort img{
+    padding: 0 3px 0 0;
+    vertical-align: middle;
 }
 
 #ranking .sort .arrow-down {
     text-align: center;
+    background-color: #ff7084;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 0 15px 45px;
+    margin: 10px 17px 7px 17px;
+    border-radius: 3px;
+    line-height: 1.2;
+    background: #ff7084 url(../../img/common/arrow-bottom.png) no-repeat 387px center;
+}
+#ranking .sort .arrow-down:hover {
+    background-color: #fe4d66;
+    cursor: pointer;
 }
 
 #ranking .tabsbox {
@@ -582,7 +640,7 @@
 }
 
 #ranking .tabsbox .sort-tabs.tabs-bottom li:first-child {
-    margin-left: 92px;
+    margin-left: 5px;
 }
 
 #ranking .tabsbox .sort-tabs.tabs-bottom li a {
@@ -616,9 +674,15 @@
 #ranking .tabsbox .sort-contents {
     margin-top: -1px;
     margin-bottom: -1px;
-    padding-top: 36px;
-    padding-bottom: 36px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     border-bottom: 1px solid #d9d9d9;
+}
+#ranking .tabsbox .sort-contents .zero{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 35px 0 60px;
+    text-align: center;
 }
 
 #ranking .tabsbox .sort-contents .filter {
@@ -858,7 +922,7 @@
 
 #ranking .tabsbox .sort-contents .ranking_table {
     width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 35px;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -920,14 +984,18 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-service {
-    width: 159px;
+    width: 149px;
+    padding: 0 5px;
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-service .title {
     font-size: 14px;
     margin-top: 14px;
 }
-
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-service .title .plan-name{
+    font-weight: bold;
+    line-height: 1.4;
+}
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name {
     width: 220px;
     background-color: #fff;
@@ -967,7 +1035,7 @@
     font-size: 30px;
     height: 271px;
     width: 17px;
-    background: url(../../img/detail/slide-left.png) center no-repeat #ececec;
+    background: url(../../img/detail/slide-left.png) 3px 120px no-repeat #ececec;
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .bx-next {
@@ -979,7 +1047,7 @@
     font-size: 30px;
     height: 271px;
     width: 17px;
-    background: url(../../img/detail/slide-right.png) center no-repeat #ececec;
+    background: url(../../img/detail/slide-right.png) 3px 120px no-repeat #ececec;
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .img {
@@ -1003,11 +1071,12 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .status .name {
+    width: 188px;
     font-size: 16px;
     font-weight: 700;
     line-height: .7;
     text-align: left;
-    padding-left: 38px;
+    padding-left: 17px;
     font-family: arial,helvetica,'hiragino kaku gothic pro',meiryo,'ms pgothic',sans-serif;
 }
 
@@ -1082,6 +1151,9 @@
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-data span {
     font-size: 26px;
 }
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-data span.none-limit{
+    font-size: 19px;
+}
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-data span.gb,#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-data span.speed {
     font-size: 14px;
@@ -1102,8 +1174,9 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-conditions {
-    width: 158px;
+    width: 148px;
     font-size: 12px;
+    padding: 0 5px;
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-company {
@@ -1144,14 +1217,12 @@
     text-align: center;
     position: absolute;
     bottom: 8px;
+    width: 109px;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-company .site-link a {
-    padding-left: 26px;
-}
-
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-company .site-link a.yahoo {
-    background: url(../../img/common/icon-yahoo.png) no-repeat 6px 2px;
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-company .site-link a img {
+    padding: 0 3px 0 0;
+    vertical-align: middle;
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-company .outer-site {

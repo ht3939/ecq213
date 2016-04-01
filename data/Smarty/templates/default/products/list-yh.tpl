@@ -86,6 +86,7 @@
         if($('#form_filter input[name=mode]').val() == 'filter'){
             $("html,body").animate({scrollTop:$('#tabsbox').offset().top});
             if($('#form_filter input').length > 1){
+                $('.sort-filter-btn').hide();
                 $('.sort-filter').fadeIn();
             }
         }

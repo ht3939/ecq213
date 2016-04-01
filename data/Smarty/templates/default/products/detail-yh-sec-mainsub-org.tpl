@@ -45,7 +45,7 @@
               <dt>Y! Fi 2年間ずーっと得するプラン（4G）について</dt>
               <dd>Yahoo! プレミアム会員必須のプラン。２年目からは、月々の料金が2,743円一定です。</dd>
             </dl>
-            <p class="link-btn"><a href="">このプランのページへ</a></p>
+            <p class="link-btn"><a href="" target="_blnak">このプランのページへ</a></p>
             <p class="link-blank-nav">(外部サイトへ)</p>
           </div>
       </section>

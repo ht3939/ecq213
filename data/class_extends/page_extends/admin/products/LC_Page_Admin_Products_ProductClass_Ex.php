@@ -57,7 +57,7 @@ class LC_Page_Admin_Products_ProductClass_Ex extends LC_Page_Admin_Products_Prod
    public function initParam(&$objFormParam)
     {
         parent::initParam($objFormParam);
-        $objFormParam->addParam('商品URL', 'pc_url', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
+        $objFormParam->addParam('商品URL', 'pc_url', LLTEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
         $objFormParam->addParam('取扱カラー', 'pc_color', STEXT_LEN, 'KVa', array('MAX_LENGTH_CHECK'));
     }    
 

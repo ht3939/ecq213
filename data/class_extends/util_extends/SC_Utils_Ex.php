@@ -54,11 +54,17 @@ class SC_Utils_Ex extends SC_Utils
     public static function sfGetColorClassArray($color)
     {
     	$context = array(
-    		'red'=>'レッド'
-    		,'black'=>'ブラック'
-    		,'white'=>'ホワイト'
-    		,'blue'=>'ブルー'
-    		,'dark-cilver'=>'ダークシルバー'
+            'white'=>'ホワイト'
+            ,'blue'=>'ブルー'
+            ,'red'=>'レッド'
+    		,'pearlwhite'=>'パールホワイト'
+    		,'matteblack'=>'マットブラック'
+    		,'marinblue'=>'マリン'
+    		,'berrypink'=>'ベリー'
+    		,'green'=>'グリーン'
+            ,'navyblue'=>'ネイビーブルー'
+            ,'darksilver'=>'ダークシルバー'
+            ,'lapisblack'=>'ラピスブラック'
     		);
 
     	$hoge=explode(",",$color);

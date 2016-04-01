@@ -28,7 +28,7 @@
 							<div class="td-inner">
 								<div class="logo"><img src="<!--{$TPL_URLPATH}--><!--{$rP.mk_image}-->" alt="<!--{$rP.maker_name}-->"></div>
 								<div class="title">
-									<p><!--{$rP.name}--></p>
+									<p class="plan-name"><!--{$rP.name}--></p>
 								</div>
 							</div>
 						</td>
@@ -48,7 +48,7 @@
 										<!--{/foreach}-->
 									</ul>
 								</div>
-							</div>							
+							</div>
 						</td>
 
 						<td <!--{if $rcnt>3}-->class="rank-price"<!--{else}-->class="rank-price rank<!--{$rcnt}-->"<!--{/if}-->>
@@ -58,13 +58,19 @@
 								<!--{else}-->
 								<!--{$rP.y1_price|number_format}-->
 								<!--{/if}-->
-								
+
 							</span>円</div>
 						</td>
 
 						<td class="rank-data">
 							<div class="td-inner w110">
-							<span><span class="num"><!--{$rP.datasize}--></span><span class="gb">GB</span></span>/月<span class="speed"><!--{$rP.data_speed_down}-->Mbps</span>
+							<span>
+		                      <!--{if $rP.datasize==999}-->
+								<span class="none-limit">上限なし</span></span>
+		                      <!--{else}-->
+								<span class="num"><!--{$rP.datasize}--></span><span class="gb">GB</span></span>/月
+		                      <!--{/if}-->
+								<span class="speed"><!--{$rP.data_speed_down}-->Mbps</span>
 							</div>
 						</td>
 						<td class="rank-conditions">
@@ -73,7 +79,7 @@
 								<span class="head ptn1">主な特典</span><br>
 							<span class="text-ptn1"><!--{$rP.sub_comment2}--></span><br>
 								<!--{/if}-->
-								<!--{if $rP.sub_comment3|count_characters>0}-->								
+								<!--{if $rP.sub_comment3|count_characters>0}-->
 							<span class="head ptn2">注意事項</span><br>
 							<span class="text-ptn2"><!--{$rP.sub_comment3}--></span>
 								<!--{/if}-->
@@ -83,9 +89,14 @@
 
 						<td class="rank-company">
 							<div class="td-inner w110">
-								<p class="site_btn"><a href="/products/detail.php?product_id=<!--{$rP.product_id}-->" target="_blank">詳細を見る</a></p>
-								<div class="site-link"><a href="<!--{$rP.mk_site_url}-->" target="_blank" class="yahoo"><!--{$rP.maker_name}--></a>
-								<!--{if $rP.maker_id > 1}--><span class="outer-site">(外部サイトへ)</span><!--{/if}-->
+								<p class="site_btn"><a href="/products/detail.php?product_id=<!--{$rP.product_id}-->" onclick="javascript:return false;" target="_blank">詳細を見る</a></p>
+								<div class="site-link">
+								<a href="<!--{$rP.mk_site_url}-->" target="_blank"><img src="<!--{$TPL_URLPATH}--><!--{$rP.mk_img_url1}-->" alt=""><!--{$rP.maker_name}--></a>
+								<!--{if $rP.maker_id > 1}-->
+								<span class="outer-site">(外部サイトへ)</span>
+								<!--{else}-->
+								<span class="outer-site">(Yahoo! Wi-Fi)</span>
+								<!--{/if}-->
 								</div>
 							</div>
 						</td>

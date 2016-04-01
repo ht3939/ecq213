@@ -22,11 +22,11 @@
                   <p class="name"><span><!--{$rP.name}--></span></p>
                   <dl class="price <!--{$rP.rank1_order|sfGetRankClass}-->">
                     <dt>月額料金</dt>
-                    <dd><div class="inner"><!--{$rP.y1_price|number_format}--><span>円</span></div></dd>
+                    <dd><div class="inner"><!--{$rP.y1_price|number_format}--><span>円</span><!--{if $rP.rank1_order>3}--><span class="rank-tag"><!--{$rP.rank1_order}-->位</span><!--{/if}--></div></dd>
                   </dl>
                   <dl class="price <!--{$rP.rank2_order|sfGetRankClass}-->">
                     <dt>総額料金</dt>
-                    <dd><div class="inner"><!--{$rP.total_price|number_format}--><span>円</span></div></dd>
+                    <dd><div class="inner"><!--{$rP.total_price|number_format}--><span>円</span><!--{if $rP.rank2_order>3}--><span class="rank-tag"><!--{$rP.rank2_order}-->位</span><!--{/if}--></div></dd>
                   </dl>
                   <div class="data">
                     <p>下り最大<br><span><!--{$rP.data_speed_down}-->Mbps</span></p>
@@ -38,7 +38,7 @@
                       <!--{/if}-->
                     </span></p>
                   </div>
-                  <p class="detail-btn"><a href="/products/detail.php?product_id=<!--{$rP.product_id}-->" class="js-link-btn">詳細を見る</a></p>
+                  <p class="detail-btn"><a href="/products/detail.php?product_id=<!--{$rP.product_id}-->" class="js-link-btn" target="_blank">詳細を見る</a></p>
                 </li>
 
 
@@ -47,10 +47,5 @@
 
           </ul>
       </section>
-      <div class="note">
-        <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
-        <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
-        <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
-        <p>必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。必要に応じて、ここに注釈。</p>
-      </div>
+
 <!--{/strip}-->
