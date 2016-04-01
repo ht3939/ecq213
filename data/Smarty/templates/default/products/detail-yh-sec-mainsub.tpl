@@ -58,7 +58,7 @@
               <dt><!--{$arrProduct.name}-->について</dt>
               <dd><!--{$arrProduct.main_list_comment|h}--></dd>
             </dl>
-            <p class="link-btn"><a href="<!--{$arrProduct.mk_site_url}-->" target="_blank">このプランのページへ</a></p>
+            <p class="link-btn"><a href="<!--{$arrProduct.sub_comment4}-->" target="_blank">このプランのページへ</a></p>
             <p class="link-blank-nav">(外部サイトへ)</p>
           </div>
       </section>

@@ -89,9 +89,9 @@
 
 						<td class="rank-company">
 							<div class="td-inner w110">
-								<p class="site_btn"><a href="/products/detail.php?product_id=<!--{$rP.product_id}-->" onclick="javascript:return false;" target="_blank">詳細を見る</a></p>
+								<p class="site_btn"><a href="/products/detail.php?product_id=<!--{$rP.product_id}-->" onclick="javascript:return false;" target="device">詳細を見る</a></p>
 								<div class="site-link">
-								<a href="<!--{$rP.mk_site_url}-->" target="_blank"><img src="<!--{$TPL_URLPATH}--><!--{$rP.mk_img_url1}-->" alt=""><!--{$rP.maker_name}--></a>
+								<a href="<!--{$rP.mk_site_url}-->" target="device"><img src="<!--{$TPL_URLPATH}--><!--{$rP.mk_img_url1}-->" alt=""><!--{$rP.maker_name}--></a>
 								<!--{if $rP.maker_id > 1}-->
 								<span class="outer-site">(外部サイトへ)</span>
 								<!--{else}-->

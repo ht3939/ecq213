@@ -25,7 +25,15 @@
 						<div id="tab0">
 							<div class="filter-contents">
 								<div id="data0" class="filter-tabs-contents">
-									<p class="search_num"><span><!--{$tpl_datanum}--></span>件中<span>1〜<!--{if $tpl_datanum<5}--><!--{$tpl_datanum}--><!--{else}-->5<!--{/if}--></span>件を表示&nbsp;(各ランキングにつき上位10商品のみ掲載)<span class="tax-caution">※表記の金額はすべて税抜価格となります。</span></p>
+									<p class="search_num"><span><!--{$tpl_datanum}--></span>件中
+										<!--{if $tpl_datanum==0}-->
+										<span>0</span>
+										<!--{else}-->
+										<span>1〜<!--{if $tpl_datanum<5}--><!--{$tpl_datanum}--><!--{else}-->5<!--{/if}--></span>
+										<!--{/if}-->
+
+
+										件を表示&nbsp;(各ランキングにつき上位10商品のみ掲載)<span class="tax-caution">※表記の金額はすべて税抜価格となります。</span></p>
 									<table class="ranking_table-caption">
 										<tbody>
 											<tr class="caption">
@@ -56,7 +64,17 @@
 						<div id="tab1">
 							<div class="filter-contents">
 								<div id="data0" class="filter-tabs-contents">
-									<p class="search_num"><span><!--{$tpl_datanum}--></span>件中<span>1〜<!--{if $tpl_datanum<5}--><!--{$tpl_datanum}--><!--{else}-->5<!--{/if}--></span>件を表示&nbsp;(各ランキングにつき上位10商品のみ掲載)<span class="tax-caution">※表記の金額はすべて税抜価格となります。</span></p>
+									<p class="search_num"><span><!--{$tpl_datanum}--></span>件中
+										<!--{if $tpl_datanum==0}-->
+										<span>
+										0</span>
+										<!--{else}-->
+
+										<span>
+										1〜<!--{if $tpl_datanum<5}--><!--{$tpl_datanum}--><!--{else}-->5<!--{/if}--></span>
+										<!--{/if}-->
+
+										件を表示&nbsp;(各ランキングにつき上位10商品のみ掲載)<span class="tax-caution">※表記の金額はすべて税抜価格となります。</span></p>
 									<table class="ranking_table-caption">
 										<tbody>
 											<tr class="caption">

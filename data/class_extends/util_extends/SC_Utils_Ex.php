@@ -88,8 +88,8 @@ class SC_Utils_Ex extends SC_Utils
             $key = 'rank'.$i.'_order';
             if(intval($arrList[$key])>0){
                 $pt = 6 - intval($arrList[$key]);
-                if($pt<0){
-                    $pt = 0;
+                if($pt<=0){
+                    $pt = 1;
                 }
                 $tp += $pt;
 
@@ -106,8 +106,8 @@ class SC_Utils_Ex extends SC_Utils
     public static function sfConvertRank2Point($rank){
         $tp = 0.0;
         $pt = 6 - intval($rank);
-        if($pt<0){
-            $pt = 0;
+        if($pt<=0){
+            $pt = 1;
         }
         return $pt;
 

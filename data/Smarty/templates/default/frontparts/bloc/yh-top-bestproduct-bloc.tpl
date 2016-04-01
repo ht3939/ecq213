@@ -80,8 +80,14 @@
         </div>
       </div>
       <ul class="btn">
-        <li class="btn-inner"><a href="/products/detail.php?product_id=<!--{$bt.product_id}-->" class="btn-detail">詳細を見る</a></li>
-        <li class="btn-inner"><a href="<!--{$bt.mk_site_url}-->" class="btn-site" target="_blank">サイトを見る<br><span>(外部サイトへ)</span></a></li>
+        <li class="btn-inner"><a href="/products/detail.php?product_id=<!--{$bt.product_id}-->" class="btn-detail" target="_blank">詳細を見る</a></li>
+        <li class="btn-inner"><a href="<!--{$bt.mk_site_url}-->" class="btn-site" target="_blank">サイトを見る<br>
+                <!--{if $bt.maker_id > 1}-->
+          <span>(外部サイトへ)</span>
+                <!--{else}-->
+          <span>(Yahoo! Wi-Fi)</span>
+                <!--{/if}-->
+        </a></li>
       </ul>
     </div>
     </section>

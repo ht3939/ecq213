@@ -147,8 +147,6 @@
 <!--[if lt IE 9]>
 <script src="/js/front/html5shiv.js"></script>
 <![endif]-->
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.multiple-select.js"></script>
 
 

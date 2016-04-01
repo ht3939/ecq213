@@ -1,6 +1,6 @@
 <?php 
 try {
-	$pdo = new PDO('mysql:host=10.250.116.230;dbname=yhecq;charset=utf8','root','',array(PDO::ATTR_EMULATE_PREPARES => false));
+	$pdo = new PDO('mysql:host=localhost;dbname=yhecq;charset=utf8','root','nariki74',array(PDO::ATTR_EMULATE_PREPARES => false));
 	
 	$sql_sel = 'SELECT product_id, y1_price, total_price, data_speed_down, datasize, data_speed_up FROM dtb_products WHERE del_flg=0 AND status=1';
 	$stmt_sel = $pdo->query($sql_sel);
@@ -39,12 +39,16 @@ try {
 			$rank1_order_list[$data['product_id']] = $counter;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}else{
 			$rank1_order_list[$data['product_id']] = $counter + 1;
 			$counter++;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}
 		$value_temp = $data['y1_price'];
@@ -63,12 +67,17 @@ try {
 			$rank2_order_list[$data['product_id']] = $counter;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
+			
 		}else{
 			$rank2_order_list[$data['product_id']] = $counter + 1;
 			$counter++;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}
 		$value_temp = $data['total_price'];
@@ -87,12 +96,16 @@ try {
 			$rank3_order_list[$data['product_id']] = $counter;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}else{
 			$rank3_order_list[$data['product_id']] = $counter + 1;
 			$counter++;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}
 		$value_temp = $data['data_speed_down'];
@@ -111,12 +124,16 @@ try {
 			$rank4_order_list[$data['product_id']] = $counter;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}else{
 			$rank4_order_list[$data['product_id']] = $counter + 1;
 			$counter++;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}
 		$value_temp = $data['datasize'];
@@ -135,22 +152,26 @@ try {
 			$rank5_order_list[$data['product_id']] = $counter;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}else{
 			$rank5_order_list[$data['product_id']] = $counter + 1;
 			$counter++;
 			if($counter<6){
 				$rankpoint_order_list[$data['product_id']] += (6-$counter);
+			}else{
+				$rankpoint_order_list[$data['product_id']] += 1;
 			}
 		}
 		$value_temp = $data['data_speed_up'];
 	}
-	
+
 	foreach($data_list as $data){
 		$sql_upd = 'update dtb_products set rank1_order = '.$rank1_order_list[$data['product_id']].', '.
 			'rank2_order = '.$rank2_order_list[$data['product_id']].', '.
-			'rank3_order = '.$rank3_order_list[$data['product_id']].', '.
-			'rank4_order = '.$rank4_order_list[$data['product_id']].', '.
+			'rank3_order = '.$rank4_order_list[$data['product_id']].', '.
+			'rank4_order = '.$rank3_order_list[$data['product_id']].', '.
 			'rank5_order = '.$rank5_order_list[$data['product_id']].', '.
 			'rankpoint_order = '.($rankpoint_order_list[$data['product_id']]/5).' where product_id = '.$data['product_id'];
 		$stmt_upd = $pdo -> prepare($sql_upd);
@@ -162,4 +183,5 @@ try {
 }
 
 $pdo = null;
+echo 'ランキング更新完了<br>';
 exit;
