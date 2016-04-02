@@ -156,7 +156,7 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
             $key = 'rank'.$i.'_order';
             if(intval($arrList[$key])>0){
                 $pt = 6 - intval($arrList[$key]);
-                if($pt<0){
+                if($pt<=0){
                     $pt = 1;
                 }
                 $tp += $pt;
