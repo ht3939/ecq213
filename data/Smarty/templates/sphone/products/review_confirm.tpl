@@ -1,4 +1,3 @@
-<!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`popup_header.tpl" subtitle="お客様の声書き込み（確認ページ）"}-->
 <!--{*
  * This file is part of EC-CUBE
  *
@@ -20,8 +19,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_header.tpl" subtitle="お客様の声書き込み（確認ページ）"}-->
 
-<div id="windowarea">
+<div id="window_area">
     <h2 class="title">お客様の声書き込み</h2>
     <form name="form1" id="form1" method="post" action="?">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
@@ -33,12 +33,14 @@
         <!--{/foreach}-->
 
         <table summary="お客様の声書き込み">
+            <col width="30%" />
+            <col width="70%" />
             <tr>
                 <th>商品名</th>
                 <td><!--{$arrForm.name|h}--></td>
             </tr>
             <tr>
-                <th>投稿者名<span class="attention">※</span></th>
+                <th>投稿者名</th>
                 <td><!--{$arrForm.reviewer_name|h}--></td>
             </tr>
             <tr>
@@ -50,25 +52,25 @@
                 <td><!--{if $arrForm.sex eq 1}-->男性<!--{elseif $arrForm.sex eq 2}-->女性<!--{/if}--></td>
             </tr>
             <tr>
-                <th>おすすめレベル<span class="attention">※</span></th>
+                <th>おすすめレベル</th>
                 <td><span class="recommend_level"><!--{$arrRECOMMEND[$arrForm.recommend_level]}--></span></td>
             </tr>
             <tr>
-                <th>タイトル<span class="attention">※</span></th>
+                <th>タイトル</th>
                 <td><!--{$arrForm.title|h}--></td>
             </tr>
             <tr>
-                <th>コメント<span class="attention">※</span></th>
+                <th>コメント</th>
                 <td><!--{$arrForm.comment|h|nl2br}--></td>
             </tr>
         </table>
         <div class="btn_area">
-            <ul class="btn_btm">
-                <li><input type="submit" value="完了ページへ" class="btn data-role-none" name="complete" id="complete" /></li>
-                <li><a class="btn_back" href="Javascript:eccube.setModeAndSubmit('return', '', '');" rel="external">戻る</a></li>
+            <ul>
+                <li><input type="image" onclick="mode.value='return';" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_back.jpg" alt="戻る" name="back" id="back" /></li>
+                <li><input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_complete.jpg" alt="送信" name="send" id="send" /></li>
             </ul>
         </div>
     </form>
 </div>
 
-<!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`popup_footer.tpl"}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_footer.tpl"}-->

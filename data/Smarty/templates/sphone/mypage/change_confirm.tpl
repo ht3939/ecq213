@@ -22,39 +22,38 @@
  */
 *}-->
 
-<section id="mypagecolumn">
+<div id="mypagecolumn">
     <h2 class="title"><!--{$tpl_title|h}--></h2>
     <!--{include file=$tpl_navi}-->
+    <div id="mycontents_area">
+        <h3><!--{$tpl_subtitle|h}--></h3>
+        <p>下記の内容で送信してもよろしいでしょうか？<br />
+            よろしければ、一番下の「完了ページへ」ボタンをクリックしてください。</p>
 
-    <h3 class="title_mypage"><!--{$tpl_subtitle|h}--></h3>
-
-    <!--★インフォメーション★-->
-    <div class="intro">
-        <p>入力内容をご確認ください。</p>
-    </div>
-
-    <form name="form1" id="form1" method="post" action="<!--{$smarty.const.HTTPS_URL}-->mypage/change.php">
-        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="hidden" name="mode" value="complete" />
-        <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id.value|h}-->" />
-        <!--{foreach from=$arrForm key=key item=item}-->
-            <!--{if $key ne "mode" && $key ne "subm"}-->
+        <form name="form1" id="form1" method="post" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <input type="hidden" name="mode" value="complete" />
+            <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id.value|h}-->" />
+            <!--{foreach from=$arrForm key=key item=item}-->
+                <!--{if $key ne "mode" && $key ne "subm"}-->
                 <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item.value|h}-->" />
-            <!--{/if}-->
-        <!--{/foreach}-->
+                <!--{/if}-->
+            <!--{/foreach}-->
+            <table summary=" " class="delivname">
+                <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=true prefix=""}-->
+            </table>
 
-        <dl class="form_entry">
-            <!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=true prefix=""}-->
-        </dl>
-
-        <div class="btn_area">
-            <ul class="btn_btm">
-                <li><input type="submit" value="完了ページへ" class="btn data-role-none" name="complete" id="complete" /></li>
-                <li><a class="btn_back" href="Javascript:eccube.setModeAndSubmit('return', '', '');" rel="external">戻る</a></li>
-            </ul>
-        </div>
-    </form>
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
+            <div class="btn_area">
+                <ul>
+                    <li>
+                        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;">
+                            <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_back.jpg" alt="戻る" /></a>
+                    </li>
+                    <li>
+                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_complete.jpg" alt="送信" name="complete" id="complete" />
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>

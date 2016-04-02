@@ -20,34 +20,35 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<section id="undercolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
+<div id="undercolumn">
+    <div id="undercolumn_entry">
+        <h2 class="title"><!--{$tpl_title|h}--></h2>
+        <p>下記の内容で送信してもよろしいでしょうか？<br />
+            よろしければ、一番下の「会員登録をする」ボタンをクリックしてください。</p>
+        <form name="form1" id="form1" method="post" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <input type="hidden" name="mode" value="complete">
+            <!--{foreach from=$arrForm key=key item=item}-->
+                <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item.value|h}-->" />
+            <!--{/foreach}-->
 
-    <!--★インフォメーション★-->
-    <div class="information end">
-        <p>入力内容をご確認ください。</p>
+            <table summary="入力内容確認">
+                <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=false prefix=""}-->
+            </table>
+
+            <div class="btn_area">
+                <ul>
+                    <li>
+                        <a href="?" onclick="eccube.setModeAndSubmit('return', '', ''); return false;">
+                            <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_back.jpg" alt="戻る" />
+                        </a>
+                    </li>
+                    <li>
+                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_entry.jpg" alt="会員登録をする" name="send" id="send" />
+                    </li>
+                </ul>
+            </div>
+
+        </form>
     </div>
-
-    <form name="form1" id="form1" method="post" action="?">
-        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="hidden" name="mode" value="complete">
-        <!--{foreach from=$arrForm key=key item=item}-->
-            <input type="hidden" name="<!--{$key|h}-->" value="<!--{$item.value|h}-->" />
-        <!--{/foreach}-->
-
-        <dl class="form_entry">
-            <!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`frontparts/form_personal_confirm.tpl" flgFields=3 emailMobile=false prefix=""}-->
-        </dl>
-
-        <!--★ボタン★-->
-        <div class="btn_area">
-            <ul class="btn_btm">
-                <li><input type="submit" value="完了ページへ" class="btn data-role-none" name="send" id="send" /></li>
-                <li><a href="#" onclick="eccube.setModeAndSubmit('return', '', ''); return false;" class="btn_back">戻る</a></li>
-            </ul>
-        </div>
-    </form>
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
+</div>

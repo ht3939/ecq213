@@ -20,28 +20,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<section id="undercolumn">
+<div id="undercolumn">
     <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <div class="thankstext">
-        お問い合わせをいただき、ありがとうございました。
-    </div>
-    <hr>
-    <div id="completetext">
-        <p>万一、ご回答メールが届かない場合は、トラブルの可能性もありますので、大変お手数ではございますがもう一度お問い合わせいただくか、お電話にてお問い合わせください。</p>
-        <p>今後ともご愛顧賜りますようよろしくお願い申し上げます。</p>
-    </div>
+    <div id="undercolumn_contact">
+        <div id="complete_area">
+            <p class="message">お問い合わせ内容の送信が完了いたしました。</p>
+            <p>
+                万一、ご回答メールが届かない場合は、トラブルの可能性もありますので<br />大変お手数ではございますがもう一度お問い合わせいただくか、お電話にてお問い合わせください。<br />
+                今後ともご愛顧賜りますようよろしくお願い申し上げます。
+            </p>
+            <div class="shop_information">
+            <p class="name"><!--{$arrSiteInfo.company_name|h}--><br />
+            <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}-->
+                <!--{if $arrSiteInfo.business_hour != ""}-->
+                (受付時間/<!--{$arrSiteInfo.business_hour}-->)
+                <!--{/if}--><br />
+                E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></p>
+            </p>
+            </div>
 
-    <div class="btn_area">
-        <a class="btn_s btn_sub" href="<!--{$smarty.const.TOP_URL}-->">トップページへ</a>
+            <div class="btn_area">
+                <ul>
+                <li>
+                    <a href="<!--{$smarty.const.TOP_URL}-->"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_toppage.jpg" alt="トップページへ" /></a>
+                </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <hr>
-    <div class="shopInformation">
-        <p><!--{$arrSiteInfo.company_name|h}--></p>
-        <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}--><br />
-            E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></p>
-    </div>
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
-<!--▲CONTENTS -->
+</div>

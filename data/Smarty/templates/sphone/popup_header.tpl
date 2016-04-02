@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!--{printXMLDeclaration}--><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--{*
  * This file is part of EC-CUBE
  *
@@ -21,68 +21,39 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<html lang="ja">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=<!--{$smarty.const.CHAR_CODE}-->" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
-    <meta name="format-detection" content="telephone=no">
-    <!--{* 共通CSS *}-->
-    <link rel="stylesheet" media="only screen" href="<!--{$TPL_URLPATH}-->css/import.css" />
-    <link rel="stylesheet" href="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery.colorbox/colorbox.css" type="text/css" media="all" />
-
-    <script src="<!--{$TPL_URLPATH}-->js/jquery-1.9.1.min.js"></script>
-    <script src="<!--{$smarty.const.ROOT_URLPATH}-->js/eccube.js"></script>
-    <script src="<!--{$TPL_URLPATH}-->js/eccube.sphone.js"></script>
-    <!-- #2342 次期メジャーバージョン(2.14)にてeccube.legacy.jsは削除予定.モジュール、プラグインの互換性を考慮して2.13では残します. -->
-    <script type="text/javascript" src="<!--{$smarty.const.ROOT_URLPATH}-->js/eccube.legacy.js"></script>
-    <script type="text/javascript" src="<!--{$TPL_URLPATH}-->js/eccube.sphone.legacy.js"></script>
-    <script type="text/javascript" src="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery.colorbox/jquery.colorbox-min.js"></script>
-    <script src="<!--{$TPL_URLPATH}-->js/jquery.biggerlink.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $('.recommendblock, .list_area, .newslist li, .bubbleBox, .arrowBox').biggerlink();
-        });
-    </script>
-
-    <!--{* jQuery Mobile *}-->
-    <link rel="stylesheet" media="only screen" href="<!--{$TPL_URLPATH}-->js/jquery.mobile/jquery.mobile-1.3.1.min.css" />
-    <script src="<!--{$TPL_URLPATH}-->js/config.js"></script>
-    <script src="<!--{$TPL_URLPATH}-->js/jquery.mobile/jquery.mobile-1.3.1.min.js"></script>
-
-    <!--{* スマートフォンカスタマイズ用JS *}-->
-    <script src="<!--{$TPL_URLPATH}-->js/jquery.autoResizeTextAreaQ-0.1.js"></script>
-    <script src="<!--{$TPL_URLPATH}-->js/jquery.flickslide.js"></script>
-
-    <title><!--{$arrSiteInfo.shop_name|h}--><!--{if $tpl_subtitle|strlen >= 1}--> / <!--{$tpl_subtitle|h}--><!--{elseif $tpl_title|strlen >= 1}--> / <!--{$tpl_title|h}--><!--{/if}--></title>
-    <!--{if $arrPageLayout.author|strlen >= 1}-->
-        <meta name="author" content="<!--{$arrPageLayout.author|h}-->" />
-    <!--{/if}-->
-    <!--{if $arrPageLayout.description|strlen >= 1}-->
-        <meta name="description" content="<!--{$arrPageLayout.description|h}-->" />
-    <!--{/if}-->
-    <!--{if $arrPageLayout.keyword|strlen >= 1}-->
-        <meta name="keywords" content="<!--{$arrPageLayout.keyword|h}-->" />
-    <!--{/if}-->
-    <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
-    <link rel="icon" type="image/vnd.microsoft.icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
-    <!--{* iPhone用アイコン画像 *}-->
-    <link rel="apple-touch-icon" href="<!--{$TPL_URLPATH}-->img/common/apple-touch-icon.png" />
-
-    <script type="text/javascript">//<![CDATA[
-        <!--{$tpl_javascript}-->
-        $(function(){
-            <!--{$tpl_onload}-->
-        });
-    //]]></script>
+<meta http-equiv="Content-Type" content="text/html; charset=<!--{$smarty.const.CHAR_CODE}-->" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/import.css" type="text/css" media="all" />
+<link rel="stylesheet" href="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery.colorbox/colorbox.css" type="text/css" media="all" />
+<!--[if lt IE 9]>
+<script src="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery-1.11.1.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery-2.1.1.min.js"></script>
+<!--<![endif]-->
+<script type="text/javascript" src="<!--{$smarty.const.ROOT_URLPATH}-->js/eccube.js"></script>
+<!-- #2342 次期メジャーバージョン(2.14)にてeccube.legacy.jsは削除予定.モジュール、プラグインの互換性を考慮して2.13では残します. -->
+<script type="text/javascript" src="<!--{$smarty.const.ROOT_URLPATH}-->js/eccube.legacy.js"></script>
+<script type="text/javascript" src="<!--{$smarty.const.ROOT_URLPATH}-->js/jquery.colorbox/jquery.colorbox-min.js"></script>
+<title><!--{$arrSiteInfo.shop_name}-->/<!--{$subtitle|h}--></title>
+<link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico" />
+<script type="text/javascript">//<![CDATA[
+    <!--{$tpl_javascript}-->
+    $(function(){
+        <!--{$tpl_onload}-->
+    });
+//]]></script>
 </head>
 
 <body>
-    <noscript>
-        <p><em>JavaScriptを有効にしてご利用下さい.</em></p>
-    </noscript>
+<noscript>
+    <p><em>JavaScriptを有効にしてご利用下さい.</em></p>
+</noscript>
 
-    <a name="top" id="top"></a>
+<a name="top" id="top"></a>
 
-        <!--{if !$disable_wincol}--><div id="windowcolumn"><!--{/if}-->
+<!--{if !$disable_wincol}--><div id="windowcolumn"><!--{/if}-->

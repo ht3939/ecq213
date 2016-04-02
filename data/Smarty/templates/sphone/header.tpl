@@ -12,33 +12,23 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA    02111-1307, USA.
  *}-->
 
+<!--▼HEADER-->
 <!--{strip}-->
-    <header class="global_header clearfix">
-        <div id="logo_area">
-            <a rel="external" href="<!--{$smarty.const.TOP_URL}-->"><img src="<!--{$TPL_URLPATH}-->img/header/logo.png" width="150" height="25" alt="<!--{$arrSiteInfo.shop_name|h}-->" /></a>
-        </div>
-        <div class="header_utility">
-            <!--{* ▼HeaderInternal COLUMN *}-->
-            <!--{if $arrPageLayout.HeaderInternalNavi|@count > 0}-->
-                <!--{foreach key=HeaderInternalNaviKey item=HeaderInternalNaviItem from=$arrPageLayout.HeaderInternalNavi}-->
-                    <!-- ▼<!--{$HeaderInternalNaviItem.bloc_name}--> -->
-                    <!--{if $HeaderInternalNaviItem.php_path != ""}-->
-                        <!--{include_php file=$HeaderInternalNaviItem.php_path items=$HeaderInternalNaviItem}-->
-                    <!--{else}-->
-                        <!--{include file=$HeaderInternalNaviItem.tpl_path items=$HeaderInternalNaviItem}-->
-                    <!--{/if}-->
-                    <!-- ▲<!--{$HeaderInternalNaviItem.bloc_name}--> -->
-                <!--{/foreach}-->
-            <!--{/if}-->
-            <!--{* ▲HeaderInternal COLUMN *}-->
-        </div>
-    </header>
+<header>
+	<div id="header">
+		<div class="base-container">
+			<h1 class="header_logo-left"><a href="/"><img src="<!--{$TPL_URLPATH}-->/img/header/logo.png" alt="格安モバイルルーター比較"></a></h1>
+			<p class="header_logo-right"><a href="//kainavi.search.yahoo.co.jp/search"><img src="http://i.yimg.jp/c/logo/f/2.0/kainavi.search_r_34.png" alt="YAHOO!JAPAN! 買い物ナビゲーター"></a></p>
+		</div>
+	</div>
+</header>
 <!--{/strip}-->
+<!--▲HEADER-->

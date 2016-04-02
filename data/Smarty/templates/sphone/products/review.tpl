@@ -1,4 +1,3 @@
-<!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`popup_header.tpl" subtitle="お客様の声書き込み（入力ページ）"}-->
 <!--{*
 /*
  * This file is part of EC-CUBE
@@ -22,8 +21,9 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 *}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_header.tpl" subtitle="お客様の声書き込み（入力ページ）"}-->
 
-<div id="windowarea">
+<div id="window_area">
     <h2 class="title">お客様の声書き込み</h2>
     <p class="windowtext">以下の商品について、お客様のご意見、ご感想をどしどしお寄せください。<br />
         「<span class="attention">※</span>」印は入力必須項目です。<br />
@@ -33,17 +33,19 @@
         <input type="hidden" name="mode" value="confirm" />
         <input type="hidden" name="product_id" value="<!--{$arrForm.product_id|h}-->" />
         <table summary="お客様の声書き込み">
+            <col width="30%" />
+            <col width="70%" />
             <tr>
                 <th>商品名</th>
                 <td><!--{$arrForm.name|h}--></td>
             </tr>
             <tr>
                 <th>投稿者名<span class="attention">※</span></th>
-                <td><span class="attention"><!--{$arrErr.reviewer_name}--></span><input type="text" name="reviewer_name" value="<!--{$arrForm.reviewer_name|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" class="boxHarf text data-role-none" placeholder="投稿者名" style="<!--{$arrErr.reviewer_name|sfGetErrorColor}-->" /></td>
+                <td><span class="attention"><!--{$arrErr.reviewer_name}--></span><input type="text" name="reviewer_name" value="<!--{$arrForm.reviewer_name|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.reviewer_name|sfGetErrorColor}-->" class="box350" /></td>
             </tr>
             <tr>
                 <th>投稿者URL</th>
-                <td><span class="attention"><!--{$arrErr.reviewer_url}--></span><input type="text" name="reviewer_url" value="<!--{$arrForm.reviewer_url|h}-->" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" class="boxHarf text data-role-none"  placeholder="投稿者URL" style="<!--{$arrErr.reviewer_url|sfGetErrorColor}-->" /></td>
+                <td><span class="attention"><!--{$arrErr.reviewer_url}--></span><input type="text" name="reviewer_url" value="<!--{$arrForm.reviewer_url|h}-->" maxlength="<!--{$smarty.const.MTEXT_LEN}-->" style="<!--{$arrErr.reviewer_url|sfGetErrorColor}-->" class="box350" /></td>
             </tr>
             <tr>
                 <th>性別</th>
@@ -66,21 +68,23 @@
                 <th>タイトル<span class="attention">※</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.title}--></span>
-                    <input type="text" name="title" value="<!--{$arrForm.title|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" class="boxHarf text data-role-none" placeholder="タイトル" style="<!--{$arrErr.title|sfGetErrorColor}-->" />
+                    <input type="text" name="title" value="<!--{$arrForm.title|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.title|sfGetErrorColor}-->" class="box350" />
                 </td>
             </tr>
             <tr>
                 <th>コメント<span class="attention">※</span></th>
                 <td>
                     <span class="attention"><!--{$arrErr.comment}--></span>
-                    <textarea name="comment" cols="15" rows="10" style="<!--{$arrErr.comment|sfGetErrorColor}-->" class="textarea data-role-none" wrap="hard"><!--{"\n"}--><!--{$arrForm.comment|h}--></textarea>
+                    <textarea name="comment" cols="50" rows="10" style="<!--{$arrErr.comment|sfGetErrorColor}-->" class="area350"><!--{"\n"}--><!--{$arrForm.comment|h}--></textarea>
                 </td>
             </tr>
         </table>
         <div class="btn_area">
-                <p><input type="submit" value="次へ" class="btn data-role-none" name="next" id="next" /></p>
-            </div>
+            <ul>
+                <li><input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_confirm.jpg" alt="確認ページへ" name="conf" id="conf" /></li>
+            </ul>
+        </div>
     </form>
 </div>
 
-<!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`popup_footer.tpl"}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_footer.tpl"}-->

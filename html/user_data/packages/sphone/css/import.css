@@ -1,11 +1,23 @@
 @charset "utf-8";
+
+/************************************************
+ import css
+************************************************ */
+/*@import url("./contents.css");
 @import url("./reset.css");
-@import url("./common.css");
-@import url("./products.css");
-@import url("./contents.css");
-@import url("./mypage.css");
-@import url("./block.css");
-@import url("./popup.css");
-@import url("./button.css");
-@import url("./jqm.css");
+@@import url("./common.css");
+import url("./bloc.css");
+*//*@import url("./table.css");
+*//*@import url("./bloc.css");
+*//*@import url("./bloc_alpha.css");
+*//*@import url("./popup.css");
+@import url("./general/detail.css");
+@import url("./general/index.css");
+@import url("./general/jquery.bxslider.css");
+@import url("./print.css");
+@import url("./general/list-layout.css");
+
+*/
+
+@import url("./general/common.css");
 

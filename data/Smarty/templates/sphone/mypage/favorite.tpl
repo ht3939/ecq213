@@ -22,153 +22,73 @@
  */
 *}-->
 
-<section id="mypagecolumn">
+<div id="mypagecolumn">
     <h2 class="title"><!--{$tpl_title|h}--></h2>
     <!--{if $tpl_navi != ""}-->
         <!--{include file=$tpl_navi}-->
     <!--{else}-->
         <!--{include file=`$smarty.const.TEMPLATE_REALDIR`mypage/navi.tpl}-->
     <!--{/if}-->
+    <div id="mycontents_area">
+        <form name="form1" id="form1" method="post" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <input type="hidden" name="order_id" value="" />
+            <input type="hidden" name="pageno" value="<!--{$tpl_pageno}-->" />
+            <input type="hidden" name="mode" value="" />
+            <input type="hidden" name="product_id" value="" />
+            <h3><!--{$tpl_subtitle|h}--></h3>
 
-    <h3 class="title_mypage"><!--{$tpl_subtitle|h}--></h3>
-    <!--{if $tpl_linemax > 0}-->
+            <!--{if $tpl_linemax > 0}-->
 
-        <!--★インフォメーション★-->
-        <div class="information">
-            <p><span class="attention"><span id="productscount"><!--{$tpl_linemax}--></span>件</span>のお気に入りがあります。</p>
-        </div>
+                <p><span class="attention"><!--{$tpl_linemax}-->件</span>のお気に入りがあります。</p>
+                <div class="paging">
+                    <!--▼ページナビ-->
+                    <!--{$tpl_strnavi}-->
+                    <!--▲ページナビ-->
+                </div>
 
-        <!--▼フォームここから -->
-        <div class="form_area">
-
-            <form name="form1" id="form1" method="post" action="<!--{$smarty.const.ROOT_URLPATH}-->mypage/favorite.php">
-                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-                <input type="hidden" name="mode" value="cart" />
-                <input type="hidden" name="product_id" value="" />
-
-
-                <!--▼フォームボックスここから -->
-                <div class="formBox">
-                    <!--{section name=cnt loop=$arrFavorite max=$dispNumber}-->
+                <table summary="お気に入り">
+                    <col width="15%" />
+                    <col width="20%" />
+                    <col width="45%" />
+                    <col width="20%" />
+                    <tr>
+                        <th class="alignC">削除</th>
+                        <th class="alignC">商品画像</th>
+                        <th class="alignC">商品名</th>
+                        <th class="alignC"><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)</th>
+                    </tr>
+                    <!--{section name=cnt loop=$arrFavorite}-->
                         <!--{assign var=product_id value="`$arrFavorite[cnt].product_id`"}-->
-
-                        <!--▼商品 -->
-                        <div class="favoriteBox">
-                            <a rel="external" href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->"><img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].main_list_image|sfNoImageMainList|h}-->" style="max-width: 80px;max-height: 80px;" class="photoL productImg"  /></a>
-                            <div class="favoriteContents clearfix">
-                                <h4><a rel="external" href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->" class="productName"><!--{$arrFavorite[cnt].name}--></a></h4>
-                                <p><span class="mini productPrice"><!--{$smarty.const.SALE_PRICE_TITLE}-->：<!--{if $arrFavorite[cnt].price02_min_inctax == $arrFavorite[cnt].price02_max_inctax}-->
-                                    <!--{$arrFavorite[cnt].price02_min_inctax|n2s}-->
+                        <tr>
+                            <td class="alignC">
+                                <a href="javascript:eccube.setModeAndSubmit('delete_favorite','product_id','<!--{$product_id|h}-->');">
+                                    削除</a>
+                            </td>
+                            <td class="alignC">
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->">
+                                    <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrFavorite[cnt].main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65px;" alt="<!--{$arrFavorite[cnt].name|h}-->" />
+                            </td>
+                            <td>
+                                <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$product_id|u}-->">
+                                    <!--{$arrFavorite[cnt].name|h}--></a>
+                            </td>
+                            <td class="alignR sale_price">
+                                <span class="price">
+                                    <!--{if $arrFavorite[cnt].price02_min_inctax == $arrFavorite[cnt].price02_max_inctax}-->
+                                        <!--{$arrFavorite[cnt].price02_min_inctax|n2s}-->
                                     <!--{else}-->
-                                    <!--{$arrFavorite[cnt].price02_min_inctax|n2s}-->～<!--{$arrFavorite[cnt].price02_max_inctax|n2s}-->
-                                    <!--{/if}-->円</span></p>
-                                <p class="btn_delete"><img src="<!--{$TPL_URLPATH}-->img/button/btn_delete.png" width="21" height="20" alt="削除" onclick="javascript:eccube.setModeAndSubmit('delete_favorite','product_id','<!--{$product_id|h}-->');" class="pointer" /></p>
-                            </div>
-                        </div><!--▲商品 -->
+                                        <!--{$arrFavorite[cnt].price02_min_inctax|n2s}-->～<!--{$arrFavorite[cnt].price02_max_inctax|n2s}-->
+                                    <!--{/if}-->円</span>
+                            </td>
+                        </tr>
                     <!--{/section}-->
-                </div><!-- /.formBox -->
+                </table>
+                <br />
 
-                <!--{if $stock_find_count > 0 && $customer_rank < 51}-->
-                    <div class="product-btn">
-                        <a rel="external" href="javascript:void(document.form1.submit())" class="btn-cart">カートに入れる</a>
-                    </div>
-                <!--{/if}-->
-            </form>
-        </div><!-- /.form_area -->
-
-        <div class="btn_area">
-            <!--{if $tpl_linemax > $dispNumber}-->
-                <p><a rel="external" href="javascript: void(0);" class="btn_more" id="btn_more_product" onclick="getProducts(<!--{$dispNumber}-->); return false;">もっとみる(＋<!--{$dispNumber}-->件)</a></p>
-            <!--{/if}-->
-        </div>
-
-    <!--{else}-->
-        <div class="form_area">
-            <div class="information">
+            <!--{else}-->
                 <p>お気に入りが登録されておりません。</p>
-            </div>
-        </div><!-- /.form_area -->
-    <!--{/if}-->
-
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
-<script>
-    var pageNo = 2;
-    var url = "<!--{$smarty.const.P_DETAIL_URLPATH}-->";
-    var imagePath = "<!--{$smarty.const.IMAGE_SAVE_URLPATH}-->";
-    var statusImagePath = "<!--{$TPL_URLPATH}-->";
-
-    function getProducts(limit) {
-        eccube.showLoading();
-        var i = limit;
-        //送信データを準備
-        var postData = {};
-        $('#form1').find(':input').each(function(){
-            postData[$(this).attr('name')] = $(this).val();
-        });
-        postData["mode"] = "getList";
-        postData["pageno"] = pageNo;
-        postData["disp_number"] = i;
-
-        $.ajax({
-            type: "POST",
-            url: "<!--{$smarty.const.ROOT_URLPATH}-->mypage/favorite.php",
-            data: postData,
-            cache: false,
-            dataType: "json",
-            error: function(XMLHttpRequest, textStatus, errorThrown){
-                alert(textStatus);
-                eccube.hideLoading();
-            },
-            success: function(result){
-                var productStatus = result.productStatus;
-                for (var j = 0; j < i; j++) {
-                    if (result[j] != null) {
-                        var product = result[j];
-                        var productHtml = "";
-                        var maxCnt = $(".favoriteBox").length - 1;
-                        var productEl = $(".favoriteBox").get(maxCnt);
-                        productEl = $(productEl).clone(true).insertAfter(productEl);
-                        maxCnt++;
-
-                        //商品写真をセット
-                        $($(".favoriteBox img.productImg").get(maxCnt)).attr({
-                            src: imagePath + product.main_list_image,
-                            alt: product.name
-                        });
-
-                        //商品名をセット
-                        $($(".favoriteBox a.productName").get(maxCnt)).text(product.name);
-                        $($(".favoriteBox a.productName").get(maxCnt)).attr("href", url + product.product_id);
-
-                        //販売価格をセット
-                        var price = $($(".favoriteBox span.productPrice").get(maxCnt));
-                        //販売価格をクリア
-                        price.empty();
-                        var priceVale = "";
-                        //販売価格が範囲か判定
-                        if (product.price02_min == product.price02_max) {
-                            priceVale = "<!--{$smarty.const.SALE_PRICE_TITLE}-->：" + product.price02_min_inctax_format + '円';
-                        } else {
-                            priceVale = "<!--{$smarty.const.SALE_PRICE_TITLE}-->：" + product.price02_min_inctax_format + '～' + product.price02_max_inctax_format + '円';
-                        }
-                        price.append(priceVale);
-
-                        //削除ボタンをセット
-                        $($(".favoriteBox p.btn_delete img").get(maxCnt)).attr("onclick", "javascript:eccube.setModeAndSubmit('delete_favorite','product_id','" + product.product_id + "');");
-
-                    }
-                }
-                pageNo++;
-
-                //全ての商品を表示したか判定
-                if (parseInt($("#productscount").text()) <= $(".favoriteBox").length) {
-                    $("#btn_more_product").hide();
-                }
-                eccube.hideLoading();
-            }
-        });
-    }
-</script>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>

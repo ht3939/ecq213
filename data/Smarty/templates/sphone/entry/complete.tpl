@@ -20,21 +20,31 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<section id="undercolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-    <div id="completetext">
-        <p>会員登録の受付が完了いたしました。<br />
-        現在<font color="#FF0000">仮会員</font>の状態です。<br />
-        ご入力いただいたメールアドレス宛てに、ご連絡が届いておりますので、本会員登録になった上でお買い物をお楽しみください。<br />
-        今後ともご愛顧賜りますようよろしくお願い申し上げます。
-        </p>
-    </div>
-    <hr>
-    <div id="completetext">
-        <p>今後ともご愛顧賜りますよう、よろしくお願い申し上げます。</p>
-        <a rel="external" class="btn_s btn_sub" href="<!--{$smarty.const.TOP_URL}-->">トップページへ</a>
-    </div>
-</section>
+<div id="undercolumn">
+    <div id="undercolumn_entry">
+        <h2 class="title"><!--{$tpl_title|h}--></h2>
+        <div id="complete_area">
+            <p class="message">会員登録の受付が完了いたしました。</p>
+            <p>現在<span class="attention">仮会員</span>の状態です。<br />
+                ご入力いただいたメールアドレス宛てに、ご連絡が届いておりますので、本会員登録になった上でお買い物をお楽しみください。<br />
+                今後ともご愛顧賜りますようよろしくお願い申し上げます。
+            </p>
 
-<!--{include file= 'frontparts/search_area.tpl'}-->
+            <div class="shop_information">
+                <p class="name"><!--{$arrSiteInfo.company_name|h}--></p>
+                <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}-->
+                    <!--{if $arrSiteInfo.business_hour != ""}-->（受付時間/<!--{$arrSiteInfo.business_hour}-->）<!--{/if}--><br />
+                    E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a>
+                </p>
+            </div>
 
+            <div class="btn_area">
+                <ul>
+                    <li>
+                        <a href="<!--{$smarty.const.TOP_URL}-->"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_toppage.jpg" alt="トップページへ" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

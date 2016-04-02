@@ -22,32 +22,28 @@
  */
 *}-->
 
-<section id="mypagecolumn">
+<div id="mypagecolumn">
     <h2 class="title"><!--{$tpl_title|h}--></h2>
     <!--{include file=$tpl_navi}-->
-    <h3 class="title_mypage"><!--{$tpl_subtitle|h}--></h3>
+    <div id="mycontents_area">
+        <h3><!--{$tpl_subtitle|h}--></h3>
+        <p>下記項目にご入力ください。「<span class="attention">※</span>」印は入力必須項目です。<br />
+            入力後、一番下の「確認ページへ」ボタンをクリックしてください。</p>
 
-    <!--★インフォメーション★-->
-    <div class="intro">
-        <p><span class="attention">※</span>は必須入力項目です。</p>
+        <form name="form1" id="form1" method="post" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <input type="hidden" name="mode" value="confirm" />
+            <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id.value|h}-->" />
+            <table summary="会員登録内容変更 " class="delivname">
+                <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=3 emailMobile=true prefix=""}-->
+            </table>
+            <div class="btn_area">
+                <ul>
+                    <li>
+                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_confirm.jpg" alt="確認ページへ" name="refusal" id="refusal" />
+                    </li>
+                </ul>
+            </div>
+        </form>
     </div>
-
-    <form name="form1" id="form1" method="post" action="<!--{$smarty.const.HTTPS_URL}-->mypage/change.php">
-        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="hidden" name="mode" value="confirm" />
-        <input type="hidden" name="customer_id" value="<!--{$arrForm.customer_id|h}-->" />
-
-        <dl class="form_entry">
-            <!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=3 emailMobile=true prefix=""}-->
-        </dl>
-        <!--{if 'sfGMOMypageDisplay'|function_exists}-->
-            <!--{'sfGMOMypageDisplay'|call_user_func}-->
-        <!--{/if}-->
-        <div class="btn_area">
-            <p><input type="submit" class="btn data-role-none" value="確認ページへ" name="refusal" id="refusal" /></p>
-        </div>
-    </form>
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
+</div>

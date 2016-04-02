@@ -22,29 +22,22 @@
  */
 *}-->
 
-<section id="mypagecolumn">
+<div id="mypagecolumn">
     <h2 class="title"><!--{$tpl_title|h}--></h2>
     <!--{include file = $tpl_navi}-->
+    <div id="mycontents_area">
+        <h3><!--{$tpl_subtitle|h}--></h3>
+        <div id="complete_area">
+            <div class="message">退会手続きが完了いたしました。<br />
+                <!--{$arrSiteInfo.shop_name}-->をご利用いただき誠にありがとうございました。<br />
+                またのご利用を心よりお待ち申し上げます。
+            </div>
 
-    <h3 class="title_mypage"><!--{$tpl_subtitle|h}--></h3>
-
-    <!--★インフォメーション★-->
-    <div id="mycontentsarea">
-        <div id="completetext">
-            <p>退会手続きが完了いたしました。</p>
-            <p>MYページをご利用いただき誠にありがとうございました。<br />
-                またのご利用を心よりお待ち申し上げます。</p>
+            <div class="shop_information">
+                <p class="name"><!--{$arrSiteInfo.company_name|h}--></p>
+                <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}--> <!--{if $arrSiteInfo.business_hour != ""}-->（受付時間/<!--{$arrSiteInfo.business_hour}-->）<!--{/if}--><br />
+                E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></p>
+            </div>
         </div>
-
-        <hr>
-
-        <div class="shopInformation">
-            <p><!--{$arrSiteInfo.company_name|h}--></p>
-            <p>TEL：<!--{$arrSiteInfo.tel01}-->-<!--{$arrSiteInfo.tel02}-->-<!--{$arrSiteInfo.tel03}--><br />
-                E-mail：<a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->" rel="external"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></p>
-        </div>
-    </div><!-- /#mycontentsarea -->
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
+    </div>
+</div>

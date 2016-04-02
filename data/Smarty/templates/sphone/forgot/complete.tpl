@@ -19,27 +19,27 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_header.tpl" subtitle="パスワードを忘れた方(完了ページ)"}-->
 
-<section id="windowcolumn">
+<div id="window_area">
     <h2 class="title">パスワードを忘れた方</h2>
-    <div class="intro">
-        <p>パスワードの発行が完了いたしました。ログインには下記のパスワードをご利用ください。</p>
-    </div>
+    <p class="information">パスワードの発行が完了いたしました。ログインには下記のパスワードをご利用ください。<br />
+        ※下記パスワードは、MYページの「会員登録内容変更」よりご変更いただけます。</p>
     <form action="?" method="post" name="form1">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-
-        <div class="window_area clearfix">
+        <div id="forgot">
             <!--{if $smarty.const.FORGOT_MAIL != 1}-->
-                <input id="completebox" type="text" value="<!--{$arrForm.new_password}-->" readonly="readonly" />
+                    <p><span class="attention"><!--{$arrForm.new_password}--></span></p>
             <!--{else}-->
-                <p  class="attention">ご登録メールアドレスに送付致しました。</p>
+            <p><span class="attention">ご登録メールアドレスに送付致しました。</span></p>
             <!--{/if}-->
-            <hr />
-            <p>※パスワードは、MYページの「会員登録内容変更」よりご変更いただけます。</p>
         </div>
-
         <div class="btn_area">
-            <p><a rel="external" href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" class="btn_sub btn_close">ログイン画面へ</a></p>
+            <ul>
+                <li><a href="javascript:window.close()"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_close.jpg" alt="閉じる" /></a></li>
+            </ul>
         </div>
     </form>
-</section>
+</div>
+
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_footer.tpl"}-->

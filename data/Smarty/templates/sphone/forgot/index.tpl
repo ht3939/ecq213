@@ -19,44 +19,44 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_header.tpl" subtitle="パスワードを忘れた方(入力ページ)"}-->
 
-<section id="windowcolumn">
-    <h2 class="title">パスワードを忘れた方</h2>
+<div id="window_area">
+    <h2>パスワードの再発行</h2>
+    <p class="information">ご登録時のメールアドレスと、ご登録されたお名前を入力して「次へ」ボタンをクリックしてください。<br />
+    <span class="attention">※新しくパスワードを発行いたしますので、お忘れになったパスワードはご利用できなくなります。</span></p>
     <form action="?" method="post" name="form1">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="mode" value="mail_check" />
-        <div class="intro">
-            <p>ご登録時のメールアドレスと、ご登録されたお名前を入力して「次へ」ボタンをクリックしてください。</p>
-        </div>
-        <div class="window_area clearfix">
-            <p>
-                お名前<br />
-                <span class="attention"><!--{$arrErr.name01}--><!--{$arrErr.name02}--></span>
-                <input type="text" name="name01"
-                    value="<!--{$arrForm.name01|default:''|h}-->"
-                    maxlength="<!--{$smarty.const.STEXT_LEN}-->"
-                    style="<!--{$arrErr.name01|sfGetErrorColor}-->;"
-                    class="boxHarf text data-role-none" placeholder="姓"/>&nbsp;&nbsp;
-                <input type="text" name="name02"
-                    value="<!--{$arrForm.name02|default:''|h}-->"
-                    maxlength="<!--{$smarty.const.STEXT_LEN}-->"
-                    style="<!--{$arrErr.name02|sfGetErrorColor}-->;"
-                    class="boxHarf text data-role-none" placeholder="名"/>
-            </p>
-            <hr />
-            <p>
-                メールアドレス<br />
-                <span class="attention"><!--{$arrErr.email}--></span>
-                <input type="email" name="email"
-                value="<!--{$arrForm.email|default:$tpl_login_email|h}-->"
-                style="<!--{$arrErr.email|sfGetErrorColor}-->;"
-                maxlength="200" class="text boxLong data-role-none" />
-            </p>
-            <span class="attention"><!--{$errmsg}--></span>
-            <hr />
-            <p class="attentionSt">【重要】新しくパスワードを発行いたしますので、お忘れになったパスワードはご利用できなくなります。</p>
-        </div>
 
-        <div class="btn_area"><p><input class="btn data-role-none" type="submit" value="次へ" /></p></div>
+        <div id="forgot">
+            <div class="contents">
+                <div class="mailaddres">
+                    <p class="attention"><!--{$arrErr.email}--></p>
+                    <p>
+                        メールアドレス：&nbsp;
+                        <input type="text" name="email" value="<!--{$arrForm.email|default:$tpl_login_email|h}-->" class="box300" style="<!--{$arrErr.email|sfGetErrorColor}-->; ime-mode: disabled;" />
+                    </p>
+                </div>
+                <div class="name">
+                    <p class="attention">
+                        <!--{$arrErr.name01}--><!--{$arrErr.name02}-->
+                        <!--{$errmsg}-->
+                    </p>
+                    <p>
+                        お名前：&nbsp;
+                        姓&nbsp;<input type="text" class="box120" name="name01" value="<!--{$arrForm.name01|default:''|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.name01|sfGetErrorColor}-->; ime-mode: active;" />
+                        名&nbsp;<input type="text" class="box120" name="name02" value="<!--{$arrForm.name02|default:''|h}-->" maxlength="<!--{$smarty.const.STEXT_LEN}-->" style="<!--{$arrErr.name02|sfGetErrorColor}-->; ime-mode: active;" />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="btn_area">
+            <ul>
+                <li><input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_next.jpg" alt="次へ" name="next" id="next" /></li>
+            </ul>
+        </div>
     </form>
-</section>
+</div>
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_footer.tpl"}-->
+

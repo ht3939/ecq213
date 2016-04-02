@@ -22,71 +22,19 @@
  */
 *}-->
 
-<section id="undercolumn">
-    <!--☆当サイトについて -->
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
-
-    <dl class="form_info">
-        <!--{if strlen($arrSiteInfo.shop_name)}-->
-            <dt>店名</dt>
-            <dd><!--{$arrSiteInfo.shop_name|h}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.company_name)}-->
-            <dt>会社名</dt>
-            <dd><!--{$arrSiteInfo.company_name|h}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.zip01)}-->
-            <dt>所在地</dt>
-            <dd>〒<!--{$arrSiteInfo.zip01|h}-->-<!--{$arrSiteInfo.zip02|h}--><br />
-                <!--{$arrPref[$arrSiteInfo.pref]|h}--><!--{$arrSiteInfo.addr01|h}--><!--{$arrSiteInfo.addr02|h}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.tel01)}-->
-            <dt>電話番号</dt>
-            <dd><!--{$arrSiteInfo.tel01|h}-->-<!--{$arrSiteInfo.tel02|h}-->-<!--{$arrSiteInfo.tel03|h}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.fax01)}-->
-            <dt>FAX番号</dt>
-            <dd><!--{$arrSiteInfo.fax01|h}-->-<!--{$arrSiteInfo.fax02|h}-->-<!--{$arrSiteInfo.fax03|h}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.email02)}-->
-            <dt>メールアドレス</dt>
-            <dd><a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->" rel="external"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.business_hour)}-->
-            <dt>営業時間</dt>
-            <dd><!--{$arrSiteInfo.business_hour|h}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.good_traded)}-->
-            <dt>取扱商品</dt>
-            <dd><!--{$arrSiteInfo.good_traded|h|nl2br}--></dd>
-        <!--{/if}-->
-
-        <!--{if strlen($arrSiteInfo.message)}-->
-            <dt>メッセージ</dt>
-            <dd><!--{$arrSiteInfo.message|h|nl2br}--></dd>
-        <!--{/if}-->
-    </dl>
-
-    <!--{if strlen($arrSiteInfo.latitude) >= 1 && strlen($arrSiteInfo.longitude) >= 1}-->
-        <script src="//maps.google.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript">//<![CDATA[
-            $(function() {
-                $("#maps").css({
-                    'margin-top': '15px',
-                    'margin-left': 'auto',
-                    'margin-right': 'auto',
-                    'width': '98%',
-                    'height': '300px'
-                });
-                var lat = "<!--{$arrSiteInfo.latitude|escape:'javascript'}-->";
-                var lng = "<!--{$arrSiteInfo.longitude|escape:'javascript'}-->";
+<!--{if $arrSiteInfo.latitude && $arrSiteInfo.longitude}-->
+    <script type="text/javascript">//<![CDATA[
+        $(function() {
+            $("#maps").css({
+                'margin-top': '15px',
+                'margin-left': 'auto',
+                'margin-right': 'auto',
+                'width': '98%',
+                'height': '300px'
+            });
+            var lat = <!--{$arrSiteInfo.latitude}-->
+            var lng = <!--{$arrSiteInfo.longitude}-->
+            if (lat && lng) {
                 var latlng = new google.maps.LatLng(lat, lng);
                 var mapOptions = {
                     zoom: 15,
@@ -95,11 +43,85 @@
                 };
                 var map = new google.maps.Map($("#maps").get(0), mapOptions);
                 var marker = new google.maps.Marker({map: map, position: latlng});
-            });
-        //]]></script>
+            } else {
+                $("#maps").remove();
+            }
+        });
+    //]]></script>
+<!--{/if}-->
+<div id="undercolumn">
+
+    <div id="undercolumn_aboutus">
+        <h2 class="title"><!--{$tpl_title|h}--></h2>
+
+        <table summary="当サイトについて">
+            <col width="20%" />
+            <col width="80%" />
+            <!--{if strlen($arrSiteInfo.shop_name)}-->
+                <tr>
+                    <th>店名</th>
+                    <td><!--{$arrSiteInfo.shop_name|h}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.company_name)}-->
+                <tr>
+                    <th>会社名</th>
+                    <td><!--{$arrSiteInfo.company_name|h}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.zip01)}-->
+                <tr>
+                    <th>所在地</th>
+                    <td>〒<!--{$arrSiteInfo.zip01|h}-->-<!--{$arrSiteInfo.zip02|h}--><br /><!--{$arrPref[$arrSiteInfo.pref]|h}--><!--{$arrSiteInfo.addr01|h}--><!--{$arrSiteInfo.addr02|h}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.tel01)}-->
+                <tr>
+                    <th>電話番号</th>
+                    <td><!--{$arrSiteInfo.tel01|h}-->-<!--{$arrSiteInfo.tel02|h}-->-<!--{$arrSiteInfo.tel03|h}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.fax01)}-->
+                <tr>
+                    <th>FAX番号</th>
+                    <td><!--{$arrSiteInfo.fax01|h}-->-<!--{$arrSiteInfo.fax02|h}-->-<!--{$arrSiteInfo.fax03|h}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.email02)}-->
+                <tr>
+                    <th>メールアドレス</th>
+                    <td><a href="mailto:<!--{$arrSiteInfo.email02|escape:'hex'}-->"><!--{$arrSiteInfo.email02|escape:'hexentity'}--></a></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.business_hour)}-->
+                <tr>
+                    <th>営業時間</th>
+                    <td><!--{$arrSiteInfo.business_hour|h}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.good_traded)}-->
+                <tr>
+                    <th>取扱商品</th>
+                    <td><!--{$arrSiteInfo.good_traded|h|nl2br}--></td>
+                </tr>
+            <!--{/if}-->
+
+            <!--{if strlen($arrSiteInfo.message)}-->
+                <tr>
+                    <th>メッセージ</th>
+                    <td><!--{$arrSiteInfo.message|h|nl2br}--></td>
+                </tr>
+            <!--{/if}-->
+
+        </table>
+
         <div id="maps"></div>
-    <!--{/if}-->
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
+    </div>
+</div>

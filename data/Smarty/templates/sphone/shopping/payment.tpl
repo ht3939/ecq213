@@ -46,26 +46,39 @@
                         remoteException();
                     } else {
                         // 支払い方法の行を生成
-                        var payment = $('#payment');
-                        payment.empty();
+                        var payment_tbody = $('#payment tbody');
+                        payment_tbody.empty();
                         for (var i in data.arrPayment) {
                             // ラジオボタン
-                            var radio = $('<input type="radio" />')
-                                .attr('name', 'payment_id')
-                                .attr('id', 'pay_' + i)
+                            <!--{* IE7未満対応のため name と id をベタ書きする *}-->
+                            var radio = $('<input type="radio" name="payment_id" id="pay_' + i + '" />')
                                 .val(data.arrPayment[i].payment_id);
                             // ラベル
                             var label = $('<label />')
                                 .attr('for', 'pay_' + i)
                                 .text(data.arrPayment[i].payment_method);
                             // 行
-                            var li = $('<li />')
+                            var tr = $('<tr />')
                                 .append($('<td />')
-                                .addClass('centertd')
-                                .append(radio)
-                                .append(label));
+                                    .addClass('alignC')
+                                    .append(radio))
+                                .append($('<td />').append(label));
 
-                            li.appendTo(payment);
+                            // 支払方法の画像が登録されている場合は表示
+                            if (data.img_show) {
+                                var payment_image = data.arrPayment[i].payment_image;
+                                $('th#payment_method').attr('colspan', 3);
+                                if (payment_image) {
+                                    var img = $('<img />').attr('src', '<!--{$smarty.const.IMAGE_SAVE_URLPATH}-->' + payment_image);
+                                    tr.append($('<td />').append(img));
+                                } else {
+                                    tr.append($('<td />'));
+                                }
+                            } else {
+                                $('th#payment_method').attr('colspan', 2);
+                            }
+
+                            tr.appendTo(payment_tbody);
                         }
                         // お届け時間を生成
                         var deliv_time_id_select = $('select[id^=deliv_time_id]');
@@ -102,183 +115,175 @@
                 $('.non-select-msg').show();
             }
         }
-
-        $('#etc')
-            .css('font-size', '100%')
-            .autoResizeTextAreaQ({
-                'max_rows': 50,
-                'extra_rows': 0
-            });
     });
 //]]></script>
+<div id="undercolumn">
+    <div id="undercolumn_shopping">
+        <p class="flow_area">
+            <img src="<!--{$TPL_URLPATH}-->img/picture/img_flow_02.jpg" alt="購入手続きの流れ" />
+        </p>
+        <h2 class="title"><!--{$tpl_title|h}--></h2>
 
-<!--▼コンテンツここから -->
-<section id="undercolumn">
+        <form name="form1" id="form1" method="post" action="?">
+            <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+            <input type="hidden" name="mode" value="confirm" />
+            <input type="hidden" name="uniqid" value="<!--{$tpl_uniqid}-->" />
 
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
+            <!--{assign var=key value="deliv_id"}-->
+            <!--{if $is_single_deliv}-->
+                <input type="hidden" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" id="deliv_id" />
+            <!--{else}-->
+            <div class="pay_area">
+                <h3>配送方法の指定</h3>
+                <p>配送方法をご選択ください。</p>
 
-    <form name="form1" id="form1" method="post" action="<!--{$smarty.const.ROOT_URLPATH}-->shopping/payment.php">
-        <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-        <input type="hidden" name="mode" value="confirm" />
-        <input type="hidden" name="uniqid" value="<!--{$tpl_uniqid}-->" />
-
-        <!--★インフォメーション★-->
-        <div class="information end">
-            <p>各項目を選択してください。</p>
-        </div>
-
-        <!--★配送方法の指定★-->
-        <!--{assign var=key value="deliv_id"}-->
-        <!--{if $is_single_deliv}-->
-            <input type="hidden" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|h}-->" id="deliv_id" />
-        <!--{else}-->
-            <section class="pay_area">
-                <h3 class="subtitle">配送方法の指定</h3>
                 <!--{if $arrErr[$key] != ""}-->
-                    <p class="attention"><!--{$arrErr[$key]}--></p>
-                <!--{/if}-->
-                <ul>
-                    <!--{section name=cnt loop=$arrDeliv}-->
-                        <li>
-                            <input type="radio" id="deliv_<!--{$smarty.section.cnt.iteration}-->" name="<!--{$key}-->"  value="<!--{$arrDeliv[cnt].deliv_id}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" <!--{$arrDeliv[cnt].deliv_id|sfGetChecked:$arrForm[$key].value}--> class="data-role-none" />
-                            <label for="deliv_<!--{$smarty.section.cnt.iteration}-->"><!--{$arrDeliv[cnt].name|h}--><!--{if $arrDeliv[cnt].remark != ""}--><p><!--{$arrDeliv[cnt].remark|h}--></p><!--{/if}--></label>
-                        </li>
-                    <!--{/section}-->
-                </ul>
-            </section>
-        <!--{/if}-->
-
-        <!--★インフォメーション★-->
-        <section class="pay_area">
-            <h3 class="subtitle">お支払方法の指定</h3>
-            <!--{assign var=key value="payment_id"}-->
-            <!--{if $arrErr[$key] != ""}-->
                 <p class="attention"><!--{$arrErr[$key]}--></p>
+                <!--{/if}-->
+                <table summary="配送方法選択">
+                    <col width="20%" />
+                    <col width="80%" />
+                    <tr>
+                        <th class="alignC">選択</th>
+                        <th class="alignC" colspan="2">配送方法</th>
+                    </tr>
+                    <!--{section name=cnt loop=$arrDeliv}-->
+                    <tr>
+                        <td class="alignC"><input type="radio" id="deliv_<!--{$smarty.section.cnt.iteration}-->" name="<!--{$key}-->" value="<!--{$arrDeliv[cnt].deliv_id}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" <!--{$arrDeliv[cnt].deliv_id|sfGetChecked:$arrForm[$key].value}--> />
+                        </td>
+                        <td>
+                            <label for="deliv_<!--{$smarty.section.cnt.iteration}-->"><!--{$arrDeliv[cnt].name|h}--><!--{if $arrDeliv[cnt].remark != ""}--><p><!--{$arrDeliv[cnt].remark|h|nl2br}--></p><!--{/if}--></label>
+                        </td>
+                    </tr>
+                    <!--{/section}-->
+                </table>
+            </div>
             <!--{/if}-->
-            <p class="non-select-msg information">まずはじめに、配送方法を選択ください。</p>
-            <ul id="payment">
-                <!--{section name=cnt loop=$arrPayment}-->
-                    <li>
-                        <input type="radio" id="pay_<!--{$smarty.section.cnt.iteration}-->" name="<!--{$key}-->" value="<!--{$arrPayment[cnt].payment_id}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" <!--{$arrPayment[cnt].payment_id|sfGetChecked:$arrForm[$key].value}--> class="data-role-none" />
-                        <label for="pay_<!--{$smarty.section.cnt.iteration}-->"><!--{$arrPayment[cnt].payment_method|h}--><!--{if $arrPayment[cnt].note != ""}--><!--{/if}--></label>
-                        <!--{if $img_show}-->
-                            <!--{if $arrPayment[cnt].payment_image != ""}-->
-                                <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrPayment[cnt].payment_image}-->" />
+
+            <div class="pay_area">
+                <h3>お支払方法の指定</h3>
+                <p class="select-msg">お支払方法をご選択ください。</p>
+                <p class="non-select-msg">まずはじめに、配送方法を選択ください。</p>
+
+                <!--{assign var=key value="payment_id"}-->
+                <!--{if $arrErr[$key] != ""}-->
+                <p class="attention"><!--{$arrErr[$key]}--></p>
+                <!--{/if}-->
+                <table summary="お支払方法選択" id="payment">
+                    <col width="20%" />
+                    <col width="80%" />
+                    <thead>
+                        <tr>
+                            <th class="alignC">選択</th>
+                            <th class="alignC" colspan="<!--{if !$img_show}-->2<!--{else}-->3<!--{/if}-->" id="payment_method">お支払方法</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--{section name=cnt loop=$arrPayment}-->
+                            <tr>
+                            <td class="alignC"><input type="radio" id="pay_<!--{$smarty.section.cnt.iteration}-->" name="<!--{$key}-->"  value="<!--{$arrPayment[cnt].payment_id}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" <!--{$arrPayment[cnt].payment_id|sfGetChecked:$arrForm[$key].value}--> /></td>
+                            <td>
+                                <label for="pay_<!--{$smarty.section.cnt.iteration}-->"><!--{$arrPayment[cnt].payment_method|h}--><!--{if $arrPayment[cnt].note != ""}--><!--{/if}--></label>
+                            </td>
+                            <!--{if $img_show}-->
+                                <td>
+                                    <!--{if $arrPayment[cnt].payment_image != ""}-->
+                                        <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arrPayment[cnt].payment_image}-->" />
+                                    <!--{/if}-->
+                                </td>
                             <!--{/if}-->
-                        <!--{/if}-->
-                    </li>
-                <!--{/section}-->
-            </ul>
-        </section>
+                            </tr>
+                        <!--{/section}-->
+                    </tbody>
+                </table>
+            </div>
 
+            <!--{if $cartKey != $smarty.const.PRODUCT_TYPE_DOWNLOAD}-->
+            <div class="pay_area02">
+                <h3>お届け時間の指定</h3>
+                <p class="select-msg">ご希望の方は、お届け時間を選択してください。</p>
+                <p class="non-select-msg">まずはじめに、配送方法を選択ください。</p>
+                <!--{foreach item=shippingItem name=shippingItem from=$arrShipping}-->
+                <!--{assign var=index value=$shippingItem.shipping_id}-->
+                <div class="delivdate top">
+                    <!--{if $is_multiple}-->
+                        <span class="st">▼<!--{$shippingItem.shipping_name01}--><!--{$shippingItem.shipping_name02}-->
+                        <!--{$arrPref[$shippingItem.shipping_pref]}--><!--{$shippingItem.shipping_addr01}--><!--{$shippingItem.shipping_addr02}--></span><br/>
+                    <!--{/if}-->
+                    <!--★お届け日★-->
+                    <!--{assign var=key value="deliv_date`$index`"}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                    お届け日：
+                    <!--{if !$arrDelivDate}-->
+                        ご指定頂けません。
+                    <!--{else}-->
+                        <select name="<!--{$key}-->" id="<!--{$key}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->">
+                            <option value="" selected="">指定なし</option>
+                            <!--{assign var=shipping_date_value value=$arrForm[$key].value|default:$shippingItem.shipping_date}-->
+                            <!--{html_options options=$arrDelivDate selected=$shipping_date_value}-->
+                        </select>&nbsp;
+                    <!--{/if}-->
+                    <!--★お届け時間★-->
+                    <!--{assign var=key value="deliv_time_id`$index`"}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                    お届け時間：
+                    <select name="<!--{$key}-->" id="<!--{$key}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->">
+                        <option value="" selected="">指定なし</option>
+                        <!--{assign var=shipping_time_value value=$arrForm[$key].value|default:$shippingItem.time_id}-->
+                        <!--{html_options options=$arrDelivTime selected=$shipping_time_value}-->
+                    </select>
+                </div>
+                <!--{/foreach}-->
+            </div>
+            <!--{/if}-->
 
-        <!--★お届け時間の指定★-->
-        <!--{if $cartKey != $smarty.const.PRODUCT_TYPE_DOWNLOAD}-->
-            <section class="pay_area02">
-                <h3 class="subtitle">お届け時間の指定</h3>
-
-                <div class="form_area">
-                    <!--{foreach item=shippingItem name=shippingItem from=$arrShipping}-->
-                        <!--{assign var=index value=$shippingItem.shipping_id}-->
-
-                        <!--▼フォームボックスここから -->
-                        <!--{if $is_multiple}-->
-                            <div class="formBox"><!--{* FIXME *}-->
-                                <div class="box_header">
-                                    お届け先<!--{$smarty.foreach.shippingItem.iteration}-->
-                                </div>
-                                <div class="innerBox">
-                                    <!--{$shippingItem.shipping_name01}--><!--{$shippingItem.shipping_name02}--><br />
-                                    <span class="mini"><!--{$arrPref[$shippingItem.shipping_pref]}--><!--{$shippingItem.shipping_addr01}--><!--{$shippingItem.shipping_addr02}--></span>
-                                </div>
-                        <!--{else}-->
-                            <div class="time_select"><!--{* FIXME *}-->
-                        <!--{/if}-->
-
-                            <div class="btn_area_btm">
-                                <!--★お届け日★-->
-                                <!--{assign var=key value="deliv_date`$index`"}-->
-                                <span class="attention"><!--{$arrErr[$key]}--></span>
-                                <!--{if !$arrDelivDate}-->
-                                    ご指定頂けません。
-                                <!--{else}-->
-                                    <select name="<!--{$key}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="boxLong top data-role-none">
-                                        <option value="" selected="">お届け日：指定なし</option>
-                                        <!--{assign var=shipping_date_value value=$arrForm[$key].value|default:$shippingItem.shipping_date}-->
-                                        <!--{html_options options=$arrDelivDate selected=$shipping_date_value}-->
-                                    </select>
-                                <!--{/if}-->
-
-                                <!--★お届け時間★-->
-                                <!--{assign var=key value="deliv_time_id`$index`"}-->
-                                <span class="attention"><!--{$arrErr[$key]}--></span>
-                                <select name="<!--{$key}-->" id="<!--{$key}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="boxLong data-role-none">
-                                    <option value="" selected="">お届け時間：指定なし</option>
-                                    <!--{assign var=shipping_time_value value=$arrForm[$key].value|default:$shippingItem.time_id}-->
-                                    <!--{html_options options=$arrDelivTime selected=$shipping_time_value}-->
-                                </select>
-                            </div>
-                        </div><!-- /.formBox --><!-- /.time_select --><!--{* FIXME *}-->
-                    <!--{/foreach}-->
-
-                </div><!-- /.form_area -->
-            </section>
-        <!--{/if}-->
-
-        <!--★ポイント使用の指定★-->
-        <!--{if $tpl_login == 1 && $smarty.const.USE_POINT !== false}-->
-            <section class="point_area">
-                <h3 class="subtitle">ポイント使用の指定</h3>
-
-                    <div class="form_area">
-                        <p class="fb"><span class="point">1ポイントを1円</span>として使用する事ができます。</p>
+            <!-- ▼ポイント使用 -->
+            <!--{if $tpl_login == 1 && $smarty.const.USE_POINT !== false}-->
+                <div class="point_area">
+                    <h3>ポイント使用の指定</h3>
+                        <p><span class="attention">1ポイントを<!--{$smarty.const.POINT_VALUE|n2s}-->円</span>として使用する事ができます。<br />
+                            使用する場合は、「ポイントを使用する」にチェックを入れた後、使用するポイントをご記入ください。
+                        </p>
                         <div class="point_announce">
-                            <p>現在の所持ポイントは「<span class="price"><!--{$tpl_user_point|default:0|n2s}-->Pt</span>」です。<br />
-                            今回ご購入合計金額：<span class="price"><!--{$arrPrices.subtotal|n2s}-->円</span> (送料、手数料を含みません。)</p>
-                        </div>
+                            <p><span class="user_name"><!--{$name01|h}--> <!--{$name02|h}-->様</span>の、現在の所持ポイントは「<span class="point"><!--{$tpl_user_point|default:0|n2s}-->Pt</span>」です。<br />
+                                今回ご購入合計金額：<span class="price"><!--{$arrPrices.subtotal|n2s}-->円</span> <span class="attention">(送料、手数料を含みません。)</span>
+                            </p>
+                            <ul>
+                                <li>
+                                <input type="radio" id="point_on" name="point_check" value="1" <!--{$arrForm.point_check.value|sfGetChecked:1}--> onclick="eccube.togglePointForm();" /><label for="point_on">ポイントを使用する</label>
+                                    <!--{assign var=key value="use_point"}--><br />
+                                今回のお買い物で、<input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|default:$tpl_user_point}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="box60" />&nbsp;Ptを使用する。<span class="attention"><!--{$arrErr[$key]}--></span>
+                                </li>
+                                <li><input type="radio" id="point_off" name="point_check" value="2" <!--{$arrForm.point_check.value|sfGetChecked:2}--> onclick="eccube.togglePointForm();" /><label for="point_off">ポイントを使用しない</label></li>
+                            </ul>
+                    </div>
+                </div>
+            <!--{/if}-->
+            <!-- ▲ポイント使用 -->
 
-                        <!--▼ポイントフォームボックスここから -->
-                        <div class="formBox">
-                            <div class="innerBox fb">
-                                <p>
-                                    <input type="radio" id="point_on" name="point_check" value="1" <!--{$arrForm.point_check.value|sfGetChecked:1}--> onchange="eccube.togglePointForm();" class="data-role-none" />
-                                    <label for="point_on">ポイントを使用する</label>
-                                </p>
-                                <!--{assign var=key value="use_point"}-->
-                                <p class="check_point"><input type="text" name="<!--{$key}-->" value="<!--{$arrForm[$key].value|default:$tpl_user_point}-->" maxlength="<!--{$arrForm[$key].length}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" class="box_point data-role-none" />ポイントを使用する。<span class="attention"><!--{$arrErr[$key]}--></span></p>
-                            </div>
-                        <div class="innerBox fb">
-                            <input type="radio" id="point_off" name="point_check" value="2" <!--{$arrForm.point_check.value|sfGetChecked:2}--> onchange="eccube.togglePointForm();" class="data-role-none" />
-                            <label for="point_off">ポイントを使用しない</label>
-                        </div>
-                    </div><!-- /.formBox -->
-                </div><!-- /.form_area -->
-            </section>
-        <!--{/if}-->
-
-        <!--★その他お問い合わせ★-->
-        <section class="contact_area">
-            <h3 class="subtitle">その他お問い合わせ</h3>
-            <div class="form_area">
+            <div class="pay_area02">
+                <h3>その他お問い合わせ</h3>
                 <p>その他お問い合わせ事項がございましたら、こちらにご入力ください。</p>
+                <div>
+                    <!--★その他お問い合わせ事項★-->
+                    <!--{assign var=key value="message"}-->
+                    <span class="attention"><!--{$arrErr[$key]}--></span>
+                    <textarea name="<!--{$key}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" cols="70" rows="8" class="txtarea" wrap="hard"><!--{"\n"}--><!--{$arrForm[$key].value|h}--></textarea>
+                    <p class="attention"> (<!--{$smarty.const.LTEXT_LEN}-->文字まで)</p>
+                </div>
+            </div>
 
-                <!--{assign var=key value="message"}-->
-                <span class="attention"><!--{$arrErr[$key]}--></span>
-                <textarea name="<!--{$key}-->" id="etc" style="<!--{$arrErr[$key]|sfGetErrorColor}-->" cols="62" rows="8" class="textarea data-role-none" wrap="hard"><!--{"\n"}--><!--{$arrForm[$key].value|h}--></textarea><br />
-            </div><!--▲form_area -->
-        </section>
-
-        <!--★ボタン★-->
-        <div class="btn_area">
-            <ul class="btn_btm">
-                <li><a rel="external" href="javascript:void(document.form1.submit());" class="btn">確認ページへ</a></li>
-                <li><a rel="external" href="?mode=return" class="btn_back">戻る</a></li>
-            </ul>
-        </div>
-
-    </form>
-</section>
-
-<!--{include file= 'frontparts/search_area.tpl'}-->
-
-<!--▲コンテンツここまで -->
+            <div class="btn_area">
+                <ul>
+                    <li>
+                    <a href="?mode=return">
+                        <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_back.jpg" alt="戻る" border="0" name="back03" id="back03" /></a>
+                    </li>
+                    <li>
+                        <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_next.jpg" alt="次へ" name="next" id="next" />
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>

@@ -21,31 +21,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 *}-->
-<!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`popup_header.tpl" subtitle="新しいお届け先の追加・変更"}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_header.tpl" subtitle="新しいお届け先の追加・変更"}-->
 
-<section>
+<div id="window_area">
     <h2 class="title"><!--{$tpl_title|h}--></h2>
+    <p>下記項目にご入力ください。「<span class="attention">※</span>」印は入力必須項目です。<br />
+        入力後、一番下の「登録する」ボタンをクリックしてください。</p>
 
-    <!--★インフォメーション★-->
-    <div class="information">
-        <p><span class="attention">※</span>は必須入力項目です。<br />
-            最大<!--{$smarty.const.DELIV_ADDR_MAX|h}-->件まで登録できます。</p>
-    </div>
-
-    <form name="form1" id="form1" method="post" action="<!--{$smarty.const.ROOT_URLPATH}-->mypage/delivery_addr.php">
+    <form name="form1" id="form1" method="post" action="?">
         <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
         <input type="hidden" name="mode" value="edit" />
         <input type="hidden" name="other_deliv_id" value="<!--{$smarty.session.other_deliv_id|h}-->" />
         <input type="hidden" name="ParentPage" value="<!--{$ParentPage}-->" />
 
-        <dl class="form_entry">
-            <!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=1 emailMobile=false prefix=""}-->
-        </dl>
-
+        <table summary="お届け先登録">
+            <!--{include file="`$smarty.const.TEMPLATE_REALDIR`frontparts/form_personal_input.tpl" flgFields=1 emailMobile=false prefix=""}-->
+        </table>
         <div class="btn_area">
-            <input class="btn" type="submit" value="登録する" name="register" id="register" />
+            <ul>
+                <li>
+                    <a class="btn-action" href="javascript:" onclick="eccube.setValueAndSubmit('form1', 'mode', 'edit'); return false;">
+                        <img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_add_address_complete.jpg" alt="登録する" />
+                    </a>
+                </li>
+            </ul>
         </div>
     </form>
-</section>
+</div>
 
-<!--{include file="`$smarty.const.SMARTPHONE_TEMPLATE_REALDIR`popup_footer.tpl"}-->
+<!--{include file="`$smarty.const.TEMPLATE_REALDIR`popup_footer.tpl"}-->

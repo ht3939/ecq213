@@ -20,24 +20,51 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<nav class="top_menu clearfix">
-    <!--{if $tpl_login}-->
-        <ul>
-            <li><a rel="external" href="javascript:void(document.login_form_bloc.submit())"><img src="<!--{$TPL_URLPATH}-->img/icon/ico_login.png" width="22" height="21" alt="ログアウト" />ログアウト</a></li>
-            <li><a rel="external" href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" data-transition="slideup"><img src="<!--{$TPL_URLPATH}-->img/icon/ico_mypage.png" width="22" height="21" alt="MYページ" />MYページ</a></li>
-            <li><a rel="external" href="<!--{$smarty.const.CART_URL|h}-->"><img src="<!--{$TPL_URLPATH}-->img/icon/ico_cart.png" width="22" height="21" alt="カートを見る" />カートを見る</a></li>
-        </ul>
-    <!--{else}-->
-        <ul>
-            <li><a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" data-transition="slideup"><img src="<!--{$TPL_URLPATH}-->img/icon/ico_login.png" width="22" height="21" alt="ログイン" />ログイン</a></li>
-            <li><a href="<!--{$smarty.const.HTTPS_URL}-->mypage/login.php" data-transition="slideup"><img src="<!--{$TPL_URLPATH}-->img/icon/ico_mypage.png" width="22" height="21" alt="MYページ" />MYページ</a></li>
-            <li><a rel="external" href="<!--{$smarty.const.CART_URL|h}-->"><img src="<!--{$TPL_URLPATH}-->img/icon/ico_cart.png" width="22" height="21" alt="カートを見る" />カートを見る</a></li>
-        </ul>
-    <!--{/if}-->
-</nav>
-
-<form name="login_form_bloc" id="login_form_bloc" method="post" action="<!--{$smarty.const.HTTPS_URL}-->frontparts/login_check.php"<!--{if !$tpl_login}--> onsubmit="return eccube.checkLoginFormInputted('login_form_bloc')"<!--{/if}-->>
-    <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
-    <input type="hidden" name="mode" value="logout" />
-    <input type="hidden" name="url" value="<!--{$smarty.server.SCRIPT_NAME|h}-->" />
-</form>
+<!--{strip}-->
+    <div class="block_outer">
+        <div id="login_area">
+            <h2><img src="<!--{$TPL_URLPATH}-->img/title/tit_bloc_login.gif" alt="ログイン" /></h2>
+            <form name="login_form" id="login_form" method="post" action="<!--{$smarty.const.HTTPS_URL}-->frontparts/login_check.php"<!--{if $tpl_login}--> onsubmit="return eccube.checkLoginFormInputted('login_form')"<!--{/if}-->>
+                <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
+                <input type="hidden" name="mode" value="login" />
+                <input type="hidden" name="url" value="<!--{$smarty.server.REQUEST_URI|h}-->" />
+                <div class="block_body">
+                    <!--{if $tpl_login}-->
+                        <p>ようこそ<br />
+                            <span class="user_name"><!--{$tpl_name1|h}--> <!--{$tpl_name2|h}--> 様</span><br />
+                            <!--{if $smarty.const.USE_POINT !== false}-->
+                                所持ポイント：<span class="point"> <!--{$tpl_user_point|n2s|default:0}--> pt</span>
+                            <!--{/if}-->
+                        </p>
+                        <!--{if !$tpl_disable_logout}-->
+                            <p class="btn">
+                                <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_bloc_logout.jpg" onclick="eccube.fnFormModeSubmit('login_form', 'logout', '', ''); return false;" alt="ログアウト" />
+                            </p>
+                        <!--{/if}-->
+                    <!--{else}-->
+                        <dl class="formlist">
+                            <dt>メールアドレス</dt>
+                            <dd>
+                                <input type="text" name="login_email" class="box140" value="<!--{$tpl_login_email|h}-->" style="ime-mode: disabled;" />
+                            </dd>
+                            <dd class="mini">
+                                <input type="checkbox" name="login_memory" id="login_memory" value="1" <!--{$tpl_login_memory|sfGetChecked:1}--> />
+                                <label for="login_memory"><span>コンピューターに記憶する</span></label>
+                            </dd>
+                        </dl>
+                        <dl class="formlist">
+                            <dt class="password">パスワード</dt>
+                            <dd><input type="password" name="login_pass" class="box140" /></dd>
+                            <dd class="mini">
+                                <a href="<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->" onclick="eccube.openWindow('<!--{$smarty.const.HTTPS_URL}-->forgot/<!--{$smarty.const.DIR_INDEX_PATH}-->','forget','600','400',{scrollbars:'no',resizable:'no'}); return false;" target="_blank">パスワードを忘れた方はこちら</a>
+                            </dd>
+                        </dl>
+                        <p class="btn">
+                            <input type="image" class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_bloc_login.jpg" alt="ログイン" />
+                        </p>
+                    <!--{/if}-->
+                </div>
+            </form>
+        </div>
+    </div>
+<!--{/strip}-->

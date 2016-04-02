@@ -20,10 +20,25 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 
-<section id="undercolumn">
-    <h2 class="title"><!--{$tpl_title|h}--></h2>
+<!--{strip}-->
+    <div id="undercolumn">
+        <div id="undercolumn_error">
+            <div class="message_area">
+                <!--★エラーメッセージ-->
+                <p class="error"><!--{$tpl_error}--></p>
+            </div>
 
-    <div id="errorBox">
-        <p class="error"><!--{$tpl_error}--></p>
+            <div class="btn_area">
+                <ul>
+                    <li>
+                        <!--{if $return_top}-->
+                            <a href="<!--{$smarty.const.TOP_URL}-->"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_toppage.jpg" alt="トップページへ" /></a>
+                        <!--{else}-->
+                            <a href="javascript:history.back()"><img class="hover_change_image" src="<!--{$TPL_URLPATH}-->img/button/btn_back.jpg" alt="戻る" /></a>
+                        <!--{/if}-->
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</section>
+<!--{/strip}-->
