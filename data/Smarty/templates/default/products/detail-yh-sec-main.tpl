@@ -45,7 +45,7 @@
             </li>
             <li class="<!--{$arrProduct.rank4_order|sfGetRankClass}-->">
             <img src="<!--{$TPL_URLPATH}-->img/detail/tag4.png" alt="" class="tag">
-              <p class="head">下り最大速度<span>※</span></p>
+              <p class="head">下り最大速度<!-- <span>※</span> --></p>
               <p class="data"><!--{$arrProduct.data_speed_down}--><span>Mbps</span><!--{if $arrProduct.rank4_order>3}--><span class="rank-tag"><!--{$arrProduct.rank4_order}-->位</span><!--{/if}--></p>
             </li>
           </ul>

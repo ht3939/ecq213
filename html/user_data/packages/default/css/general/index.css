@@ -34,7 +34,7 @@
     border: 4px solid #f03;
     font-size: 13px;
     padding: 14px 14px 0;
-    margin: 0 auto 58px;
+    margin: 0 auto 50px;
     min-height: 428px;
     position: relative;
     background: url(../../img/common/bg-dotted.png) repeat;
@@ -459,6 +459,16 @@
     width: 292px;
 }
 
+#ranking .sort .sort-filter .sort-condition tr th.on {
+    border: 3px solid #FF7084;
+    color: #ff7084;
+}
+
+#ranking .sort .sort-filter .sort-condition tr th.on .ms-choice {
+    border-color: #FF7084;
+    color: #FF7084;
+}
+
 #ranking .sort .sort-filter .sort-condition tr th select {
     float: right;
 }
@@ -476,17 +486,21 @@
 }
 
 #ranking .sort .sort-filter .sort-condition .clear-sort {
+    display: none;
+}
+#ranking .sort .sort-filter .sort-condition .on .clear-sort {
     display: inline-block;
     padding-left: 20px;
     float: right;
     cursor: pointer;
     font-size: 11px;
     font-weight: normal;
-    background: url(../../img/index/icon-filter-reset.png) 4px 1px no-repeat;
-}
-#ranking .sort .sort-filter .sort-condition .clear-sort:hover {
-    color: #007ae2;
     background: url(../../img/index/icon-filter-reset_on.png) 4px 1px no-repeat;
+}
+
+#ranking .sort .sort-filter .sort-condition .on .clear-sort:hover {
+    color: #007ae2;
+    background: url(../../img/index/icon-filter-reset_hover.png) 4px 1px no-repeat;
 }
 #ranking .sort .sort-filter .sort-condition .clear-sort img{
     padding: 0 3px 0 0;
@@ -803,12 +817,12 @@
 }
 
 #ranking .tabsbox .sort-contents .search_num {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }
 
 #ranking .tabsbox .sort-contents .search_num span {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #ranking .tabsbox .sort-contents .search_num .tax-caution {
@@ -1006,13 +1020,13 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .pic-outer .pic {
-    margin: 0 !important;
+    /*margin: 0 !important;*/
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .pic li {
     padding-top: 40px;
     height: 185px;
-    width: 220px;
+    width: 220px !important;
 }
 
 
@@ -1111,7 +1125,7 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device:hover .bx-next {
-    right: -10px;
+    right: 0px;
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-price {
@@ -1196,7 +1210,7 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-company a {
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     display: block;
 }
