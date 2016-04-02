@@ -68,9 +68,6 @@
     <link rel="alternate" href="<!--{$ACWBCONST_link_alternate}-->" media="only screen and (max-width: 640px)">
     <!--{/if}-->
     <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico">
-    <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/common.css">
-  <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/detail.css">
-    <link rel="stylesheet" href="<!--{$TPL_URLPATH}-->css/general/list-layout.css">
 <!--{include file=./_acwblib/head_end.tpl}-->
 
 

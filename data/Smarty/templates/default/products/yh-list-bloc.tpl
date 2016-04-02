@@ -39,7 +39,7 @@
 											<tr class="caption">
 												<th class="rank-num">順位</th>
 												<th class="rank-service">提供サービス元/<br />プラン</th>
-												<th class="rank-name">対応端末</th>
+												<th class="rank-device">対応端末</th>
 												<th class="rank-price current"><!--{if $tpl_orderby_y1price}-->月額利用料
 												<!--{else}-->2年間総額
 												<!--{/if}--></th>
@@ -80,7 +80,7 @@
 											<tr class="caption">
 												<th class="rank-num">順位</th>
 												<th class="rank-service">提供サービス元/<br />プラン</th>
-												<th class="rank-name">対応端末</th>
+												<th class="rank-device">対応端末</th>
 												<th class="rank-price current">総額利用料</th>
 												<th class="rank-data">月額データ量/<br />
 												下り最大速度</th>

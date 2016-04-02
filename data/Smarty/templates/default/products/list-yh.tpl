@@ -23,11 +23,11 @@
 <!--{assign var=meta_title value= 'サイト名'.' - Yahoo!買い物ナビゲーター'}-->
 <!--{assign var=meta_keywords value= ' モバイルルーター,Wi-Fi,価格,比較,ランキング'}-->
 <!--{*//当ページのキーワードを半角カンマ区切りで3個以上～5個以内で記述する。半角カンマの前後は半角スペースを入れてはいけない。*}-->
-<!--{assign var=meta_description value= ''}-->
+<!--{assign var=meta_description value= 'Yahoo!買い物ナビゲーターの格安モバイルルーター価格ランキングなら、お得なモバイルルータが一目で分かる！月額料金、2年総額、月間データ量などの項目から、自分にぴったりのルーターをお探しください。'}-->
 <!--{*//当ページの概要分を約110文字で記述する。*}-->
 <!--{assign var=link_canonical value= 'http://kainavi.yahoo-net.jp/'}-->
 <!--{*//基本的に当ページのURLを記述する*}-->
-<!--{assign var=link_alternate value= 'Yahoo!買い物ナビゲーターの格安モバイルルーター価格ランキングなら、お得なモバイルルータが一目で分かる！月額料金、2年総額、月間データ量などの項目から、自分にぴったりのルーターをお探しください。'}-->
+<!--{assign var=link_alternate value= ''}-->
 <!--{*//基本的に対応するSPサイトのURLを記述する*}-->
 
 

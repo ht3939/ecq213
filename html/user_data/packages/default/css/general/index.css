@@ -589,6 +589,7 @@
     border: 1px solid transparent;
     border-radius: 3px 3px 0 0;
     color: #ff7084;
+    cursor: pointer;
 }
 
 #ranking .tabsbox .sort-tabs.tabs-top li a.selected {
@@ -612,7 +613,6 @@
     color: #333 !important;
     background: #fff;
     position: relative;
-    cursor: default;
     padding: 23px 0 15px;
 }
 
@@ -852,29 +852,29 @@
 }
 
 #ranking .tabsbox .sort-contents .rank-num {
-    width: 49px;
+    width: 47px;
 }
 
 #ranking .tabsbox .sort-contents .rank-service {
-    width: 154px;
+    width: 143px;
 }
 
-#ranking .tabsbox .sort-contents .rank-name {
-    width: 215px;
-    padding: 15px 10px !important;
+#ranking .tabsbox .sort-contents .rank-device {
+    width: 221px;
+    padding: 15px 0 !important;
     overflow: hidden;
 }
 
 #ranking .tabsbox .sort-contents .rank-price {
-    width: 157px;
+    width: 151px;
 }
 
 #ranking .tabsbox .sort-contents .rank-data {
-    width: 103px;
+    width: 111px;
 }
 
 #ranking .tabsbox .sort-contents .rank-conditions {
-    width: 155px;
+    width: 160px;
 }
 
 .rank-conditions .td-inner {
@@ -916,7 +916,6 @@
 }
 
 #ranking .tabsbox .sort-contents .rank-company {
-    width: 110px;
     border-right: none !important;
 }
 
@@ -949,9 +948,9 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td .td-inner {
-    vertical-align: middle;
+    /*vertical-align: middle;
     display: table-cell;
-    position: relative;
+    position: relative;*/
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td .td-inner.w110 {
@@ -959,7 +958,7 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td .td-inner.w140 {
-    width: 140px;
+    /*width: 140px;*/
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td .td-inner .logo img {
@@ -996,64 +995,68 @@
     font-weight: bold;
     line-height: 1.4;
 }
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device {
     width: 220px;
     background-color: #fff;
     padding-left: 0 !important;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .pic-outer {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .pic-outer {
     margin: 0;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .pic li {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .pic-outer .pic {
+    margin: 0 !important;
+}
+
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .pic li {
     padding-top: 40px;
     height: 185px;
     width: 220px;
 }
 
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .pic li img{
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .pic li img{
     width: 140px;
     padding-bottom: 10px;
 }
 
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .bx-viewport {
-    height: 215px !important;
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .bx-viewport {
+/*    height: 215px !important;
     top: -22px;
-    left: 4px;
+    left: 4px;*/
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .bx-wrapper {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .bx-wrapper {
     position: relative;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .bx-prev {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .bx-prev {
     position: absolute;
     top: -16px;
     left: -17px;
     text-decoration: none;
     font-weight: 700;
     font-size: 30px;
-    height: 271px;
+    height: 256px;
     width: 17px;
     background: url(../../img/detail/slide-left.png) 3px 120px no-repeat #ececec;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .bx-next {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .bx-next {
     position: absolute;
     top: -16px;
-    right: -27px;
+    right: -17px;
     text-decoration: none;
     font-weight: 700;
     font-size: 30px;
-    height: 271px;
+    height: 256px;
     width: 17px;
     background: url(../../img/detail/slide-right.png) 3px 120px no-repeat #ececec;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .img {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .img {
     padding-right: 3%;
     display: block;
     text-align: center;
@@ -1061,39 +1064,39 @@
     position: relative;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .img img {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .img img {
     width: auto;
     max-width: 100%;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .status {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .status {
     font-size: 12px;
     display: inline;
     text-align: left;
     vertical-align: middle;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .status .name {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .status .name {
     width: 188px;
     font-size: 16px;
     font-weight: 700;
     line-height: .7;
     text-align: left;
-    padding-left: 17px;
+    padding-left: 22px;
     font-family: arial,helvetica,'hiragino kaku gothic pro',meiryo,'ms pgothic',sans-serif;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .status .name span {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .status .name span {
     font-size: 14px;
     color: #333;
     display: block;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .status .color span {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .status .color span {
     padding-left: 5px;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .status .color span i {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device .status .color span i {
     width: 12px;
     height: 12px;
     margin-right: 5px;
@@ -1103,11 +1106,11 @@
     box-sizing: border-box;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name:hover .bx-prev {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device:hover .bx-prev {
     left: 0;
 }
 
-#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name:hover .bx-next {
+#ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-device:hover .bx-next {
     right: -10px;
 }
 
