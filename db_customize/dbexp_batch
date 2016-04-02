@@ -1,0 +1,3 @@
+mysqldump -u root -p  yhecq > yhecq213dmp
+
+zip yhecq213dmp.zip yhecq213dmp
