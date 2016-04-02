@@ -112,25 +112,13 @@
             <div><span>商品管理</span></div>
             <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`products/subnavi.tpl"}-->
         </li>
-        <li id="navi-customer" class="on_level1<!--{if $tpl_mainno eq "customer"}--> on<!--{/if}-->">
-            <div><span>会員管理</span></div>
-            <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`customer/subnavi.tpl"}-->
-        </li>
-        <li id="navi-order" class="on_level1<!--{if $tpl_mainno eq "order"}--> on<!--{/if}-->">
-            <div><span>受注管理</span></div>
-            <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`order/subnavi.tpl"}-->
-        </li>
-        <li id="navi-total" class="on_level1<!--{if $tpl_mainno eq "total"}--> on<!--{/if}-->">
-            <div><span>売上集計</span></div>
-            <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`total/subnavi.tpl"}-->
+        <li id="navi-contents" class="on_level1<!--{if $tpl_mainno eq "contents"}--> on<!--{/if}-->">
+            <div><span>コンテンツ管理</span></div>
+            <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`contents/subnavi.tpl"}-->
         </li>
         <li id="navi-mail" class="on_level1<!--{if $tpl_mainno eq "mail"}--> on<!--{/if}-->">
             <div><span>メルマガ管理</span></div>
             <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`mail/subnavi.tpl"}-->
-        </li>
-        <li id="navi-contents" class="on_level1<!--{if $tpl_mainno eq "contents"}--> on<!--{/if}-->">
-            <div><span>コンテンツ管理</span></div>
-            <!--{include file="`$smarty.const.TEMPLATE_ADMIN_REALDIR`contents/subnavi.tpl"}-->
         </li>
         <li id="navi-design" class="on_level1<!--{if $tpl_mainno eq "design"}--> on<!--{/if}-->">
             <div><span>デザイン管理</span></div>

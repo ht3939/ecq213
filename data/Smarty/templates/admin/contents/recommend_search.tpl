@@ -92,8 +92,10 @@ function func_submit( id ){
         <col width="12.5%" />
         <tr>
             <th>商品画像</th>
-            <th>商品コード</th>
+            <th>商品ID</th>
             <th>商品名</th>
+            <th>評価ポイント</th>
+            <th>商品コード</th>
             <th>決定</th>
         </tr>
 
@@ -103,6 +105,9 @@ function func_submit( id ){
             <td class="center">
                 <img src="<!--{$smarty.const.IMAGE_SAVE_URLPATH}--><!--{$arr.main_list_image|sfNoImageMainList|h}-->" style="max-width: 65px;max-height: 65;" alt="" />
             </td>
+            <td><!--{$arr.product_id|h}--></td>
+            <td><!--{$arr.maker_name|h}-->　　<!--{$arr.name|h}--></td>
+            <td><!--{$arr.rankpoint_order|h}--></td>
             <td>
                 <!--{assign var=codemin value=`$arr.product_code_min`}-->
                 <!--{assign var=codemax value=`$arr.product_code_max`}-->
@@ -113,7 +118,6 @@ function func_submit( id ){
                     <!--{$codemin|h}-->
                 <!--{/if}-->
             </td>
-            <td><!--{$arr.name|h}--></td>
             <td class="center"><a href="" onclick="return func_submit(<!--{$arr.product_id}-->)">決定</a></td>
         </tr>
         <!--▲商品<!--{$smarty.foreach.loop.iteration}-->-->
