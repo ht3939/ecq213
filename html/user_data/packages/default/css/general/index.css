@@ -1007,8 +1007,11 @@
 }
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .pic li {
-    padding: 57px 0 57px 0;
+    padding-top: 40px;
+    height: 185px;
+    width: 220px;
 }
+
 
 #ranking .tabsbox .sort-contents .ranking_table tbody tr td.rank-name .pic li img{
     width: 140px;

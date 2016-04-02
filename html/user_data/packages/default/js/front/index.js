@@ -30,7 +30,7 @@ $(function () {
 					rank_more.text("さらに"+find_item.length+"件を表示する");
 					// アンカーリンク
 					if($(this).parents('.sort-tabs').hasClass('tabs-bottom')){
-						$('html,body').animate({scrollTop: $('#ranking').offset().top},400,"linear");
+						// $('html,body').animate({scrollTop: $('#ranking').offset().top},400,"linear");
 					}
 
 					// ソートタブの同機処理
@@ -81,9 +81,19 @@ $(function () {
 
 
 	//テーブルの列全体をクリック
-	$(".ranking_table tr td").click(function(){
-			// window.location = $(this).parent("tr").children(".rank-company").find(".site_btn a").attr("href");
-			window.open($(this).parent("tr").children(".rank-company").find(".site_btn a").attr("href"));
+	$(".ranking_table tr td").click(function(e){
+
+		// console.log(this);
+			// 	if(e.href !== undefined){
+			// alert(e.href);
+			// return false;
+		if($(e.target).attr('href') !== undefined){
+				return true;
+		}else{
+			console.log($(e.target).closest('.js-ranking-item').find(".site_btn a"));
+			$(e.target).closest('.js-ranking-item').find(".site_btn a")[0].click();
+			// $(this).parent("tr").children(".rank-company").find(".site_btn a")[0].click();
+		}
 	});
 	$(".ranking_table tr td").hover(function(){
 					$(this).parent("tr").children('.rank-company').find(".site_btn a").css(
