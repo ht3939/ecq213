@@ -123,6 +123,10 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
         {' . $this->js_lnOnload . '}';
         $this->tpl_onload .= 'lnOnLoad();';
 
+
+        $this->tpl_javascript = "";
+        $this->tpl_onload = "";
+
         // モバイル用 規格選択セレクトボックスの作成
         if (SC_Display_Ex::detectDevice() == DEVICE_TYPE_MOBILE) {
             $this->lfMakeSelectMobile($this, $product_id, $this->objFormParam->getValue('classcategory_id1'));
@@ -187,7 +191,7 @@ class LC_Page_Products_Detail_Ex extends LC_Page_Products_Detail
         $this->arrProduct = $objProduct->getDetail($product_id);
 //var_dump($this->arrProduct);
         // サブタイトルを取得
-        $this->tpl_subtitle = $this->arrProduct['name'];
+        $this->tpl_subtitle = $this->arrProduct['maker_name'].' '.$this->arrProduct['name'];
 
         // 関連カテゴリを取得
         $this->arrRelativeCat = SC_Helper_DB_Ex::sfGetMultiCatTree($product_id);

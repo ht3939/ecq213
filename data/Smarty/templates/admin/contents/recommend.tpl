@@ -84,6 +84,7 @@ function lfnSortItem(mode,data,form){
 </script>
 
 <div id="admin-contents" class="contents-main">
+    <a href="/admin/ranking_batch.php" target="_blank">ランキングを更新</a>
     <!--{section name=cnt loop=$tpl_disp_max}-->
     <a name="recommend_<!--{$smarty.section.cnt.iteration}-->" id="recommend_<!--{$smarty.section.cnt.iteration}-->"></a>
     <div class="recommend-product <!--{if $arrItems[$smarty.section.cnt.iteration].status == "2"}-->hidden<!--{/if}-->">

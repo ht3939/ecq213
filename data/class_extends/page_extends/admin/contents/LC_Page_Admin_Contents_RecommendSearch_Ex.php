@@ -53,4 +53,21 @@ class LC_Page_Admin_Contents_RecommendSearch_Ex extends LC_Page_Admin_Contents_R
     {
         parent::process();
     }
+
+    /**
+     * 商品取得
+     *
+     * @param array      $arrProductId
+     * @param SC_Product $objProduct
+     */
+    public function getProductList($arrProductId, &$objProduct)
+    {
+        $objQuery =& SC_Query_Ex::getSingletonInstance();
+
+        // 表示順序
+        $order = 'rankpoint_order desc';
+        $objQuery->setOrder($order);
+
+        return $objProduct->getListByProductIds($objQuery, $arrProductId);
+    }
 }
