@@ -157,7 +157,7 @@ class LC_Page_Admin_Products_Product_Ex extends LC_Page_Admin_Products_Product
             if(intval($arrList[$key])>0){
                 $pt = 6 - intval($arrList[$key]);
                 if($pt<0){
-                    $pt = 0;
+                    $pt = 1;
                 }
                 $tp += $pt;
 
