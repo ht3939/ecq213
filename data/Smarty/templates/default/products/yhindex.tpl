@@ -155,34 +155,51 @@
 <script src="<!--{$TPL_URLPATH}-->/js/front/Chart.min.js"></script>
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
 <script>
+
+
 //対応端末スライダー
-if($('.bxslider').length > 1){
-  (function BXSLIDER(){
-    $('.bxslider').bxSlider({
-      pager: false,
-      prevText: '',
-      nextText: '',
-      slideWidth:233,
-      auto: true,
-      onSliderLoad:function(currentIndex){
-        $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
-          e.stopPropagation();
-        });
-      }
-    });
-  })();
+$('.bxslider').each(function(){
+  if( $(this).children('li').length > 1){
+    BXSLIDER($(this));
+  }else{
+    $(this).css({margin:"0 -5px 0 5px"});
+  }
+});
+function BXSLIDER(target){
+  target.bxSlider({
+    pager: false,
+    prevText: '',
+    nextText: '',
+    slideWidth:233,
+    auto: true,
+    onSliderLoad:function(currentIndex){
+      $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
+        e.stopPropagation();
+      });
+    }
+  });
 }
 
+
+
+
 //今週の総合TOPスライダー
-(function TOPBXSLIDER(){
-  $('.topbxslider').bxSlider({
+$('.topbxslider').each(function(){
+  if( $(this).children('li').length > 1){
+    TOPBXSLIDER($(this));
+  }else{
+    //$(this).css({margin:"0 -5px 0 5px"});
+  }
+});
+function TOPBXSLIDER(target){
+  target.bxSlider({
     pager: false,
     prevText: '',
     nextText: '',
     slideWidth:233,
     auto: true
   });
-})();
+}
 
 //ボックスの高さ揃え
 $('.js-height').each(function(){
@@ -240,7 +257,7 @@ $('.js-device-tab').children().click(function(){
   $('.js-device-content').children().eq($(this).index()).addClass('active');
 });
 //aタグ 全体リンク
-$(".js-all-link").click(function(){
+$(".js-all-link").click(function(e){
   location.href = $(this).find('.js-link-btn').attr("href");
 });
 //ソート表示
@@ -269,9 +286,9 @@ $('#filter_maker_id').multipleSelect(
 
 
 //IE8 グラフ非表示---------------------------------------
-if(window.navigator.userAgent.toLowerCase().indexOf("msie") > -1 && window.navigator.appVersion.toLowerCase().indexOf("msie 8")>-1){
-$('.graph').hide();
-$('.detail .rank-list').css({width:620});
+if(window.navigator.userAgent.toLowerCase().indexOf("msie") > -1 && window.navigator.appVersion.toLowerCase().indexOf("msie 8") >-1){
+  $('.graph').hide();
+  $('.detail .rank-list').css({width:620});
 }
 
 </script>

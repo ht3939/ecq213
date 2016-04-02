@@ -108,7 +108,13 @@
                 </li>
               </ul>
               <p class="link-btn"><a href="<!--{$arrCC1.pc_url}-->" target="_blnak">この商品ページへ</a></p>
-              <p class="blank-nav">(外部サイトへ)</p>
+              <p class="blank-nav">
+                <!--{if $arrProduct.maker_id > 1}-->
+          (外部サイトへ)
+                <!--{else}-->
+          (Yahoo! Wi-Fi)
+                <!--{/if}-->
+              </p>
             </div>
           </div>
           <!--{/foreach}-->
