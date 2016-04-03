@@ -67,7 +67,8 @@
     <!--{if $ACWBCONST_link_alternate|strlen > 0}-->
     <link rel="alternate" href="<!--{$ACWBCONST_link_alternate}-->" media="only screen and (max-width: 640px)">
     <!--{/if}-->
-    <link rel="shortcut icon" href="<!--{$TPL_URLPATH}-->img/common/favicon.ico">
+
+    <link rel="shortcut icon" href="<!--{$smarty.const.HTTP_URL|rtrim:"/"}--><!--{$TPL_URLPATH}-->img/common/favicon.ico">
 <!--{include file=./_acwblib/head_end.tpl}-->
 
 

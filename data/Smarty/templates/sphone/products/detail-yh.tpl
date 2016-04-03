@@ -104,18 +104,28 @@
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
 <script>
 //スライダー
-$(document).ready(function(){
-  $('.bxslider').bxSlider({
+$('.bxslider').each(function(){
+  if( $(this).children('li').length > 1){
+    BXSLIDER($(this));
+  }else{
+    // $(this).css({margin:"0 -5px 0 5px"});
+  }
+});
+function BXSLIDER(target){
+  target.bxSlider({
     pager: false,
     prevText: '',
     nextText: '',
+    auto: true,
     onSliderLoad:function(currentIndex){
       $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
         e.stopPropagation();
       });
     }
   });
-});
+}
+
+
 //ボックスの高さ揃え
 $('.js-height').each(function(){
   var maxHeight;

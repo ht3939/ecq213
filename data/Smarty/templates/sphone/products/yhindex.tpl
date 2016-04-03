@@ -156,15 +156,15 @@
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
 <script>
 
-
 //対応端末スライダー
 $('.bxslider').each(function(){
   if( $(this).children('li').length > 1){
     BXSLIDER($(this));
   }else{
-    $(this).css({margin:"0 -5px 0 5px"});
+    // $(this).css({margin:"0 -5px 0 5px"});
   }
 });
+
 function BXSLIDER(target){
   target.bxSlider({
     pager: false,
@@ -182,7 +182,6 @@ function BXSLIDER(target){
 
 
 
-
 //今週の総合TOPスライダー
 $('.topbxslider').each(function(){
   if( $(this).children('li').length > 1){
@@ -196,7 +195,7 @@ function TOPBXSLIDER(target){
     pager: false,
     prevText: '',
     nextText: '',
-    slideWidth:233,
+    slideWidth:220,
     auto: true
   });
 }

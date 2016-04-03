@@ -60,13 +60,13 @@
               </ul>
               <ul>
                 <li>Pocket Wi-Fi 305ZT</li>
-                <li>Pocket Wi-Fi GL10P</li>
                 <li>Speed Wi-Fi NEXT W02</li>
+                <li>Speed Wi-Fi NEXT WX02</li>
               </ul>
               <ul>
-                <li>Speed Wi-Fi NEXT WX02</li>
                 <li>Speed Wi-Fi NEXT W01</li>
                 <li>Speed Wi-Fi NEXT WX01</li>
+                <li>　</li>
               </ul>
             </div>
           </div>

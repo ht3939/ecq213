@@ -59,8 +59,14 @@
               <dd><!--{$arrProduct.main_list_comment|h}--></dd>
             </dl>
             <p class="link-btn"><a href="<!--{$arrProduct.sub_comment4}-->" target="_blank">このプランのページへ</a></p>
-            <p class="link-blank-nav">(外部サイトへ)</p>
+            <p class="link-blank-nav">
+              <!--{if $arrProduct.maker_id > 1}-->
+          (外部サイトへ)
+                <!--{else}-->
+          (Yahoo! Wi-Fi)
+                <!--{/if}-->
+            </p>
           </div>
       </section>
- 
+
  <!--{/strip}-->
