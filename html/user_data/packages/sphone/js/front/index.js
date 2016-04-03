@@ -77,6 +77,30 @@ $(function () {
 				}
 			})
 		$(".filter-tabs-contents:visible .search_num span").eq(1).text('1〜'+$(".filter-tabs-contents:visible .js-ranking-item:visible").length);
+
+		//もっと表示をクリック後のバグ対応のため、とりあえず入れておいた処理
+		$('.bxslider').each(function(){
+		  if( $(this).children('li').length > 1 ){
+	    BXSLIDER($(this));
+		  }else{
+		    // $(this).css({margin:"0 -5px 0 5px"});
+		  }
+		});
+		function BXSLIDER(target){
+		  target.bxSlider({
+		    pager: false,
+		    prevText: '',
+		    nextText: '',
+		    slideWidth:233,
+		    auto: true,
+		    onSliderLoad:function(currentIndex){
+		      $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
+		        e.stopPropagation();
+		      });
+		    }
+		  });
+		}
+		//もっと表示をクリック後のバグ対応のため、とりあえず入れておいた処理
 	});
 
 
