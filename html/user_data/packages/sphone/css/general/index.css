@@ -1391,11 +1391,11 @@
 }
 
 .comparison .comparison-company {
-    width: 370px;
+    width: 480px;
 }
 
 .comparison .comparison-model {
-    width: 536px;
+    width: 420px;
 }
 
 .clearfix:after {
