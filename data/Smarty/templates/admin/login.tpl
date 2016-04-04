@@ -26,7 +26,7 @@
 <div id="login-wrap">
 
     <div id="login-form" class="clearfix">
-        <h1><img src="<!--{$TPL_URLPATH}-->img/contents/admin_login_logo.jpg" width="140" height="150" alt="EC-CUBE管理画面" /></h1>
+        <h1>ヤフー比較ナビ管理画面</h1>
         <div id="input-form">
             <form name="form1" id="form1" method="post" action="?">
                 <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
@@ -41,7 +41,7 @@
     </div>
 
 </div>
-<div id="copyright">Copyright &copy; 2000-<!--{$smarty.now|date_format:"%Y"}--> LOCKON CO.,LTD. All Rights Reserved.</div>
+<div id="copyright">Copyright &copy; 2000-<!--{$smarty.now|date_format:"%Y"}--> All Rights Reserved.</div>
 
 <script type="text/javascript">//<![CDATA[
 document.form1.login_id.focus();

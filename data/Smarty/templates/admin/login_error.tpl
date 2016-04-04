@@ -24,9 +24,6 @@
 
 <div id="outside">
     <div id="out-wrap">
-            <div class="logo">
-                <img src="<!--{$TPL_URLPATH}-->img/contents/logo_resize.jpg" width="99" height="15" alt="EC-CUBE" />
-            </div>
         <div id="error">
             <div class="out-top"></div>
             <div class="contents">
