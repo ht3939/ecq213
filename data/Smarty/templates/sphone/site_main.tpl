@@ -22,7 +22,7 @@
 
 <!--{strip}-->
     <body class="<!--{$tpl_page_class_name|h}-->">
-        <!--{include file='./_acwblib/body_top.tpl'}-->
+        <!--{include file='./_acweblib/body_top.tpl'}-->
         <!--{$GLOBAL_ERR}-->
         <noscript>
             <p>JavaScript を有効にしてご利用下さい.</p>

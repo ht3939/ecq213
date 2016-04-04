@@ -31,7 +31,7 @@
         <table class="sort-condition">
             <tbody>
                 <tr>
-                    <th>月間データ量
+                    <th <!--{if $tpl_filtermode and $arrSearchFilterData.filter_datasize>0}-->class="on"<!--{/if}-->>月間データ量
                         <div class="clear-sort" >解除</div>
                         <select name="filter_datasize" id="filter_datasize" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
@@ -50,7 +50,7 @@
                         </select>
                     </th>
 
-                    <th>下り最大速度
+                    <th <!--{if $tpl_filtermode and $arrSearchFilterData.filter_data_speed_down>0}-->class="on"<!--{/if}-->>下り最大速度
                         <div class="clear-sort">解除</div>
                         <select name="filter_data_speed_down" id="filter_data_speed_down" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
@@ -69,7 +69,7 @@
                         </select>
                     </th>
 
-                    <th>端末
+                    <th <!--{if $tpl_filtermode and $arrSearchFilterData.filter_device_id|is_array}-->class="on"<!--{/if}-->>端末
 
                                <!--{if $arrSearchFilterData.filter_device_id|count>0}-->
                                     <!--{assign var=sel  value=$arrSearchFilterData.filter_device_id}-->
@@ -114,7 +114,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th>回線タイプ
+                    <th <!--{if $tpl_filtermode and $arrSearchFilterData.filter_lntype>0}-->class="on"<!--{/if}-->>回線タイプ
                         <div class="clear-sort">解除</div>
                         <select name="filter_lntype" id="filter_lntype" multiple="multiple">
                             <!--{if $tpl_filtermode}-->
@@ -133,7 +133,7 @@
                         </select>
                     </th>
 
-                    <th>提供サービス元
+                    <th <!--{if $tpl_filtermode and $arrSearchFilterData.filter_maker_id|is_array}-->class="on"<!--{/if}-->>提供サービス元
                                <!--{if $arrSearchFilterData.filter_maker_id|count>0}-->
                                     <!--{assign var=sel  value=$arrSearchFilterData.filter_maker_id}-->
                                 <!--{else}-->
@@ -179,7 +179,7 @@
 
                     </th>
 
-                    <th>割引・キャッシュバック
+                    <th <!--{if $tpl_filtermode and $arrSearchFilterData.filter_cptype>0}-->class="on"<!--{/if}-->>割引・キャッシュバック
                         <div class="clear-sort">解除</div>
                         <select name="filter_cptype" id="filter_cptype" multiple="multiple">
                             <!--{if $tpl_filtermode}-->

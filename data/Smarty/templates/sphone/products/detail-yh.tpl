@@ -20,14 +20,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *}-->
 <script type="text/javascript">//<![CDATA[
-    // 規格2に選択肢を割り当てる。
-    function fnSetClassCategories(form, classcat_id2_selected) {
-        var $form = $(form);
-        var product_id = $form.find('input[name=product_id]').val();
-        var $sele1 = $form.find('select[name=classcategory_id1]');
-        var $sele2 = $form.find('select[name=classcategory_id2]');
-        eccube.setClassCategories($form, product_id, $sele1, $sele2, classcat_id2_selected);
-    }
+
 //]]></script>
 <div class="top-data">
   <div class="inner">
@@ -188,7 +181,7 @@ if($('.js-device-tab').find('td').length > 1){
 }
 //aタグ 全体リンク
 $(".js-all-link").click(function(){
-  location.href = $(this).find('.js-link-btn').attr("href");
+  $(this).find('.js-link-btn')[0].click();
 });
 
 

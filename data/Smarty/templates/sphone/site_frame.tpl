@@ -58,7 +58,7 @@ define(INQUIRY_FORM_URL, SITE_ROOT_DIR.'form-inquiry/');
 	<!--{*
 	//テストサイトでない場合
 	*}-->
-	<!--{assign var=ACWBCONST_OG_URL_CONTENT value=`$ACWBCONST_SITE_URL``$smarty.server.REQUEST_URI`"}-->
+	<!--{assign var=ACWBCONST_OG_URL_CONTENT value=`$ACWBCONST_SITE_URL`"}-->
 	<!--{assign var=ACWBCONST_OG_IMAGE_CONTENT value=`$ACWBCONST_SITE_URL``$TPL_URLPATH`img/og-image.png"}-->
 
 <!--{else}-->
@@ -66,8 +66,8 @@ define(INQUIRY_FORM_URL, SITE_ROOT_DIR.'form-inquiry/');
 	<!--{*
 	//テストサイトである場合
 	*}-->
-	<!--{assign var=ACWBCONST_OG_URL_CONTENT value="http://`$smarty.server.SERVER_NAME``$smarty.server.REQUEST_URI`"}-->
-	<!--{assign var=ACWBCONST_OG_IMAGE_CONTENT value="http://`$smarty.server.SERVER_NAME``$ACWBCONST_SITE_ROOT``$TPL_URLPATH`img/og-image.png"}-->
+	<!--{assign var=ACWBCONST_OG_URL_CONTENT value=`$ACWBCONST_SITE_URL`"}-->
+	<!--{assign var=ACWBCONST_OG_IMAGE_CONTENT value=`$ACWBCONST_SITE_URL``$TPL_URLPATH`img/og-image.png"}-->
 
 	<!--{assign var=ACWBCONST_OG_URL_CONTENT value=$ACWBCONST_OG_URL_CONTENT|replace:"/t/":"/"}-->
 	<!--{assign var=ACWBCONST_OG_IMAGE_CONTENT value=$ACWBCONST_OG_IMAGE_CONTENT|replace:"/t/":"/"}-->
@@ -101,15 +101,22 @@ define(INQUIRY_FORM_URL, SITE_ROOT_DIR.'form-inquiry/');
 Blocとレイアウト設定で定義したほうがよいかも。
 *}-->
 
+	<!--{assign var=ACWBCONST_OG_URL_CONTENT value=`$ACWBCONST_OG_URL_CONTENT``$smarty.server.REQUEST_URI`"}-->
+
+
 <!--{assign var=ACWBCONST_article       value="article"}-->
-<!--{assign var=ACWBCONST_meta_keywords       value=""}-->
+<!--{assign var=ACWBCONST_meta_keywords       value="`$arrProduct.maker_name`,`$arrProduct.name`,格安モバイルルーター,買い物ナビゲーター"}-->
 
-<!--{assign var=ACWBCONST_meta_description    value=""}-->
-<!--{assign var=ACWBCONST_meta_title         value=""}-->
+<!--{assign var=ACWBCONST_meta_description    value="`$arrProduct.maker_name` `$arrProduct.name`の詳細ページです。Yahoo!買い物ナビゲーターの格安モバイルルーター価格ランキングは、月額料金、2年総額、月間データ量などの項目から、自分にぴったりのルーターをお探しいただけます。"}-->
+<!--{assign var=ACWBCONST_meta_title         value="`$arrProduct.maker_name` `$arrProduct.name` – Yahoo!買い物ナビゲーター"}-->
 
-<!--{assign var=ACWBCONST_link_canonical      value=""}-->
+<!--{assign var=ACWBCONST_link_canonical      value="`$ACWBCONST_SITE_URL``$smarty.server.REQUEST_URI`"}-->
 <!--{assign var=ACWBCONST_link_alternate      value=""}-->
 <!--{/if}-->
+
+
+
+
 
 <!--{if $tpl_page_class_name === "LC_Page_Products_List"}-->
 <!--{*
@@ -117,12 +124,12 @@ Blocとレイアウト設定で定義したほうがよいかも。
 *}-->
 
 <!--{assign var=ACWBCONST_article       value="website"}-->
-<!--{assign var=ACWBCONST_meta_keywords       value=""}-->
+<!--{assign var=ACWBCONST_meta_keywords       value="モバイルルーター,Wi-Fi,価格,比較,ランキング"}-->
 
-<!--{assign var=ACWBCONST_meta_description    value=""}-->
-<!--{assign var=ACWBCONST_meta_title         value=""}-->
+<!--{assign var=ACWBCONST_meta_description    value="Yahoo!買い物ナビゲーターの格安モバイルルーター価格ランキングなら、お得なモバイルルータが一目で分かる！月額料金、2年総額、月間データ量などの項目から、自分にぴったりのルーターをお探しください"}-->
+<!--{assign var=ACWBCONST_meta_title         value="格安モバイルルーター比較 – Yahoo!買い物ナビゲーター"}-->
 
-<!--{assign var=ACWBCONST_link_canonical      value=""}-->
+<!--{assign var=ACWBCONST_link_canonical      value="`$ACWBCONST_SITE_URL`"}-->
 <!--{assign var=ACWBCONST_link_alternate      value=""}-->
 
 <!--{/if}-->

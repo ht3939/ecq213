@@ -25,7 +25,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<!--{$smarty.const.CHAR_CODE}-->" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-    <!--{include file='./_acwblib/head_top.tpl'}-->
+    <!--{include file='./_acweblib/head_top.tpl'}-->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<!--{$ACWBCONST_META_VIEWPORT_WIDTH}-->">
@@ -69,7 +69,7 @@
     <!--{/if}-->
 
     <link rel="shortcut icon" href="<!--{$smarty.const.HTTP_URL|rtrim:"/"}--><!--{$TPL_URLPATH}-->img/common/favicon.ico">
-<!--{include file=./_acwblib/head_end.tpl}-->
+<!--{include file=./_acweblib/head_end.tpl}-->
 
 
 

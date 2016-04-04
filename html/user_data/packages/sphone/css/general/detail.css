@@ -86,9 +86,9 @@
 }
 
 .row-container .title-name .title .condition {
-    font-size: 14px;
-    margin-top: 5px;
-    font-weight: 400;
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
 }
 
 .row-container .detail-data {

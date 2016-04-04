@@ -439,6 +439,7 @@
     padding: 5px 14px 5px 35px;
     float: right;
     cursor: pointer;
+    border-radius: 2px;
 }
 #ranking .sort .sort-filter .clear-all-sort:hover{
     background-color: #fe4d66;
