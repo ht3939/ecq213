@@ -59,7 +59,7 @@
         $('.clear-sort').on('click',function(){
 
             fnFilterClear($(this).parent().find('select').attr('id'));
-            //$(this).parent().removeClass("on");
+            $(this).parent().removeClass("on");
         });
         // submit
         $('.arrow-down').on('click',function(){
@@ -69,6 +69,7 @@
         $('.sort-tabs li a').on('click',function(){
             tabChange($(this).parent());
         });
+    
     });
 
     function tabChange(obj){
@@ -119,7 +120,7 @@
         var hiddenValues = ['orderby'];
         $.each(hiddenValues, function(){
             // 商品別のフォームに検索条件の値があれば上書き
-            cartForm.append($('<input type="hidden" />').attr("name", this).val(orderby));
+            //cartForm.append($('<input type="hidden" />').attr("name", this).val(orderby));
         });
         // 商品別のフォームを送信
         cartForm.submit();

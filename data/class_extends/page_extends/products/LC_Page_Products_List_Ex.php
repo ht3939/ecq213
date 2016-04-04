@@ -86,17 +86,17 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
     {
         $this->arrSearchFilter['filterVal_datasize'] = 
                     array('type'=>'options'
-                            ,'value'=>array('すべて','５Ｇ未満','５Ｇ～８Ｇ未満','８Ｇ以上')
+                            ,'value'=>array('すべて','5GB～8GB','8GB以上')
                             ,'searchtype'=>'opt-range'
-                            ,'search'=>array(-1,array(0,4.9),array(5,7.9),array(8,999))
+                            ,'search'=>array(-1,array(5,7.9),array(8,999))
                             ,'searchcol'=>array('datasize_min','datasize_max')
                             );
 
         $this->arrSearchFilter['filterVal_dataspeed'] = 
                     array('type'=>'options'
-                            ,'value'=>array('すべて','50Mbps未満','50-100Mbps未満','100-200Mbps未満','200Mbps以上')
+                            ,'value'=>array('すべて','150Mbps未満','150～200Mbps','200Mbps以上')
                             ,'searchtype'=>'opt-range'
-                            ,'search'=>array(-1,array(0,49.9),array(50.0,99.9),array(100.0,199.9),array(200.0,999.9))
+                            ,'search'=>array(-1,array(0,149.9),array(150.0,199.9),array(200.0,999.9))
                             ,'searchcol'=>array('data_speed_down_min','data_speed_down_max')
                             );
 
@@ -215,7 +215,7 @@ class LC_Page_Products_List_Ex extends LC_Page_Products_List
         $col = '*';
         $from = 'dtb_maker left join dtb_maker_count ON dtb_maker.maker_id = dtb_maker_count.maker_id';
         $where = "del_flg <> 1 AND product_count > 0";
-        $objQuery->setorder("rank DESC");
+        $objQuery->setorder("rank ");
         $this->arrMaker = $objQuery->select($col, $from, $where);
 
     }

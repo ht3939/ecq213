@@ -270,21 +270,122 @@ $('.sort-filter-btn .btn').click(function(){
 });
 //セレクトボックス 複数選択「SumoSelect」プラグイン使用
 //$('.js-select').SumoSelect({placeholder: '選択してください'});
-$('#filter_datasize').multipleSelect({single:true,theme:'bubble'});
-$('#filter_cptype').multipleSelect({single:true,theme:'bubble'});
-$('#filter_lntype').multipleSelect({single:true,theme:'bubble'});
-$('#filter_data_speed_down').multipleSelect({single:true,theme:'bubble'});
+$('#filter_datasize').multipleSelect({
+  single:true,
+  theme:'bubble',
+  onClick: function(view) {
+      if(view.label==='すべて'){
+          $('#filter_datasize').parent().removeClass("on");
+
+      }else{
+          $('#filter_datasize').parent().addClass("on");
+
+      }
+
+      /*
+      view.label: the text of the checkbox item
+      view.checked: the checked of the checkbox item
+      */
+  }
+
+});
+$('#filter_cptype').multipleSelect({
+  single:true,
+  theme:'bubble',
+  onClick: function(view) {
+      if(view.label==='すべて'){
+          $('#filter_cptype').parent().removeClass("on");
+
+      }else{
+          $('#filter_cptype').parent().addClass("on");
+
+      }
+
+      /*
+      view.label: the text of the checkbox item
+      view.checked: the checked of the checkbox item
+      */
+  }
+});
+$('#filter_lntype').multipleSelect({
+  single:true,
+  theme:'bubble',
+  onClick: function(view) {
+      if(view.label==='すべて'){
+          $('#filter_lntype').parent().removeClass("on");
+
+      }else{
+          $('#filter_lntype').parent().addClass("on");
+
+      }
+
+      /*
+      view.label: the text of the checkbox item
+      view.checked: the checked of the checkbox item
+      */
+  }
+});
+$('#filter_data_speed_down').multipleSelect({
+  single:true,
+  theme:'bubble',
+  onClick: function(view) {
+      if(view.label==='すべて'){
+          $('#filter_data_speed_down').parent().removeClass("on");
+
+      }else{
+          $('#filter_data_speed_down').parent().addClass("on");
+
+      }
+
+      /*
+      view.label: the text of the checkbox item
+      view.checked: the checked of the checkbox item
+      */
+  }
+});
 $('#filter_device_id').multipleSelect(
-  {selectAllText:'すべて'
+  {
+    selectAllText:'すべて'
   ,allSelected  :'すべて'
   ,placeholder  :'選択してください'
-  ,theme:'bubble'
+  ,theme:'bubble',
+  onClick: function(view) {
+      if(view.label==='すべて'){
+          $('#filter_device_id').parent().removeClass("on");
+
+      }else{
+          $('#filter_device_id').parent().addClass("on");
+
+      }
+
+      /*
+      view.label: the text of the checkbox item
+      view.checked: the checked of the checkbox item
+      */
+  }
+
 });
 $('#filter_maker_id').multipleSelect(
-  {selectAllText:'すべて'
+  {
+    selectAllText:'すべて'
   ,allSelected  :'すべて'
   ,placeholder  :'選択してください'
-  ,theme:'bubble'
+  ,theme:'bubble',
+  onClick: function(view) {
+      if(view.label==='すべて'){
+          $('#filter_maker_id').parent().removeClass("on");
+
+      }else{
+          $('#filter_maker_id').parent().addClass("on");
+
+      }
+
+      /*
+      view.label: the text of the checkbox item
+      view.checked: the checked of the checkbox item
+      */
+  }
+
 });
 
 
