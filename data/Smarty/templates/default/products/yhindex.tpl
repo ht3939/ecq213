@@ -156,6 +156,7 @@
 <script src="<!--{$TPL_URLPATH}-->/js/front/jquery.bxslider.min.js"></script>
 <script>
 
+
 //対応端末スライダー
 $('.bxslider').each(function(){
   if( $(this).children('li').length > 1){
@@ -166,7 +167,7 @@ $('.bxslider').each(function(){
 });
 
 function BXSLIDER(target){
-  target.bxSlider({
+  var slider = target.bxSlider({
     pager: false,
     prevText: '',
     nextText: '',
@@ -175,6 +176,9 @@ function BXSLIDER(target){
     onSliderLoad:function(currentIndex){
       $('.bx-wrapper,.bx-prev,.bx-next').click(function(e){
         e.stopPropagation();
+      });
+      $('.js-ranking-more').click(function(){
+        slider.reloadSlider();
       });
     }
   });

@@ -35,13 +35,7 @@
 
 
 <script type="text/javascript">//<![CDATA[
-    function fnSetClassCategories(form, classcat_id2_selected) {
-        var $form = $(form);
-        var product_id = $form.find('input[name=product_id]').val();
-        var $sele1 = $form.find('select[name=classcategory_id1]');
-        var $sele2 = $form.find('select[name=classcategory_id2]');
-        eccube.setClassCategories($form, product_id, $sele1, $sele2, classcat_id2_selected);
-    }
+
 
 //]]></script>
 <script type="text/javascript">//<![CDATA[
@@ -63,7 +57,9 @@
 
         // ゴミ箱ボタン押下処理
         $('.clear-sort').on('click',function(){
+
             fnFilterClear($(this).parent().find('select').attr('id'));
+            //$(this).parent().removeClass("on");
         });
         // submit
         $('.arrow-down').on('click',function(){
@@ -107,6 +103,7 @@
 
     // 絞り込設定をクリア(選択の解除のみ)
     function fnFilterClear(deletefilters) {
+        $('#'+deletefilters)
         $('#'+deletefilters).multipleSelect("uncheckAll");
         if($.inArray(deletefilters, multiSelNameArr) == -1){
             $('#'+deletefilters).multipleSelect('setSelects', [0]);
