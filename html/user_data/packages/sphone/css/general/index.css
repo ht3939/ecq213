@@ -30,6 +30,9 @@
 }
 
 #weekly-top {
+    /*総合TOP非表示のときはこちら*/
+    display: none;
+    /*総合TOP非表示のときはこちら*/
     width: 942px;
     border: 4px solid #f03;
     font-size: 13px;
@@ -1404,13 +1407,23 @@
 
 .row-container {
     width: 950px;
-    margin: -45px auto 50px;
+    /*総合TOP非表示のときはこちら*/
+    margin: 55px auto 50px;
+    /*総合TOP非表示のときはこちら*/
+    /*総合TOP表示のときはこちら*/
+    /*margin: -45px auto 50px;*/
+    /*総合TOP表示のときはこちら*/
     overflow: visible;
 }
 
 .top-container {
     width: 100%;
-    padding: 85px 0 45px;
+    /*総合TOP非表示のときはこちら*/
+    padding: 5px 0 5px;
+    /*総合TOP非表示のときはこちら*/
+    /*総合TOP表示のときはこちら*/
+    /*padding: 85px 0 45px;*/
+    /*総合TOP表示のときはこちら*/
     overflow: visible;
     background: url(../../img/common/bg-border-blue.png) repeat;
 }
