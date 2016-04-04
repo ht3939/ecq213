@@ -122,6 +122,7 @@ Blocとレイアウト設定で定義したほうがよいかも。
 <!--{*
 Blocとレイアウト設定で定義したほうがよいかも。
 *}-->
+	<!--{assign var=ACWBCONST_OG_URL_CONTENT value=`$ACWBCONST_OG_URL_CONTENT``$smarty.const.ROOT_URLPATH`"}-->
 
 <!--{assign var=ACWBCONST_article       value="website"}-->
 <!--{assign var=ACWBCONST_meta_keywords       value="モバイルルーター,Wi-Fi,価格,比較,ランキング"}-->
@@ -129,7 +130,7 @@ Blocとレイアウト設定で定義したほうがよいかも。
 <!--{assign var=ACWBCONST_meta_description    value="Yahoo!買い物ナビゲーターの格安モバイルルーター価格ランキングなら、お得なモバイルルータが一目で分かる！月額料金、2年総額、月間データ量などの項目から、自分にぴったりのルーターをお探しください"}-->
 <!--{assign var=ACWBCONST_meta_title         value="格安モバイルルーター比較 – Yahoo!買い物ナビゲーター"}-->
 
-<!--{assign var=ACWBCONST_link_canonical      value="`$ACWBCONST_SITE_URL`"}-->
+<!--{assign var=ACWBCONST_link_canonical      value="`$ACWBCONST_SITE_URL``$smarty.const.ROOT_URLPATH`"}-->
 <!--{assign var=ACWBCONST_link_alternate      value=""}-->
 
 <!--{/if}-->
