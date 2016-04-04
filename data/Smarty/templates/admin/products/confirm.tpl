@@ -146,9 +146,16 @@
             </td>
         </tr>
         <tr>
-            <th>注意事項 詳細-サブコメント(2)</th>
+            <th>注意事項 詳細-サブコメント(3)</th>
             <td>
                 <!--{assign var=key value="sub_comment3"}-->
+                <!--{$arrForm[$key]|nl2br_html}-->
+            </td>
+        </tr>
+        <tr>
+            <th>サービスプランＵＲＬ 詳細-サブコメント(4)</th>
+            <td>
+                <!--{assign var=key value="sub_comment4"}-->
                 <!--{$arrForm[$key]|nl2br_html}-->
             </td>
         </tr>

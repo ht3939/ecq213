@@ -181,7 +181,7 @@ if($('.js-device-tab').find('td').length > 1){
 }
 //aタグ 全体リンク
 $(".js-all-link").click(function(){
-  location.href = $(this).find('.js-link-btn').attr("href");
+  $(this).find('.js-link-btn')[0].click();
 });
 
 

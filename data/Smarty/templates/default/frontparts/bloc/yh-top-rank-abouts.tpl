@@ -39,16 +39,19 @@
                 <li><a href="http://wifi.yahoo.co.jp/" target="_blank">Yahoo! Wi-Fi</a></li>
                 <li><a href="https://wimax-broad.jp/" target="_blank">Broad WiMAX</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
                 <li><a href="http://gmobb.jp/lp/wimax2plus/" target="_blank">とくとくBB</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
+                <li><a href="https://3-wimax.jp/" target="_blank">3 WiMAX</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
               </ul>
               <ul>
                 <li><a href="https://www.so-net.ne.jp/access/mobile/wimax2/" target="_blank">So-net</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
                 <li><a href="http://join.biglobe.ne.jp/mobile/wimax/" target="_blank">BIGLOBE</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
-                <li><a href="https://3-wimax.jp/" target="_blank">3 WiMAX</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
+                <li><a href="http://setsuzoku.nifty.com/wimax/" target="_blank">@nifty</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
+                <li>　</li>
               </ul>
               <ul>
-                <li><a href="http://setsuzoku.nifty.com/wimax/" target="_blank">@nifty</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
                 <li><a href="https://wimax.pepabo.com/" target="_blank">Pepabo WiMAX</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
                 <li><a href="https://broad-lte.jp/" target="_blank">Broad LTE</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
+                <li><a href="http://www.dismobile.jp/wimax/" target="_blank">DIS mobile</a><img class="icon-link" src="<!--{$TPL_URLPATH}-->img/index/icon-link.gif" alt="外部サイト"></li>
+                <li>　</li>
               </ul>
             </div>
             <div class="comparison-model">

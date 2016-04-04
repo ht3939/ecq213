@@ -265,7 +265,15 @@
                 <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
             </td>
         </tr>
-
+        <tr>
+            <th>サービスプランＵＲＬ 詳細-サブコメント(4)<span class="attention">(タグ許可)</span></th>
+            <!--{assign var=key value="sub_comment4"}-->
+            <td>
+                <span class="attention"><!--{$arrErr[$key]}--></span>
+                <textarea name="<!--{$key}-->" cols="60" rows="8" class="area60" maxlength="<!--{$smarty.const.LLTEXT_LEN}-->" style="<!--{$arrErr[$key]|sfGetErrorColor}-->"><!--{"\n"}--><!--{$arrForm[$key]|h}--></textarea><br />
+                <span class="attention"> (上限<!--{$smarty.const.LLTEXT_LEN}-->文字)</span>
+            </td>
+        </tr>
         <tr>
             <th>詳細文言（一覧-メインコメント）<span class="attention"> *</span></th>
             <td>

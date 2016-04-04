@@ -30,7 +30,7 @@
             </li>
             <li class="<!--{$arrProduct.rank2_order|sfGetRankClass}-->">
             <img src="<!--{$TPL_URLPATH}-->img/detail/tag2.png" alt="" class="tag">
-              <p class="head">お支払い総額</p>
+              <p class="head">2年間総額</p>
               <p class="data"><!--{$arrProduct.total_price|number_format}--><span>円</span><!--{if $arrProduct.rank2_order>3}--><span class="rank-tag"><!--{$arrProduct.rank2_order}-->位</span><!--{/if}--></p>
             </li>
             <li class="<!--{$arrProduct.rank3_order|sfGetRankClass}-->">
@@ -56,16 +56,16 @@
               <ul class="rank-list">
 
                 <li class="<!--{$arrProduct.rank1_order|sfGetRankClass:true}-->">月額料金<!--{if $arrProduct.rank1_order>3}--><span class="rank-tag"><!--{$arrProduct.rank1_order}-->位</span><!--{/if}--></li>
+                <li class="<!--{$arrProduct.rank2_order|sfGetRankClass:true}-->">2年間総額<!--{if $arrProduct.rank2_order>3}--><span class="rank-tag"><!--{$arrProduct.rank2_order}-->位</span><!--{/if}--></li>
                 <li class="<!--{$arrProduct.rank3_order|sfGetRankClass:true}-->">月間データ量<!--{if $arrProduct.rank3_order>3}--><span class="rank-tag"><!--{$arrProduct.rank3_order}-->位</span><!--{/if}--></li>
                 <li class="<!--{$arrProduct.rank5_order|sfGetRankClass:true}-->">上り最大速度<!--{if $arrProduct.rank5_order>3}--><span class="rank-tag"><!--{$arrProduct.rank5_order}-->位</span><!--{/if}--></li>
                 <li class="<!--{$arrProduct.rank4_order|sfGetRankClass:true}-->">下り最大速度<!--{if $arrProduct.rank4_order>3}--><span class="rank-tag"><!--{$arrProduct.rank4_order}-->位</span><!--{/if}--></li>
-                <li class="<!--{$arrProduct.rank2_order|sfGetRankClass:true}-->">お支払総額<!--{if $arrProduct.rank2_order>3}--><span class="rank-tag"><!--{$arrProduct.rank2_order}-->位</span><!--{/if}--></li>
 
 
               </ul>
               <div class="graph">
                 <p class="status1">月額料金<br><span class="rank"><!--{$arrProduct.rank1_order}-->位</span><br><span class="data">（<!--{$arrProduct.y1_price|number_format}-->円）</span></p>
-                <p class="status2">お支払総額<br><span class="rank"><!--{$arrProduct.rank2_order}-->位</span><br><span class="data">（<!--{$arrProduct.total_price|number_format}-->円）</span></p>
+                <p class="status2">2年間総額<br><span class="rank"><!--{$arrProduct.rank2_order}-->位</span><br><span class="data">（<!--{$arrProduct.total_price|number_format}-->円）</span></p>
                 <p class="status3">月間データ量<br><span class="rank"><!--{$arrProduct.rank3_order}-->位</span><br><span class="data">（<!--{if $arrProduct.datasize==999}-->上限なし<!--{else}--><!--{$arrProduct.datasize}-->GB<!--{/if}-->）</span></p>
                 <p class="status4">下り最大速度<br><span class="rank"><!--{$arrProduct.rank4_order}-->位</span><br><span class="data">（<!--{$arrProduct.data_speed_down}-->Mbps）</span></p>
                 <p class="status5">上り最大速度<br><span class="rank"><!--{$arrProduct.rank5_order}-->位</span><br><span class="data">（<!--{$arrProduct.data_speed_up}-->Mbps）</span></p>
@@ -107,7 +107,7 @@
                   </dl>
                 </li>
               </ul>
-              <p class="link-btn"><a href="<!--{$arrCC1.pc_url}-->" target="_blnak">この商品ページへ</a></p>
+              <p class="link-btn"><a href="<!--{$arrCC1.pc_url}-->" target="_blnak">この商品のページへ</a></p>
               <p class="blank-nav">
                 <!--{if $arrProduct.maker_id > 1}-->
           (外部サイトへ)
