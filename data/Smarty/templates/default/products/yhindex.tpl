@@ -5,7 +5,7 @@
 </div>
 <div class="top-data">
   <div class="inner">
-    <div class="update-date"><p>ランキング最終更新日：2016年03月30日</p></div>
+    <div class="update-date"><p>ランキング最終更新日：2016年04月05日</p></div>
     <div class="sns-list">
       <ul class="">
 
