@@ -1,3 +1,9 @@
+# export db
 mysqldump -u root -p  yhecq > yhecq213dmp
 
 zip yhecq213dmp.zip yhecq213dmp
+
+unzip yhecq213dmp.zip
+
+# import db
+mysql -h yahoonavi.csn5neb1goub.ap-northeast-1.rds.amazonaws.com -u allconnect -p --database=yhecqrc < yhecq213dmp
