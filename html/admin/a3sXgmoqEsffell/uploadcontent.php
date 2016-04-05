@@ -135,6 +135,11 @@ class Deploy {
 
 }
 
+
+echo'test';
+exit;
+
+
 // This is just an example
 $deploy = new Deploy('/home/ec2-user/ycecqdev/Smarty/templates');
 
