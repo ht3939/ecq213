@@ -118,7 +118,7 @@ class Deploy {
             //exec('git config  user.email "autodeploy@gmail.com"', $output);
             //exec('git config  user.name "autodeploy"', $output);
             // Discard any changes to tracked files since our last deploy
-            exec('git add .', $output);
+            exec('git add '.$this->_directory, $output);
             $this->log('Reseting repository... '.implode(' ', $output));
 
             // Update the local repository
