@@ -144,7 +144,7 @@ class Deploy {
 
 
 // This is just an example
-$deploy = new Deploy('/home/ec2-user/yhecqdev/Smarty/templates');
+$deploy = new Deploy('/home/ec2-user/yhecqdev/data/Smarty/templates');
 
 /*
 $deploy->post_deploy = function() use ($deploy) {
