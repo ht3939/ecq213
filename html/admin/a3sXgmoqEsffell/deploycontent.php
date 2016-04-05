@@ -142,7 +142,7 @@ class Deploy {
 }
 
 // This is just an example
-$deploy = new Deploy('/home/ec2-user/ycecqdev');
+$deploy = new Deploy('/home/ec2-user/yhecq');
 
 /*
 $deploy->post_deploy = function() use ($deploy) {

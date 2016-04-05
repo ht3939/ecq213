@@ -110,10 +110,13 @@ class Deploy {
     {
         try
         {
+            //exec('set $HOME=/home/ec2-user ', $output);
             // Make sure we're in the right directory
             exec('cd '.$this->_directory, $output);
             $this->log('Changing working directory... '.implode(' ', $output));
 
+            exec('git config  user.email "autodeploy@gmail.com"', $output);
+            exec('git config  user.name "autodeploy"', $output);
             // Discard any changes to tracked files since our last deploy
             exec('git add .', $output);
             $this->log('Reseting repository... '.implode(' ', $output));
@@ -136,12 +139,12 @@ class Deploy {
 }
 
 
-echo'test';
-exit;
+//echo'test';
+//exit;
 
 
 // This is just an example
-$deploy = new Deploy('/home/ec2-user/ycecqdev/Smarty/templates');
+$deploy = new Deploy('/home/ec2-user/yhecqdev/Smarty/templates');
 
 /*
 $deploy->post_deploy = function() use ($deploy) {
@@ -154,7 +157,7 @@ $deploy->post_deploy = function() use ($deploy) {
 $deploy->execute();
 echo "templates upload completed...";
 // This is just an example
-$deploy = new Deploy('/home/ec2-user/ycecqdev/html/user_data');
+$deploy = new Deploy('/home/ec2-user/yhecqdev/html/user_data');
 
 /*
 $deploy->post_deploy = function() use ($deploy) {
