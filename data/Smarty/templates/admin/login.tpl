@@ -26,7 +26,7 @@
 <div id="login-wrap">
 
     <div id="login-form" class="clearfix">
-        <h1>ヤフー比較ナビ管理画面</h1>
+        <h1>ヤフー比較ナビ管理画面 v</h1>
         <div id="input-form">
             <form name="form1" id="form1" method="post" action="?">
                 <input type="hidden" name="<!--{$smarty.const.TRANSACTION_ID_NAME}-->" value="<!--{$transactionid}-->" />
